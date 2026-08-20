@@ -2,8 +2,9 @@
 
 # Petroff.law — build from Figma
 
-Built from Figma one section at a time. All three pages are complete: the home
-page, the Expertises hub, and the Contentieux & arbitrage domain page.
+Built from Figma one section at a time. The home page, the Expertises hub and
+the Contentieux & arbitrage domain page are complete; Contrats & droit
+commercial is in progress.
 
 - **Figma file key:** `FOkn6jOmKh2I1YfbJUczBf`
 - **Page frame:** `12843:882` ("Petroff.law — Home", 1920x5598)
@@ -81,6 +82,99 @@ returned 63k characters, over the tool's limit, but the response is saved to a
 file and `grep -nE '^  <(frame|instance)' ` on it lists exactly the top-level
 sections.
 
+## Page 4 — Contrats & droit commercial (`/expertises/contrats-commerciaux`), frame `12870:1006`
+
+1920x8300, the second domain detail page — the same eleven-section shape as
+Contentieux. `domaines.ts` already pointed the Contrats card at this path, so
+adding it to `liveRoutes` lit up both that card and the header submenu, which
+now lists two domains.
+
+| # | Section | Node ID | Status |
+|---|---|---|---|
+| 1 | Hero | `12870:1009` | done |
+| 2 | Domaines | `12870:1011` | done |
+| 3 | Tools | `12870:1013` | done |
+| 4 | Prestations | `12870:1015` | done |
+| 5 | Forfaits | `12870:1017` | done |
+| 6 | MidCTA | `12893:1107` | done |
+| 7 | Methode | `12870:1019` | **next** |
+| 8 | Espace | `12870:1021` | todo |
+| 9 | Bib | `12870:1023` | todo |
+| 10 | FAQ | `12870:1025` | todo |
+| 11 | CTAFinal | `12870:1027` | todo |
+
+Its sections live in `src/components/sections/contrats/`, and its copy under
+the `ContratsPage` message namespace.
+
+- Its hero column starts at y=109, not the Contentieux hero's 130.5, because
+  the title runs to three lines — `lg:pt-27.25`. And it takes **no bottom
+  padding at lg**: Figma's stage is simply 720px tall with the content ending
+  inside it, so `lg:min-h-180` supplies the height. Adding `lg:pb-10` (as the
+  Contentieux hero does, where the shorter content happens to land on 720
+  anyway) pushed the section to 809.8px against the designed 784.
+- Its marker bar sits **0.563em left of the highlighted chunk's own centre** —
+  Figma draws it at (597, 257) 304x22, wider than "tiennent —" itself. All four
+  coordinates now land within 0.03px.
+- **Figma renders this hero's lead at 28px line spacing, where its own code
+  export declares `leading-[1.4]` (25.2px).** `text-body` is correct: the
+  Contentieux hero's lead measures 25px in Figma's render, as do the Bib card
+  descriptions, so 1.4 matches everywhere else. This one node disagrees with
+  both the design-system style and its own export, so the token was kept. The
+  cost is the CTA row and stats sitting 8px higher than the comp. Worth asking
+  the designer before "fixing" it.
+- **The ⚡ in the Forfaits flash lines is a colour emoji in Figma too** — an
+  8x crop shows Figma rendering it yellow/amber, not in the brique text colour.
+  Leave it as the browser draws it. `font-variant-emoji: text` was tried and
+  reverted: it makes the glyph monochrome, which moves *away* from the comp.
+  The artwork still differs slightly because Figma and Windows use different
+  emoji fonts; that is inherent to emoji in content and not worth chasing.
+  **Do not judge a small glyph from a downscaled crop** — the first read of a
+  1000px-wide comparison had this exactly backwards.
+- Its MidCTA's gold run is Inter 20/**1.55** — exactly `text-lead` — where the
+  Contentieux one is 20/1.3 and has to borrow `text-h3`'s metrics. It still
+  needs an explicit `font-inter`; see the font-family note under Hard rules.
+- Its Forfaits differs from Contentieux in four places: outer plans are
+  `bg-lilas` not white, the price unit is `text-small` not `text-nav`, feature
+  text is `encre/62` not `/75`, and **the third plan's price is 40px** where the
+  others are 30 (`text-h2` against `text-price`). Because `text-h2` is fluid and
+  `text-price` is fixed, that inverts below ~1100px — at 375 the "large" price
+  renders 28px against the others' 30. The cards are stacked by then so the two
+  are never seen side by side, but a fixed 40px token would remove it.
+- Its Prestations is the **one section that ports cleanly** from Contentieux:
+  same structure and character-identical overline, title and lead, so the
+  component was copied with only the namespace and lib import swapped. Its
+  `ContratsPage.prestations` head copy duplicates `ContentieuxPage.prestations`
+  verbatim — the third such duplication after the two CTAFinals and the two
+  Domaines footnotes.
+- **The two Tools sections disagree in three places**, so do not copy one to
+  the other: its badges are `text-button` here (Poppins SemiBold 16, no
+  tracking) against `text-badge` on Contentieux; its result panel is 18px
+  (`rounded-note-lg`) against 10px; and its body copy is `white/70` against
+  `white/65` and `white/80`. Everything else is identical.
+- Its Domaines cards rest on **lilas against a white section** — the inverse of
+  the Contentieux page — and lift to white with a `0px 14px 34px` shadow on
+  hover. Figma draws the first card already in that lifted state, and unlike
+  the Contentieux page (where card 1 differs only by a shadow on an identical
+  white ground) the difference here is plainly visible, so it is reproduced via
+  a `raised` flag on the first mission. If that turns out to be the designer
+  demonstrating hover, drop the flag and nothing else changes.
+- **These exports carry a bare `<rect width="26" height="26" fill="white"/>`**
+  behind the glyph — an opaque background, not a clip mask. It must be stripped
+  or it paints a white square on the coloured icon tile. Earlier exports in this
+  build had none, so check every batch. `matchall.js` compares only `<path d>`,
+  so reuse detection is unaffected.
+- `percent-rounded.svg` is a second percent glyph beside `percent.svg` — three
+  paths with rounded caps against one with square caps, the same
+  `file-lines`/`document` situation.
+- Its section measures 1431.4 against Figma's 1393 frame, but **Figma's own
+  frame is undersized**: its rendered content runs to ~1416 and its `grid-exp`
+  declares `h-966` while needing ~989. Of the real 15px gap, ~5px per card row
+  is the border-box difference — 2px for the card border and 2px for the tag
+  pill's, both of which Figma draws inside.
+- Four new ornaments — `pen-nib`, `desk-lamp`, `award-rosette`, `open-book`.
+  The tower reuses `eiffel-tower-colour` at the same 140x271 the Contentieux
+  hero uses, and both sparkles reuse `sparkle`.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.
@@ -89,12 +183,19 @@ sections.
   Tokens added this way so far: `--text-nav`, `--text-h2-sm`, `--radius-card`,
   `--radius-tile`, `--radius-field`, `--radius-panel`, `--container-page`,
   `--text-badge` (Poppins Bold 16 / 0.08em, Tools' uppercase card badges),
-  `--radius-note` (10px, Tools' inset result panels), `--text-body-strong`
+  `--radius-note` (10px) and `--radius-note-lg` (18px) — Tools' inset result
+  panels, two sizes because the Contentieux and Contrats frames disagree about
+  the same element — `--text-body-strong`
   (Inter SemiBold 18/1.5 — Figma's "Petroff/Body 18 strong", the FAQ questions)
   and `--text-price`
   (Poppins Bold 30 — Figma's own "Petroff/Price", the forfait amounts; added
   under the `--text-badge` precedent rather than re-asking, since it is the
   same case: a named Figma style with no matching token).
+- **`text-*` tokens carry size, line-height, weight and tracking — never the
+  font family.** A `text-lead` span inside a `font-poppins` paragraph renders
+  in Poppins, not Inter, and reads visibly wider and heavier. Pair the token
+  with `font-inter` (or `font-poppins`) whenever the run differs from its
+  parent. This is what made the Contrats MidCTA's gold half wrong.
 - **A new `--text-*` token must also be registered in `cn`'s font-size group**
   in `src/lib/utils.ts`. They look like colour utilities to tailwind-merge,
   which silently strips them the moment a text colour is merged in.
@@ -486,6 +587,10 @@ asset URLs, so `curl` those rather than spending a second call on
 - The Cabinet collage appears from `xl` only. Its stage is 548px wide, so at
   `lg` the second photo print would be cut. Its captions repeat the heading and
   lead, so nothing is lost when it is hidden.
-- French thousands separators use a narrow no-break space (U+202F)
-  ("2 400+", "552 032 534", "+4 %"). Figma's exact code point could not be read
-  back from the API response, so this is a choice, not a verified copy.
+- French thousands separators and unit gaps use a **thin space (U+2009)**.
+  Figma's gap measures 6px at 30px Poppins; U+2009 is exactly 6.00px there,
+  where the U+202F originally used renders at only 3.19px and left prices
+  reading "1200 €". Measured with a hidden probe span, not guessed. Caveat:
+  U+2009 is a *breaking* space, so a number can in principle wrap across it —
+  add `whitespace-nowrap` if that ever shows up. (U+00A0 is 6.36px and
+  non-breaking if the wrap matters more than the exact width.)

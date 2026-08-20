@@ -46,8 +46,10 @@
   --radius-card: 20px;
   --radius-tile: 14px;
   --radius-field: 12px;
-  /* Inset result/note panels sitting inside a card. */
+  /* Inset result/note panels sitting inside a card. Two sizes because the
+     Contentieux and Contrats frames disagree about the same panel. */
   --radius-note: 10px;
+  --radius-note-lg: 18px;
   --radius-panel: 28px;
 
   /* --- Fonts ------------------------------------------------------------ */

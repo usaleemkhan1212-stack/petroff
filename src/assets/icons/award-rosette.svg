@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="140" height="171" viewBox="0 0 140 171" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<path id="Vector" d="M46.6667 91.2L28 166.44L51.3333 150.48L70 166.44L63 91.2H46.6667Z" fill="var(--color-periwinkle)"/>
+<path id="Vector_2" d="M88.6667 91.2L107.333 166.44L84 150.48L67.6667 166.44L74.6667 91.2H88.6667Z" fill="var(--color-rose)"/>
+<path id="Vector_3" d="M67.6667 109.44C96.0173 109.44 119 86.9826 119 59.28C119 31.5774 96.0173 9.12 67.6667 9.12C39.316 9.12 16.3333 31.5774 16.3333 59.28C16.3333 86.9826 39.316 109.44 67.6667 109.44Z" fill="var(--color-gold)"/>
+<path id="Vector_4" d="M67.6667 93.48C86.9966 93.48 102.667 78.1681 102.667 59.28C102.667 40.3919 86.9966 25.08 67.6667 25.08C48.3367 25.08 32.6667 40.3919 32.6667 59.28C32.6667 78.1681 48.3367 93.48 67.6667 93.48Z" fill="var(--color-brique)"/>
+<path id="Vector_5" d="M53.6667 59.28L64.1667 69.54L84 47.88" stroke="var(--color-lilas)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

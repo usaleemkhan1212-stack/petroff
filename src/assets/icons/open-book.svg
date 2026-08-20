@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<path id="Vector" d="M60 16.5C43.5 6 19.5 4.5 6 9V75C19.5 70.5 43.5 72 60 82.5V16.5Z" fill="var(--color-gold)"/>
+<path id="Vector_2" d="M60 16.5C76.5 6 100.5 4.5 114 9V75C100.5 70.5 76.5 72 60 82.5V16.5Z" fill="var(--color-encre)"/>
+<g id="Vector_3">
+<path d="M72 28.5C82.5 24 97.5 22.5 106.5 24ZM72 43.5C82.5 39 97.5 37.5 106.5 39ZM72 58.5C82.5 54 97.5 52.5 106.5 54Z" fill="black"/>
+<path d="M72 28.5C82.5 24 97.5 22.5 106.5 24M72 43.5C82.5 39 97.5 37.5 106.5 39M72 58.5C82.5 54 97.5 52.5 106.5 54" stroke="var(--color-lilas)" stroke-width="6" stroke-linecap="round"/>
+</g>
+</g>
+</svg>

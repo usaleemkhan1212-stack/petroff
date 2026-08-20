@@ -89,7 +89,7 @@
         "cta": "Parcourir les guides"
       },
       "fiches": {
-        "count": "2 400+",
+        "count": "2 400+",
         "title": "Fiches & FAQ",
         "description": "Une question, une réponse claire, les textes et la jurisprudence qui vont avec.",
         "cta": "Parcourir les fiches"
@@ -110,13 +110,13 @@
       "title": "Vérifier une entreprise",
       "description": "Identité, dirigeants, siège et procédures en cours — directement depuis les registres publics.",
       "label": "SIREN, SIRET ou dénomination",
-      "placeholder": "SIREN, SIRET ou dénomination — ex. 552 032 534",
+      "placeholder": "SIREN, SIRET ou dénomination — ex. 552 032 534",
       "submit": "Vérifier",
       "resultsLabel": "Exemple de résultat",
       "rows": {
         "name": {
           "term": "DANONE SA",
-          "detail": "SIREN 552 032 534"
+          "detail": "SIREN 552 032 534"
         },
         "siege": {
           "term": "Siège",
@@ -141,7 +141,7 @@
           "meta": "Légifrance — cette semaine"
         },
         "collectives": {
-          "title": "Procédures collectives : +4 % d’ouvertures au T2 2026",
+          "title": "Procédures collectives : +4 % d’ouvertures au T2 2026",
           "meta": "BODACC — données mensuelles"
         }
       },
@@ -203,7 +203,7 @@
   "CTAFinal": {
     "overline": "CONTACT",
     "title": "Un projet, un litige, une question ?",
-    "lead": "Première évaluation de votre dossier, réponse sous 24 h ouvrées. · + 33 (0) 1 78 90 46 46 · Paris",
+    "lead": "Première évaluation de votre dossier, réponse sous 24 h ouvrées. · + 33 (0) 1 78 90 46 46 · Paris",
     "ctaPrimary": "Prendre rendez-vous",
     "ctaSecondary": "Faire évaluer mon dossier"
   },
@@ -258,11 +258,11 @@
           "label": "FR · EN · 中文 · ES"
         },
         "ressources": {
-          "value": "2 800+",
+          "value": "2 800+",
           "label": "ressources en bibliothèque"
         },
         "reponse": {
-          "value": "24 h",
+          "value": "24 h",
           "label": "première réponse garantie"
         }
       }
@@ -296,7 +296,7 @@
         "contentieux": {
           "title": "Contentieux & arbitrage",
           "description": "Litiges commerciaux, référés, arbitrage, exécution des décisions.",
-          "tags": ["Urgence 48 h", "Arbitrage", "Exécution"]
+          "tags": ["Urgence 48 h", "Arbitrage", "Exécution"]
         },
         "litigesAssocies": {
           "title": "Litiges entre associés",
@@ -326,7 +326,7 @@
         "recouvrement": {
           "title": "Recouvrement & mesures conservatoires",
           "description": "Relances, injonctions, saisies conservatoires, procédures collectives.",
-          "tags": ["72 h", "Saisies", "BODACC"]
+          "tags": ["72 h", "Saisies", "BODACC"]
         }
       },
       "transverse": {
@@ -359,7 +359,7 @@
     "ctaFinal": {
       "overline": "CONTACT",
       "title": "Un projet de société, une question d’associés ?",
-      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
+      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
       "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
       "ctaPrimary": "Réserver un créneau visio",
       "ctaSecondary": "Obtenir un devis en ligne"
@@ -378,11 +378,11 @@
       "ctaSecondary": "Voir les forfaits",
       "stats": {
         "urgence": {
-          "value": "48 h",
+          "value": "48 h",
           "label": "pour une action d’urgence"
         },
         "resolus": {
-          "value": "85 %",
+          "value": "85 %",
           "label": "de dossiers résolus avant jugement"
         },
         "langues": {
@@ -390,7 +390,7 @@
           "label": "FR · EN · 中文 · ES"
         },
         "reponse": {
-          "value": "24 h",
+          "value": "24 h",
           "label": "première réponse garantie"
         }
       }
@@ -409,7 +409,7 @@
         "referes": {
           "title": "Référés & urgence",
           "description": "Référé-provision, mesures conservatoires, interdictions sous astreinte, requêtes non contradictoires.",
-          "tags": ["48 h"]
+          "tags": ["48 h"]
         },
         "commercial": {
           "title": "Contentieux commercial",
@@ -456,7 +456,7 @@
       "items": {
         "diagnostic": {
           "title": "Diagnostic de dossier",
-          "badge": "15 MIN",
+          "badge": "15 MIN",
           "description": "Décrivez le litige : points forts, points faibles, options — un avocat vous rappelle avec un premier avis.",
           "placeholder": "Ex. : client qui ne paie plus depuis mars…",
           "submit": "Évaluer"
@@ -491,8 +491,8 @@
       "items": {
         "misesEnDemeure": {
           "title": "Mises en demeure",
-          "description": "Calibrées et envoyées sous 48 h, avec stratégie de suite en cas de silence.",
-          "tags": ["190 €"]
+          "description": "Calibrées et envoyées sous 48 h, avec stratégie de suite en cas de silence.",
+          "tags": ["190 €"]
         },
         "injonctions": {
           "title": "Injonctions de payer",
@@ -516,11 +516,11 @@
       "title": "Des forfaits fermés, affichés, sans surprise",
       "lead": "Chaque forfait inclut un point visio avec un avocat. Montants indicatifs de maquette — tarif membre avec l’abonnement.",
       "badge": "LE PLUS DEMANDÉ",
-      "footnote": "Au-delà des forfaits : devis fermé communiqué sous 24 h après un premier échange gratuit de 15 minutes.",
+      "footnote": "Au-delà des forfaits : devis fermé communiqué sous 24 h après un premier échange gratuit de 15 minutes.",
       "items": {
         "diagnostic": {
           "title": "Diagnostic stratégique",
-          "price": "490 €",
+          "price": "490 €",
           "unit": "HT",
           "flash": "⚡ Avis sous 5 jours",
           "features": [
@@ -534,9 +534,9 @@
         },
         "urgence": {
           "title": "Action d’urgence",
-          "price": "2 500 €",
+          "price": "2 500 €",
           "unit": "HT — à partir de",
-          "flash": "⚡ Assignation sous 48 h",
+          "flash": "⚡ Assignation sous 48 h",
           "features": [
             "Référé-provision ou mesures conservatoires",
             "Rédaction et signification de l’assignation",
@@ -672,11 +672,11 @@
       "items": {
         "transiger": {
           "question": "Vaut-il mieux transiger ou plaider ?",
-          "answer": "Cela se calcule : montant récupérable × probabilité de succès − coûts et durée, contre l’offre sur la table. Notre diagnostic stratégique pose ces chiffres noir sur blanc avant toute assignation — et 85 % de nos dossiers se résolvent sans jugement, aux conditions préparées par la procédure."
+          "answer": "Cela se calcule : montant récupérable × probabilité de succès − coûts et durée, contre l’offre sur la table. Notre diagnostic stratégique pose ces chiffres noir sur blanc avant toute assignation — et 85 % de nos dossiers se résolvent sans jugement, aux conditions préparées par la procédure."
         },
         "cout": {
           "question": "Combien coûte un procès commercial ?",
-          "answer": "Nos forfaits sont affichés : 490 € HT pour un diagnostic stratégique, à partir de 2 500 € HT pour une action d’urgence. Au fond, le devis est établi par phases plafonnées, avec un point d’arbitrage à chaque étape et, lorsque c’est pertinent, un honoraire de résultat. Au-delà des forfaits, le devis fermé vous est communiqué sous 24 h après un premier échange gratuit de 15 minutes."
+          "answer": "Nos forfaits sont affichés : 490 € HT pour un diagnostic stratégique, à partir de 2 500 € HT pour une action d’urgence. Au fond, le devis est établi par phases plafonnées, avec un point d’arbitrage à chaque étape et, lorsque c’est pertinent, un honoraire de résultat. Au-delà des forfaits, le devis fermé vous est communiqué sous 24 h après un premier échange gratuit de 15 minutes."
         },
         "arbitrage": {
           "question": "Qu’est-ce que l’arbitrage et quand le choisir ?",
@@ -691,10 +691,212 @@
     "ctaFinal": {
       "overline": "CONTACT",
       "title": "Un projet de société, une question d’associés ?",
-      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
+      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
       "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
       "ctaPrimary": "Réserver un créneau visio",
       "ctaSecondary": "Obtenir un devis en ligne"
+    }
+  },
+  "ContratsPage": {
+    "hero": {
+      "breadcrumbLabel": "Fil d’Ariane",
+      "crumbHome": "Accueil",
+      "crumbExpertises": "Expertises",
+      "crumbCurrent": "Contrats & droit commercial",
+      "overline": "EXPERTISES — CONTRATS & DROIT COMMERCIAL",
+      "title": "Des contrats qui <hl>tiennent —</hl> négociés, signés, vivants.",
+      "lead": "CGV, distribution, agence, sous-traitance, contrats internationaux : des accords clairs, négociés à votre avantage, et suivis pendant toute leur vie.",
+      "ctaPrimary": "Parler à un avocat",
+      "ctaSecondary": "Voir les forfaits",
+      "stats": {
+        "relecture": {
+          "value": "48 h",
+          "label": "relecture express d’un contrat"
+        },
+        "signature": {
+          "value": "100 %",
+          "label": "signature électronique"
+        },
+        "langues": {
+          "value": "4 langues",
+          "label": "contrats bilingues"
+        },
+        "reponse": {
+          "value": "24 h",
+          "label": "première réponse garantie"
+        }
+      }
+    },
+    "domaines": {
+      "overline": "LE CŒUR DU MÉTIER",
+      "title": "Négocier, sécuriser, faire vivre vos accords",
+      "lead": "Un bon contrat prévient le litige et prépare la victoire s’il survient. Nous les négocions, les rédigeons et les suivons.",
+      "footnote": "Ces missions font l’objet d’un devis par phases (analyse → stratégie → exécution), avec budget plafonné par étape et point d’arbitrage à chaque fin de phase.",
+      "items": {
+        "distribution": {
+          "title": "Distribution & franchise",
+          "description": "Réseaux de distribution, franchise, concession, distribution sélective — DIP, quotas, exclusivités.",
+          "tags": ["Réseaux"]
+        },
+        "agence": {
+          "title": "Agence commerciale",
+          "description": "Statut d’agent, indemnité de fin de contrat, contentieux de la rupture — côté mandant ou agent.",
+          "tags": ["Indemnité"]
+        },
+        "cgv": {
+          "title": "CGV, CGU & e-commerce",
+          "description": "Conditions générales solides, parcours de vente conformes, plateformes et marketplaces.",
+          "tags": ["Conso & B2B"]
+        },
+        "industriels": {
+          "title": "Contrats industriels",
+          "description": "Fabrication, approvisionnement, maintenance, SLA — pénalités, responsabilités et réversibilité.",
+          "tags": ["Long terme"]
+        },
+        "sousTraitance": {
+          "title": "Sous-traitance",
+          "description": "Chaînes de sous-traitance, loi de 1975, garanties de paiement, responsabilités croisées.",
+          "tags": ["BTP & industrie"]
+        },
+        "rupture": {
+          "title": "Rupture des relations",
+          "description": "Rupture brutale de relations établies : sécuriser une sortie ou défendre vos préavis.",
+          "tags": ["L.442-1"]
+        },
+        "transparence": {
+          "title": "Transparence & pratiques",
+          "description": "Négociation annuelle, conventions uniques, pratiques restrictives, déséquilibre significatif.",
+          "tags": ["Grande distribution"]
+        },
+        "international": {
+          "title": "Contrats internationaux",
+          "description": "Loi applicable, juridiction, Incoterms, garanties bancaires — bilingues et exécutables.",
+          "tags": ["Cross-border"]
+        },
+        "negociations": {
+          "title": "Négociations stratégiques",
+          "description": "À vos côtés en négociation : tactique, red lines, clauses de sortie — avant la signature.",
+          "tags": ["Deal team"]
+        }
+      }
+    },
+    "tools": {
+      "overline": "LEGAL TECH — L’INTENDANCE EN LIGNE",
+      "title": "Quatre outils pour des contrats sous contrôle",
+      "lead": "Démo interactive — les résultats de la maquette sont fictifs.",
+      "result": "Démo interactive — cliquez pour voir un exemple de résultat.",
+      "items": {
+        "audit": {
+          "title": "Audit express de CGV",
+          "badge": "GRATUIT",
+          "description": "Vos CGV au scanner : clauses manquantes, clauses à risque, conformité.",
+          "placeholder": "Collez l’URL de vos CGV",
+          "submit": "Auditer"
+        },
+        "score": {
+          "title": "Score de risque contrat",
+          "badge": "5 MIN",
+          "description": "Déposez un contrat reçu : les 10 clauses à négocier, hiérarchisées.",
+          "placeholder": "Déposez un PDF (démo)",
+          "submit": "Analyser"
+        },
+        "nda": {
+          "title": "Générateur de NDA",
+          "badge": "MEMBRE",
+          "description": "Un NDA bilingue signé en 5 minutes, sur nos modèles.",
+          "placeholder": "Nom de la contrepartie",
+          "submit": "Préparer"
+        },
+        "contratheque": {
+          "title": "Contrathèque & échéances",
+          "badge": "ABONNEMENT",
+          "description": "Tous vos contrats au même endroit, avec alertes de renouvellement et préavis.",
+          "placeholder": "Ex. : contrat distribution NOVA",
+          "submit": "Voir la démo"
+        }
+      }
+    },
+    "prestations": {
+      "overline": "GESTION COURANTE",
+      "title": "Le socle, industrialisé et au forfait",
+      "lead": "Les prestations récurrentes, produites avec nos outils et validées par un avocat — pour réserver le temps d’expertise à ce qui le mérite.",
+      "items": {
+        "modeles": {
+          "title": "Modèles à jour",
+          "description": "NDA, CGV, prestations, apporteur d’affaires — adaptés à votre activité.",
+          "tags": ["Membre"]
+        },
+        "relecture": {
+          "title": "Relecture express 48 h",
+          "description": "Un contrat reçu, relu et annoté avec contre-propositions sous 48 h.",
+          "tags": ["490 €"]
+        },
+        "traductions": {
+          "title": "Traductions juridiques",
+          "description": "Vos contrats en anglais, chinois ou espagnol — juridiquement fiables.",
+          "tags": ["4 langues"]
+        },
+        "contratheque": {
+          "title": "Contrathèque en ligne",
+          "description": "Stockage, signature, échéances : la vie de vos contrats, organisée.",
+          "tags": ["Abonnement"]
+        }
+      }
+    },
+    "forfaits": {
+      "overline": "TARIFS TRANSPARENTS",
+      "title": "Des forfaits fermés, affichés, sans surprise",
+      "lead": "Chaque forfait inclut un point visio avec un avocat. Montants indicatifs de maquette — tarif membre avec l’abonnement.",
+      "badge": "LE PLUS DEMANDÉ",
+      "footnote": "Au-delà des forfaits : devis fermé communiqué sous 24 h après un premier échange gratuit de 15 minutes.",
+      "items": {
+        "packCgv": {
+          "title": "Pack CGV / CGU",
+          "price": "1 200 €",
+          "unit": "HT",
+          "flash": "⚡ Livré en 10 jours",
+          "features": [
+            "Audit de l’existant et du parcours de vente",
+            "CGV B2B et/ou B2C sur mesure",
+            "Conformité conso, RGPD, médiation",
+            "Notice d’utilisation pour vos équipes",
+            "Mise à jour à prix réduit 24 mois"
+          ],
+          "cta": "Démarrer"
+        },
+        "distribution": {
+          "title": "Contrat de distribution",
+          "price": "2 900 €",
+          "unit": "HT — à partir de",
+          "flash": "⚡ Premier projet sous 7 jours",
+          "features": [
+            "Atelier stratégie réseau (1 h)",
+            "Rédaction sur mesure bilingue possible",
+            "Deux tours de négociation inclus",
+            "Conformité pratiques restrictives",
+            "Kit de déploiement aux partenaires"
+          ],
+          "cta": "Démarrer"
+        },
+        "contratheque": {
+          "title": "Contrathèque + veille",
+          "price": "99 €",
+          "unit": "HT / mois",
+          "flash": "⚡ Vos contrats sous contrôle",
+          "features": [
+            "Stockage et signature électronique",
+            "Alertes échéances et préavis",
+            "Relectures à tarif membre",
+            "Modèles illimités",
+            "Revue annuelle du portefeuille"
+          ],
+          "cta": "S’abonner"
+        }
+      }
+    },
+    "midCta": {
+      "text": "Un contrat à sécuriser ? <hl>15 minutes gratuites en visio avec un avocat.</hl>",
+      "cta": "Réserver un créneau"
     }
   }
 }
