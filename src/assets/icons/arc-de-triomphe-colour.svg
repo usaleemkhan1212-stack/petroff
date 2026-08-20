@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="90" height="74" viewBox="0 0 90 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="m-arc">
+<path id="Vector" d="M83.5 4H6.5C5.67157 4 5 4.67157 5 5.5V7.5C5 8.32843 5.67157 9 6.5 9H83.5C84.3284 9 85 8.32843 85 7.5V5.5C85 4.67157 84.3284 4 83.5 4Z" fill="var(--color-encre)"/>
+<path id="Vector_2" d="M82 9H8V17H82V9Z" fill="var(--color-brique)"/>
+<path id="Vector_3" d="M15 12H11V14.5H15V12Z" fill="var(--color-encre)"/>
+<path id="Vector_4" d="M47 12H43V14.5H47V12Z" fill="var(--color-encre)"/>
+<path id="Vector_5" d="M79 12H75V14.5H79V12Z" fill="var(--color-encre)"/>
+<path id="Vector_6" d="M84 17H6V19.5H84V17Z" fill="var(--color-encre)"/>
+<path id="Vector_7" fill-rule="evenodd" clip-rule="evenodd" d="M8 19.5H82V66H59V44C59 40.287 57.525 36.726 54.8995 34.1005C52.274 31.475 48.713 30 45 30C41.287 30 37.726 31.475 35.1005 34.1005C32.475 36.726 31 40.287 31 44V66H8V19.5Z" fill="var(--color-gold)"/>
+<path id="Vector_8" d="M31 66V44C31 40.287 32.475 36.726 35.1005 34.1005C37.726 31.475 41.287 30 45 30C48.713 30 52.274 31.475 54.8995 34.1005C57.525 36.726 59 40.287 59 44V66" stroke="#A67C1B" stroke-width="6"/>
+<path id="Vector_9" d="M25 24H15C13.8954 24 13 24.8954 13 26V32C13 33.1046 13.8954 34 15 34H25C26.1046 34 27 33.1046 27 32V26C27 24.8954 26.1046 24 25 24Z" fill="var(--color-pale-periwinkle)"/>
+<path id="Vector_10" d="M75 24H65C63.8954 24 63 24.8954 63 26V32C63 33.1046 63.8954 34 65 34H75C76.1046 34 77 33.1046 77 32V26C77 24.8954 76.1046 24 75 24Z" fill="var(--color-pale-periwinkle)"/>
+<path id="Vector_11" d="M26 38H14C13.4477 38 13 38.4477 13 39V41C13 41.5523 13.4477 42 14 42H26C26.5523 42 27 41.5523 27 41V39C27 38.4477 26.5523 38 26 38Z" fill="var(--color-brique)"/>
+<path id="Vector_12" d="M76 38H64C63.4477 38 63 38.4477 63 39V41C63 41.5523 63.4477 42 64 42H76C76.5523 42 77 41.5523 77 41V39C77 38.4477 76.5523 38 76 38Z" fill="var(--color-brique)"/>
+<path id="Vector_13" d="M35 66H7C6.44772 66 6 66.4477 6 67V69.5C6 70.0523 6.44772 70.5 7 70.5H35C35.5523 70.5 36 70.0523 36 69.5V67C36 66.4477 35.5523 66 35 66Z" fill="var(--color-brique)"/>
+<path id="Vector_14" d="M83 66H55C54.4477 66 54 66.4477 54 67V69.5C54 70.0523 54.4477 70.5 55 70.5H83C83.5523 70.5 84 70.0523 84 69.5V67C84 66.4477 83.5523 66 83 66Z" fill="var(--color-brique)"/>
+</g>
+</svg>

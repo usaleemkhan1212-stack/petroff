@@ -1,0 +1,338 @@
+{
+  "Site": {
+    "name": "Petroff",
+    "tagline": "Avocats",
+    "description": "Conseil et contentieux pour les entreprises, en France et à l'international."
+  },
+  "Nav": {
+    "cabinet": "Le Cabinet",
+    "expertises": "Expertises",
+    "bibliotheque": "Bibliothèque",
+    "donneesOutils": "Données & Outils",
+    "actualites": "Actualités",
+    "appointment": "Prendre rendez-vous",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "mainLabel": "Navigation principale",
+    "languageLabel": "Changer de langue",
+    "phoneLabel": "Nous appeler",
+    "homeLabel": "Petroff — retour à l’accueil"
+  },
+  "Common": {
+    "skipToContent": "Aller au contenu",
+    "learnMore": "En savoir plus",
+    "search": "Rechercher"
+  },
+  "Hero": {
+    "overline": "Cabinet D’avocats — Droit Des Affaires · Paris",
+    "title": "Le droit des affaires,<br></br><hl>clairement.</hl>",
+    "lead": "Conseil et contentieux pour les entreprises, en France et à l’international — appuyés par une bibliothèque de plusieurs milliers de ressources juridiques en accès libre.",
+    "ctaPrimary": "Prendre rendez-vous",
+    "ctaSecondary": "Explorer la bibliothèque"
+  },
+  "SearchBand": {
+    "heading": "Rechercher parmi des milliers de contenus juridiques",
+    "label": "Rechercher parmi des milliers de contenus juridiques",
+    "placeholder": "Ex. : révoquer un dirigeant de SAS, dépôt de marque UE, bail commercial…",
+    "submit": "Rechercher",
+    "popular": "Populaire :"
+  },
+  "Expertises": {
+    "overline": "EXPERTISES",
+    "title": "Tout le droit des affaires, sous un même toit",
+    "lead": "Du conseil quotidien au contentieux complexe, le cabinet couvre l’ensemble des besoins juridiques de l’entreprise.",
+    "items": {
+      "societes": {
+        "title": "Droit des sociétés",
+        "description": "Constitution, gouvernance, pactes d’associés, opérations sur capital."
+      },
+      "fusions": {
+        "title": "Fusions-acquisitions",
+        "description": "Cessions, acquisitions, due diligence, capital-risque & private equity."
+      },
+      "propriete": {
+        "title": "Propriété intellectuelle",
+        "description": "Marques françaises & UE, droits d’auteur, licences, contrefaçon."
+      },
+      "contentieux": {
+        "title": "Contentieux & arbitrage",
+        "description": "Litiges commerciaux, litiges entre associés, mesures d’urgence."
+      },
+      "social": {
+        "title": "Droit social",
+        "description": "Contrats de travail, ruptures, restructurations, contentieux prud’homal."
+      },
+      "fiscal": {
+        "title": "Droit fiscal",
+        "description": "Structuration, fiscalité des dirigeants, contrôles et contentieux."
+      },
+      "immobilier": {
+        "title": "Immobilier d’entreprise",
+        "description": "Baux commerciaux, acquisitions, construction, copropriété."
+      },
+      "contrats": {
+        "title": "Contrats commerciaux",
+        "description": "Distribution, agence, CGV, négociation et sécurisation des accords."
+      }
+    }
+  },
+  "Bibliotheque": {
+    "overline": "BIBLIOTHÈQUE JURIDIQUE",
+    "title": "Des milliers de pages, à jour et en accès libre",
+    "lead": "Guides, fiches pratiques, modèles commentés et jurisprudence — rédigés par le cabinet, reliés aux textes officiels, disponibles en quatre langues.",
+    "collections": {
+      "guides": {
+        "count": "120+",
+        "title": "Guides pratiques",
+        "description": "Des parcours complets, du « Créer sa filiale en France » au « Contentieux de la marque UE ».",
+        "cta": "Parcourir les guides"
+      },
+      "fiches": {
+        "count": "2 400+",
+        "title": "Fiches & FAQ",
+        "description": "Une question, une réponse claire, les textes et la jurisprudence qui vont avec.",
+        "cta": "Parcourir les fiches"
+      },
+      "modeles": {
+        "count": "300+",
+        "title": "Modèles & clauses",
+        "description": "Modèles d’actes et clauses commentées, avec points de vigilance et variantes.",
+        "cta": "Parcourir les modèles"
+      }
+    }
+  },
+  "OpenData": {
+    "overline": "DONNÉES & OUTILS — OPEN DATA",
+    "title": "Branché en direct sur les données publiques",
+    "lead": "Le site est connecté aux API publiques françaises : les fiches citent des textes à jour, et nos outils interrogent les registres officiels en temps réel.",
+    "verify": {
+      "title": "Vérifier une entreprise",
+      "description": "Identité, dirigeants, siège et procédures en cours — directement depuis les registres publics.",
+      "label": "SIREN, SIRET ou dénomination",
+      "placeholder": "SIREN, SIRET ou dénomination — ex. 552 032 534",
+      "submit": "Vérifier",
+      "resultsLabel": "Exemple de résultat",
+      "rows": {
+        "name": {
+          "term": "DANONE SA",
+          "detail": "SIREN 552 032 534"
+        },
+        "siege": {
+          "term": "Siège",
+          "detail": "17 bd Haussmann, 75009 Paris"
+        },
+        "etat": {
+          "term": "État",
+          "detail": "Active — RCS Paris"
+        }
+      }
+    },
+    "watch": {
+      "title": "Veille jurisprudence & annonces",
+      "description": "Les dernières décisions et publications officielles dans vos domaines.",
+      "items": {
+        "rupture": {
+          "title": "Cass. com., rupture brutale : préavis de 18 mois confirmé",
+          "meta": "Judilibre — il y a 2 jours · commenté par le cabinet"
+        },
+        "suretes": {
+          "title": "Réforme du droit des sûretés : décret d’application publié",
+          "meta": "Légifrance — cette semaine"
+        },
+        "collectives": {
+          "title": "Procédures collectives : +4 % d’ouvertures au T2 2026",
+          "meta": "BODACC — données mensuelles"
+        }
+      },
+      "sourcesLabel": "Sources",
+      "sources": {
+        "sirene": "INSEE Sirene",
+        "legifrance": "Légifrance · PISTE",
+        "judilibre": "Judilibre",
+        "bodacc": "BODACC"
+      }
+    }
+  },
+  "Cabinet": {
+    "overline": "LE CABINET",
+    "title": "Un cabinet parisien, une pratique internationale",
+    "lead": "Fondé à Paris, Petroff.law accompagne dirigeants, investisseurs et entreprises étrangères dans toutes les étapes de leur vie juridique en France — en français, anglais, chinois et espagnol.",
+    "stats": {
+      "annees": {
+        "value": "15+",
+        "label": "années de pratique"
+      },
+      "langues": {
+        "value": "4",
+        "label": "langues de travail"
+      },
+      "pays": {
+        "value": "30+",
+        "label": "pays d’origine de nos clients"
+      }
+    },
+    "cta": "Rencontrer l’équipe",
+    "collage": {
+      "paris": "Fondé à Paris",
+      "international": "Pratique internationale"
+    }
+  },
+  "Actus": {
+    "overline": "ACTUALITÉS",
+    "title": "Dernières analyses",
+    "all": "Toutes les actualités",
+    "items": {
+      "rupture": {
+        "kicker": "CONTENTIEUX",
+        "title": "Rupture brutale des relations commerciales : ce que change la jurisprudence 2026",
+        "meta": "12 août 2026 · 6 min"
+      },
+      "formeSociale": {
+        "kicker": "SOCIÉTÉS",
+        "title": "SAS ou SARL en 2026 : le comparatif complet pour les fondateurs étrangers",
+        "meta": "4 août 2026 · 9 min"
+      },
+      "implantation": {
+        "kicker": "INTERNATIONAL",
+        "title": "S’implanter en France : guide des 90 premiers jours d’une filiale",
+        "meta": "28 juillet 2026 · 12 min"
+      }
+    }
+  },
+  "CTAFinal": {
+    "overline": "CONTACT",
+    "title": "Un projet, un litige, une question ?",
+    "lead": "Première évaluation de votre dossier, réponse sous 24 h ouvrées. · + 33 (0) 1 78 90 46 46 · Paris",
+    "ctaPrimary": "Prendre rendez-vous",
+    "ctaSecondary": "Faire évaluer mon dossier"
+  },
+  "Footer": {
+    "navLabel": "Navigation du pied de page",
+    "legal": "PETROFF AVOCATS · 182 rue de Rivoli, 75001 Paris · RCS Paris 814433470 · Toque #C2396",
+    "languages": "FR · EN · 中文 · ES",
+    "columns": {
+      "cabinet": {
+        "title": "LE CABINET",
+        "items": ["Qui sommes-nous", "L’équipe", "Honoraires", "Contact"]
+      },
+      "ressources": {
+        "title": "RESSOURCES",
+        "items": [
+          "Bibliothèque juridique",
+          "Guides pratiques",
+          "Modèles & clauses",
+          "Glossaire quadrilingue"
+        ]
+      },
+      "outils": {
+        "title": "OUTILS",
+        "items": [
+          "Vérifier une entreprise",
+          "Veille jurisprudence",
+          "Annonces BODACC",
+          "API & sources ouvertes"
+        ]
+      }
+    },
+    "copyright": "© 2026 Petroff.law — Tous droits réservés",
+    "legalLinks": "Mentions légales · Confidentialité · Médiateur de la consommation"
+  },
+  "ExpertisesPage": {
+    "stage": {
+      "breadcrumbLabel": "Fil d’Ariane",
+      "crumbHome": "Accueil",
+      "crumbCurrent": "Expertises",
+      "overline": "EXPERTISES",
+      "title": "Tout le droit des affaires, sous un <hl>même toit.</hl>",
+      "lead": "Onze domaines, une même méthode : le conseil d’avocat au cœur, l’intendance industrialisée autour — forfaits affichés, abonnements, outils en ligne.",
+      "ctaPrimary": "Choisir un domaine",
+      "ctaSecondary": "Décrire mon besoin",
+      "stats": {
+        "domaines": {
+          "value": "11",
+          "label": "domaines d’expertise"
+        },
+        "langues": {
+          "value": "4 langues",
+          "label": "FR · EN · 中文 · ES"
+        },
+        "ressources": {
+          "value": "2 800+",
+          "label": "ressources en bibliothèque"
+        },
+        "reponse": {
+          "value": "24 h",
+          "label": "première réponse garantie"
+        }
+      }
+    },
+    "domaines": {
+      "overline": "NOS DOMAINES",
+      "title": "Choisissez votre sujet, on s’occupe du droit",
+      "lead": "Chaque domaine a sa page : le cœur de métier, les outils en ligne, les forfaits et la bibliothèque associée.",
+      "cta": "Découvrir",
+      "items": {
+        "societes": {
+          "title": "Droit des sociétés & gouvernance",
+          "description": "Constitution, pactes, opérations sur capital, litiges d’associés, dirigeants.",
+          "tags": ["Pactes", "BSPCE · OC/OCA", "Exclusions"]
+        },
+        "fusions": {
+          "title": "Fusions-acquisitions",
+          "description": "Cessions, acquisitions, due diligence, garanties d’actif-passif, closing.",
+          "tags": ["LOI → closing", "GAP", "Data room"]
+        },
+        "capitalRisque": {
+          "title": "Capital-risque & private equity",
+          "description": "Levées de fonds, term sheets, actions de préférence, sorties d’investisseurs.",
+          "tags": ["Seed → série C", "BSA-AIR", "Liquidité"]
+        },
+        "contrats": {
+          "title": "Contrats & droit commercial",
+          "description": "Distribution, agence, CGV, contrats internationaux, négociations.",
+          "tags": ["CGV", "Distribution", "Cross-border"]
+        },
+        "contentieux": {
+          "title": "Contentieux & arbitrage",
+          "description": "Litiges commerciaux, référés, arbitrage, exécution des décisions.",
+          "tags": ["Urgence 48 h", "Arbitrage", "Exécution"]
+        },
+        "litigesAssocies": {
+          "title": "Litiges entre associés",
+          "description": "Blocages, abus de majorité, révocations, exclusions, sorties négociées.",
+          "tags": ["Référé", "1843-4", "Sortie"]
+        },
+        "propriete": {
+          "title": "Propriété intellectuelle & marques",
+          "description": "Dépôts FR/UE, oppositions, contrefaçon, licences, logiciels, IA.",
+          "tags": ["INPI · EUIPO", "Contrefaçon", "Licences"]
+        },
+        "social": {
+          "title": "Droit social",
+          "description": "Contrats, ruptures, PSE, prud’hommes, enquêtes internes, URSSAF.",
+          "tags": ["PSE", "Transactions", "CSE"]
+        },
+        "fiscal": {
+          "title": "Droit fiscal",
+          "description": "Structuration, fiscalité du dirigeant, contrôle et contentieux, Dutreil.",
+          "tags": ["Contrôle", "Dutreil", "Packages"]
+        },
+        "immobilier": {
+          "title": "Immobilier d’entreprise",
+          "description": "Baux commerciaux, acquisitions, construction, montages, contentieux.",
+          "tags": ["3-6-9", "VEFA", "SCI"]
+        },
+        "recouvrement": {
+          "title": "Recouvrement & mesures conservatoires",
+          "description": "Relances, injonctions, saisies conservatoires, procédures collectives.",
+          "tags": ["72 h", "Saisies", "BODACC"]
+        }
+      },
+      "transverse": {
+        "title": "Un besoin transverse ?",
+        "description": "Une opération touche souvent plusieurs domaines. Décrivez votre situation, nous composons l’équipe.",
+        "cta": "Parler à un avocat"
+      }
+    }
+  }
+}

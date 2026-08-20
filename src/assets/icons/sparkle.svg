@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame" clip-path="url(#clip-sparkle)">
+<path id="Vector" d="M20 0C22.6667 12 28 17.3333 40 20C28 22.6667 22.6667 28 20 40C17.3333 28 12 22.6667 0 20C12 17.3333 17.3333 12 20 0Z" fill="var(--color-encre)"/>
+</g>
+<defs>
+<clipPath id="clip-sparkle">
+<rect width="40" height="40" fill="white"/>
+</clipPath>
+</defs>
+</svg>

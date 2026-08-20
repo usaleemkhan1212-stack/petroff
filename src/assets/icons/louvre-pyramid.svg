@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="140" height="109" viewBox="0 0 140 109" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="deco-pyramide" clip-path="url(#clip-louvre-pyramid)">
+<path id="Vector" d="M70 6.22857L130.667 99.6571H9.33333L70 6.22857Z" stroke="var(--color-periwinkle)" stroke-width="7"/>
+<g id="Vector_2">
+<path d="M70 6.22857V99.6571ZM39.6667 52.9429H100.333ZM24.1111 76.3H115.889Z" fill="black"/>
+<path d="M70 6.22857V99.6571M39.6667 52.9429H100.333M24.1111 76.3H115.889" stroke="var(--color-periwinkle)" stroke-width="4"/>
+</g>
+<path id="Vector_3" d="M136.111 99.6571H3.88889C1.74111 99.6571 0 101.4 0 103.55C0 105.7 1.74111 107.443 3.88889 107.443H136.111C138.259 107.443 140 105.7 140 103.55C140 101.4 138.259 99.6571 136.111 99.6571Z" fill="var(--color-encre)"/>
+</g>
+<defs>
+<clipPath id="clip-louvre-pyramid">
+<rect width="140" height="109" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,7 +1,20 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  turbopack: {
+    rules: {
+      // Import .svg files as React components so fill/stroke can be driven
+      // by currentColor from the token classes. svgo is off to preserve the
+      // exact geometry (width/height/viewBox) exported from Figma.
+      "*.svg": {
+        loaders: [{ loader: "@svgr/webpack", options: { svgo: false } }],
+        as: "*.js",
+      },
+    },
+  },
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
+export default withNextIntl(nextConfig);

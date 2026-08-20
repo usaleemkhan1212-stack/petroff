@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="220" height="200" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<path id="Vector" d="M114.4 22C114.4 19.7909 112.43 18 110 18C107.57 18 105.6 19.7909 105.6 22V164C105.6 166.209 107.57 168 110 168C112.43 168 114.4 166.209 114.4 164V22Z" fill="var(--color-encre)"/>
+<path id="Vector_2" d="M148.5 166H71.5C68.4624 166 66 168.239 66 171C66 173.761 68.4624 176 71.5 176H148.5C151.538 176 154 173.761 154 171C154 168.239 151.538 166 148.5 166Z" fill="var(--color-encre)"/>
+<path id="Vector_3" d="M193.6 34H26.4C23.9699 34 22 35.7909 22 38C22 40.2091 23.9699 42 26.4 42H193.6C196.03 42 198 40.2091 198 38C198 35.7909 196.03 34 193.6 34Z" fill="var(--color-encre)"/>
+<path id="Vector_4" d="M110 32C116.075 32 121 27.5228 121 22C121 16.4772 116.075 12 110 12C103.925 12 99 16.4772 99 22C99 27.5228 103.925 32 110 32Z" fill="var(--color-gold)"/>
+<path id="Vector_5" d="M39.6 42V86" stroke="var(--color-encre)" stroke-width="4"/>
+<path id="Vector_6" d="M180.4 42V86" stroke="var(--color-encre)" stroke-width="4"/>
+<path id="Vector_7" d="M6.6 86C6.6 93.9565 10.0768 101.587 16.2655 107.213C22.4542 112.839 30.8479 116 39.6 116C48.3521 116 56.7458 112.839 62.9345 107.213C69.1232 101.587 72.6 93.9565 72.6 86H6.6Z" fill="var(--color-periwinkle)"/>
+<path id="Vector_8" d="M147.4 86C147.4 93.9565 150.877 101.587 157.065 107.213C163.254 112.839 171.648 116 180.4 116C189.152 116 197.546 112.839 203.735 107.213C209.923 101.587 213.4 93.9565 213.4 86H147.4Z" fill="var(--color-periwinkle)"/>
+</g>
+</svg>

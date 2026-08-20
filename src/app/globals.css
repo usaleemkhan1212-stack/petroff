@@ -1,26 +1,168 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Petroff design tokens.
+
+  Colour names mirror the Figma library (Petroff/Encre -> --color-encre) so a
+  swatch name in the design file maps to exactly one utility in the code.
+  Tailwind v4 turns each entry into utilities automatically:
+  bg-encre, text-gold, border-stone, fill-periwinkle, ...
+
+  Usage notes below come from the Figma token sheet — they describe intent,
+  not restrictions.
+*/
+@theme static {
+  /* --- Blues ------------------------------------------------------------ */
+  --color-encre: #122a4c; /* structure, text */
+  --color-periwinkle: #2e5bb8; /* data, tech */
+  --color-rose: #7fa6e0; /* soft accents */
+  --color-pale-periwinkle: #c7d6ef; /* icon backgrounds */
+  --color-pale-blue: #dce4f2; /* icon backgrounds 2 */
+  --color-lilas: #f6f5f1; /* page background */
+  --color-lilas-2: #e8ecf5; /* alternate background */
+
+  /* --- Warms ------------------------------------------------------------ */
+  --color-gold: #d9a441; /* action, featured */
+  --color-brique: #a67c1b; /* editorial links */
+  --color-pale-gold: #f3e3c0; /* warm backgrounds */
+  --color-stone: #e9e4d8; /* pavements, backgrounds */
+
+  /* --- Neutrals & status ------------------------------------------------ */
+  --color-result-green: #2e7d57; /* success, results */
+  --color-white: #ffffff; /* cards, surfaces */
+
+  /*
+    NOTE: Tailwind ships its own `slate` palette (slate-50 ... slate-950).
+    This token adds a bare `slate` alongside it, so `text-slate` is the brand
+    colour while `text-slate-400` is still Tailwind's grey-blue. Reach for
+    `slate` with no number when you mean Petroff Slate.
+  */
+  --color-slate: #94a3c4; /* rooftops, scenes */
+
+  /* --- Layout ----------------------------------------------------------- */
+  --container-page: 1245px;
+
+  /* Corner radii: card grids, icon tiles, inset fields, full-width panels. */
+  --radius-card: 20px;
+  --radius-tile: 14px;
+  --radius-field: 12px;
+  --radius-panel: 28px;
+
+  /* --- Fonts ------------------------------------------------------------ */
+  --font-poppins: var(--poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-inter: var(--inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--inter), ui-sans-serif, system-ui, sans-serif;
+
+  /*
+    --- Text styles ------------------------------------------------------
+
+    One Figma style = one utility. `text-display` carries size, line-height,
+    letter-spacing and weight together, so a heading needs a single class.
+
+    Display H1 and H2 are fluid: they interpolate between the mobile and
+    desktop values across a 375px -> 1440px viewport. Both ends are pinned to
+    the exact Figma numbers, so the mobile and desktop comps match
+    pixel-for-pixel and only the widths in between are computed.
+
+    Line-height and letter-spacing use proportional units (unitless and em),
+    so they scale with the fluid size and hold the designed ratio at every
+    width.
+
+    Poppins is the default for h1-h4 via the base layer below. On non-heading
+    elements (buttons, overlines, stats) add `font-poppins` explicitly.
+  */
+
+  /* Poppins Bold — 40px mobile -> 68px desktop */
+  --text-display: clamp(2.5rem, 1.8838rem + 2.6291vw, 4.25rem);
+  --text-display--line-height: 1.06;
+  --text-display--letter-spacing: -0.01em;
+  --text-display--font-weight: 700;
+
+  /* Poppins Bold — 28px mobile -> 40px desktop */
+  --text-h2: clamp(1.75rem, 1.4859rem + 1.1268vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: 0em;
+  --text-h2--font-weight: 700;
+
+  /* Inter Medium 16 — header/footer navigation links */
+  --text-nav: 1rem;
+  --text-nav--line-height: normal;
+  --text-nav--letter-spacing: 0em;
+  --text-nav--font-weight: 500;
+
+  /* Poppins SemiBold 24 — band/section sub-headings */
+  --text-h2-sm: 1.5rem;
+  --text-h2-sm--line-height: normal;
+  --text-h2-sm--letter-spacing: 0em;
+  --text-h2-sm--font-weight: 600;
+
+  /* Poppins SemiBold 20 */
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: 0em;
+  --text-h3--font-weight: 600;
+
+  /* Inter Regular 20 */
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.55;
+  --text-lead--letter-spacing: 0em;
+  --text-lead--font-weight: 400;
+
+  /* Inter Regular 18 — default reading size */
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.4;
+  --text-body--letter-spacing: 0em;
+  --text-body--font-weight: 400;
+
+  /* Inter Regular 16 — smallest permitted size */
+  --text-small: 1rem;
+  --text-small--line-height: 1.5;
+  --text-small--letter-spacing: 0em;
+  --text-small--font-weight: 400;
+
+  /* Inter SemiBold 16 */
+  --text-small-strong: 1rem;
+  --text-small-strong--line-height: 1.45;
+  --text-small-strong--letter-spacing: 0em;
+  --text-small-strong--font-weight: 600;
+
+  /* Poppins SemiBold 16, +18% tracking */
+  --text-overline: 1rem;
+  --text-overline--line-height: 1.3;
+  --text-overline--letter-spacing: 0.18em;
+  --text-overline--font-weight: 600;
+
+  /* Poppins SemiBold 16 */
+  --text-button: 1rem;
+  --text-button--line-height: 1.2;
+  --text-button--letter-spacing: 0em;
+  --text-button--font-weight: 600;
+
+  /* Poppins Bold 28 */
+  --text-stat: 1.75rem;
+  --text-stat--line-height: 1.15;
+  --text-stat--letter-spacing: 0em;
+  --text-stat--font-weight: 700;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-lilas);
+    color: var(--color-encre);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Headings default to Poppins; each still needs its size utility. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-poppins);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
 }

@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="244" height="216.889" viewBox="0 0 244 216.889" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="m-globe">
+<path id="Vector" d="M108.444 206.044C154.861 206.044 192.489 168.416 192.489 122C192.489 75.5835 154.861 37.9556 108.444 37.9556C62.028 37.9556 24.4 75.5835 24.4 122C24.4 168.416 62.028 206.044 108.444 206.044Z" stroke="var(--color-pale-periwinkle)" stroke-width="5"/>
+<path id="Vector_2" d="M108.444 206.044C127.909 206.044 143.689 168.416 143.689 122C143.689 75.5835 127.909 37.9556 108.444 37.9556C88.9795 37.9556 73.2 75.5835 73.2 122C73.2 168.416 88.9795 206.044 108.444 206.044Z" stroke="var(--color-pale-periwinkle)" stroke-width="5"/>
+<g id="Vector_3">
+<path d="M36.6 81.3333H180.289ZM24.4 122H192.489ZM36.6 162.667H180.289Z" fill="black"/>
+<path d="M36.6 81.3333H180.289M24.4 122H192.489M36.6 162.667H180.289" stroke="var(--color-pale-periwinkle)" stroke-width="5"/>
+</g>
+<path id="Vector_4" d="M227.733 13.5556L168.089 46.0889L189.778 54.2222L227.733 13.5556Z" fill="var(--color-gold)"/>
+<path id="Vector_5" d="M227.733 13.5556L189.778 54.2222L197.911 75.9111L227.733 13.5556Z" fill="var(--color-brique)"/>
+</g>
+</svg>
