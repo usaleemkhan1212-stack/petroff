@@ -6,7 +6,11 @@
  * rest stay inert so nothing on the site can navigate to a 404. Add a path
  * here the moment its page lands and every call site starts linking.
  */
-export const liveRoutes: readonly string[] = ["/", "/expertises"] as const;
+export const liveRoutes: readonly string[] = [
+  "/",
+  "/expertises",
+  "/expertises/contentieux-arbitrage",
+] as const;
 
 export function isLive(href: string) {
   return liveRoutes.includes(href);

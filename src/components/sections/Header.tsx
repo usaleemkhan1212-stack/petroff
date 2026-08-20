@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import PhoneIcon from "@/assets/icons/phone.svg";
+import { ExpertisesMenu } from "@/components/layout/ExpertisesMenu";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { Button } from "@/components/ui/Button";
@@ -11,8 +12,13 @@ import { navItems } from "@/lib/nav";
 export function Header() {
   const t = useTranslations("Nav");
 
+  /*
+   * z-30 keeps the header above the page: the sections below it are positioned
+   * too, so without it the mobile panel and the Expertises dropdown paint
+   * underneath them.
+   */
   return (
-    <header className="border-encre/8 bg-lilas/20 relative border-b">
+    <header className="border-encre/8 bg-lilas/20 relative z-30 border-b">
       <Container>
         <div className="flex h-18 items-center justify-between gap-3">
           <MaybeLink
@@ -28,12 +34,20 @@ export function Header() {
               <ul className="flex shrink-0 items-center gap-4">
                 {navItems.map((item) => (
                   <li key={item.key}>
-                    <MaybeLink
-                      href={item.href}
-                      className="text-nav text-encre hover:text-periwinkle whitespace-nowrap transition-colors"
-                    >
-                      {t(item.key)}
-                    </MaybeLink>
+                    {item.children?.length ? (
+                      <ExpertisesMenu
+                        label={t(item.key)}
+                        href={item.href}
+                        items={item.children}
+                      />
+                    ) : (
+                      <MaybeLink
+                        href={item.href}
+                        className="text-nav text-encre hover:text-periwinkle whitespace-nowrap transition-colors"
+                      >
+                        {t(item.key)}
+                      </MaybeLink>
+                    )}
                   </li>
                 ))}
               </ul>

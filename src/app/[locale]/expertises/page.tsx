@@ -1,7 +1,9 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { CTAFinal } from "@/components/sections/expertises/CTAFinal";
 import { Domaines } from "@/components/sections/expertises/Domaines";
+import { Facons } from "@/components/sections/expertises/Facons";
 import { Stage } from "@/components/sections/expertises/Stage";
 import { routing } from "@/i18n/routing";
 
@@ -20,6 +22,8 @@ export default async function ExpertisesPage({
     <>
       <Stage />
       <Domaines />
+      <Facons />
+      <CTAFinal />
     </>
   );
 }

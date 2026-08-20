@@ -16,7 +16,8 @@
     "mainLabel": "Navigation principale",
     "languageLabel": "Changer de langue",
     "phoneLabel": "Nous appeler",
-    "homeLabel": "Petroff — retour à l’accueil"
+    "homeLabel": "Petroff — retour à l’accueil",
+    "domainsLabel": "Domaines d’expertise"
   },
   "Common": {
     "skipToContent": "Aller au contenu",
@@ -333,6 +334,367 @@
         "description": "Une opération touche souvent plusieurs domaines. Décrivez votre situation, nous composons l’équipe.",
         "cta": "Parler à un avocat"
       }
+    },
+    "facons": {
+      "overline": "UNE MÊME MÉTHODE PARTOUT",
+      "title": "Trois façons de travailler avec nous",
+      "items": {
+        "abonnement": {
+          "title": "Abonnement",
+          "description": "Développement ou Conformité & Suivi : l’intendance juridique en continu, les alertes utiles, le conseil à portée de main et les tarifs membres.",
+          "cta": "Voir les abonnements"
+        },
+        "forfaits": {
+          "title": "Forfaits fermés",
+          "description": "Les prestations standardisables à prix affiché : contrats, dépôts, mises en demeure, constitutions — délais garantis, périmètre écrit.",
+          "cta": "Voir des exemples"
+        },
+        "phases": {
+          "title": "Missions par phases",
+          "description": "Les opérations et contentieux complexes : budget plafonné par phase, point d’arbitrage à chaque étape, honoraire de résultat quand c’est pertinent.",
+          "cta": "Comprendre la méthode"
+        }
+      }
+    },
+    "ctaFinal": {
+      "overline": "CONTACT",
+      "title": "Un projet de société, une question d’associés ?",
+      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
+      "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
+      "ctaPrimary": "Réserver un créneau visio",
+      "ctaSecondary": "Obtenir un devis en ligne"
+    }
+  },
+  "ContentieuxPage": {
+    "hero": {
+      "breadcrumbLabel": "Fil d’Ariane",
+      "crumbHome": "Accueil",
+      "crumbExpertises": "Expertises",
+      "crumbCurrent": "Contentieux & arbitrage",
+      "overline": "EXPERTISES — CONTENTIEUX & ARBITRAGE",
+      "title": "Défendre vos intérêts, <hl>vite</hl> et jusqu’au bout.",
+      "lead": "Litiges commerciaux, contractuels et entre associés : stratégie d’abord, procédure quand il faut — référés, fond, arbitrage et exécution, en France et à l’international.",
+      "ctaPrimary": "Parler à un avocat",
+      "ctaSecondary": "Voir les forfaits",
+      "stats": {
+        "urgence": {
+          "value": "48 h",
+          "label": "pour une action d’urgence"
+        },
+        "resolus": {
+          "value": "85 %",
+          "label": "de dossiers résolus avant jugement"
+        },
+        "langues": {
+          "value": "4 langues",
+          "label": "FR · EN · 中文 · ES"
+        },
+        "reponse": {
+          "value": "24 h",
+          "label": "première réponse garantie"
+        }
+      }
+    },
+    "domaines": {
+      "overline": "LE CŒUR DU MÉTIER",
+      "title": "Du précontentieux à l’exécution",
+      "lead": "Un litige se gagne d’abord par la stratégie : évaluation lucide, pièces solides, procédure choisie — et une exécution qui transforme le jugement en paiement.",
+      "footnote": "Ces missions font l’objet d’un devis par phases (analyse → stratégie → exécution), avec budget plafonné par étape et point d’arbitrage à chaque fin de phase.",
+      "items": {
+        "strategie": {
+          "title": "Stratégie précontentieuse",
+          "description": "Évaluation des chances, sécurisation des preuves (constats, 145 CPC), mise en demeure calibrée, négociation.",
+          "tags": ["Audit de dossier"]
+        },
+        "referes": {
+          "title": "Référés & urgence",
+          "description": "Référé-provision, mesures conservatoires, interdictions sous astreinte, requêtes non contradictoires.",
+          "tags": ["48 h"]
+        },
+        "commercial": {
+          "title": "Contentieux commercial",
+          "description": "Rupture brutale des relations établies, concurrence déloyale, parasitisme, pratiques restrictives.",
+          "tags": ["Tribunal de commerce"]
+        },
+        "contractuels": {
+          "title": "Litiges contractuels",
+          "description": "Inexécution, résolution, responsabilité, pénalités — la lecture fine du contrat au service du dossier.",
+          "tags": ["Fond"]
+        },
+        "associes": {
+          "title": "Litiges entre associés",
+          "description": "Abus de majorité, révocations, exclusions, expertise de gestion — en lien avec l’équipe sociétés.",
+          "tags": ["Transverse"]
+        },
+        "arbitrage": {
+          "title": "Arbitrage & international",
+          "description": "Arbitrage CCI/ad hoc, clauses compromissoires, exequatur, litiges multi-juridictions.",
+          "tags": ["CCI", "Exequatur"]
+        },
+        "mediation": {
+          "title": "Médiation & MARD",
+          "description": "Médiation, conciliation, procédure participative — quand l’accord vaut mieux qu’un jugement.",
+          "tags": ["Confidentiel"]
+        },
+        "execution": {
+          "title": "Exécution des décisions",
+          "description": "Saisies, astreintes, recherche d’actifs, exécution transfrontalière — le jugement n’est que le début.",
+          "tags": ["Commissaire de justice"]
+        },
+        "defense": {
+          "title": "Défense & responsabilité",
+          "description": "Défense aux assignations, appels en garantie, coordination assureurs et experts.",
+          "tags": ["Défense"]
+        }
+      }
+    },
+    "tools": {
+      "overline": "LEGAL TECH — L’INTENDANCE EN LIGNE",
+      "title": "Quatre outils pour évaluer votre litige",
+      "lead": "Démo interactive — les résultats de la maquette sont fictifs.",
+      "result": "Démo interactive — cliquez pour voir un exemple de résultat.",
+      "items": {
+        "diagnostic": {
+          "title": "Diagnostic de dossier",
+          "badge": "15 MIN",
+          "description": "Décrivez le litige : points forts, points faibles, options — un avocat vous rappelle avec un premier avis.",
+          "placeholder": "Ex. : client qui ne paie plus depuis mars…",
+          "submit": "Évaluer"
+        },
+        "prescription": {
+          "title": "Calculateur de prescription",
+          "badge": "SÉCURITÉ",
+          "description": "Type d’action et date des faits → délai applicable et date butoir.",
+          "placeholder": "Ex. : facture impayée du 12/03/2024",
+          "submit": "Calculer"
+        },
+        "couts": {
+          "title": "Coûts & durée de procédure",
+          "badge": "TRANSPARENCE",
+          "description": "Estimation réaliste des coûts et délais par type de procédure.",
+          "placeholder": "Ex. : référé, fond, appel…",
+          "submit": "Estimer"
+        },
+        "suivi": {
+          "title": "Suivi d’audience",
+          "badge": "ESPACE CLIENT",
+          "description": "Chaque échéance, conclusion et renvoi, visibles en temps réel dans votre espace.",
+          "placeholder": "Numéro de dossier (démo)",
+          "submit": "Voir"
+        }
+      }
+    },
+    "prestations": {
+      "overline": "GESTION COURANTE",
+      "title": "Le socle, industrialisé et au forfait",
+      "lead": "Les prestations récurrentes, produites avec nos outils et validées par un avocat — pour réserver le temps d’expertise à ce qui le mérite.",
+      "items": {
+        "misesEnDemeure": {
+          "title": "Mises en demeure",
+          "description": "Calibrées et envoyées sous 48 h, avec stratégie de suite en cas de silence.",
+          "tags": ["190 €"]
+        },
+        "injonctions": {
+          "title": "Injonctions de payer",
+          "description": "Requêtes et suivi jusqu’à l’ordonnance et la signification.",
+          "tags": ["Forfait"]
+        },
+        "creances": {
+          "title": "Déclarations de créances",
+          "description": "Dans les procédures collectives de vos débiteurs — délais surveillés.",
+          "tags": ["Délais critiques"]
+        },
+        "veille": {
+          "title": "Veille de vos litiges",
+          "description": "Alertes sur vos adversaires : procédures collectives, publications BODACC.",
+          "tags": ["Open data"]
+        }
+      }
+    },
+    "forfaits": {
+      "overline": "TARIFS TRANSPARENTS",
+      "title": "Des forfaits fermés, affichés, sans surprise",
+      "lead": "Chaque forfait inclut un point visio avec un avocat. Montants indicatifs de maquette — tarif membre avec l’abonnement.",
+      "badge": "LE PLUS DEMANDÉ",
+      "footnote": "Au-delà des forfaits : devis fermé communiqué sous 24 h après un premier échange gratuit de 15 minutes.",
+      "items": {
+        "diagnostic": {
+          "title": "Diagnostic stratégique",
+          "price": "490 €",
+          "unit": "HT",
+          "flash": "⚡ Avis sous 5 jours",
+          "features": [
+            "Analyse des pièces et du contrat",
+            "Évaluation des chances et des risques",
+            "Options chiffrées (amiable, référé, fond)",
+            "Restitution en visio (45 min)",
+            "Déduit des honoraires si procédure"
+          ],
+          "cta": "Démarrer"
+        },
+        "urgence": {
+          "title": "Action d’urgence",
+          "price": "2 500 €",
+          "unit": "HT — à partir de",
+          "flash": "⚡ Assignation sous 48 h",
+          "features": [
+            "Référé-provision ou mesures conservatoires",
+            "Rédaction et signification de l’assignation",
+            "Plaidoirie incluse",
+            "Exécution de l’ordonnance pilotée",
+            "Point stratégie après décision"
+          ],
+          "cta": "Démarrer"
+        },
+        "fond": {
+          "title": "Contentieux au fond",
+          "price": "Sur devis",
+          "unit": "par phases plafonnées",
+          "flash": "⚡ Budget arbitré à chaque phase",
+          "features": [
+            "Phase 1 : assignation ou défense",
+            "Phase 2 : échanges de conclusions",
+            "Phase 3 : plaidoirie et délibéré",
+            "Honoraire de résultat possible sur convention",
+            "Appel et exécution en option"
+          ],
+          "cta": "Être rappelé"
+        }
+      }
+    },
+    "midCta": {
+      "text": "Un litige qui s’annonce ? <hl>15 minutes gratuites en visio avec un avocat.</hl>",
+      "cta": "Réserver un créneau"
+    },
+    "methode": {
+      "overline": "MÉTHODE",
+      "title": "Rapide, digital, humain",
+      "items": {
+        "cadrage": {
+          "kicker": "JOUR 0",
+          "title": "Visio de cadrage",
+          "description": "15 minutes gratuites. Vous repartez avec un diagnostic et un prix ferme."
+        },
+        "espace": {
+          "kicker": "JOUR 0",
+          "title": "Espace client ouvert",
+          "description": "Questionnaire intelligent, pièces déposées dans un coffre sécurisé, avancement visible."
+        },
+        "redaction": {
+          "kicker": "JOUR 1–5",
+          "title": "Rédaction & échanges",
+          "description": "Projets annotés en ligne, visios ciblées, versions comparées automatiquement."
+        },
+        "signature": {
+          "kicker": "SIGNATURE",
+          "title": "Signature & formalités",
+          "description": "Signature électronique qualifiée, dépôt au greffe, alertes des prochaines échéances."
+        }
+      }
+    },
+    "espace": {
+      "overline": "ESPACE CLIENT",
+      "title": "Votre dossier, en temps réel",
+      "lead": "Un portail sécurisé pensé comme un tableau de bord — pas comme une boîte mail qui déborde.",
+      "features": {
+        "avancement": {
+          "title": "Avancement en direct",
+          "description": "Chaque étape horodatée : rédaction, relecture, signature, greffe."
+        },
+        "coffre": {
+          "title": "Coffre-fort documentaire",
+          "description": "Statuts, pactes, PV d’AG, K-bis : tout au même endroit, partage contrôlé."
+        },
+        "alertes": {
+          "title": "Alertes d’échéances",
+          "description": "AG, dépôt des comptes, fin de mandats — prévenus avant, jamais après."
+        },
+        "langues": {
+          "title": "Quadrilingue",
+          "description": "Interface et échanges en français, anglais, chinois ou espagnol."
+        }
+      },
+      "mock": {
+        "label": "Aperçu de l’espace client",
+        "title": "Constitution — Nova Robotics SAS",
+        "badge": "En cours",
+        "progressLabel": "Avancement du dossier",
+        "rows": {
+          "questionnaire": {
+            "label": "Questionnaire fondateurs",
+            "status": "Terminé ✓"
+          },
+          "statuts": {
+            "label": "Projet de statuts (v2)",
+            "status": "Validé ✓"
+          },
+          "signature": {
+            "label": "Signature électronique",
+            "status": "En attente de M. Chen"
+          },
+          "capital": {
+            "label": "Dépôt du capital",
+            "status": "À venir"
+          },
+          "greffe": {
+            "label": "Greffe & K-bis",
+            "status": "À venir"
+          }
+        }
+      }
+    },
+    "bib": {
+      "overline": "BIBLIOTHÈQUE — CONTENTIEUX & ARBITRAGE",
+      "title": "Se renseigner d’abord, décider ensuite",
+      "cta": "Parcourir",
+      "items": {
+        "guides": {
+          "count": "22",
+          "title": "Guides pratiques",
+          "description": "« Rupture brutale : le guide 2026 », « Réussir son référé », « Faire exécuter un jugement »…"
+        },
+        "fiches": {
+          "count": "380+",
+          "title": "Fiches & FAQ",
+          "description": "« Quel délai pour agir contre un impayé ? » et 379 autres questions sourcées."
+        },
+        "modeles": {
+          "count": "35+",
+          "title": "Modèles commentés",
+          "description": "Mises en demeure, protocoles transactionnels, clauses compromissoires — commentés."
+        }
+      }
+    },
+    "faq": {
+      "overline": "QUESTIONS FRÉQUENTES",
+      "title": "Avant de nous appeler",
+      "illustrationLabel": "Illustration : Paris au bord de l’eau",
+      "items": {
+        "transiger": {
+          "question": "Vaut-il mieux transiger ou plaider ?",
+          "answer": "Cela se calcule : montant récupérable × probabilité de succès − coûts et durée, contre l’offre sur la table. Notre diagnostic stratégique pose ces chiffres noir sur blanc avant toute assignation — et 85 % de nos dossiers se résolvent sans jugement, aux conditions préparées par la procédure."
+        },
+        "cout": {
+          "question": "Combien coûte un procès commercial ?",
+          "answer": "Nos forfaits sont affichés : 490 € HT pour un diagnostic stratégique, à partir de 2 500 € HT pour une action d’urgence. Au fond, le devis est établi par phases plafonnées, avec un point d’arbitrage à chaque étape et, lorsque c’est pertinent, un honoraire de résultat. Au-delà des forfaits, le devis fermé vous est communiqué sous 24 h après un premier échange gratuit de 15 minutes."
+        },
+        "arbitrage": {
+          "question": "Qu’est-ce que l’arbitrage et quand le choisir ?",
+          "answer": "L’arbitrage confie le litige à un tribunal privé désigné par les parties, en application d’une clause compromissoire. Il est confidentiel et sa sentence s’exécute à l’étranger par exequatur, ce qui le rend pertinent pour les contrats transfrontaliers et les dossiers sensibles. Nous intervenons en arbitrage CCI comme ad hoc."
+        },
+        "etranger": {
+          "question": "Mon adversaire est à l’étranger : que faire ?",
+          "answer": "Tout se joue sur la compétence et la loi applicables : nous vérifions d’abord ce que prévoit votre contrat, puis nous arbitrons entre juridiction française, arbitrage et action locale. L’exécution transfrontalière est pilotée jusqu’au paiement — saisies, exequatur, recherche d’actifs. Nos échanges se font en français, anglais, chinois ou espagnol."
+        }
+      }
+    },
+    "ctaFinal": {
+      "overline": "CONTACT",
+      "title": "Un projet de société, une question d’associés ?",
+      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
+      "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
+      "ctaPrimary": "Réserver un créneau visio",
+      "ctaSecondary": "Obtenir un devis en ligne"
     }
   }
 }

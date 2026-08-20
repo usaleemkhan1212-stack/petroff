@@ -46,6 +46,8 @@
   --radius-card: 20px;
   --radius-tile: 14px;
   --radius-field: 12px;
+  /* Inset result/note panels sitting inside a card. */
+  --radius-note: 10px;
   --radius-panel: 28px;
 
   /* --- Fonts ------------------------------------------------------------ */
@@ -138,6 +140,24 @@
   --text-button--letter-spacing: 0em;
   --text-button--font-weight: 600;
 
+  /* Inter SemiBold 18 — Figma's "Petroff/Body 18 strong", FAQ questions. */
+  --text-body-strong: 1.125rem;
+  --text-body-strong--line-height: 1.5;
+  --text-body-strong--letter-spacing: 0em;
+  --text-body-strong--font-weight: 600;
+
+  /* Poppins Bold 16, +8% tracking — uppercase card badges */
+  --text-badge: 1rem;
+  --text-badge--line-height: normal;
+  --text-badge--letter-spacing: 0.08em;
+  --text-badge--font-weight: 700;
+
+  /* Poppins Bold 30 — Figma's "Petroff/Price", the forfait amounts. */
+  --text-price: 1.875rem;
+  --text-price--line-height: 1.15;
+  --text-price--letter-spacing: 0em;
+  --text-price--font-weight: 700;
+
   /* Poppins Bold 28 */
   --text-stat: 1.75rem;
   --text-stat--line-height: 1.15;
@@ -164,5 +184,39 @@
   :focus-visible {
     outline: 2px solid var(--color-gold);
     outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /*
+   * A native <details> jumps open: while closed its panel is display:none, so
+   * there is nothing to transition. ::details-content is the element the
+   * browser exposes for exactly this, and interpolate-size lets the auto
+   * height animate — so the panel slides without a line of JavaScript and the
+   * section stays a server component.
+   *
+   * Browsers without ::details-content ignore all of this and toggle
+   * instantly, which is the current behaviour, so nothing regresses.
+   */
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  .details-panel::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 240ms ease,
+      content-visibility 240ms allow-discrete;
+  }
+
+  .details-panel[open]::details-content {
+    block-size: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .details-panel::details-content {
+      transition: none;
+    }
   }
 }
