@@ -12,6 +12,7 @@ export const liveRoutes: readonly string[] = [
   "/expertises/contentieux-arbitrage",
   "/expertises/contrats-commerciaux",
   "/bibliotheque",
+  "/bibliotheque/article-design",
 ] as const;
 
 export function isLive(href: string) {

@@ -2,9 +2,10 @@
 
 # Petroff.law — build from Figma
 
-Built from Figma one section at a time. All five pages are complete — the home
+Built from Figma one section at a time. Five pages are complete — the home
 page, the Expertises hub, both domain pages (Contentieux & arbitrage and
-Contrats & droit commercial), and the Bibliotheque.
+Contrats & droit commercial), and the Bibliotheque. The article detail page is
+in progress.
 
 - **Figma file key:** `FOkn6jOmKh2I1YfbJUczBf`
 - **Page frame:** `12843:882` ("Petroff.law — Home", 1920x5598)
@@ -585,6 +586,437 @@ section namespace is `Bibliotheque` — different thing, easy to confuse.
 - Section measures 658.08 against Figma's 660; the 1.92 is the 1px border
   rounding on the search field plus 0.8px per chip row.
 
+## Page 6 — Article detail (`/bibliotheque/article-design`), frame `13095:881`
+
+1920x**19493** — by far the largest frame in the file, and now **complete**.
+A single article, "Fiche : Signature electronique", built as a **static design
+study**: the route and the nav label say `article-design` rather than the
+article's own title, because it is one page of design rather than a real
+article route. The finished page measures **19457 at 1920 against that 19493
+frame — 0.18% over more than nineteen thousand pixels** — with no horizontal
+overflow from 1920 down to 320.
+
+Reachable through a **second nav submenu**, under Bibliotheque. That meant
+generalising the dropdown that used to be Expertises-only:
+
+- `ExpertisesMenu` is now `NavMenu` and takes an `id` (two dropdowns cannot
+  share one `aria-controls` target) and a `menuLabel`.
+- `NavChild.labelKey` is a **full message path**, not a key inside one
+  namespace, so children can come from anywhere. It is typed as a literal
+  union rather than `string` — next-intl's typed catalogue rejects a bare
+  `string`, which is the whole point of `global.d.ts`.
+- Both submenus verified after the change, desktop and mobile.
+
+| # | Section | Node ID | Status |
+|---|---|---|---|
+| 1 | Hero | `13160:6877` | done |
+| 2 | Corps (article column + rail) | `13095:1022` | done |
+| 3 | Cabinet | `13095:1023` | done |
+| 4 | Interlocuteurs | `13095:1024` | done |
+| 5 | ALireEnsuite | `13095:1025` | done |
+| 6 | Transparence | `13095:934` | done |
+| 7 | CTAFinal | `13095:940` | done |
+| + | StickyBar + SideTab | `13121:25317`, `13170:1046` | done |
+
+**The sticky bar is the page's one piece of scroll behaviour.** It appears
+once `window.scrollY / (scrollHeight - innerHeight)` reaches **0.5** and then
+stays fixed to the bottom; the page scrolls normally underneath because the
+bar is fixed rather than in flow. It is kept mounted and translated out of
+view rather than unmounted, so the transition runs both ways, and carries
+`aria-hidden` + `inert` while it is down so nothing focusable hides
+off-screen. Honours `prefers-reduced-motion`.
+
+- **The ✕ collapses it to the gold side tab, which brings it back.** Figma
+  draws both elements but says nothing about the relationship; this is the
+  reading that makes both purposeful, and it is one state to change if the tab
+  is meant to stand alone.
+- **`Container` renders a padded outer div wrapping a `max-w` inner one, so
+  flex utilities passed to it land on the OUTER element.** The inner div then
+  becomes a single flex child and everything inside it stacks. That made the
+  bar 119 tall against the comp's 78, with the copy, button and ✕ in a column.
+  Put the row *inside* `Container`, never on it.
+- Its side tab uses **`writing-mode: vertical-rl`, not a rotation** — no
+  transform arithmetic to hug the edge, and it reflows. Its 45x236 box is set
+  explicitly, because intrinsic sizing under `vertical-rl` resolves the icon
+  and gap onto axes that give 59x221 instead.
+- Measured against the comp: bar 78.3 against 78, its copy column 977.5
+  against 977, its button 209.5 against 210, and the tab exactly 45x236.
+- `--text-h4` was added for its headline — Figma's own "Petroff/H4", Poppins
+  SemiBold 18/1.35, under the same precedent as `--text-badge`.
+
+**Corps is being built in passes, from one saved response.** Calling
+`get_design_context` per block would be ~100 Figma calls, so it was called
+**once** on the article column (`13099:881`) with `forceCode`. The response is
+178k characters, which the tool saves to a file; that file was extracted to
+`article-code.tsx` in the scratchpad and indexed by block, and **all 74 of its
+asset URLs were downloaded immediately** — they expire in 7 days and there is
+no second chance. The remaining passes need **no further Figma calls** for
+this column.
+
+Block index, in column order: `hdico` / `answer` / prose / `rulebox` /
+`outil-simulateur` / `hdico` / prose / `ladder` / `cmp` / `seam` / prose /
+`trap` / `hdico` / `tl` / prose / `seam` / prose / `vigil` / `reflist` /
+`jur-list` / `outil-triage` / `faq` / `consult` / `takeaways`.
+
+- Pass 1 landed the two-column shell and the opening run: `SectionTitle`
+  (Figma's `hdico`), `AnswerBox`, `Prose` and `RuleBox`, in
+  `sections/article/blocks/`.
+- Pass 2 landed `outil-simulateur` — the largest single block at 1226px. It
+  is **deliberately static**: Figma gives each field one chosen value and no
+  option list, and labels the panel "Résultat (démo)", so it is a picture of a
+  completed run rather than a working tool. Same call as the Tools section's
+  inert inputs, and it keeps the article a server component.
+- **Its result values are let to flex, where Figma wraps every one of them.**
+  Each value in the comp carries a stale auto-width frame (347, 337, 246, 363)
+  narrower than its own text, so all four wrap — and they break mid-citation
+  ("C. civ. art. / 1359", "invoque / l'acte"). Flexing them into the 377px
+  the row actually has reads better and reflows, at the cost of **56px** of
+  block height against the comp. Reproduce the comp by fixing each value's
+  width per row if that matters more.
+- Its verdict panel is `brique/14` — the only tint of brique on the site — and
+  its disclaimer's emphasis is Poppins **16**/1.2, not the body's 18/1.35
+  `<b>`, so it takes its own rich-text tag.
+- `chevron-down.svg` (14x14) is a **third caret**, beside `caret-down.svg`
+  (12x8) and `chevron-right.svg` (20x20). Same glyph family, three boxes,
+  because each export centres it differently.
+
+- Pass 3 landed the `Les niveaux de signature` heading, its four prose
+  paragraphs and the `ladder` — four cards for the four levels of signature,
+  each with a tinted 44px tile, a title, a status pill and a body indented 60px
+  to clear the tile. Its tints **alternate** pale blue / pale gold rather than
+  tracking the level, so they are positional, not semantic. 797.1 against
+  Figma's 787, which is the four cards' borders.
+- Five more icons off the saved batch: `circle-slash`, `circle-half`,
+  `padlock`, `courthouse-line` and `key`.
+- **A `key: string` annotation breaks next-intl's typing.** Widening the key
+  makes `t(`${key}.title`)` a plain template string, which the typed catalogue
+  rejects. Declare the array `as const satisfies readonly {...}[]` so the keys
+  stay literal *and* the shape is still checked — the same trap
+  `resultatsItems` hit, with a tidier fix.
+
+- Pass 4 landed `cmp` and the first `seam`.
+- **`cmp` is a real `<table>`** — three named columns compared across five
+  rows, so the markup says so, with `<th scope>` on both axes. Its 230/325/325
+  columns are the comp's; it scrolls inside its own container below 680px
+  rather than crushing three columns of legal text. 559.2 against Figma's 552,
+  which is the five row rules plus the card border.
+- **`seam` measures exactly 124.2, the comp's own height** — and its figure is
+  a second composed asset. Figma builds the `avocate` from **29 separately
+  inset vectors**; they are flattened into `lawyer-figure.svg` at those exact
+  insets, the same technique as `paris-skyline.svg`. Placement comes from the
+  `inset-[t_r_b_l]` percentages against its 50.125x84.202 box.
+- **Its two skin tones (#A8724D, #C98D63) stay raw hex.** They are
+  illustration content, not brand colours, and inventing tokens for them would
+  pollute the palette — the same call `paris-scene.svg` makes for its `black`
+  shading fills. Flagged in the file itself.
+
+- Pass 5 landed the `trap` callout, two more headings with their prose, and
+  the `tl` timeline.
+- **`RuleBox` became `Callout` with variants**, because `trap` shares its
+  anatomy but not its look: white with a 5px periwinkle left edge and a plain
+  `text-button` tag for `rule`; pale gold, no border, and a brique tag that
+  carries the **overline's 0.18em tracking** for `trap`. The tag styles are the
+  easy thing to get wrong — one is `text-button`, the other `text-overline`.
+  The trap measures 206.4 against Figma's 206.
+- **The timeline's rail is drawn per item, not as one line.** A single
+  absolutely positioned rail has to know where the last dot is; a `bottom-`
+  guess left it running past the end whenever the last step's body was tall.
+  Each item now draws its own connector from under its dot to the next
+  (`top-6.25 -bottom-11`), with `group-last:hidden` dropping it on the final
+  item — so it reflows and always stops on the last dot.
+
+- Pass 6 landed the `Les actes qui appellent une autre forme` and
+  `Organiser sa preuve` runs, the second `seam`, and the `vigil` list.
+- **A seam's height is driven by its figure, not its text.** Both seams are
+  exactly 124.2 in the comp: the 84.2px `avocate` plus its 20px padding. Figma
+  gives the two text frames *different* widths (421 and 375), and pinning
+  either one wraps the other onto a fourth line and pushes that seam to 144.
+  The text flexes instead, and both land on 124.2 exactly. Seam 2 reuses the
+  same composed `lawyer-figure.svg` — its 28 vectors are the same figure.
+- `vigil` measures 350.9 against Figma's 344, which is its five rules.
+- Five more icons: `shield-badge`, `inbox`, `page-corner`, `monument` and
+  `clock`. **The last two were first named from their path data and were
+  wrong** — `M12 4V20 M19 8L12 4L5 8` read as an arrow but renders as a
+  monument, and a circle with hands is a clock, not a mark. Render a glyph
+  before naming it; path data alone misleads.
+
+- Pass 7 landed `reflist` (thirteen ruled rows of source texts, each ending
+  in its own link) and `jur-list` (five decision cards, citation first). Two
+  more icons: `open-code` and `balance-scales`.
+- `reflist` measures 1124.5 against Figma's 1104 — its thirteen rules.
+- **`jur-list` measures 1044.7 against Figma's 972, and the gap is real**: its
+  two longest bodies each render four lines where the frame allows about two
+  and a half. Both are `w-full` inside the same 28px padding, so the measure
+  is identical — this looks like the frame being undersized against its own
+  content, the same thing already recorded for the Contrats Domaines grid
+  (`h-966` declared while needing ~989). Worth confirming with the designer
+  before treating it as a build error.
+
+- Pass 8 landed `outil-triage`, the article's second tool. Static for the
+  same reason as the simulator, and its third option is the one Figma marks
+  chosen — reproduced as `aria-current` on a list row rather than as a control
+  that does nothing. 757.4 against Figma's 813, which is the same 56px that
+  flexing the result values costs in the simulator.
+- **Its FAQ has eleven questions and Figma answers only the first.** The other
+  ten were drafted, on the user's instruction, strictly from what this article
+  already states above — it covers every one of those questions directly, so
+  no new legal claims were introduced. **That takes the sign-off list from six
+  drafted answers to sixteen**, all client-facing legal copy.
+- Its FAQ measures **1022.7 against Figma's 1022** and behaves: eleven native
+  `<details>` sharing a `name`, exclusive, closed answers failing
+  `checkVisibility()`, and the article still a server component.
+- **Its marker is Figma's own `–` / `+` pair, not the domain pages' rotated
+  triangle** — a plus cannot be rotated into a minus, so the two glyphs swap
+  on `group-open` instead.
+
+- Pass 9 landed `consult` and `takeaways`, which **completes the article
+  column**: it measures **14,179.4 against Figma's 14,237 — 0.4% over more
+  than fourteen thousand pixels**, with every block within a few px of its own
+  frame.
+- `consult` is a second composed figure: Figma's `AvocateDark` is the same
+  29-piece construction as the seam's, recoloured for the dark ground, so it
+  ships as `lawyer-figure-dark.svg`. Its `#354E75` robe joins the two skin
+  tones as literal hex — illustration content, not brand colour.
+- **`flex-1` collapses a sized flex item.** The consult's four 388px fields
+  landed on one row instead of Figma's two, because `flex-1` sets
+  `flex-basis: 0`. `grow basis-97` keeps the width and wraps correctly — and
+  that single class was 63px of the block's height. `flex-1` is right for a
+  column that should take the remaining space, wrong for one with a designed
+  width.
+- Its form inputs are real and labelled but **not wrapped in a `<form>`**,
+  like Tools and the OpenData lookup: no submit handler means a bare form
+  would reload the page on Enter.
+
+- **The rail is sticky, and `self-start` is what makes that possible.** In a
+  flex row the default `align-items: stretch` makes the rail as tall as the
+  14,000px article, leaving nothing to stick — `sticky top-6 self-start` is
+  the pair that works. Verified by scrolling: it pins at 24px and stays there
+  through the whole column.
+- **It takes no height cap and no internal scroll**, which is what makes its
+  whole height readable. A sticky element unpins when its containing block
+  ends, so the rail rides up over the last screenful and its bottom — CTA
+  card, author card, verification line — is on screen by the end of the
+  section. Capping it at `calc(100vh - 3rem)` with `overflow-y-auto` pinned it
+  forever and hid that bottom behind an internal scrollbar the reader had to
+  find; adding `no-scrollbar` only hid the evidence. Measured at 1920x900:
+  pinned at top 24 until y=14163, then released with its bottom tracking the
+  column's to the page end.
+- Its `pb-24` is **clearance for the sticky bar**, not rhythm. The bar is
+  fixed over the last 78px of the viewport by the time the rail releases, so
+  at `pb-4` the verification line unpinned directly underneath it.
+- **Its table of contents is real.** The ten headings carry anchor ids and
+  `scroll-mt-6`, the entries are `<a href="#...">`, and a scroll-spy moves the
+  gold active marker as you read — Figma marks only the first entry active,
+  and a highlight that never moved would be worse than none. That makes `Rail`
+  the article's second client component; `Corps` itself stays a server one.
+- **Figma renders the TOC's last entry at 40px Poppins Bold** — the section
+  title style leaking into a list item. It is built like the other nine.
+- **An element can overflow the page without its own box ever leaving it.**
+  Consult's footnote was `min-w-0 flex-1` beside a 259px button in a 279px
+  row, so the box shrank to **2px** and its *text* painted 53px past a 375
+  viewport. `documentElement.scrollWidth` caught it; the element scan did not,
+  because every rect was inside the page. It is `w-full sm:w-auto sm:min-w-0
+  sm:flex-1` now, so it drops below the button until there is room beside it.
+  `min-w-0` is what permits this: it lets a flex item shrink past its own
+  min-content width, which is the opposite of the Tools fix that *added* it.
+- The 15–21 elements the sweep flags at 640 and 375 are all inside
+  ComparisonTable's `overflow-x: auto` wrapper — a wide table scrolling in its
+  own container, which is the intended handling. Filter the scan by ancestor
+  `overflow-x` before reading a raw count as breakage.
+
+- **The body has exactly two inline runs**, shared by every paragraph and box,
+  so they live once in `Prose.tsx` as `proseTags`: `<b>` is Poppins SemiBold
+  18/1.35 — Figma's H4 metrics used inline, hence `text-h4` *plus* an explicit
+  `font-poppins` — and `<ref>` is a legal citation, Inter SemiBold **16**/1.45
+  in brique. The citation is a real size change mid-sentence, not just a
+  colour.
+- Its prose is full-strength `encre`, not the `encre/62` every other section's
+  body uses.
+- Figma spaces these blocks with **explicit spacer frames of varying height**
+  (18, 56, 16, 30…) rather than one rhythm, so the gaps are margins per block
+  rather than a `gap` on the column.
+- Positions land within 3-6px through the first run, drifting slowly because
+  the mixed inline line-heights resolve differently: a `<b>` run at 1.35
+  inside a 1.4 paragraph takes the larger line box here, where Figma's own
+  render mixes them. Expect roughly half a percent of accumulated drift over
+  14,000px — worth knowing before chasing it.
+
+- **`shield-check.svg` already existed and the Cabinet build clobbered it.**
+  The name looked free because the path-match script correctly reported "no
+  match" — the two are genuinely different shields (the old one spans
+  5.42-20.58 at stroke 1.95, the export 4.875-21.125 at 2.1125) — but the
+  script compares *drawings*, not *filenames*, so a `cat >` overwrote a
+  tracked asset. The original is restored and the export ships as
+  `shield-check-wide.svg`. **Check `git status` for an `M` on an asset after
+  every batch**, and note the original is an orphan: nothing imports it, and
+  nothing did before this either.
+
+- **CTAFinal is the site's fifth CTA panel and the closest match on the
+  build**: section **550 against Figma's 550**, four of its five copy bands
+  pixel-identical and the fifth within 1px, and both ornaments within 1-2px.
+- Only its **title** is this page's own. The overline, lead and phone line
+  come from `ContactCta` as the other panels do, and the two button labels
+  moved into that block as **`ContactCta.ask`**, which the Bibliotheque hub's
+  panel now reads too — so `BibliothequePage.ctaFinal` is down to a single
+  key. Verified after the move: the hub panel still measures 550.36 with its
+  own title and both shared labels.
+- **Its ornaments are the hub's two, swapped and resized**: the magnifier
+  moves to the bottom left at 150 (from the right at 140) and the nib to the
+  top right at 103.125x150 (from the left at 110x160).
+- `magnifier-check.svg` at 150 is an **exact uniform 1.07143 scale** of the
+  140 file — all 66 path numbers match to 0.0000 — with `stroke-width` left at
+  10 rather than scaling to 10.71. **Reused rather than forked**: 0.7px of
+  stroke on a 150px ornament is the Cabinet-icon case, not the `open-book-lg`
+  (6 -> 8.35) or arc (6 -> 9.97) case that earned a second file. The measured
+  cost is the whole difference in the diff — a 117x111 rendered box against
+  Figma's 115x110.
+- `pen-nib.svg` is now reused at a **third** box: 110x153 native, 103.125x150
+  here exactly as on the Contrats CTA, and 110x160 on the hub. It carries no
+  strokes at all, so every stretch is exact.
+
+- **Transparence shares all five strings with the Bibliotheque hub's block
+  but is a different component.** The copy moved to a shared top-level
+  **`Transparence`** namespace — the second such namespace after `ContactCta`
+  — and `BibliothequePage.transparence` is gone. Section 371 against Figma's
+  370, 7 ink bands in both within 1px, and both paragraphs wrap at the same
+  word (extents 1441 against 1439, 1435 against 1431).
+- **Both frames were read before changing either.** They genuinely differ in
+  five places, so this is not a bug in the shipped hub section: head gaps 8/8
+  here against 10/4 there, the head capped at 784 here and uncapped there, the
+  disclaimer **full white** here and white/70 there, the closing sentence
+  **rose only on `Signalez-la-nous.`** here and rose for the whole line there,
+  and 52px of bottom padding here against 28.
+- That last difference is why the shared string carries a `<link>` tag: the
+  article wraps the chunk in `text-small-strong text-rose`, the hub renders it
+  plainly inside an already-rose paragraph. Verified after the move — the hub
+  still measures 341.36 with its own colours and no missing keys.
+- Its band is **1100 left-aligned inside the 1200 one**, not centred: 1100
+  centred in the 1245 Container would start at 410, where the frame says 360.
+  So the band positions (`mx-auto max-w-300`) and the text measures
+  (`max-w-275`, `max-w-196`) are two separate things here.
+
+- **The sticky bar photobombs any capture taken past 50% scroll.** It is
+  `position: fixed`, so `Page.captureScreenshot` paints it over whatever
+  section is being measured — in the first ALireEnsuite diff it merged four
+  text bands and made a correct card body read as broken. Hide every
+  `position: fixed` element outside the header before capturing. `shoot.js`
+  in the scratchpad does the load-images-then-hide-fixed dance for this page.
+- **ALireEnsuite**: section 1461 against Figma's 1451, every band within 3px
+  through the cards and +9/+10 by the tail — that 10px is five card borders.
+  Five blocks: prev/next, a 3-up library grid, the model row, and the
+  sub-category list.
+- **Its prev/next labels are deliberately asymmetric.** Figma sets
+  `← précédent` as the brique **overline** (0.18em tracking, lowercase) and
+  `SUIVANT →` as the periwinkle **Button** style (no tracking, uppercase).
+  Check the tracking before assuming a pair of labels shares a style.
+- Its type pills reuse the Vitrine's data-driven colouring exactly — pale gold
+  for a guide, pale blue for a fiche, domain always pale periwinkle, all at
+  the same 11/3 padding. Same pill, so no seventh variant.
+- **Its sub-category list needs `items-start`.** Figma keeps each row at its
+  own height, so a one-line row's rule sits 25px above its two-line
+  neighbour's; a stretched grid levels them. Reproduced to the pixel: 1339 and
+  1364 against Figma's 1329 and 1354.
+- Card 1's title is the **same string as the previous-article link**, so it is
+  one key read from two places rather than a ninth verbatim duplication.
+- Figma puts `whitespace-nowrap` on the next-article title. That is an
+  auto-layout artefact — it fits on one line at the designed width anyway, and
+  keeping it would push the page wide below ~500px. Omitted.
+- Three new photos, all at 1197x672 = 3x the same 399x224 box the Vitrine
+  cards use: `lounge-conversation`, `standing-huddle`, `glass-meeting-room`.
+  Only the middle one takes a Figma placement (240.4% height, top -38.23%);
+  the other two are plain centre `object-cover`.
+- `model-folder.svg` (64x56) needed **no new token** — all four of its fills
+  are existing ones (gold, lilas, encre, periwinkle), unlike the two skin
+  tones and the dark robe in the article column.
+
+- **`next/image` lazy-loads, so a beyond-viewport capture photographs empty
+  boxes.** The first Interlocuteurs pixel-diff reported 10 bands against
+  Figma's 8 purely because neither portrait had loaded 15,900px down the page
+  — the merged portrait-plus-text band was missing and every band below it
+  read as displaced by ~77px. Scroll the section into view and await
+  `img.complete` on each image *before* `Page.captureScreenshot`. Nothing was
+  wrong with the layout; the second capture matched to 3px.
+- **Interlocuteurs**: section 780 against Figma's 776, 8 ink bands in both and
+  every band within 0-3px — that 4px is the two cards' 2px borders. Its head
+  repeats the Cabinet band's 10/14/44 shape, so it is written out too.
+- **Its Mariela portrait is the same crop as the rail's**, not a new one:
+  Figma places the shared 3744x2496 original at 231.12% / 154.08% with a
+  -29.68% / -3.23% offset, which resolves to the identical 1620x1620 window
+  `lawyer-portrait-square.jpg` already carries (mean abs diff 1.68 of 255,
+  i.e. JPEG noise). That file was **promoted from 270 to 312** — 3x this
+  section's larger 104px circle — and reused in both places rather than
+  shipping a near-duplicate. Only `tony-portrait-square.jpg` is new.
+- Its chips are the **sixth pill variant on the site**: lilas ground,
+  `text-small-strong` in encre/62, 12/4 padding. They are plain `<li>`s, not
+  `Chip` — `Chip` renders a `<button>` and these are labels, not controls.
+- Its "angle" note is a 3px `pale-gold` left border with a rich `<b>` run in
+  `text-button font-poppins text-encre` ahead of ordinary `text-small` body.
+  Figma writes the paragraph at `text-[0px] leading-[0]`, which is its usual
+  mixed-inline artefact, not a real style.
+- Its button is the outline `Button` at Figma's 20/11 — `size="sm"` plus
+  `py-2.75`, since `sm` is 20/12.
+- **Its two cards are deliberately not levelled** (420.8 and 429.6): Figma
+  marks the row `items-start` and neither card carries `self-stretch`, unlike
+  the Cabinet grid above where the first one does.
+- Below `sm` the card's own row stacks portrait over text. Figma specifies
+  desktop only, and at 375 a 104px circle beside the copy leaves 151px of
+  measure. Sweep is clean from 1920 to 320.
+
+- **Cabinet went in clean**: section 777 against Figma's 774, 14 ink bands in
+  both, every band within 1-3px, and that 3px is the cards' 2px border. Three
+  prestations with their billing stated, over a footnote row.
+- Its head is **written out rather than using `SectionHeading`** — Figma puts
+  10px under the overline and 14px under the title where that component uses
+  one gap for both, and its lead is `text-small` at the full 1245, not the
+  `text-body max-w-160` default. Same call the Vitrine and Transparence made.
+- **Its three icons carry `stroke-width="2.1125"` where the library's 26px
+  icons carry `1.95`** — same box, heavier stroke, so the stroke did *not*
+  scale with the geometry. Two of them (`file-lines`, `balance-scale`) match
+  an existing file's path data exactly and are **reused anyway**: 0.16px of
+  stroke at 26px is invisible, confirmed by cropping both tiles and comparing.
+  Contrast `open-book-lg`, where the unscaled stroke would have drawn 8.35px
+  against 6 — that ratio justifies a second file, this one does not.
+  `shield-check.svg` is genuinely new; the existing `shield-badge.svg` is a
+  50px two-tone illustration, not this 26px line glyph.
+- Its middle card's terms line is `text-h4` encre because it is an amount
+  (1 200 € HT); the other two are ordinary `text-body` encre/62. Carried as a
+  `price` flag rather than three separate card bodies.
+- Its cards' descriptions **wrap one word earlier than the comp** — content
+  box 341 against Figma's 343, because `border` sits outside the padding box
+  where Figma draws it inside. Line counts and every band position still
+  match, so this costs no height; it is the whole of the section's 6.4 x-band
+  ink delta and is not worth chasing.
+- All four of its CTAs are inert: `/prestations` and `/prestations/<key>` do
+  not exist, so `MaybeLink` renders spans. Verified.
+
+**Corps is the whole job**: 14429px, 99 blocks, roughly 15,000 words of
+French legal prose, and about fifteen custom block types — `rulebox`,
+`outil-simulateur`, `ladder`, `cmp`, `seam`, `trap`, `tl`, `vigil`,
+`reflist`, `jur-list`, `outil-triage`, `faq`, `consult`, `takeaways` — plus a
+300px `rail` carrying a scrolling table of contents and a pinned card. The
+user asked for **all of it verbatim**, so expect several turns on this
+section alone.
+
+- `--text-article-title` was added for its 46/52 title: a real size in the
+  design with no named Figma style, under the `--text-badge` / `--text-price`
+  precedent. Fluid over the same 375..1440 range as `--text-h2`.
+- Its hero row takes **no gap** — the copy column flexes against a 504px image
+  stage inside the 1245 band, leaving 741. A `gap-12` takes it to 693 and
+  pushes the title onto a third line. That is the third section to hit this.
+- Its verification chip needed the same rotation correction as the
+  Bibliotheque polaroid: Figma's 0/306 is the *bounding box* of the rotated
+  frame, so the untransformed box sits at 2.6/313.
+- **The gold marker is a fixed 12.17em bar, not a highlighted chunk**, so it
+  needs `max-w-full`: below ~500px it is wider than its column and pushed the
+  whole page to 410. Caught by `scrollWidth`, **not** by the element scan —
+  the marker is `aria-hidden`, which that scan excludes. Trust `scrollWidth`.
+- Its hero photo is the **same source file** as the Vitrine's first card,
+  which is fitting: that card is this article. Stored as a second crop,
+  `reading-outdoors-tall.jpg`, because the hero shows a taller window of it.
+- Its `ArticleActions` are real: copy-link writes the canonical URL to the
+  clipboard and print opens the dialog. That makes them the first genuinely
+  working buttons on the site, and the hero's only client component.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.
@@ -621,7 +1053,8 @@ section namespace is `Bibliotheque` — different thing, easy to confuse.
   `<span>` for everything else, so nothing can navigate to a 404. Add a path to
   `liveRoutes` the moment its page lands and every call site starts linking.
   Live today: `/`, `/expertises`, `/expertises/contentieux-arbitrage`,
-  `/expertises/contrats-commerciaux` and `/bibliotheque`.
+  `/expertises/contrats-commerciaux`, `/bibliotheque` and
+  `/bibliotheque/article-design`.
 - `Button` still has no `href` prop by design — wrap the call site in `Link`
   when a CTA needs to navigate. `LanguageSwitcher`'s `Link` branch is dead
   today (only `fr` is registered) and is the locale mechanism, not a route.
@@ -726,7 +1159,9 @@ asset URLs, so `curl` those rather than spending a second call on
   `/bibliotheque` (+ `/guides`, `/fiches`, `/modeles`), `/le-cabinet`,
   `/donnees-outils`, `/actualites`, `/recherche`, plus Facons' `/abonnements`,
   `/forfaits` and `/methode`. `nav.ts`, `bibliotheque.ts` and `facons.ts` carry
-  them as data; `MaybeLink` renders them as spans until the pages land.
+  them as data; `MaybeLink` renders them as spans until the pages land. The
+  article's Cabinet band adds `/prestations` and three `/prestations/<key>`
+  detail paths to that list.
 - Language switcher renders EN/中文/ES as disabled — only `fr` is registered in
   `src/i18n/routing.ts`. They become links automatically when locales are added.
 - The phone number "+ 33 (0) 1 78 90 46 46" appears in two places: the home
@@ -736,12 +1171,14 @@ asset URLs, so `curl` those rather than spending a second call on
   ordinary, unlike the U+202F in "24 h".
 - SearchBand submit and the OpenData SIREN form are inert placeholders. The
   popular chips prefill the search field instead of navigating.
-- **There are four CTAFinal components** — home, Expertises, Contentieux,
-  Contrats — and the last three share their copy through the top-level
-  **`ContactCta`** namespace (done; the per-page `ctaFinal` blocks are gone).
-  The home one keeps its own `CTAFinal` namespace, which is genuinely
-  different copy. The components themselves stay separate on purpose:
-  different ornaments, panel gaps and section padding.
+- **There are six CTAFinal components** — home, Expertises, Contentieux,
+  Contrats, Bibliotheque and the article — and all but the home one share
+  their copy through the top-level **`ContactCta`** namespace. The three
+  domain/hub panels read its `ctaPrimary`/`ctaSecondary`; the two library-side
+  panels read its **`ask`** pair instead and supply only their own title. The
+  home one keeps its own `CTAFinal` namespace, which is genuinely different
+  copy. The components themselves stay separate on purpose: different
+  ornaments, panel gaps and section padding.
 - **Their panel gaps differ**: 12px on Contentieux, 16px on Expertises. Copying
   the sibling's `gap-4` put this one's buttons 16px low — four gaps × 4px.
   Check the gap per panel; do not assume the CTAFinals agree.

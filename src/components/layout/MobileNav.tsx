@@ -11,7 +11,8 @@ import type { NavItem } from "@/lib/nav";
 export function MobileNav({ items }: { items: readonly NavItem[] }) {
   const [open, setOpen] = useState(false);
   const t = useTranslations("Nav");
-  const tDomaines = useTranslations("ExpertisesPage.domaines.items");
+  /* No namespace: nav children carry full message paths. */
+  const tRoot = useTranslations();
 
   return (
     <div className="xl:hidden">
@@ -70,7 +71,7 @@ export function MobileNav({ items }: { items: readonly NavItem[] }) {
                             onClick={() => setOpen(false)}
                             className="text-small text-encre hover:text-periwinkle block py-2"
                           >
-                            {tDomaines(`${child.key}.title`)}
+                            {tRoot(child.labelKey)}
                           </MaybeLink>
                         </li>
                       ))}

@@ -83,6 +83,16 @@
   --text-display--letter-spacing: -0.01em;
   --text-display--font-weight: 700;
 
+  /*
+    Poppins Bold — 32px mobile -> 46px desktop. The article title: a real size
+    in the design with no named Figma style, added under the --text-badge and
+    --text-price precedent. Scales over the same 375..1440 range as --text-h2.
+  */
+  --text-article-title: clamp(2rem, 1.6919rem + 1.3146vw, 2.875rem);
+  --text-article-title--line-height: 1.1304;
+  --text-article-title--letter-spacing: 0em;
+  --text-article-title--font-weight: 700;
+
   /* Poppins Bold — 28px mobile -> 40px desktop */
   --text-h2: clamp(1.75rem, 1.4859rem + 1.1268vw, 2.5rem);
   --text-h2--line-height: 1.15;
@@ -94,6 +104,12 @@
   --text-nav--line-height: normal;
   --text-nav--letter-spacing: 0em;
   --text-nav--font-weight: 500;
+
+  /* Poppins SemiBold 18 — Figma's "Petroff/H4", the sticky bar's headline */
+  --text-h4: 1.125rem;
+  --text-h4--line-height: 1.35;
+  --text-h4--letter-spacing: 0em;
+  --text-h4--font-weight: 600;
 
   /* Poppins SemiBold 24 — band/section sub-headings */
   --text-h2-sm: 1.5rem;

@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 
 export function Transparence() {
-  const t = useTranslations("BibliothequePage.transparence");
+  const t = useTranslations("Transparence");
 
   return (
     /* The page's only dark band, and the only one whose overline is gold for
@@ -23,7 +23,11 @@ export function Transparence() {
           <p className="text-body mt-4.75 max-w-275 text-white/70">
             {t("disclaimer")}
           </p>
-          <p className="text-small text-rose mt-4.5 max-w-275">{t("translation")}</p>
+          <p className="text-small text-rose mt-4.5 max-w-275">
+            {/* This frame draws the whole line rose, so the shared string's
+                <link> chunk is rendered plainly here. */}
+            {t.rich("translation", { link: (chunks) => chunks })}
+          </p>
         </div>
       </Container>
     </section>

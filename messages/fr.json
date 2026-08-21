@@ -17,21 +17,34 @@
     "languageLabel": "Changer de langue",
     "phoneLabel": "Nous appeler",
     "homeLabel": "Petroff — retour à l’accueil",
-    "domainsLabel": "Domaines d’expertise"
+    "domainsLabel": "Domaines d’expertise",
+    "libraryPagesLabel": "Pages de la bibliothèque",
+    "articleDesign": "article-design"
   },
   "Common": {
     "skipToContent": "Aller au contenu",
     "learnMore": "En savoir plus",
     "search": "Rechercher"
   },
-    "ContactCta": {
-      "overline": "Contact",
-      "title": "Un projet de société, une question d’associés ?",
-      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
-      "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
-      "ctaPrimary": "Réserver un créneau visio",
-      "ctaSecondary": "Obtenir un devis en ligne"
-    },
+  "ContactCta": {
+    "overline": "Contact",
+    "title": "Un projet de société, une question d’associés ?",
+    "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
+    "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
+    "ctaPrimary": "Réserver un créneau visio",
+    "ctaSecondary": "Obtenir un devis en ligne",
+    "ask": {
+      "ctaPrimary": "Parler à un avocat",
+      "ctaSecondary": "Poser votre question"
+    }
+  },
+  "Transparence": {
+    "overline": "Sources & transparence",
+    "title": "Adossée aux registres publics officiels",
+    "sources": "Légifrance (PISTE) · Judilibre · BODACC · INSEE Sirene · données INPI",
+    "disclaimer": "Les données proviennent des registres publics officiels et sont généralement fiables ; des erreurs ponctuelles restent possibles et les résultats ne constituent pas un avis juridique.",
+    "translation": "La bibliothèque s’écrit en français et se lit dans votre langue : traduction adossée à un glossaire juridique quadrilingue maintenu par le cabinet. Une inexactitude ? <link>Signalez-la-nous.</link>"
+  },
   "Hero": {
     "overline": "Cabinet D’avocats — Droit Des Affaires · Paris",
     "title": "Le droit des affaires,<br></br><hl>clairement.</hl>",
@@ -222,7 +235,12 @@
     "columns": {
       "cabinet": {
         "title": "LE CABINET",
-        "items": ["Qui sommes-nous", "L’équipe", "Honoraires", "Contact"]
+        "items": [
+          "Qui sommes-nous",
+          "L’équipe",
+          "Honoraires",
+          "Contact"
+        ]
       },
       "ressources": {
         "title": "RESSOURCES",
@@ -284,57 +302,101 @@
         "societes": {
           "title": "Droit des sociétés & gouvernance",
           "description": "Constitution, pactes, opérations sur capital, litiges d’associés, dirigeants.",
-          "tags": ["Pactes", "BSPCE · OC/OCA", "Exclusions"]
+          "tags": [
+            "Pactes",
+            "BSPCE · OC/OCA",
+            "Exclusions"
+          ]
         },
         "fusions": {
           "title": "Fusions-acquisitions",
           "description": "Cessions, acquisitions, due diligence, garanties d’actif-passif, closing.",
-          "tags": ["LOI → closing", "GAP", "Data room"]
+          "tags": [
+            "LOI → closing",
+            "GAP",
+            "Data room"
+          ]
         },
         "capitalRisque": {
           "title": "Capital-risque & private equity",
           "description": "Levées de fonds, term sheets, actions de préférence, sorties d’investisseurs.",
-          "tags": ["Seed → série C", "BSA-AIR", "Liquidité"]
+          "tags": [
+            "Seed → série C",
+            "BSA-AIR",
+            "Liquidité"
+          ]
         },
         "contrats": {
           "title": "Contrats & droit commercial",
           "description": "Distribution, agence, CGV, contrats internationaux, négociations.",
-          "tags": ["CGV", "Distribution", "Cross-border"]
+          "tags": [
+            "CGV",
+            "Distribution",
+            "Cross-border"
+          ]
         },
         "contentieux": {
           "title": "Contentieux & arbitrage",
           "description": "Litiges commerciaux, référés, arbitrage, exécution des décisions.",
-          "tags": ["Urgence 48 h", "Arbitrage", "Exécution"]
+          "tags": [
+            "Urgence 48 h",
+            "Arbitrage",
+            "Exécution"
+          ]
         },
         "litigesAssocies": {
           "title": "Litiges entre associés",
           "description": "Blocages, abus de majorité, révocations, exclusions, sorties négociées.",
-          "tags": ["Référé", "1843-4", "Sortie"]
+          "tags": [
+            "Référé",
+            "1843-4",
+            "Sortie"
+          ]
         },
         "propriete": {
           "title": "Propriété intellectuelle & marques",
           "description": "Dépôts FR/UE, oppositions, contrefaçon, licences, logiciels, IA.",
-          "tags": ["INPI · EUIPO", "Contrefaçon", "Licences"]
+          "tags": [
+            "INPI · EUIPO",
+            "Contrefaçon",
+            "Licences"
+          ]
         },
         "social": {
           "title": "Droit social",
           "description": "Contrats, ruptures, PSE, prud’hommes, enquêtes internes, URSSAF.",
-          "tags": ["PSE", "Transactions", "CSE"]
+          "tags": [
+            "PSE",
+            "Transactions",
+            "CSE"
+          ]
         },
         "fiscal": {
           "title": "Droit fiscal",
           "description": "Structuration, fiscalité du dirigeant, contrôle et contentieux, Dutreil.",
-          "tags": ["Contrôle", "Dutreil", "Packages"]
+          "tags": [
+            "Contrôle",
+            "Dutreil",
+            "Packages"
+          ]
         },
         "immobilier": {
           "title": "Immobilier d’entreprise",
           "description": "Baux commerciaux, acquisitions, construction, montages, contentieux.",
-          "tags": ["3-6-9", "VEFA", "SCI"]
+          "tags": [
+            "3-6-9",
+            "VEFA",
+            "SCI"
+          ]
         },
         "recouvrement": {
           "title": "Recouvrement & mesures conservatoires",
           "description": "Relances, injonctions, saisies conservatoires, procédures collectives.",
-          "tags": ["72 h", "Saisies", "BODACC"]
+          "tags": [
+            "72 h",
+            "Saisies",
+            "BODACC"
+          ]
         }
       },
       "transverse": {
@@ -404,47 +466,66 @@
         "strategie": {
           "title": "Stratégie précontentieuse",
           "description": "Évaluation des chances, sécurisation des preuves (constats, 145 CPC), mise en demeure calibrée, négociation.",
-          "tags": ["Audit de dossier"]
+          "tags": [
+            "Audit de dossier"
+          ]
         },
         "referes": {
           "title": "Référés & urgence",
           "description": "Référé-provision, mesures conservatoires, interdictions sous astreinte, requêtes non contradictoires.",
-          "tags": ["48 h"]
+          "tags": [
+            "48 h"
+          ]
         },
         "commercial": {
           "title": "Contentieux commercial",
           "description": "Rupture brutale des relations établies, concurrence déloyale, parasitisme, pratiques restrictives.",
-          "tags": ["Tribunal de commerce"]
+          "tags": [
+            "Tribunal de commerce"
+          ]
         },
         "contractuels": {
           "title": "Litiges contractuels",
           "description": "Inexécution, résolution, responsabilité, pénalités — la lecture fine du contrat au service du dossier.",
-          "tags": ["Fond"]
+          "tags": [
+            "Fond"
+          ]
         },
         "associes": {
           "title": "Litiges entre associés",
           "description": "Abus de majorité, révocations, exclusions, expertise de gestion — en lien avec l’équipe sociétés.",
-          "tags": ["Transverse"]
+          "tags": [
+            "Transverse"
+          ]
         },
         "arbitrage": {
           "title": "Arbitrage & international",
           "description": "Arbitrage CCI/ad hoc, clauses compromissoires, exequatur, litiges multi-juridictions.",
-          "tags": ["CCI", "Exequatur"]
+          "tags": [
+            "CCI",
+            "Exequatur"
+          ]
         },
         "mediation": {
           "title": "Médiation & MARD",
           "description": "Médiation, conciliation, procédure participative — quand l’accord vaut mieux qu’un jugement.",
-          "tags": ["Confidentiel"]
+          "tags": [
+            "Confidentiel"
+          ]
         },
         "execution": {
           "title": "Exécution des décisions",
           "description": "Saisies, astreintes, recherche d’actifs, exécution transfrontalière — le jugement n’est que le début.",
-          "tags": ["Commissaire de justice"]
+          "tags": [
+            "Commissaire de justice"
+          ]
         },
         "defense": {
           "title": "Défense & responsabilité",
           "description": "Défense aux assignations, appels en garantie, coordination assureurs et experts.",
-          "tags": ["Défense"]
+          "tags": [
+            "Défense"
+          ]
         }
       }
     },
@@ -492,22 +573,30 @@
         "misesEnDemeure": {
           "title": "Mises en demeure",
           "description": "Calibrées et envoyées sous 48 h, avec stratégie de suite en cas de silence.",
-          "tags": ["190 €"]
+          "tags": [
+            "190 €"
+          ]
         },
         "injonctions": {
           "title": "Injonctions de payer",
           "description": "Requêtes et suivi jusqu’à l’ordonnance et la signification.",
-          "tags": ["Forfait"]
+          "tags": [
+            "Forfait"
+          ]
         },
         "creances": {
           "title": "Déclarations de créances",
           "description": "Dans les procédures collectives de vos débiteurs — délais surveillés.",
-          "tags": ["Délais critiques"]
+          "tags": [
+            "Délais critiques"
+          ]
         },
         "veille": {
           "title": "Veille de vos litiges",
           "description": "Alertes sur vos adversaires : procédures collectives, publications BODACC.",
-          "tags": ["Open data"]
+          "tags": [
+            "Open data"
+          ]
         }
       }
     },
@@ -728,47 +817,65 @@
         "distribution": {
           "title": "Distribution & franchise",
           "description": "Réseaux de distribution, franchise, concession, distribution sélective — DIP, quotas, exclusivités.",
-          "tags": ["Réseaux"]
+          "tags": [
+            "Réseaux"
+          ]
         },
         "agence": {
           "title": "Agence commerciale",
           "description": "Statut d’agent, indemnité de fin de contrat, contentieux de la rupture — côté mandant ou agent.",
-          "tags": ["Indemnité"]
+          "tags": [
+            "Indemnité"
+          ]
         },
         "cgv": {
           "title": "CGV, CGU & e-commerce",
           "description": "Conditions générales solides, parcours de vente conformes, plateformes et marketplaces.",
-          "tags": ["Conso & B2B"]
+          "tags": [
+            "Conso & B2B"
+          ]
         },
         "industriels": {
           "title": "Contrats industriels",
           "description": "Fabrication, approvisionnement, maintenance, SLA — pénalités, responsabilités et réversibilité.",
-          "tags": ["Long terme"]
+          "tags": [
+            "Long terme"
+          ]
         },
         "sousTraitance": {
           "title": "Sous-traitance",
           "description": "Chaînes de sous-traitance, loi de 1975, garanties de paiement, responsabilités croisées.",
-          "tags": ["BTP & industrie"]
+          "tags": [
+            "BTP & industrie"
+          ]
         },
         "rupture": {
           "title": "Rupture des relations",
           "description": "Rupture brutale de relations établies : sécuriser une sortie ou défendre vos préavis.",
-          "tags": ["L.442-1"]
+          "tags": [
+            "L.442-1"
+          ]
         },
         "transparence": {
           "title": "Transparence & pratiques",
           "description": "Négociation annuelle, conventions uniques, pratiques restrictives, déséquilibre significatif.",
-          "tags": ["Grande distribution"]
+          "tags": [
+            "Grande distribution"
+          ]
         },
         "international": {
           "title": "Contrats internationaux",
           "description": "Loi applicable, juridiction, Incoterms, garanties bancaires — bilingues et exécutables.",
-          "tags": ["Cross-border"]
+          "tags": [
+            "Cross-border"
+          ]
         },
         "negociations": {
           "title": "Négociations stratégiques",
           "description": "À vos côtés en négociation : tactique, red lines, clauses de sortie — avant la signature.",
-          "tags": ["Deal team"]
+          "tags": [
+            "Deal team"
+          ]
         }
       }
     },
@@ -816,22 +923,30 @@
         "modeles": {
           "title": "Modèles à jour",
           "description": "NDA, CGV, prestations, apporteur d’affaires — adaptés à votre activité.",
-          "tags": ["Membre"]
+          "tags": [
+            "Membre"
+          ]
         },
         "relecture": {
           "title": "Relecture express 48 h",
           "description": "Un contrat reçu, relu et annoté avec contre-propositions sous 48 h.",
-          "tags": ["490 €"]
+          "tags": [
+            "490 €"
+          ]
         },
         "traductions": {
           "title": "Traductions juridiques",
           "description": "Vos contrats en anglais, chinois ou espagnol — juridiquement fiables.",
-          "tags": ["4 langues"]
+          "tags": [
+            "4 langues"
+          ]
         },
         "contratheque": {
           "title": "Contrathèque en ligne",
           "description": "Stockage, signature, échéances : la vie de vos contrats, organisée.",
-          "tags": ["Abonnement"]
+          "tags": [
+            "Abonnement"
+          ]
         }
       }
     },
@@ -1013,7 +1128,7 @@
       }
     }
   },
-    "BibliothequePage": {
+  "BibliothequePage": {
     "hero": {
       "overline": "Bibliothèque juridique",
       "title": "Le droit des affaires,<br></br><hl>clairement.</hl>",
@@ -1282,17 +1397,569 @@
         }
       }
     },
-    "transparence": {
-      "overline": "Sources & transparence",
-      "title": "Adossée aux registres publics officiels",
-      "sources": "Légifrance (PISTE) · Judilibre · BODACC · INSEE Sirene · données INPI",
-      "disclaimer": "Les données proviennent des registres publics officiels et sont généralement fiables ; des erreurs ponctuelles restent possibles et les résultats ne constituent pas un avis juridique.",
-      "translation": "La bibliothèque s’écrit en français et se lit dans votre langue : traduction adossée à un glossaire juridique quadrilingue maintenu par le cabinet. Une inexactitude ? Signalez-la-nous."
+    "ctaFinal": {
+      "title": "Vous ne trouvez pas la réponse ?"
+    }
+  },
+  "ArticlePage": {
+    "hero": {
+      "crumb": "Accueil · Bibliothèque · Vendre, contracter & commercer · Contrats commerciaux · ",
+      "crumbCurrent": "Signature électronique",
+      "overline": "Fiche & FAQ — preuve & contrats",
+      "title": "Signature électronique : ce qui tient devant un juge français",
+      "lead": "La validité n’est plus le sujet. Un contrat signé sur une plateforme est un écrit que le juge lira. Ce qui se discute, c’est la preuve : l’identification du signataire, et l’intégrité du document depuis la signature.",
+      "domain": "Vendre, contracter & commercer",
+      "type": "Fiche & FAQ",
+      "readingTime": "12 min de lecture",
+      "copyLink": "Copier le lien",
+      "print": "Imprimer / PDF",
+      "verifiedLabel": "Vérifiée le",
+      "verifiedDate": "19 août 2026",
+      "imageAlt": "",
+      "articles": {
+        "a1366": {
+          "number": "1366",
+          "description": "Code civil — l’écrit électronique a la même force probante que le papier"
+        },
+        "a1367": {
+          "number": "1367",
+          "description": "Code civil — la signature, et la présomption de fiabilité du procédé"
+        },
+        "a1373": {
+          "number": "1373",
+          "description": "Code civil — la dénégation de signature, que le juge doit trancher"
+        }
+      },
+      "articlePrefix": "Art. "
+    },
+    "stickyBar": {
+      "label": "Proposition de rendez-vous",
+      "title": "Une signature à sécuriser, ou déjà contestée ?",
+      "detail": "Évaluation de 15 minutes en visio, gratuite · réponse sous 24 heures · + 33 (0) 1 78 90 46 46",
+      "cta": "Consulter un avocat",
+      "dismiss": "Masquer cette proposition",
+      "reopen": "Consulter un avocat"
+    },
+    "corps": {
+      "answerTitle": "La réponse en bref",
+      "answer1": "<b>En une phrase :</b> la signature électronique est valable en France et l’écrit électronique a la même force probante que le papier ; seule la <b>signature qualifiée</b> bénéficie d’une présomption de fiabilité, qui fait peser sur celui qui dénie sa signature la charge de la preuve.",
+      "answer2": "La signature électronique est valable dès lors que le procédé d’identification employé est fiable et garantit le lien de la signature avec l’acte. Un contrat signé via DocuSign, Adobe Sign ou une plateforme comparable est donc un contrat, et le fichier produit est un écrit : l’écrit électronique a <b>la même force probante</b> que le papier, pourvu que la personne dont il émane puisse être dûment identifiée et que l’écrit soit établi et conservé dans des conditions de nature à en garantir l’intégrité.",
+      "answer3": "Cette égalité se paie en preuve. Si la signature est contestée, c’est la partie qui invoque l’acte qui doit satisfaire le juge sur ces deux points — sauf si le procédé met en œuvre une <b>signature électronique qualifiée</b> : la fiabilité est alors présumée, et c’est celui qui dénie qui doit renverser la présomption.",
+      "ecritTitle": "Ce que le droit appelle un écrit",
+      "ecrit1": "Le droit de la preuve est indifférent au support. L’écrit s’entend d’une suite de lettres, de caractères, de chiffres ou de tous autres signes dotés d’une signification intelligible, <ref>quel que soit leur support</ref> (C. civ., art. 1365). Le papier ne bénéficie d’aucun privilège : un PDF scellé ou l’enregistrement d’une plateforme sont des écrits.",
+      "ecrit2": "L’égalité est ensuite affirmée sans détour : l’écrit électronique a la même force probante que l’écrit sur papier, à la double condition que la personne dont il émane puisse être dûment identifiée et que l’écrit soit établi et conservé dans des conditions de nature à en garantir l’intégrité <ref>(C. civ., art. 1366)</ref>. Une promesse, puis deux conditions — et ces conditions sont précisément ce que le juge examinera.",
+      "ecrit3": "Qu’est-ce qu’une signature, alors ? Constitue une signature valable toute marque distinctive et personnelle permettant d’individualiser son auteur sans doute possible et traduisant sa volonté non équivoque de consentir à l’acte. Une croix ou des empreintes digitales n’y suffisent pas ; des initiales qui individualisent leur auteur, ou un surnom, valent en revanche signature. Attention à la <b>signature scannée</b> : le procédé, s’il est valable, ne peut être assimilé à celui qui bénéficie de la présomption de fiabilité <ref>(Cass. com., 13 mars 2024, n° 22-16.487)</ref>.",
+      "rule1Tag": "RÈGLE",
+      "rule1Title": "L’égalité avec le papier est conditionnelle",
+      "rule1Body": "L’écrit électronique vaut le papier tant que l’on peut démontrer que son auteur est identifiable et son intégrité préservée (C. civ., art. 1366). La condition est probatoire : le dossier se constitue au moment de la signature, pas le jour où la réclamation arrive.",
+      "niveauxTitle": "Les niveaux de signature et la présomption de fiabilité",
+      "niveaux1": "Le Code civil définit la signature par sa fonction : elle identifie son auteur et manifeste son consentement aux obligations qui résultent de l’acte, qu’elle soit manuscrite ou électronique <ref>(art. 1367, al. 1)</ref>. Conséquence souvent ignorée : le mandataire ne peut signer du nom du mandant, même à sa demande.",
+      "niveaux2": "La signature électronique reçoit ensuite sa condition propre : elle vaut si le procédé d’identification est fiable et garantit le lien avec l’acte, et sa fiabilité est <b>présumée jusqu’à preuve contraire</b> lorsque ces conditions ont été établies conformément aux prescriptions fixées par décret <ref>(art. 1367, al. 2 ; Décret 2017-1416)</ref>. La présomption est tout l’enjeu : elle ne rend pas la signature valable — une signature vaut sans elle — elle déplace la charge de la preuve.",
+      "niveaux3": "Le décret désigne le niveau auquel elle s’attache : le procédé mettant en œuvre une signature qualifiée — signature avancée conforme à l’article 26 du règlement UE 910/2014, créée à l’aide d’un dispositif de création qualifié répondant à son article 29 et reposant sur un certificat qualifié répondant à son article 28. Les trois éléments sont <b>cumulatifs</b> : une signature avancée sur certificat non qualifié n’emporte pas la présomption.",
+      "niveaux4": "Le droit de l’Union ferme la boucle : les juridictions des États membres doivent reconnaître à la signature qualifiée une force probante équivalente à celle de la signature manuscrite <ref>(art. 25 ; CJUE, 29 février 2024, aff. 466/22)</ref>. Cette équivalence n’interdit pas au juge national d’examiner la signature ni de l’invalider : elle lui interdit de lui refuser effet au seul motif qu’elle est électronique ou qu’elle n’est pas qualifiée.",
+      "cmpTitle": "Ce que chaque niveau vous donne, et ce qu’il vous laisse à prouver",
+      "jugeTitle": "Ce que le juge vérifie quand l’écrit est contesté",
+      "juge1": "Identification et intégrité sont les points que le juge est tenu d’examiner : lorsque l’écrit est électronique, il doit vérifier si les conditions posées par les articles 1366 et 1367 sont satisfaites. La décision qui admet un écrit électronique sans cette vérification encourt la cassation <ref>(Cass. 1re civ., 30 septembre 2010, n° 09-68.555)</ref> ; celle qui y procède et justifie son appréciation tient <ref>(Cass. com., 4 octobre 2005, n° 04-15.195 ; Cass. 1re civ., 6 avril 2016, n° 15-10.732)</ref>.",
+      "dossierTitle": "Le dossier que vous devez pouvoir produire",
+      "dossier1": "Aucun texte n’en dresse la liste, mais le test légal la dicte : qui a été identifié et par quel moyen ; ce qui rattache cette personne à ce document ; l’état du document à la signature et ce qui garantit qu’il n’a pas bougé. Ces réponses vivent dans l’enregistrement de preuve de la plateforme — et ne valent rien si personne ne les a exportées.",
+      "denieTitle": "Quand le cocontractant dénie sa signature",
+      "denie1": "L’acte sous signature privée reconnu par la partie à laquelle on l’oppose fait foi entre ceux qui l’ont souscrit et à l’égard de leurs héritiers et ayants cause <ref>(art. 1372)</ref> ; la preuve contraire ne peut être rapportée que par écrit, sous réserve de la fraude <ref>(art. 1359, al. 2)</ref>. Mais il n’a pas la force de l’acte authentique : celui auquel on l’oppose peut dénier son écriture ou sa signature <ref>(art. 1373)</ref>.",
+      "formeTitle": "Les actes qui appellent une autre forme",
+      "forme0": "Le principe reste permissif : l’acte sous signature privée peut être établi sous forme électronique, sauf cas déterminés par des textes spéciaux. La question n’est pas de savoir si le droit français est hostile à la signature électronique, mais si une disposition impose une forme à cet acte-là.",
+      "forme1": "Lorsque la loi exige un acte authentique, la voie électronique reste ouverte mais passe par l’officier public : l’acte peut être dressé sous forme électronique <ref>(art. 1369)</ref>, et c’est la signature de l’officier public qui lui confère l’authenticité, y compris <b>à distance et sans comparution</b> des parties <ref>(Décret 2020-1422)</ref>. Un tel acte ne se déplace pas vers une plateforme — mais il se signe électroniquement devant notaire.",
+      "forme2": "Restent les engagements assortis d’une mention obligatoire. L’engagement de payer une somme d’argent doit être constaté par un écrit comportant la signature de celui qui s’engage et la mention, portée par lui-même, de la somme en toutes lettres et en chiffres <ref>(art. 1376)</ref>. Elle peut être apposée sous forme électronique si les conditions de son apposition garantissent qu’elle ne peut émaner que de celui qui s’oblige <ref>(art. 1174, al. 2 ; Cass. 1re civ., 28 octobre 2015, n° 14-23.110)</ref>. En cas de différence entre lettres et chiffres, l’acte vaut preuve pour la somme en lettres.",
+      "forme3": "Trois exceptions allègent ce formalisme : l’engagement souscrit par un commerçant et constituant un acte de commerce <ref>(C. com., art. L 110-3)</ref> ; l’engagement de payer qui se rattache à une convention synallagmatique avec laquelle il forme un tout <ref>(Cass. com., 20 septembre 2012, n° 11-13.144)</ref> ; et l’acte reçu en la forme authentique ou contresigné par avocat, dispensé de toute mention manuscrite <ref>(art. 1369, al. 3 et 1374, al. 3)</ref>.",
+      "organiserTitle": "Organiser sa preuve avant le litige",
+      "organiser1": "Quatre règles décident de la solidité d’un dispositif. La première concerne les originaux : sauf entre commerçants, les actes synallagmatiques ne sont probants qu’autant qu’ils ont été faits en autant d’originaux qu’il y a de parties ayant un intérêt distinct — exigence <b>réputée satisfaite</b> sous forme électronique lorsque l’acte est établi et conservé conformément aux articles 1366 et 1367 et que chaque partie peut disposer d’un exemplaire ou y avoir accès <ref>(art. 1375, al. 4)</ref>.",
+      "organiser2": "La deuxième concerne les copies. La copie fiable a la même force probante que l’original, qu’il subsiste ou non ; mais s’il subsiste, sa présentation peut toujours être exigée <ref>(art. 1379, al. 2 et 3)</ref>. Est présumée fiable la copie reproduisant à l’identique la forme et le contenu de l’acte, dont l’intégrité est garantie dans le temps par un procédé conforme au décret <ref>(Décret 2016-1673)</ref>. La conservation est une question juridique, pas informatique — et elle s’européanise : le règlement <ref>(UE) 2024/1183</ref>, dit eIDAS 2, entré en vigueur le 20 mai 2024, a ajouté l’archivage électronique et les registres électroniques à la liste des services de confiance, dans une version qualifiée.",
+      "organiser3": "La troisième concerne la date, qui fait foi entre les parties et leurs héritiers <ref>(art. 1372 et 1377)</ref>. À l’égard des tiers, la date certaine résulte notamment de l’enregistrement de l’acte, du décès d’un signataire ou de la constatation de sa substance par un officier public ; entre commerçants, pour un acte de commerce, elle se prouve par tous moyens <ref>(C. com., art. L 110-3)</ref>.",
+      "organiser4": "La quatrième est la plus utile, car elle est contractuelle. Les contrats sur la preuve valent pour les droits dont les parties ont la libre disposition <ref>(art. 1356, al. 1)</ref>, sans pouvoir créer une présomption irréfragable au profit de l’une d’elles ni modifier la foi attachée à l’aveu ou au serment <ref>(art. 1356, al. 2)</ref>. Les parties peuvent aussi régler les conflits de preuve littérale : entre un écrit papier et un écrit électronique, le juge établit par tout moyen le titre le plus vraisemblable, sauf conventions contraires <ref>(art. 1368)</ref>. Faire contresigner sur papier une version déjà signée électroniquement, c’est créer ce conflit et en remettre l’issue au juge.",
+      "organiser5": "Un mot sur les registres distribués : sans mentionner la blockchain, le droit français permet d’appréhender les questions probatoires qu’elle soulève, et eIDAS 2 ouvre la voie au registre électronique qualifié. L’inscription en chaîne de blocs relève du document électronique au sens du règlement, et un horodatage qui y est intégré a pu établir la titularité de droits d’auteur — décision de première instance <ref>(TJ Marseille, 20 mars 2025, n° 23/00046)</ref>.",
+      "vigilTitle": "Points de vigilance",
+      "vigilLead": "Quatre habitudes suffisent à fragiliser un contrat pourtant régulièrement signé.",
+      "refTitle": "Textes de référence",
+      "jurTitle": "Jurisprudence liée",
+      "faqTitle": "Questions fréquentes",
+      "takeawaysTitle": "Points clés à retenir"
+    },
+    "simulator": {
+      "title": "Votre signature tiendra-t-elle ?",
+      "pill": "GRATUIT · 60 SECONDES",
+      "lead": "Indiquez la nature de l’acte, son montant, la qualité de votre cocontractant et le niveau de signature employé : le simulateur détermine si un écrit est exigé, si la présomption de fiabilité vous protège, et sur qui pèsera la charge de la preuve.",
+      "fields": {
+        "nature": {
+          "label": "Nature de l’acte",
+          "value": "Contrat synallagmatique (fourniture, distribution, prestation)"
+        },
+        "qualite": {
+          "label": "Qualité du cocontractant",
+          "value": "Non-commerçant, ou acte civil"
+        },
+        "montant": {
+          "label": "Montant en jeu (€)",
+          "value": "45000"
+        },
+        "niveau": {
+          "label": "Niveau de signature employé",
+          "value": "Signature électronique simple (clic sur plateforme)"
+        }
+      },
+      "cta": "Analyser ma situation",
+      "note": "Analyse conduite par un avocat inscrit au Barreau de Paris — Toque #C2396.",
+      "rows": {
+        "ecrit": {
+          "label": "Écrit exigé pour la preuve",
+          "value": "Oui, au-delà de 1 500 € (C. civ. art. 1359)"
+        },
+        "presomption": {
+          "label": "Présomption de fiabilité",
+          "value": "Non — réservée à la signature qualifiée"
+        },
+        "charge": {
+          "label": "Charge de la preuve en cas de contestation",
+          "value": "À la partie qui invoque l’acte"
+        },
+        "mention": {
+          "label": "Mention en toutes lettres et en chiffres",
+          "value": "Non exigée pour un acte synallagmatique"
+        }
+      },
+      "verdict": "<b>Position à renforcer. </b>Aucune présomption, un écrit exigé : c’est vous qui devrez établir l’identification du signataire et l’intégrité du document.",
+      "disclaimer": "Résultat <s>(démo).</s> Analyse indicative établie sur les seuls paramètres saisis ; elle ne dispense pas de l’examen de l’acte et du procédé de signature réellement employé.",
+      "microTitle": "Soumettre ce résultat à l’analyse d’un avocat",
+      "microBody": "Nous vérifions le procédé employé et vous indiquons sous 24 heures ce qu’il vous faudrait produire si la signature était contestée.",
+      "microPlaceholder": "votre e-mail professionnel",
+      "microLabel": "Votre e-mail professionnel",
+      "microCta": "Soumettre à un avocat",
+      "microFootnote": "Échange couvert par le secret professionnel de l’avocat (art. 66-5 de la loi du 31 décembre 1971). Réponse sous 24 heures, sans engagement."
+    },
+    "ladder": {
+      "simple": {
+        "title": "Signature électronique simple",
+        "level": "Aucune présomption",
+        "body": "Valable si le procédé est fiable et garantit le lien avec l’acte (art. 1367, al. 2). Rien n’est présumé : c’est à celui qui invoque le contrat de démontrer identification et intégrité."
+      },
+      "avancee": {
+        "title": "Signature avancée",
+        "level": "Trace technique renforcée",
+        "body": "La conformité à l’article 26 du règlement est un élément de la définition de la signature qualifiée, non la définition entière : sans dispositif ni certificat qualifiés, la présomption ne s’attache pas."
+      },
+      "qualifiee": {
+        "title": "Signature qualifiée",
+        "level": "Fiabilité présumée",
+        "body": "Signature avancée, dispositif et certificat qualifiés réunis (Décret 2017-1416) : fiabilité présumée jusqu’à preuve contraire, équivalence imposée dans l’Union. La présomption déplace la charge ; elle n’interdit pas la contestation."
+      },
+      "authentique": {
+        "title": "Contreseing d’avocat, acte authentique",
+        "level": "Jusqu’à inscription de faux",
+        "body": "L’acte contresigné par les avocats fait pleine foi de l’écriture et de la signature jusqu’à inscription de faux (art. 1374) ; l’acte authentique, qui peut être électronique (art. 1369), fait foi de ce que l’officier public a constaté (art. 1371)."
+      }
+    },
+    "cmp": {
+      "head": {
+        "level": "Niveau employé",
+        "gives": "Ce que la loi vous donne",
+        "shows": "Ce que vous devez pouvoir montrer"
+      },
+      "rows": {
+        "simple": {
+          "level": "Signature simple",
+          "gives": "Validité si le procédé est fiable et garantit le lien avec l’acte (art. 1367)",
+          "shows": "Identification, lien avec ce document, intégrité depuis la signature (art. 1366)"
+        },
+        "avancee": {
+          "level": "Signature avancée",
+          "gives": "La même chose, avec une trace technique plus solide",
+          "shows": "La même chose, et pourquoi le procédé atteint le standard"
+        },
+        "qualifiee": {
+          "level": "Signature qualifiée",
+          "gives": "Fiabilité présumée (Décret 2017-1416) ; équivalence dans l’Union (art. 25)",
+          "shows": "Certificat et dispositif qualifiés ; la contestation incombe à l’adversaire"
+        },
+        "contreseing": {
+          "level": "Acte contresigné par avocat",
+          "gives": "Foi de l’écriture et de la signature jusqu’à inscription de faux (art. 1374)",
+          "shows": "L’acte contresigné lui-même"
+        },
+        "authentique": {
+          "level": "Acte authentique",
+          "gives": "Foi jusqu’à inscription de faux de ce que l’officier public a constaté (art. 1371)",
+          "shows": "L’acte reçu par l’officier public, papier ou électronique (art. 1369)"
+        }
+      }
+    },
+    "seam1": {
+      "title": "Votre processus de signature est-il calibré ?",
+      "body": "Le niveau se décide acte par acte, avant la première signature — jamais au moment du litige.",
+      "cta": "Faire cadrer le processus →"
+    },
+    "trap": {
+      "tag": "Piège fréquent",
+      "title": "Là où les entreprises perdent leur dossier",
+      "body": "La faiblesse n’est presque jamais l’outil. C’est l’absence d’export : le certificat d’achèvement, les éléments d’identification et le document scellé restent dans une plateforme dont l’abonnement s’interrompt, et le document produit trois ans plus tard n’est plus qu’une impression."
+    },
+    "timeline": {
+      "s1": {
+        "step": "Étape 1",
+        "title": "La dénégation est soulevée",
+        "body": "Le juge ne peut alors ni déduire la sincérité de l’acte de simples présomptions, ni s’en tenir aux affirmations d’une partie."
+      },
+      "s2": {
+        "step": "Étape 2",
+        "title": "Le juge apprécie s’il lui faut la procédure",
+        "body": "La vérification est assistée par la procédure des articles 287 et suivants du Code de procédure civile, sans que le juge y soit tenu lorsque les circonstances lui offrent des éléments de conviction suffisants <ref>(Cass. 2e civ., 4 juillet 2024, n° 23-10.534)</ref>."
+      },
+      "s3": {
+        "step": "Étape 3",
+        "title": "Sur support électronique, c’est le procédé qui est examiné",
+        "body": "Ni tracé à comparer, ni pièce de comparaison : le juge vérifie les conditions des articles 1366 et 1367 — identification, intégrité, fiabilité du procédé et lien avec l’acte."
+      },
+      "s4": {
+        "step": "Étape 4",
+        "title": "La présomption décide qui doit convaincre",
+        "body": "Avec une signature qualifiée, c’est la partie qui dénie qui supporte l’effort ; en dessous, il revient à celle qui se prévaut du contrat. La Cour de cassation l’a rappelé en cassant une décision qui avait mis la preuve à la charge <ref>(Cass. 3e civ., 5 mars 2026, n° 24-21.034)</ref>."
+      }
+    },
+    "seam2": {
+      "title": "Un acte soumis à une mention ou à l’authenticité ?",
+      "body": "La forme se vérifie avant l’envoi du lien de signature, pas après.",
+      "cta": "Vérifier la forme applicable →"
+    },
+    "vigil": {
+      "boite": "<b>Envoyer le lien à une boîte partagée.</b> La signature doit émaner de la personne qui s’engage : le mandataire ne peut pas signer du nom du mandant.",
+      "export": "<b>Ne rien exporter.</b> Certificat, éléments d’identification et document scellé doivent rejoindre un archivage dont l’intégrité est garantie dans le temps.",
+      "doubler": "<b>Doubler la signature électronique d’une version papier.</b> C’est créer un conflit de preuves que le juge tranchera par tout moyen (art. 1368).",
+      "niveau": "<b>Traiter tous les actes au même niveau.</b> Le contrat qu’on a intérêt à désavouer ne se signe pas comme un bon de commande."
+    },
+    "reflist": {
+      "cta": "Lire le texte →",
+      "items": {
+        "a1365": {
+          "ref": "C. civ., art. 1365",
+          "summary": "L’écrit, quel que soit son support."
+        },
+        "a1366": {
+          "ref": "C. civ., art. 1366",
+          "summary": "Égalité de force probante, sous condition d’identification et d’intégrité."
+        },
+        "a1367": {
+          "ref": "C. civ., art. 1367 · Décret 2017-1416",
+          "summary": "Fonction de la signature ; la signature qualifiée présumée fiable."
+        },
+        "eidas": {
+          "ref": "Règl. UE 910/2014 (art. 25, 26, 28, 29) · Règl. UE 2024/1183",
+          "summary": "Signature qualifiée, équivalence dans l’Union, services de confiance étendus par eIDAS 2."
+        },
+        "a1368": {
+          "ref": "C. civ., art. 1368",
+          "summary": "Conflit papier / électronique : le titre le plus vraisemblable."
+        },
+        "a1369": {
+          "ref": "C. civ., art. 1369 · Décret 2020-1422",
+          "summary": "Acte authentique électronique, reçu à distance."
+        },
+        "a1373": {
+          "ref": "C. civ., art. 1373 · CPC, art. 287 et s.",
+          "summary": "Dénégation de signature et vérification d’écriture."
+        },
+        "a1374": {
+          "ref": "C. civ., art. 1374",
+          "summary": "Contreseing d’avocat : foi jusqu’à inscription de faux."
+        },
+        "a1375": {
+          "ref": "C. civ., art. 1375",
+          "summary": "Pluralité d’originaux réputée satisfaite."
+        },
+        "a1376": {
+          "ref": "C. civ., art. 1376 et 1174",
+          "summary": "Mention en lettres et en chiffres, apposable électroniquement."
+        },
+        "a1379": {
+          "ref": "C. civ., art. 1379 · Décret 2016-1673",
+          "summary": "Copie fiable et présomption de fiabilité."
+        },
+        "a1356": {
+          "ref": "C. civ., art. 1356",
+          "summary": "Contrats sur la preuve : validité et limites."
+        },
+        "a1359": {
+          "ref": "C. civ., art. 1359 · C. com., art. L 110-3",
+          "summary": "Seuil de 1 500 € et liberté de la preuve commerciale."
+        }
+      }
+    },
+    "jurList": {
+      "bail": {
+        "citation": "Cass. 3e civ., 5 mars 2026, n° 24-21.034",
+        "title": "Pas de renversement de la charge sans signature qualifiée",
+        "body": "Un bail signé électroniquement, puis dénié. Les juges du fond avaient retenu que l’acte était opposable faute pour l’intéressé de démontrer une usurpation d’identité. Cassation : ils ne pouvaient statuer ainsi sans rechercher si le procédé employé mettait en œuvre une signature électronique qualifiée, <b>seule de nature à permettre de retenir une présomption de fiabilité</b>."
+      },
+      "scannee": {
+        "citation": "Cass. com., 13 mars 2024, n° 22-16.487",
+        "title": "La signature scannée n’est pas une signature électronique",
+        "body": "Le procédé consistant à scanner des signatures, s’il est valable, ne peut être assimilé à celui qui bénéficie de la présomption de fiabilité. La production de copies de pièces d’identité et d’une pratique antérieure entre les parties n’a pas suffi à établir que les signataires avaient personnellement consenti."
+      },
+      "verification": {
+        "citation": "Cass. 1re civ., 30 septembre 2010, n° 09-68.555",
+        "title": "L’écrit électronique doit être vérifié, pas admis",
+        "body": "Cassation pour défaut de vérification : le juge doit rechercher si les conditions des articles 1366 et 1367 sont satisfaites."
+      },
+      "cjue": {
+        "citation": "CJUE, 29 février 2024, aff. 466/22",
+        "title": "Équivalence imposée à la signature qualifiée",
+        "body": "Les juridictions des États membres doivent lui reconnaître une force probante équivalente à la signature manuscrite, dans le cadre du régime national."
+      },
+      "mention": {
+        "citation": "Cass. 1re civ., 28 octobre 2015, n° 14-23.110",
+        "title": "La mention obligatoire apposée sous forme électronique",
+        "body": "La mention légale peut être électronique si le procédé garantit qu’elle émane de celui qui s’oblige, ou que le signataire en est le scripteur."
+      }
+    },
+    "triage": {
+      "title": "Situer votre dossier",
+      "pill": "GRATUIT · 30 SECONDES",
+      "lead": "Indiquez le stade auquel se trouve votre opération : l’outil précise la première diligence à accomplir, le délai qui s’y attache et le mode d’honoraires correspondant.",
+      "options": {
+        "processus": "Nous mettons en place un processus de signature",
+        "unilateral": "Nous faisons signer un engagement unilatéral de payer",
+        "denie": "Le cocontractant dénie avoir signé",
+        "officier": "L’acte doit être reçu par un officier public"
+      },
+      "rows": {
+        "diligence": {
+          "label": "Première diligence",
+          "value": "Constitution du dossier de preuve, puis réponse à la dénégation"
+        },
+        "delai": {
+          "label": "Délai applicable",
+          "value": "Sans attendre l’audience"
+        },
+        "honoraires": {
+          "label": "Mode d’honoraires",
+          "value": "Mission par phases, budget plafonné"
+        }
+      },
+      "note": "Réunissez le contrat, l’annexe correspondante et la pièce révélant le passif : le juge vérifie les conditions des articles 1366 et 1367.",
+      "cta": "Consulter un avocat — 15 minutes gratuites",
+      "selectedLabel": "Situation retenue"
+    },
+    "faq": {
+      "plateforme": {
+        "q": "Un contrat signé sur une plateforme est-il valable en France ?",
+        "a": "Oui, si le procédé d’identification est fiable et garantit le lien avec l’acte <ref>(art. 1367, al. 2)</ref>, l’auteur identifiable et l’intégrité garantie <ref>(art. 1366)</ref>. Ce qu’une telle signature n’apporte pas, sauf à être qualifiée, c’est la présomption de fiabilité."
+      },
+      "qualifiee": {
+        "q": "Qu’est-ce qu’une signature électronique qualifiée, en droit français ?",
+        "a": "Une signature avancée conforme à l’article 26 du règlement UE 910/2014, créée à l’aide d’un dispositif de création qualifié répondant à son article 29 et reposant sur un certificat qualifié répondant à son article 28 <ref>(Décret 2017-1416)</ref>. Les trois éléments sont <b>cumulatifs</b> : une signature avancée sur certificat non qualifié n’emporte pas la présomption."
+      },
+      "etatMembre": {
+        "q": "Un juge français doit-il reconnaître une signature qualifiée délivrée dans un autre État membre ?",
+        "a": "Oui : les juridictions des États membres doivent lui reconnaître une force probante équivalente à celle de la signature manuscrite <ref>(art. 25 ; CJUE, 29 février 2024, aff. 466/22)</ref>. Cette équivalence n’interdit pas au juge d’examiner la signature ni de l’invalider ; elle lui interdit de lui refuser effet au seul motif qu’elle est électronique."
+      },
+      "denie": {
+        "q": "Que se passe-t-il si le cocontractant dénie avoir signé ?",
+        "a": "Le juge ne peut ni déduire la sincérité de l’acte de simples présomptions, ni s’en tenir aux affirmations d’une partie : il vérifie les conditions des articles 1366 et 1367, assisté s’il l’estime utile par la procédure des articles 287 et suivants du Code de procédure civile <ref>(Cass. 2e civ., 4 juillet 2024, n° 23-10.534)</ref>. Avec une signature qualifiée, c’est la partie qui dénie qui supporte l’effort ; en dessous, il revient à celle qui se prévaut du contrat."
+      },
+      "courriel": {
+        "q": "Un courriel vaut-il écrit électronique ?",
+        "a": "L’écrit s’entend d’une suite de lettres, de caractères, de chiffres ou de tous autres signes dotés d’une signification intelligible, <b>quel que soit leur support</b> <ref>(art. 1365)</ref> : un courriel est donc un écrit. Restent les deux conditions de l’article 1366 — auteur dûment identifiable, intégrité garantie — qui sont précisément ce que le juge examinera."
+      },
+      "originaux": {
+        "q": "Faut-il autant d’exemplaires que de parties pour un contrat électronique ?",
+        "a": "L’exigence de pluralité d’originaux est <b>réputée satisfaite</b> sous forme électronique lorsque l’acte est établi et conservé conformément aux articles 1366 et 1367 et que chaque partie peut disposer d’un exemplaire ou y avoir accès <ref>(art. 1375, al. 4)</ref>. Elle ne s’applique pas entre commerçants."
+      },
+      "copie": {
+        "q": "Une copie a-t-elle la même valeur que l’original ?",
+        "a": "La copie fiable a la même force probante que l’original, qu’il subsiste ou non ; mais s’il subsiste, sa présentation peut toujours être exigée <ref>(art. 1379, al. 2 et 3)</ref>. Est présumée fiable la copie qui reproduit à l’identique la forme et le contenu de l’acte et dont l’intégrité est garantie dans le temps par un procédé conforme au décret <ref>(Décret 2016-1673)</ref>."
+      },
+      "convention": {
+        "q": "Peut-on convenir par contrat de la valeur probante des enregistrements de la plateforme ?",
+        "a": "Oui, pour les droits dont les parties ont la libre disposition <ref>(art. 1356, al. 1)</ref>, sans pouvoir créer une présomption irréfragable au profit de l’une d’elles ni modifier la foi attachée à l’aveu ou au serment <ref>(art. 1356, al. 2)</ref>. Les parties peuvent aussi régler par avance le conflit entre un écrit papier et un écrit électronique <ref>(art. 1368)</ref>."
+      },
+      "scannee": {
+        "q": "Une signature scannée, un paraphe ou une griffe valent-ils signature ?",
+        "a": "Constitue une signature toute marque distinctive et personnelle qui individualise son auteur sans doute possible et traduit sa volonté non équivoque de consentir : une croix ou des empreintes digitales n’y suffisent pas ; des initiales ou un surnom qui individualisent leur auteur valent signature. La signature scannée, si elle est valable, ne bénéficie pas de la présomption de fiabilité <ref>(Cass. com., 13 mars 2024, n° 22-16.487)</ref>."
+      },
+      "societe": {
+        "q": "Qui peut signer au nom de la société ?",
+        "a": "La signature identifie son auteur et manifeste son consentement aux obligations qui résultent de l’acte <ref>(art. 1367, al. 1)</ref>. Conséquence souvent ignorée : le mandataire ne peut signer du nom du mandant, même à sa demande — c’est aussi pourquoi le lien de signature ne doit pas partir vers une boîte partagée."
+      },
+      "international": {
+        "q": "Quelle loi régit la preuve d’un contrat international ?",
+        "a": "Dans l’Union, le règlement impose la reconnaissance de la signature qualifiée d’un autre État membre <ref>(art. 25)</ref>, dans le cadre du régime probatoire national. Au-delà, les parties gagnent à régler la question elles-mêmes : les contrats sur la preuve valent pour les droits dont elles ont la libre disposition <ref>(art. 1356, al. 1)</ref>."
+      }
+    },
+    "consult": {
+      "overline": "Consultation",
+      "title": "Votre question ne figure pas parmi celles-ci ?",
+      "lead": "Exposez votre situation en quelques lignes. Un avocat du cabinet vous répond sous 24 heures et vous indique, sans engagement, le périmètre de l’intervention et son coût.",
+      "fields": {
+        "nom": "Nom et prénom",
+        "email": "E-mail professionnel",
+        "tel": "Téléphone (facultatif)",
+        "societe": "Société"
+      },
+      "situation": "Votre situation en quelques lignes : nature de l’acte, procédé de signature employé, échéance à tenir.",
+      "cta": "Soumettre votre question",
+      "footnote": "Échange couvert par le secret professionnel de l’avocat (art. 66-5 de la loi du 31 décembre 1971). Vos données ne servent qu’au traitement de votre demande.",
+      "marks": {
+        "reponse": "<b>Réponse sous 24 heures</b>",
+        "visio": "<b>15 minutes</b> d’évaluation gratuite en visio",
+        "prix": "<b>Prix ferme</b> avant toute intervention"
+      }
+    },
+    "takeaways": {
+      "validite": "<b>La validité est acquise :</b> l’écrit électronique vaut le papier si l’auteur est identifiable et l’intégrité garantie (art. 1366).",
+      "presomption": "<b>La présomption est l’enjeu :</b> la fiabilité n’est présumée que si le procédé met en œuvre une signature qualifiée.",
+      "equivalence": "<b>L’équivalence est garantie dans l’Union :</b> les juridictions doivent reconnaître à la signature qualifiée la force probante d’une signature manuscrite.",
+      "denegation": "<b>Une dénégation s’examine :</b> sur support électronique, c’est le procédé qui est vérifié, non un tracé.",
+      "dossier": "<b>Le dossier de preuve est l’argument :</b> identification, lien avec l’acte, intégrité dans le temps.",
+      "forme": "<b>La forme gouverne encore certains actes :</b> authenticité, mention en lettres et en chiffres, contreseing d’avocat.",
+      "contrat": "<b>La preuve se contracte :</b> une convention de preuve valide règle par avance ce qui, sinon, se plaidera (art. 1356)."
+    },
+    "rail": {
+      "tocLabel": "SOMMAIRE",
+      "toc": {
+        "answer": "La réponse en bref",
+        "ecrit": "Écrit et signature",
+        "niveaux": "Les niveaux de signature",
+        "cmp": "Ce que chaque niveau donne",
+        "juge": "Ce que le juge vérifie",
+        "denie": "La signature déniée",
+        "forme": "Les actes à forme spéciale",
+        "organiser": "Organiser sa preuve",
+        "textes": "Textes et jurisprudence",
+        "faq": "Questions fréquentes"
+      },
+      "ctaTitle": "Une signature à sécuriser ?",
+      "ctaBody": "Nous cadrons le niveau de signature acte par acte et rédigeons la convention de preuve qui va avec.",
+      "ctaButton": "Cadrer le processus",
+      "ctaNote": "15 minutes gratuites en visio, prix ferme sous 24 h.",
+      "authorName": "Mᵉ Mariela Petrova",
+      "authorRole": "Barreau de Paris · Toque #C2396",
+      "authorCta": "Poser votre question",
+      "authorPhotoAlt": "",
+      "verified": "<b>Vérifiée le 19 août 2026</b> · <link>Signaler une inexactitude</link>"
+    },
+    "cabinet": {
+      "overline": "Ce que fait le cabinet",
+      "title": "Du processus de signature au contentieux de la preuve",
+      "lead": "Trois interventions distinctes, trois façons de les facturer — annoncées avant de commencer.",
+      "cta": "Voir la prestation",
+      "items": {
+        "cadrage": {
+          "title": "Cadrer un processus de signature",
+          "description": "Cartographie des actes, choix du niveau par famille, convention de preuve et règles d’archivage.",
+          "terms": "Forfait ferme",
+          "note": "Périmètre écrit, délai garanti."
+        },
+        "audit": {
+          "title": "Auditer un dossier de preuve",
+          "description": "Identification, intégrité, conservation : ce que vous pourriez produire aujourd’hui, et ce qui manque.",
+          "terms": "1 200 € HT",
+          "note": "Forfait indicatif de maquette, rapport sous 5 jours."
+        },
+        "defense": {
+          "title": "Défendre un acte contesté",
+          "description": "Dénégation de signature, vérification d’écriture, contentieux de l’exécution du contrat signé.",
+          "terms": "Missions par phases",
+          "note": "Tarif membre applicable ; le contentieux reste hors abonnement."
+        }
+      },
+      "footnote": "Première évaluation de 15 minutes gratuite en visio, prix ferme sous 24 h.",
+      "allLink": "Toutes les prestations — Vendre, contracter & commercer"
+    },
+    "interlocuteurs": {
+      "overline": "Vos interlocuteurs",
+      "title": "Qui traite ce sujet au cabinet",
+      "lead": "Deux avocats, deux angles : les contrats commerciaux, et les documents de la relation de travail.",
+      "items": {
+        "petrova": {
+          "name": "Mᵉ Mariela Petrova",
+          "role": "Associée · Barreau de Paris — Toque #C2396",
+          "tag1": "Contrats commerciaux",
+          "tag2": "Preuve & conventions de preuve",
+          "tag3": "Contentieux contractuel",
+          "languages": "FR · EN · 中文 · ES — 15 ans de pratique en droit des affaires",
+          "angle": "<b>Sur cette fiche </b>: le choix du niveau de signature, la convention de preuve et la défense de l’acte contesté.",
+          "cta": "Consulter Mᵉ Petrova"
+        },
+        "bazin": {
+          "name": "Mᵉ Tony Bazin",
+          "role": "Avocat au Barreau d’Angers, depuis 2016",
+          "tag1": "Droit du travail",
+          "tag2": "Sécurité sociale & URSSAF",
+          "tag3": "Contentieux prud’homal",
+          "languages": "FR · EN — 8 ans de pratique · chargé d’enseignement à la Faculté de droit d’Angers",
+          "angle": "<b>Sur cette fiche </b>: les documents de la relation de travail signés à distance — contrats, avenants et ruptures — et leur contestation devant le conseil de prud’hommes.",
+          "cta": "Consulter Mᵉ Bazin"
+        }
+      },
+      "photoAlt": {
+        "petrova": "Portrait de Mᵉ Mariela Petrova",
+        "bazin": "Portrait de Mᵉ Tony Bazin"
+      }
+    },
+    "alire": {
+      "overline": "À lire ensuite",
+      "title": "Les contenus qui prolongent cette fiche",
+      "lead": "De la formation du contrat en ligne à la preuve de son exécution.",
+      "prevLabel": "← précédent",
+      "nextLabel": "SUIVANT →",
+      "nextTitle": "Acte sous forme électronique : les actes qui l’excluent",
+      "domain": "Vendre, contracter & commercer",
+      "cta": "Lire",
+      "items": {
+        "formation": {
+          "title": "Contrat conclu par voie électronique : de l’offre au double clic",
+          "type": "Guide",
+          "description": "Formation du contrat, non preuve de la signature : mise à disposition des stipulations, correction de la commande, accusé de réception.",
+          "meta": "Guide · 16 min ·",
+          "photoAlt": "Trois personnes en conversation dans un salon lumineux"
+        },
+        "preuve": {
+          "title": "Preuve écrite : quand est-elle exigée ?",
+          "type": "Fiche & FAQ",
+          "description": "Le seuil de 1 500 €, la liberté de la preuve commerciale et le commencement de preuve par écrit.",
+          "meta": "Fiche · 7 min ·",
+          "photoAlt": "Une équipe debout en discussion, café à la main"
+        },
+        "copie": {
+          "title": "Copie fiable : archiver ses contrats sans perdre la preuve",
+          "type": "Fiche & FAQ",
+          "description": "Reproduction à l’identique, intégrité dans le temps, et le jour où l’original est réclamé.",
+          "meta": "Fiche · 6 min ·",
+          "photoAlt": "Une réunion autour d’une table vue à travers une paroi vitrée"
+        }
+      },
+      "model": {
+        "title": "Convention de preuve et clause de signature électronique — modèle commenté",
+        "description": "Niveau de signature retenu, valeur des enregistrements, version de référence, archivage : chaque variante expliquée.",
+        "cta": "Ouvrir le modèle"
+      },
+      "sameCatLabel": "DANS LA MÊME SOUS-CATÉGORIE — CONTRATS COMMERCIAUX",
+      "sameCat": {
+        "cg": {
+          "title": "Conditions générales : l’ordre de priorité des documents",
+          "meta": "Fiche · 6 min"
+        },
+        "mandat": {
+          "title": "Mandat de signature : qui peut engager la société",
+          "meta": "Guide · 12 min"
+        },
+        "date": {
+          "title": "Date certaine : opposer son contrat aux tiers",
+          "meta": "Fiche · 5 min"
+        },
+        "engagement": {
+          "title": "Engagement unilatéral de payer : la mention obligatoire",
+          "meta": "Modèle · 8 clauses"
+        }
+      }
     },
     "ctaFinal": {
-      "title": "Vous ne trouvez pas la réponse ?",
-      "ctaPrimary": "Parler à un avocat",
-      "ctaSecondary": "Poser votre question"
+      "title": "Votre situation ne rentre pas dans la fiche ?"
     }
   }
 }

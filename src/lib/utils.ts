@@ -14,9 +14,11 @@ const twMerge = extendTailwindMerge({
         {
           text: [
             "display",
+            "article-title",
             "h2",
             "h2-sm",
             "h3",
+            "h4",
             "lead",
             "nav",
             "body",

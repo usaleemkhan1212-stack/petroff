@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import PhoneIcon from "@/assets/icons/phone.svg";
-import { ExpertisesMenu } from "@/components/layout/ExpertisesMenu";
+import { NavMenu } from "@/components/layout/NavMenu";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { Button } from "@/components/ui/Button";
@@ -35,8 +35,10 @@ export function Header() {
                 {navItems.map((item) => (
                   <li key={item.key}>
                     {item.children?.length ? (
-                      <ExpertisesMenu
+                      <NavMenu
+                        id={item.key}
                         label={t(item.key)}
+                        menuLabel={t(item.submenuLabel ?? "domainsLabel")}
                         href={item.href}
                         items={item.children}
                       />
