@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 export function CTAFinal() {
-  const t = useTranslations("ExpertisesPage.ctaFinal");
+  const t = useTranslations("ContactCta");
 
   return (
     /* No top padding here: Facons above already closes with its own 96px. */

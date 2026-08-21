@@ -24,6 +24,14 @@
     "learnMore": "En savoir plus",
     "search": "Rechercher"
   },
+    "ContactCta": {
+      "overline": "Contact",
+      "title": "Un projet de société, une question d’associés ?",
+      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
+      "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
+      "ctaPrimary": "Réserver un créneau visio",
+      "ctaSecondary": "Obtenir un devis en ligne"
+    },
   "Hero": {
     "overline": "Cabinet D’avocats — Droit Des Affaires · Paris",
     "title": "Le droit des affaires,<br></br><hl>clairement.</hl>",
@@ -355,14 +363,6 @@
           "cta": "Comprendre la méthode"
         }
       }
-    },
-    "ctaFinal": {
-      "overline": "CONTACT",
-      "title": "Un projet de société, une question d’associés ?",
-      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
-      "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
-      "ctaPrimary": "Réserver un créneau visio",
-      "ctaSecondary": "Obtenir un devis en ligne"
     }
   },
   "ContentieuxPage": {
@@ -567,33 +567,33 @@
       "cta": "Réserver un créneau"
     },
     "methode": {
-      "overline": "MÉTHODE",
+      "overline": "Méthode",
       "title": "Rapide, digital, humain",
       "items": {
         "cadrage": {
-          "kicker": "JOUR 0",
+          "kicker": "Jour 0",
           "title": "Visio de cadrage",
           "description": "15 minutes gratuites. Vous repartez avec un diagnostic et un prix ferme."
         },
         "espace": {
-          "kicker": "JOUR 0",
+          "kicker": "Jour 0",
           "title": "Espace client ouvert",
           "description": "Questionnaire intelligent, pièces déposées dans un coffre sécurisé, avancement visible."
         },
         "redaction": {
-          "kicker": "JOUR 1–5",
+          "kicker": "Jour 1–5",
           "title": "Rédaction & échanges",
           "description": "Projets annotés en ligne, visios ciblées, versions comparées automatiquement."
         },
         "signature": {
-          "kicker": "SIGNATURE",
+          "kicker": "Signature",
           "title": "Signature & formalités",
           "description": "Signature électronique qualifiée, dépôt au greffe, alertes des prochaines échéances."
         }
       }
     },
     "espace": {
-      "overline": "ESPACE CLIENT",
+      "overline": "Espace client",
       "title": "Votre dossier, en temps réel",
       "lead": "Un portail sécurisé pensé comme un tableau de bord — pas comme une boîte mail qui déborde.",
       "features": {
@@ -644,7 +644,7 @@
       }
     },
     "bib": {
-      "overline": "BIBLIOTHÈQUE — CONTENTIEUX & ARBITRAGE",
+      "overline": "Bibliothèque — contentieux & arbitrage",
       "title": "Se renseigner d’abord, décider ensuite",
       "cta": "Parcourir",
       "items": {
@@ -666,7 +666,7 @@
       }
     },
     "faq": {
-      "overline": "QUESTIONS FRÉQUENTES",
+      "overline": "Questions fréquentes",
       "title": "Avant de nous appeler",
       "illustrationLabel": "Illustration : Paris au bord de l’eau",
       "items": {
@@ -687,14 +687,6 @@
           "answer": "Tout se joue sur la compétence et la loi applicables : nous vérifions d’abord ce que prévoit votre contrat, puis nous arbitrons entre juridiction française, arbitrage et action locale. L’exécution transfrontalière est pilotée jusqu’au paiement — saisies, exequatur, recherche d’actifs. Nos échanges se font en français, anglais, chinois ou espagnol."
         }
       }
-    },
-    "ctaFinal": {
-      "overline": "CONTACT",
-      "title": "Un projet de société, une question d’associés ?",
-      "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
-      "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
-      "ctaPrimary": "Réserver un créneau visio",
-      "ctaSecondary": "Obtenir un devis en ligne"
     }
   },
   "ContratsPage": {
@@ -897,6 +889,410 @@
     "midCta": {
       "text": "Un contrat à sécuriser ? <hl>15 minutes gratuites en visio avec un avocat.</hl>",
       "cta": "Réserver un créneau"
+    },
+    "methode": {
+      "overline": "Méthode",
+      "title": "Rapide, digital, humain",
+      "items": {
+        "cadrage": {
+          "kicker": "Jour 0",
+          "title": "Visio de cadrage",
+          "description": "15 minutes gratuites. Vous repartez avec un diagnostic et un prix ferme."
+        },
+        "espace": {
+          "kicker": "Jour 0",
+          "title": "Espace client ouvert",
+          "description": "Questionnaire intelligent, pièces déposées dans un coffre sécurisé, avancement visible."
+        },
+        "redaction": {
+          "kicker": "Jour 1–5",
+          "title": "Rédaction & échanges",
+          "description": "Projets annotés en ligne, visios ciblées, versions comparées automatiquement."
+        },
+        "signature": {
+          "kicker": "Signature",
+          "title": "Signature & formalités",
+          "description": "Signature électronique qualifiée, dépôt au greffe, alertes des prochaines échéances."
+        }
+      }
+    },
+    "espace": {
+      "overline": "Espace client",
+      "title": "Votre dossier, en temps réel",
+      "lead": "Un portail sécurisé pensé comme un tableau de bord — pas comme une boîte mail qui déborde.",
+      "features": {
+        "avancement": {
+          "title": "Avancement en direct",
+          "description": "Chaque étape horodatée : rédaction, relecture, signature, greffe."
+        },
+        "coffre": {
+          "title": "Coffre-fort documentaire",
+          "description": "Statuts, pactes, PV d’AG, K-bis : tout au même endroit, partage contrôlé."
+        },
+        "alertes": {
+          "title": "Alertes d’échéances",
+          "description": "AG, dépôt des comptes, fin de mandats — prévenus avant, jamais après."
+        },
+        "langues": {
+          "title": "Quadrilingue",
+          "description": "Interface et échanges en français, anglais, chinois ou espagnol."
+        }
+      },
+      "mock": {
+        "label": "Aperçu de l’espace client",
+        "title": "Constitution — Nova Robotics SAS",
+        "badge": "En cours",
+        "progressLabel": "Avancement du dossier",
+        "rows": {
+          "questionnaire": {
+            "label": "Questionnaire fondateurs",
+            "status": "Terminé ✓"
+          },
+          "statuts": {
+            "label": "Projet de statuts (v2)",
+            "status": "Validé ✓"
+          },
+          "signature": {
+            "label": "Signature électronique",
+            "status": "En attente de M. Chen"
+          },
+          "capital": {
+            "label": "Dépôt du capital",
+            "status": "À venir"
+          },
+          "greffe": {
+            "label": "Greffe & K-bis",
+            "status": "À venir"
+          }
+        }
+      }
+    },
+    "bib": {
+      "overline": "Bibliothèque — contrats & droit commercial",
+      "title": "Se renseigner d’abord, décider ensuite",
+      "cta": "Parcourir",
+      "items": {
+        "guides": {
+          "count": "31",
+          "title": "Guides pratiques",
+          "description": "« Bâtir son réseau de distribution », « CGV béton », « Rompre sans brutalité »…"
+        },
+        "fiches": {
+          "count": "520+",
+          "title": "Fiches & FAQ",
+          "description": "« Peut-on plafonner sa responsabilité ? » et 519 autres questions sourcées."
+        },
+        "modeles": {
+          "count": "80+",
+          "title": "Modèles commentés",
+          "description": "Clauses commentées : responsabilité, résiliation, pénalités, IP, hardship…"
+        }
+      }
+    },
+    "faq": {
+      "overline": "Questions fréquentes",
+      "title": "Avant de nous appeler",
+      "illustrationLabel": "Illustration : la Grande Arche de la Défense",
+      "items": {
+        "cgv": {
+          "question": "Mes CGV suffisent-elles à me protéger ?",
+          "answer": "Seulement si elles sont opposables (acceptées, datées, archivées), adaptées à votre activité et à jour des réformes. L’audit express repère en quelques minutes les clauses réputées non écrites et les manques — c’est le contrôle technique du contrat."
+        },
+        "rupture": {
+          "question": "Qu’est-ce que la rupture brutale de relations commerciales ?",
+          "answer": "Mettre fin sans préavis suffisant à une relation commerciale établie — c’est l’article L.442-1. Nous intervenons des deux côtés : sécuriser une sortie, ou défendre le préavis auquel vous aviez droit."
+        },
+        "international": {
+          "question": "Contrat anglais ou français pour l’international ?",
+          "answer": "Les deux : nous rédigeons en version bilingue. Ce qui compte davantage, c’est la loi applicable, la juridiction et les Incoterms — un contrat exécutable prime sur sa langue. Traductions juridiques en anglais, chinois ou espagnol."
+        },
+        "negociation": {
+          "question": "Faites-vous de la négociation, pas seulement de la rédaction ?",
+          "answer": "Oui. Nous sommes à vos côtés pendant la négociation : tactique, red lines, clauses de sortie — avant la signature, pas après. Le forfait distribution inclut deux tours de négociation."
+        }
+      }
+    }
+  },
+    "BibliothequePage": {
+    "hero": {
+      "overline": "Bibliothèque juridique",
+      "title": "Le droit des affaires,<br></br><hl>clairement.</hl>",
+      "lead": "Guides, fiches sourcées et modèles commentés — écrits par des avocats, adossés aux textes officiels, en quatre langues.",
+      "searchLabel": "Rechercher dans la bibliothèque",
+      "searchPlaceholder": "Rechercher — ex. : garantie d’actif-passif, 3-6-9, BSPCE…",
+      "searchSubmit": "Rechercher",
+      "suggestionsLabel": "Souvent cherché :",
+      "suggestions": {
+        "associe": "Mon associé bloque tout",
+        "impaye": "On me doit de l’argent",
+        "forme": "SAS ou SARL ?",
+        "marque": "Déposer ma marque",
+        "bail": "Mon bail arrive à échéance"
+      },
+      "polaroid": "Rédigé par<br></br>des avocats",
+      "stats": "<n>66</n> guides pratiques · <n>2 400+</n> fiches & FAQ · <n>250+</n> modèles commentés · <n>mis à jour</n> à chaque réforme"
+    },
+    "vitrine": {
+      "overline": "La sélection de la rédaction",
+      "title": "Ce que les dirigeants lisent en ce moment",
+      "lead": "Neuf contenus choisis chaque semaine par le cabinet — les plus consultés et les plus récents.",
+      "carouselLabel": "Sélection de la rédaction",
+      "prev": "Contenus précédents",
+      "next": "Contenus suivants",
+      "goToPage": "Aller à la page {page}",
+      "meta": {
+        "signature": "19 août 2026 · Fiche · 12 min · <cta>Lire →</cta>",
+        "exclusion": "12 août 2026 · Guide · 18 min · <cta>Lire →</cta>",
+        "filiale": "4 août 2026 · Guide · 14 min · <cta>Lire →</cta>",
+        "cession": "29 juillet 2026 · Guide · 25 min · <cta>Lire →</cta>",
+        "recouvrement": "22 juillet 2026 · Guide · 12 min · <cta>Lire →</cta>",
+        "bail": "15 juillet 2026 · Guide · 14 min · <cta>Lire →</cta>",
+        "marque": "8 juillet 2026 · Guide · 10 min · <cta>Lire →</cta>",
+        "garantie": "1er juillet 2026 · Fiche · 6 min · <cta>Lire →</cta>"
+      }
+    },
+    "domains": {
+      "creer": "Créer & structurer",
+      "vendre": "Vendre, contracter & commercer",
+      "acheter": "Acheter, vendre & lever",
+      "payer": "Se faire payer",
+      "locaux": "Locaux & immobilier",
+      "marque": "Protéger la marque & l’IP",
+      "implanter": "S’implanter en France"
+    },
+    "types": {
+      "guide": "Guide",
+      "fiche": "Fiche & FAQ",
+      "modele": "Modèle"
+    },
+    "contents": {
+      "signature": {
+        "title": "Signature électronique : ce qui tient devant un juge français",
+        "description": "Niveaux de signature, présomption de fiabilité, dénégation — ce que le juge vérifie vraiment."
+      },
+      "exclusion": {
+        "title": "Exclure un associé : mode d’emploi",
+        "description": "Clauses, procédure, prix (art. 1843-4) — et ce qui se passe sans clause."
+      },
+      "filiale": {
+        "title": "Ouvrir une filiale : les 90 premiers jours",
+        "description": "Immatriculation, bail, premier salarié, banque — le calendrier réel, semaine par semaine."
+      },
+      "cession": {
+        "title": "Vendre sa PME : le guide complet",
+        "description": "De la préparation à l’earn-out : calendrier, data room, LOI, GAP, closing."
+      },
+      "recouvrement": {
+        "title": "Recouvrer une facture impayée",
+        "description": "Relance, mise en demeure, injonction, saisie : la chaîne complète, chiffrée."
+      },
+      "bail": {
+        "title": "Le 3-6-9 expliqué",
+        "description": "Échéances, congés, renouvellement, déplafonnement — le bail sans angles morts."
+      },
+      "marque": {
+        "title": "Déposer sa marque sans se tromper",
+        "description": "Classes, antériorités, FR vs UE — les erreurs qui coûtent une marque."
+      },
+      "garantie": {
+        "title": "Que couvre une garantie d’actif‑passif ?",
+        "description": "Plafonds, franchises, durées, mise en jeu — la fiche de référence."
+      }
+    },
+    "resultats": {
+      "overline": "Toute la bibliothèque",
+      "title": "Parcourir et filtrer",
+      "categoryLabel": "Filtrer par catégorie",
+      "allCategories": "Toutes les catégories",
+      "subcategoryLabel": "Filtrer par sous-catégorie",
+      "allSubcategories": "Toutes les sous-catégories",
+      "typeLabel": "Filtrer par type de contenu",
+      "tabs": {
+        "all": "Tous",
+        "guide": "Guides",
+        "fiche": "Fiches & FAQ",
+        "modele": "Modèles"
+      },
+      "empty": "Aucun contenu ne correspond à ce filtre pour le moment.",
+      "meta": {
+        "exclusion": "Guide · 18 min · <cta>Lire →</cta>",
+        "cession": "Guide · 25 min · <cta>Lire →</cta>",
+        "recouvrement": "Guide · 12 min · <cta>Lire →</cta>",
+        "bail": "Guide · 14 min · <cta>Lire →</cta>",
+        "marque": "Guide · 10 min · <cta>Lire →</cta>",
+        "garantie": "Fiche · 6 min · <cta>Lire →</cta>"
+      }
+    },
+    "parCategorie": {
+      "overline": "Parcourir par catégorie",
+      "title": "Neuf actions, et leurs sous-catégories",
+      "lead": "La même taxonomie que nos expertises : une catégorie par action à mener, des sous-catégories par sujet précis.",
+      "cta": "Tout voir →",
+      "items": {
+        "creer": {
+          "title": "Créer & structurer la société",
+          "counts": "Sociétés & gouvernance · 32 guides · 520+ fiches · 60+ modèles",
+          "tags": [
+            "Constitution & statuts",
+            "Pactes d’associés",
+            "Titres & BSPCE",
+            "Dirigeants & mandats",
+            "Litiges entre associés"
+          ]
+        },
+        "vendre": {
+          "title": "Vendre, contracter & commercer",
+          "counts": "Contrats & commercial · 24 guides · 380+ fiches · 50+ modèles",
+          "tags": [
+            "Contrats commerciaux",
+            "CGV & CGU",
+            "Distribution & franchise",
+            "Rupture de relations"
+          ]
+        },
+        "acheter": {
+          "title": "Acheter, vendre & lever",
+          "counts": "M&A & capital-risque · 28 guides · 310+ fiches · 45+ modèles",
+          "tags": [
+            "Cessions & acquisitions",
+            "Due diligence & GAP",
+            "Levées de fonds",
+            "LBO & packages"
+          ]
+        },
+        "marque": {
+          "title": "Protéger la marque & l’IP",
+          "counts": "PI & marques · 18 guides · 290+ fiches · 35+ modèles",
+          "tags": [
+            "Marques & dépôts",
+            "Contrefaçon",
+            "Logiciels & données",
+            "Secrets d’affaires"
+          ]
+        },
+        "recruter": {
+          "title": "Recruter & gérer l’équipe",
+          "counts": "Droit social · 26 guides · 460+ fiches · 55+ modèles",
+          "tags": [
+            "Contrats de travail",
+            "Ruptures & départs",
+            "Restructurations & PSE",
+            "Contrôles URSSAF"
+          ]
+        },
+        "locaux": {
+          "title": "Trouver locaux & immobilier",
+          "counts": "Immobilier d’entreprise · 16 guides · 270+ fiches · 25+ modèles",
+          "tags": [
+            "Baux commerciaux",
+            "3-6-9 & renouvellement",
+            "Acquisitions & VEFA",
+            "Construction"
+          ]
+        },
+        "fiscal": {
+          "title": "Gérer fiscalité & patrimoine",
+          "counts": "Droit fiscal · 20 guides · 350+ fiches · 40+ modèles",
+          "tags": [
+            "IS & TVA",
+            "Contrôle fiscal",
+            "Dutreil & transmission",
+            "International"
+          ]
+        },
+        "litiges": {
+          "title": "Résoudre les litiges",
+          "counts": "Contentieux & arbitrage · 22 guides · 340+ fiches · 30+ modèles",
+          "tags": [
+            "Procédure commerciale",
+            "Arbitrage",
+            "Référés & mesures",
+            "Exécution"
+          ]
+        },
+        "payer": {
+          "title": "Se faire payer",
+          "counts": "Recouvrement · 12 guides · 240+ fiches · 20+ modèles",
+          "tags": [
+            "Amiable & mise en demeure",
+            "Injonction de payer",
+            "Saisies conservatoires",
+            "Procédures collectives"
+          ]
+        }
+      }
+    },
+    "parcours": {
+      "overline": "Parcours guidés",
+      "title": "Trois chemins balisés, du premier doute à l’action",
+      "cta": "Commencer le parcours →",
+      "items": {
+        "creer": {
+          "title": "Créer sa société",
+          "meta": "4 étapes · 45 min de lecture",
+          "steps": [
+            "SAS ou SARL : comment choisir",
+            "Capital, apports et libération",
+            "Statuts : les clauses qui comptent",
+            "Pacte fondateurs dès le jour 1"
+          ]
+        },
+        "lever": {
+          "title": "Lever des fonds",
+          "meta": "4 étapes · 60 min de lecture",
+          "steps": [
+            "Term sheet : lire entre les lignes",
+            "Actions de préférence et ratchet",
+            "BSA-AIR, OC/OCA : quel instrument",
+            "Pacte investisseurs : modèle commenté"
+          ]
+        },
+        "recouvrer": {
+          "title": "Recouvrer une facture",
+          "meta": "4 étapes · 30 min de lecture",
+          "steps": [
+            "Relancer sans abîmer la relation",
+            "La mise en demeure qui fait payer",
+            "Injonction de payer : mode d’emploi",
+            "Saisie conservatoire : geler avant de perdre"
+          ]
+        }
+      }
+    },
+    "vivante": {
+      "overline": "Une bibliothèque vivante",
+      "title": "Mise à jour à chaque réforme, datée sur chaque page",
+      "lead": "Chaque contenu affiche sa date de vérification et ses textes de référence — vous savez toujours si ce que vous lisez est à jour.",
+      "cta": "Voir les contenus →",
+      "items": {
+        "finances": {
+          "date": "12 août 2026",
+          "title": "Loi de finances 2026",
+          "description": "14 fiches fiscales mises à jour : pacte Dutreil, management fees, apport-cession."
+        },
+        "suretes": {
+          "date": "28 juillet 2026",
+          "title": "Réforme du droit des sûretés",
+          "description": "Le guide recouvrement révisé, 6 modèles de garanties recommentés."
+        },
+        "earnout": {
+          "date": "15 juillet 2026",
+          "title": "Cass. com. — earn-out",
+          "description": "Revirement sur le complément de prix : la fiche GAP et 2 clauses types enrichies."
+        }
+      }
+    },
+    "transparence": {
+      "overline": "Sources & transparence",
+      "title": "Adossée aux registres publics officiels",
+      "sources": "Légifrance (PISTE) · Judilibre · BODACC · INSEE Sirene · données INPI",
+      "disclaimer": "Les données proviennent des registres publics officiels et sont généralement fiables ; des erreurs ponctuelles restent possibles et les résultats ne constituent pas un avis juridique.",
+      "translation": "La bibliothèque s’écrit en français et se lit dans votre langue : traduction adossée à un glossaire juridique quadrilingue maintenu par le cabinet. Une inexactitude ? Signalez-la-nous."
+    },
+    "ctaFinal": {
+      "title": "Vous ne trouvez pas la réponse ?",
+      "ctaPrimary": "Parler à un avocat",
+      "ctaSecondary": "Poser votre question"
     }
   }
 }

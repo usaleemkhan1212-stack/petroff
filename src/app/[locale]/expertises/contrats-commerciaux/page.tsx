@@ -1,9 +1,14 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { CTAFinal } from "@/components/sections/contrats/CTAFinal";
+import { Bib } from "@/components/sections/contrats/Bib";
 import { Domaines } from "@/components/sections/contrats/Domaines";
+import { Espace } from "@/components/sections/contrats/Espace";
+import { Faq } from "@/components/sections/contrats/Faq";
 import { Forfaits } from "@/components/sections/contrats/Forfaits";
 import { Hero } from "@/components/sections/contrats/Hero";
+import { Methode } from "@/components/sections/contrats/Methode";
 import { MidCTA } from "@/components/sections/contrats/MidCTA";
 import { Prestations } from "@/components/sections/contrats/Prestations";
 import { Tools } from "@/components/sections/contrats/Tools";
@@ -28,6 +33,11 @@ export default async function ContratsPage({
       <Prestations />
       <Forfaits />
       <MidCTA />
+      <Methode />
+      <Espace />
+      <Bib />
+      <Faq />
+      <CTAFinal />
     </>
   );
 }

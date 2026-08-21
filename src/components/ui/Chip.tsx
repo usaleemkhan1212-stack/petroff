@@ -1,10 +1,12 @@
 import { cn } from "@/lib/utils";
 
-type Tone = "onDark" | "onLight";
+type Tone = "onDark" | "onLight" | "solid";
 
 const tones: Record<Tone, string> = {
   onDark: "border-white/35 text-white hover:bg-white/10",
   onLight: "border-encre/35 text-encre hover:bg-encre/5",
+  /* White pill on a lilas ground — the Bibliotheque hero's suggestions. */
+  solid: "text-button font-poppins border-encre/12 bg-white px-3.5 text-encre hover:bg-lilas-2",
 };
 
 /** Small pill used for tags and quick-filter actions. */

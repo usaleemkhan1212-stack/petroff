@@ -26,6 +26,7 @@
   --color-brique: #a67c1b; /* editorial links */
   --color-pale-gold: #f3e3c0; /* warm backgrounds */
   --color-stone: #e9e4d8; /* pavements, backgrounds */
+  --color-sand: #d8d2c2; /* paving joints, illustration shading */
 
   /* --- Neutrals & status ------------------------------------------------ */
   --color-result-green: #2e7d57; /* success, results */
@@ -202,6 +203,19 @@
    */
   :root {
     interpolate-size: allow-keywords;
+  }
+
+  /*
+   * The Vitrine track is a real scroll container so it still works with no
+   * JavaScript and keeps its own snap points; the bar itself would sit under
+   * the cards and read as a rendering artefact.
+   */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
   .details-panel::details-content {

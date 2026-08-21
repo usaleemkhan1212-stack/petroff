@@ -2,10 +2,10 @@ import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { methodeSteps } from "@/lib/contentieux";
+import { methodeSteps } from "@/lib/contrats";
 
 export function Methode() {
-  const t = useTranslations("ContentieuxPage.methode");
+  const t = useTranslations("ContratsPage.methode");
 
   return (
     <section className="bg-lilas">
@@ -46,11 +46,8 @@ export function Methode() {
                   </p>
                 </Card>
 
-                {/*
-                  Solid periwinkle with a white numeral, verified against the
-                  Figma render itself. aria-hidden because the <ol> already
-                  carries the sequence.
-                */}
+                {/* Solid periwinkle disc with a white numeral; aria-hidden
+                    because the <ol> already carries the sequence. */}
                 <span
                   aria-hidden="true"
                   className="bg-periwinkle text-h3 font-poppins absolute -top-5.5 left-3.5 flex size-11 items-center justify-center rounded-full text-white"

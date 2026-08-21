@@ -1,48 +1,49 @@
 import { useTranslations } from "next-intl";
-import ColumnedBuilding from "@/assets/icons/columned-building.svg";
-import ScalesOfJusticeSm from "@/assets/icons/scales-of-justice-sm.svg";
+import OpenBookLg from "@/assets/icons/open-book-lg.svg";
+import PenNib from "@/assets/icons/pen-nib.svg";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 export function CTAFinal() {
+  /* Shared with the Expertises and Contentieux pages — all three frames
+     specify character-identical copy, so they read one namespace. */
   const t = useTranslations("ContactCta");
 
   return (
-    /* py-24 here, unlike the Expertises CTAFinal: the FAQ above closes with its
-       own 96px but Figma still specifies top padding on this one. */
+    /* py-24: the FAQ above closes with its own 96px but Figma still specifies
+       top padding on this one, exactly as on the Contentieux page. */
     <section className="bg-lilas">
       <Container className="py-24">
         <div className="rounded-panel bg-lilas-2 relative overflow-hidden px-12 py-16">
           {/*
             Sanctioned ornament exception: literal Figma coordinates, both
             shapes bleeding past the panel so the rounded edge clips them —
-            the building off the left and bottom, the scales off the right and
-            top. The scales are pinned to the right edge rather than to
-            `left: 1111.5px` so they hold their inset as the panel narrows.
+            the book off the left and bottom, the nib off the right and top.
+            The nib is pinned to the right edge rather than to
+            `left: 1169.5px` so it holds its inset as the panel narrows.
             Hidden below lg, where they would sit under the copy.
           */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 hidden lg:block"
           >
-            <ColumnedBuilding
-              width={180}
-              height={135}
-              className="absolute top-[243px] left-[-31.5px]"
+            <OpenBookLg
+              width={167}
+              height={125}
+              className="absolute top-[231px] left-[-20.5px]"
             />
-            <ScalesOfJusticeSm
-              width={150}
+            <PenNib
+              width={103.125}
               height={150}
-              className="absolute top-[-7px] right-[-16.5px]"
+              className="absolute top-0 right-[-27.625px]"
             />
           </div>
 
-          {/* gap-3 here, not the Expertises CTAFinal's gap-4: Figma specifies 12px
-              on this panel and 16px on that one. */}
+          {/* gap-3, as on the Contentieux panel; the Expertises one is gap-4. */}
           <div className="relative flex flex-col items-center gap-3 text-center">
             <p className="text-overline font-poppins text-brique">{t("overline")}</p>
             <h2 className="text-h2 text-encre">{t("title")}</h2>
-            {/* Two lines, no gap between them — the 16px stack gap wraps the pair. */}
+            {/* Two lines, no gap between them — the 12px stack gap wraps the pair. */}
             <div className="text-body text-encre/62">
               <p>{t("lead")}</p>
               <p>{t("contact")}</p>

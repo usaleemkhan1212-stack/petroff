@@ -1,0 +1,98 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="312.5" height="400" viewBox="0 0 312.5 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame" clip-path="url(#clip-la-defense-scene)">
+<path id="Vector" d="M312.5 0H0V400H312.5V0Z" fill="var(--color-lilas-2)"/>
+<path id="Vector_2" d="M50 72.5C61.0457 72.5 70 63.5457 70 52.5C70 41.4543 61.0457 32.5 50 32.5C38.9543 32.5 30 41.4543 30 52.5C30 63.5457 38.9543 72.5 50 72.5Z" fill="var(--color-pale-gold)"/>
+<g id="Group" opacity="0.45">
+<path id="Vector_3" d="M85 150H65V240H85V150Z" fill="var(--color-slate)"/>
+<path id="Vector_4" d="M245 140H227.5V240H245V140Z" fill="var(--color-slate)"/>
+<path id="Vector_5" d="M162.5 160H147.5V240H162.5V160Z" fill="var(--color-slate)"/>
+</g>
+<g id="Group_2">
+<path id="Vector_6" d="M62.5 70H2.5V300H62.5V70Z" fill="var(--color-pale-periwinkle)"/>
+<g id="Vector_7">
+<path d="M17.5 70V300ZM32.5 70V300ZM47.5 70V300Z" fill="black"/>
+<path d="M17.5 70V300M32.5 70V300M47.5 70V300" stroke="var(--color-slate)" stroke-width="2.5"/>
+</g>
+<g id="Vector_8">
+<path d="M2.5 97.5H62.5ZM2.5 130H62.5ZM2.5 162.5H62.5ZM2.5 195H62.5ZM2.5 227.5H62.5ZM2.5 260H62.5Z" fill="black"/>
+<path d="M2.5 97.5H62.5M2.5 130H62.5M2.5 162.5H62.5M2.5 195H62.5M2.5 227.5H62.5M2.5 260H62.5" stroke="var(--color-slate)" stroke-width="2"/>
+</g>
+<path id="Vector_9" d="M50 57.5H15V70H50V57.5Z" fill="var(--color-slate)"/>
+</g>
+<g id="Group_3">
+<path id="Vector_10" d="M310 57.5H250V300H310V57.5Z" fill="var(--color-pale-blue)"/>
+<g id="Vector_11">
+<path d="M265 57.5V300ZM280 57.5V300ZM295 57.5V300Z" fill="black"/>
+<path d="M265 57.5V300M280 57.5V300M295 57.5V300" stroke="var(--color-slate)" stroke-width="2"/>
+</g>
+<g id="Vector_12">
+<path d="M250 87.5H310ZM250 120H310ZM250 152.5H310ZM250 185H310ZM250 217.5H310ZM250 250H310Z" fill="black"/>
+<path d="M250 87.5H310M250 120H310M250 152.5H310M250 185H310M250 217.5H310M250 250H310" stroke="var(--color-slate)" stroke-width="2"/>
+</g>
+<g id="Vector_13" opacity="0.55">
+<path d="M255 287.5L305 75Z" fill="black"/>
+<path d="M255 287.5L305 75" stroke="var(--color-lilas)" stroke-width="11.25"/>
+</g>
+<path id="Vector_14" d="M310 57.5H250V63.75H310V57.5Z" fill="var(--color-gold)"/>
+</g>
+<path id="Vector_15" d="M235 72.5H77.5C74.7386 72.5 72.5 74.7386 72.5 77.5V235C72.5 237.761 74.7386 240 77.5 240H235C237.761 240 240 237.761 240 235V77.5C240 74.7386 237.761 72.5 235 72.5Z" fill="var(--color-lilas)"/>
+<g id="Vector_16">
+<path d="M90 72.5V240ZM222.5 72.5V240ZM72.5 90H240ZM72.5 222.5H240Z" fill="black"/>
+<path d="M90 72.5V240M222.5 72.5V240M72.5 90H240M72.5 222.5H240" stroke="var(--color-pale-blue)" stroke-width="2.5"/>
+</g>
+<g id="Vector_17">
+<path d="M125 72.5V90ZM156.25 72.5V90ZM187.5 72.5V90ZM125 222.5V240ZM156.25 222.5V240ZM187.5 222.5V240ZM72.5 125H90ZM72.5 156.25H90ZM72.5 187.5H90ZM222.5 125H240ZM222.5 156.25H240ZM222.5 187.5H240Z" fill="black"/>
+<path d="M125 72.5V90M156.25 72.5V90M187.5 72.5V90M125 222.5V240M156.25 222.5V240M187.5 222.5V240M72.5 125H90M72.5 156.25H90M72.5 187.5H90M222.5 125H240M222.5 156.25H240M222.5 187.5H240" stroke="var(--color-pale-blue)" stroke-width="2"/>
+</g>
+<path id="Vector_18" d="M205 107.5H107.5V205H205V107.5Z" fill="var(--color-lilas-2)"/>
+<path id="Vector_19" d="M107.5 107.5H205L193.75 121.25H118.75L107.5 107.5Z" fill="var(--color-pale-periwinkle)"/>
+<path id="Vector_20" d="M107.5 107.5L118.75 121.25V191.25L107.5 205V107.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_21" opacity="0.55" d="M205 107.5L193.75 121.25V191.25L205 205V107.5Z" fill="var(--color-slate)"/>
+<path id="Vector_22" d="M107.5 205L118.75 191.25H193.75L205 205H107.5Z" fill="var(--color-sand)"/>
+<path id="Vector_23" opacity="0.95" d="M122.5 177.5C145 167.5 167.5 167.5 190 177.5V185C167.5 176.667 145 176.667 122.5 185V177.5Z" fill="var(--color-lilas)"/>
+<g id="Vector_24">
+<path d="M130 165V177.5ZM147.5 160V173.75ZM165 160V173.75ZM182.5 165V177.5Z" fill="black"/>
+<path d="M130 165V177.5M147.5 160V173.75M165 160V173.75M182.5 165V177.5" stroke="var(--color-slate)" stroke-width="1.875"/>
+</g>
+<path id="Vector_25" d="M240 240H72.5V250H240V240Z" fill="var(--color-pale-blue)"/>
+<g id="Group_4">
+<path id="Vector_26" d="M232.5 257.5H80V267.5H232.5V257.5Z" fill="var(--color-stone)"/>
+<path id="Vector_27" opacity="0.4" d="M232.5 267.5H80V271.25H232.5V267.5Z" fill="var(--color-slate)"/>
+<path id="Vector_28" d="M245 273.75H67.5V283.75H245V273.75Z" fill="var(--color-stone)"/>
+<path id="Vector_29" opacity="0.4" d="M245 283.75H67.5V287.5H245V283.75Z" fill="var(--color-slate)"/>
+<path id="Vector_30" d="M260 290H52.5V300H260V290Z" fill="var(--color-stone)"/>
+<path id="Vector_31" opacity="0.4" d="M260 300H52.5V303.75H260V300Z" fill="var(--color-slate)"/>
+<path id="Vector_32" d="M275 306.25H37.5V316.25H275V306.25Z" fill="var(--color-stone)"/>
+<path id="Vector_33" opacity="0.4" d="M275 316.25H37.5V320H275V316.25Z" fill="var(--color-slate)"/>
+<path id="Vector_34" d="M290 322.5H22.5V332.5H290V322.5Z" fill="var(--color-stone)"/>
+<path id="Vector_35" opacity="0.4" d="M290 332.5H22.5V336.25H290V332.5Z" fill="var(--color-slate)"/>
+<path id="Vector_36" d="M302.5 338.75H10V348.75H302.5V338.75Z" fill="var(--color-stone)"/>
+</g>
+<g id="Vector_37">
+<path d="M147.5 255V347.5ZM165 255V347.5Z" fill="black"/>
+<path d="M147.5 255V347.5M165 255V347.5" stroke="var(--color-encre)" stroke-width="3.75"/>
+</g>
+<g id="Vector_38">
+<path d="M147.5 267.5H141.25ZM147.5 300H141.25ZM147.5 332.5H141.25ZM165 267.5H171.25ZM165 300H171.25ZM165 332.5H171.25Z" fill="black"/>
+<path d="M147.5 267.5H141.25M147.5 300H141.25M147.5 332.5H141.25M165 267.5H171.25M165 300H171.25M165 332.5H171.25" stroke="var(--color-encre)" stroke-width="3.125"/>
+</g>
+<path id="Vector_39" d="M312.5 352.5H0V400H312.5V352.5Z" fill="var(--color-stone)"/>
+<g id="Vector_40">
+<path d="M0 372.5H312.5ZM0 390H312.5Z" fill="black"/>
+<path d="M0 372.5H312.5M0 390H312.5" stroke="var(--color-sand)" stroke-width="2.5"/>
+</g>
+<path id="Vector_41" d="M42.5 365C52.165 365 60 357.165 60 347.5C60 337.835 52.165 330 42.5 330C32.835 330 25 337.835 25 347.5C25 357.165 32.835 365 42.5 365Z" fill="var(--color-result-green)"/>
+<path id="Vector_42" d="M46.25 360H38.75V375H46.25V360Z" fill="var(--color-brique)"/>
+<path id="Vector_43" d="M52.5 375H32.5C31.1193 375 30 376.119 30 377.5V385C30 386.381 31.1193 387.5 32.5 387.5H52.5C53.8807 387.5 55 386.381 55 385V377.5C55 376.119 53.8807 375 52.5 375Z" fill="var(--color-encre)"/>
+<path id="Vector_44" d="M270 365C279.665 365 287.5 357.165 287.5 347.5C287.5 337.835 279.665 330 270 330C260.335 330 252.5 337.835 252.5 347.5C252.5 357.165 260.335 365 270 365Z" fill="var(--color-result-green)"/>
+<path id="Vector_45" d="M273.75 360H266.25V375H273.75V360Z" fill="var(--color-brique)"/>
+<path id="Vector_46" d="M280 375H260C258.619 375 257.5 376.119 257.5 377.5V385C257.5 386.381 258.619 387.5 260 387.5H280C281.381 387.5 282.5 386.381 282.5 385V377.5C282.5 376.119 281.381 375 280 375Z" fill="var(--color-encre)"/>
+<path id="Vector_47" d="M103.75 373.125C103.75 371.399 102.351 370 100.625 370C98.8991 370 97.5 371.399 97.5 373.125V384.375C97.5 386.101 98.8991 387.5 100.625 387.5C102.351 387.5 103.75 386.101 103.75 384.375V373.125Z" fill="var(--color-encre)"/>
+<path id="Vector_48" d="M215 373.125C215 371.399 213.601 370 211.875 370C210.149 370 208.75 371.399 208.75 373.125V384.375C208.75 386.101 210.149 387.5 211.875 387.5C213.601 387.5 215 386.101 215 384.375V373.125Z" fill="var(--color-encre)"/>
+</g>
+<defs>
+<clipPath id="clip-la-defense-scene">
+<rect width="312.5" height="400" fill="white"/>
+</clipPath>
+</defs>
+</svg>
