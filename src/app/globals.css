@@ -153,6 +153,15 @@
   --text-overline--letter-spacing: 0.18em;
   --text-overline--font-weight: 600;
 
+  /* Poppins SemiBold 16, +14% tracking — the consultation drawer's overline.
+     Every other overline in the file is +18%; at that tracking this string
+     measures 426px inside its 412px slot and wraps, where Figma draws one
+     line. Asked before adding, as the hard rules require. */
+  --text-overline-tight: 1rem;
+  --text-overline-tight--line-height: 1.3125;
+  --text-overline-tight--letter-spacing: 0.14em;
+  --text-overline-tight--font-weight: 600;
+
   /* Poppins SemiBold 16 */
   --text-button: 1rem;
   --text-button--line-height: 1.2;

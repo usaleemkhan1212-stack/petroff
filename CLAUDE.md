@@ -616,7 +616,9 @@ generalising the dropdown that used to be Expertises-only:
 | 5 | ALireEnsuite | `13095:1025` | done |
 | 6 | Transparence | `13095:934` | done |
 | 7 | CTAFinal | `13095:940` | done |
-| + | StickyBar + SideTab | `13121:25317`, `13170:1046` | done |
+| + | StickyBar | `13121:25317` | done |
+| + | SideTab | `13170:1046` | done |
+| + | ConsultationDrawer | `13116:1880` | done |
 
 **The sticky bar is the page's one piece of scroll behaviour.** It appears
 once `window.scrollY / (scrollHeight - innerHeight)` reaches **0.5** and then
@@ -626,10 +628,12 @@ view rather than unmounted, so the transition runs both ways, and carries
 `aria-hidden` + `inert` while it is down so nothing focusable hides
 off-screen. Honours `prefers-reduced-motion`.
 
-- **The ✕ collapses it to the gold side tab, which brings it back.** Figma
-  draws both elements but says nothing about the relationship; this is the
-  reading that makes both purposeful, and it is one state to change if the tab
-  is meant to stand alone.
+- **The ✕ used to collapse the bar into the gold side tab. It no longer
+  does.** With the drawer built, the tab is a persistent control of its own
+  (see below), so the ✕ simply dismisses the bar for the rest of the visit —
+  and dismissing it no longer takes the consultation away with it. Confirmed
+  with the user before changing; the alternative on the table was keeping the
+  tab as the bar's collapsed state *and* having it open the drawer.
 - **`Container` renders a padded outer div wrapping a `max-w` inner one, so
   flex utilities passed to it land on the OUTER element.** The inner div then
   becomes a single flex child and everything inside it stacks. That made the
@@ -643,6 +647,129 @@ off-screen. Honours `prefers-reduced-motion`.
   against 977, its button 209.5 against 210, and the tab exactly 45x236.
 - `--text-h4` was added for its headline — Figma's own "Petroff/H4", Poppins
   SemiBold 18/1.35, under the same precedent as `--text-badge`.
+
+**The consultation drawer (`13116:1880`) is the page's second client-side
+behaviour, and the site's first modal.** 510x1208, sliding in from the right
+over the page. It measures **1215 against Figma's 1208 — 0.58%** — with an
+**x-band ink |Δ| of 0.19**, the tightest horizontal match on the build, and
+its 21 ink bands align 1:1 with the comp's.
+
+- **Three controls, one piece of state.** `Consultation.tsx` is a thin client
+  wrapper owning `open`; it renders `StickyBar`, `SideTab` and
+  `ConsultationDrawer`. The tab and the bar's "Consulter un avocat" both open
+  the drawer. Splitting the tab out of `StickyBar` into its own `SideTab.tsx`
+  is what let it become persistent.
+- **The article column's own `consult` block deliberately stays out of it.**
+  It is the same form already inline on the page, so wiring its button to the
+  drawer would discard whatever the reader had typed, and it would cost
+  `Corps` its server component. Confirmed with the user.
+- Behaviour verified by driving it: the tab is on screen at scroll 0; opening
+  moves focus to the Nom field (which is the state Figma draws); Tab and
+  Shift+Tab wrap inside the panel's 7 focusables; Escape and a backdrop click
+  both close and return focus to the trigger; `body` overflow is `hidden`
+  while open and restored after; the closed panel is `inert` and Tab skips it;
+  and under `prefers-reduced-motion` both the panel's and the tab's
+  `transition-property` resolve to `none`.
+- **Focus return is owned by the wrapper, not the drawer.** Two reasons: the
+  tab is `inert` while the drawer is open, so only the render that clears it
+  can focus it again; and reading `document.activeElement` when the drawer
+  mounts is wrong, because a click does not always leave focus on the button
+  it hit. The trigger is taken from the click's `currentTarget` instead.
+- Its inputs are real and labelled but **not wrapped in a `<form>`**, like the
+  Consult block it mirrors, Tools and the OpenData lookup.
+- **Its four field labels and its secret-professionnel note are character-
+  identical to the Consult block's**, so it reads those from
+  `ArticlePage.consult` rather than duplicating them — the pattern
+  `ContactCta` established. Only its own strings live in `ArticlePage.drawer`.
+- Its `avocate` is the two seams' composed `lawyer-figure.svg` at 60.125x101
+  — the same 29 component instance ids at the same insets, and a uniform
+  **1.1995x** of that file's own 50.125x84.202. Because the composed file
+  carries a `viewBox`, its strokes scale with the geometry, so it reuses
+  exactly where a raw Figma export at a larger box would not. Confirmed by
+  cropping both at 3x: same drawing, same colours, same proportions. **No new
+  assets on this node at all** — the 28 exported URLs were never needed.
+- **Its overline is +14% tracking, not the +18% every other overline in the
+  file carries**, which is why `--text-overline-tight` was added. It is
+  load-bearing rather than noise: the `top` row is 450 wide with a 22px ✕ and
+  a 16px gap, leaving the overline exactly 412, and Figma draws it as one
+  21px line. Measured with a probe span, `text-overline` renders that string
+  at **426px** and would wrap; at 0.14em it is **404px** and fits.
+- Its five controls are Inter 17/24 in Figma. **There is no 17px token**, so
+  they take `text-body` (18/1.4) like every other input on the site — asked
+  before deciding. That is 1.2px of line box per field, and with the 2px
+  border-box difference each field runs **+4.38** against the comp. Four
+  fields is the whole of the drift: positions are exact at the top, reach
+  **+16 to +20** by the textarea, and close to **+8** at the phone line. The
+  panel's own +7 is what survives.
+- Its `border-[1.5px]` is on the fields in **every** state, not 1px growing to
+  Figma's focused 1.5px: browsers round border widths to whole device pixels,
+  so at dpr 1 both render 1px, and swapping the width on focus would shift the
+  field's content by half a pixel. Only the colour and the ground change,
+  which is all Figma draws. The focused Nom field lands **exactly** (352-356).
+- Its ✕ needs an explicit **`h-6`**: Figma's ✕ box is 24 tall and sets the
+  top row's height, where `text-lead` with `leading-none` draws 20 and pulled
+  the whole header band 3px short. With it the header is exact — overline, ✕,
+  figure and lead all land at Δ0.
+- **Its green ✓ falls back to Segoe UI Symbol.** The site's Inter subset does
+  not carry U+2713, so the browser resolves it from a system font and draws a
+  taller, steeper check than Figma's. Confirmed with
+  `CSS.getPlatformFontsForNode`. The box is still exactly Figma's 15x24 and
+  `font-bold` has no effect, since that fallback has no bold. Left as the
+  browser draws it — the same call the Forfaits ⚡ note makes, and the second
+  glyph on the site whose font stack differs from Figma's.
+- **Its drop shadow must be carried by the open state, not the base class.**
+  Figma's is `-26px 0px 32px` — a *negative* x offset with a 32px blur, so it
+  paints to the LEFT of the panel and kept painting while the panel itself was
+  translated off screen, reading as a grey band down the right edge behind the
+  gold tab. It is toggled with `shadow-none` and transitioned alongside the
+  slide so it fades as the panel leaves. Verified in both states: closed
+  computes to an all-transparent shadow list, open to
+  `rgba(18, 42, 76, 0.22) -26px 0px 32px 0px`. **Any fixed panel that slides
+  out has this problem whenever its shadow offset points back on screen.**
+- Note `shadow-none` computes to a list of *transparent* shadows, not the
+  string `none` — a test asserting `boxShadow === 'none'` reports a false
+  failure.
+- **The side tab's own shadow is correct and stays**: `13170:1046` specifies
+  `0px 10px 30px rgba(18,42,76,0.2)`, which is what is built. Re-checked in
+  Figma when the drawer's bleeding shadow was first read as the tab's.
+- Its `role="dialog"` panel is kept mounted and translated out rather than
+  unmounted, so the transition runs both ways, and carries `aria-hidden` +
+  `inert` while it is out. The backdrop is `pointer-events-none opacity-0`
+  when closed, or an always-mounted `fixed inset-0` would eat every click on
+  the page.
+- Its scroll lock hands the scrollbar's width back as `padding-right` on
+  `body`, so locking does not shift the whole page.
+- **`transition-transform` is wrong for the tab.** Tailwind v4 translates via
+  the standalone `translate` property, so the tab's slide is
+  `transition-[translate,background-color]`. (`transition-transform` happens
+  to cover it — v4 expands it to `transform, translate, scale, rotate` — but
+  naming a property list means naming `translate`, not `transform`.)
+- **Its overline holds one line down to a 502px viewport and wraps to two
+  below.** The panel is `min(viewport, 510)` and the slot is `panel - 98`
+  (60 padding + 22 ✕ + 16 gap), against a 404px string — so 502 is the exact
+  flip. One line at 375 would need ~11px type and at 320 ~9px; the only other
+  route is a shorter string ("CONSULTATION" alone is 150px and fits
+  everywhere, and the "15 minutes gratuites" claim is restated in the ✓ marks
+  just below). **Raised with the user and left wrapping** — Figma specifies
+  desktop only, and the overline reflows like every other piece of copy on the
+  site.
+- **That one line has only 8px of slack, and the font-load fallback does not
+  fit in it.** Poppins renders the string at 403.7 inside 412, but next/font's
+  metric-adjusted `"Poppins Fallback"` — what `display: "swap"` shows until
+  the webfont arrives — measures **454.8**, so the overline wraps during the
+  swap even at desktop. (Plain `system-ui` is 393.5 and would have fitted; the
+  size-adjust that keeps CLS down is what widens it. Arial is 416.8.) Invisible
+  in practice because the drawer is closed and off-screen at first paint, but
+  it recurs on every dev-server reload, so **expect to see it while working on
+  the page**. Widening the slot needs 455 against a 450px content width, so
+  even giving the ✕ the corner would not quite cover it.
+- Figma draws the drawer at desktop only, and the tab stays `lg:flex` like the
+  bar. So **there is no way to open the drawer below `lg`** — readers there
+  get the same form inline as the article column's `consult` block instead.
+  The panel is built responsive anyway (full width at 375/320, measured 1401
+  and 1425 tall) so showing the tab on mobile is a one-class change.
+- Sweep is clean from 1920 down to **320**: no page overflow at any of the
+  nine widths, and no offending element outside an `overflow-x` container.
 
 **Corps is being built in passes, from one saved response.** Calling
 `get_design_context` per block would be ~100 Figma calls, so it was called
@@ -1034,7 +1161,11 @@ section alone.
   and `--text-price`
   (Poppins Bold 30 — Figma's own "Petroff/Price", the forfait amounts; added
   under the `--text-badge` precedent rather than re-asking, since it is the
-  same case: a named Figma style with no matching token).
+  same case: a named Figma style with no matching token) — and
+  `--text-overline-tight` (Poppins SemiBold 16 / 1.3125 / **0.14em**, the
+  consultation drawer's overline; asked before adding, because it is the one
+  overline in the file that is not +18% and the difference is load-bearing:
+  at 0.18em its string overruns its 412px slot and wraps).
 - **`text-*` tokens carry size, line-height, weight and tracking — never the
   font family.** A `text-lead` span inside a `font-poppins` paragraph renders
   in Poppins, not Inter, and reads visibly wider and heavier. Pair the token
@@ -1080,7 +1211,14 @@ asset URLs, so `curl` those rather than spending a second call on
 3. Render unknown icons to a PNG and name them for what they depict — every
    Figma layer is called "Frame".
 4. Map every value to a token; ask about anything unmatched.
-5. Build, then **measure the rendered DOM against the spec** by driving Chrome
+5. **A class added to a file *after* its first compile may not reach the
+   stylesheet.** Turbopack recompiles the component — the new class appears in
+   the DOM — but Tailwind does not rescan, so the rule is simply absent and the
+   element silently keeps its old geometry. `touch`ing a file does not fix it;
+   a **content** change to `globals.css` does, and is far cheaper than the
+   `rm -rf .next` remedy. Probe with an *empty* `<div>`: an ungenerated class
+   measures 0px, where a div with text misleads you with its content height.
+6. Build, then **measure the rendered DOM against the spec** by driving Chrome
    over CDP (`--remote-debugging-port`, `Emulation.setDeviceMetricsOverride`,
    `Runtime.evaluate`). Check for horizontal overflow at 1920/1280/768/375.
    Do not trust `--window-size` screenshots at narrow widths; they misreport.
@@ -1095,7 +1233,8 @@ asset URLs, so `curl` those rather than spending a second call on
 - Sections: `src/components/sections/<Name>.tsx`, server components by default.
   `'use client'` only for the language switcher, SearchBand, OpenData SIREN
   lookup, mobile nav, the Expertises dropdown, the Bibliotheque hero's search
-  field, its Vitrine carousel and its Resultats filters.
+  field, its Vitrine carousel, its Resultats filters, and the article's
+  `Consultation` wrapper with its drawer, side tab and sticky bar.
 - Primitives: `src/components/ui/` — `Container`, `Button`, `Card`, `Chip`,
   `SectionHeading`, `Logo`, `MaybeLink`. `SectionHeading` takes `leadClassName`
   for sections that design the lead wider than its default 640px measure.
@@ -1164,13 +1303,20 @@ asset URLs, so `curl` those rather than spending a second call on
   detail paths to that list.
 - Language switcher renders EN/中文/ES as disabled — only `fr` is registered in
   `src/i18n/routing.ts`. They become links automatically when locales are added.
-- The phone number "+ 33 (0) 1 78 90 46 46" appears in two places: the home
-  CTAFinal lead and the Expertises CTAFinal's second lead line (`contact`).
-  Both are plain text, not `tel:` links, and the header phone control is still
-  inert — wire all three up together if that number is real. Its spaces are
+- The phone number "+ 33 (0) 1 78 90 46 46" now appears in **four** places:
+  the home CTAFinal lead, the Expertises CTAFinal's second lead line
+  (`contact`, shared through `ContactCta`), the article's sticky bar detail
+  line, and the consultation drawer's "Vous préférez appeler ?" line. The
+  drawer's is its own string because only the number is periwinkle there,
+  which `ContactCta.contact` cannot express. All are plain text, not `tel:`
+  links, and the header phone control is still inert — wire all of them up
+  together if that number is real. Its spaces are
   ordinary, unlike the U+202F in "24 h".
 - SearchBand submit and the OpenData SIREN form are inert placeholders. The
   popular chips prefill the search field instead of navigating.
+- The consultation drawer's "Soumettre votre demande" is inert, like every
+  other form on the site. It is the site's first modal, so it is also the
+  first place a real submit handler would need somewhere to POST to.
 - **There are six CTAFinal components** — home, Expertises, Contentieux,
   Contrats, Bibliotheque and the article — and all but the home one share
   their copy through the top-level **`ContactCta`** namespace. The three

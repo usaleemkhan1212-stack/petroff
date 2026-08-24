@@ -8,7 +8,7 @@ import { Transparence } from "@/components/sections/article/Transparence";
 import { CTAFinal } from "@/components/sections/article/CTAFinal";
 import { Corps } from "@/components/sections/article/Corps";
 import { Hero } from "@/components/sections/article/Hero";
-import { StickyBar } from "@/components/sections/article/StickyBar";
+import { Consultation } from "@/components/sections/article/Consultation";
 import { routing } from "@/i18n/routing";
 
 export default async function ArticleDesignPage({
@@ -31,7 +31,7 @@ export default async function ArticleDesignPage({
       <ALireEnsuite />
       <Transparence />
       <CTAFinal />
-      <StickyBar />
+      <Consultation />
     </>
   );
 }

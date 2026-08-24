@@ -26,6 +26,7 @@ const twMerge = extendTailwindMerge({
             "small-strong",
             "body-strong",
             "overline",
+            "overline-tight",
             "button",
             "badge",
             "price",

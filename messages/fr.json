@@ -1440,6 +1440,23 @@
       "dismiss": "Masquer cette proposition",
       "reopen": "Consulter un avocat"
     },
+    "drawer": {
+      "label": "Demande de consultation",
+      "overline": "CONSULTATION — 15 MINUTES GRATUITES",
+      "close": "Fermer la demande de consultation",
+      "title": "Exposez votre situation",
+      "lead": "Un avocat du cabinet vous répond sous 24 heures et vous indique le périmètre de l’intervention ainsi que son coût, avant toute mise en œuvre.",
+      "objet": "Objet : signature électronique",
+      "situation": "Votre situation",
+      "situationPlaceholder": "Stade de l’opération, difficulté rencontrée, échéance à tenir.",
+      "cta": "Soumettre votre demande",
+      "marks": {
+        "reponse": "<b>Réponse sous 24 heures</b>, par un avocat du cabinet",
+        "visio": "<b>15 minutes</b> d’évaluation gratuite en visio",
+        "prix": "<b>Prix ferme</b> annoncé avant toute intervention"
+      },
+      "phone": "Vous préférez appeler ? <tel>+ 33 (0) 1 78 90 46 46</tel> · Paris"
+    },
     "corps": {
       "answerTitle": "La réponse en bref",
       "answer1": "<b>En une phrase :</b> la signature électronique est valable en France et l’écrit électronique a la même force probante que le papier ; seule la <b>signature qualifiée</b> bénéficie d’une présomption de fiabilité, qui fait peser sur celui qui dénie sa signature la charge de la preuve.",
