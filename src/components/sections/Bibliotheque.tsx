@@ -9,8 +9,8 @@ export function Bibliotheque() {
 
   return (
     <section className="bg-white">
-      <Container className="py-24">
-        <div className="flex flex-col gap-12">
+      <Container className="py-16 lg:py-24">
+        <div className="flex flex-col gap-8 lg:gap-12">
           <SectionHeading
             overline={t("overline")}
             title={t("title")}
@@ -22,8 +22,9 @@ export function Bibliotheque() {
             {collections.map(({ key }) => (
               <li key={key} className="flex">
                 <Card className="flex flex-1 flex-col gap-2 px-7 py-9">
-                  {/* Poppins Bold 40 — the same style the section H2 uses. */}
-                  <p className="text-h2 font-poppins text-periwinkle">
+                  {/* Poppins Bold 40 — the same style the section H2 uses.
+                      Mint since the colour pass; it was periwinkle before. */}
+                  <p className="text-h2 font-poppins text-mint">
                     {t(`collections.${key}.count`)}
                   </p>
                   <h3 className="text-h3 text-encre">

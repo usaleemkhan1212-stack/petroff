@@ -9,8 +9,8 @@ export function Methode() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
-        <div className="flex flex-col gap-12">
+      <Container className="py-16 lg:py-24">
+        <div className="flex flex-col gap-8 lg:gap-12">
           {/* Overline and H2 only — this one has no lead. */}
           <SectionHeading
             overline={t("overline")}

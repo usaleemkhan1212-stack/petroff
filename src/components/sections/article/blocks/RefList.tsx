@@ -3,9 +3,21 @@ import type { ReactNode } from "react";
 /**
  * Figma's `reflist`: the texts this article rests on, one ruled row each.
  * Same ruled anatomy as `vigil`, but every row ends in its own link.
+ *
+ * **Since the redesign it shows only the first four**, closed by an outline
+ * button offering the other nine — the block went from 1124px to 430. All
+ * thirteen references stay in the data, which is what the "+9" counts.
  */
-export function RefList({ children }: { children: ReactNode }) {
-  return <ul className="border-encre/10 border-t">{children}</ul>;
+export function RefList({ children, more }: { children: ReactNode; more: string }) {
+  return (
+    <div className="border-encre/10 flex flex-col items-start gap-2 border-t">
+      <ul className="w-full">{children}</ul>
+      {/* Inert like every other control on this page. */}
+      <span className="text-button font-poppins text-encre border-encre rounded-full border-[1.5px] px-12 py-2.75">
+        {more}
+      </span>
+    </div>
+  );
 }
 
 export function RefRow({

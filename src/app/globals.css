@@ -3,6 +3,7 @@
 /*
   Petroff design tokens.
 
+
   Colour names mirror the Figma library (Petroff/Encre -> --color-encre) so a
   swatch name in the design file maps to exactly one utility in the code.
   Tailwind v4 turns each entry into utilities automatically:
@@ -27,6 +28,30 @@
   --color-pale-gold: #f3e3c0; /* warm backgrounds */
   --color-stone: #e9e4d8; /* pavements, backgrounds */
   --color-sand: #d8d2c2; /* paving joints, illustration shading */
+
+  /* --- Reds ------------------------------------------------------------- */
+  /* Figma's "Petroff/Red". The consultation side tab and its submit button,
+     on both the home page and the article since the redesign. */
+  --color-red: #f01a5d;
+
+  /* --- Pinks ------------------------------------------------------------ */
+  /* #EDC2DC, always drawn at 30% — `bg-pale-rose/30`. The article's `trap`
+     callout box and its tag pill. Unlike Mint/Pink/Red this is NOT a named
+     Figma library style, just a raw fill, so it was asked about before being
+     added — the same route `--color-sand` took. */
+  --color-pale-rose: #edc2dc;
+
+  /* Figma's "Petroff/Pink". Only ever drawn at 40% — `bg-pink/40` — as an
+     Expertises card icon tile. */
+  --color-pink: #fac5ef;
+
+  /* --- Greens ----------------------------------------------------------- */
+  /* Figma's "Petroff/Pale_Mint" — an Expertises card icon tile. */
+  --color-pale-mint: #e8f5f1;
+
+  /* Figma's own "Petroff/Mint" library style. First used by the redesigned
+     home hero's laurel branch, which was brique before the colour pass. */
+  --color-mint: #44cba1;
 
   /* --- Neutrals & status ------------------------------------------------ */
   --color-result-green: #2e7d57; /* success, results */
@@ -242,6 +267,7 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
 
   .details-panel::details-content {
     block-size: 0;

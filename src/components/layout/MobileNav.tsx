@@ -55,7 +55,7 @@ export function MobileNav({ items }: { items: readonly NavItem[] }) {
                   <MaybeLink
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="text-nav text-encre hover:text-periwinkle block py-3"
+                    className="text-small text-encre hover:text-periwinkle block py-3"
                   >
                     {t(item.key)}
                   </MaybeLink>

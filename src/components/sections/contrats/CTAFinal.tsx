@@ -13,8 +13,8 @@ export function CTAFinal() {
     /* py-24: the FAQ above closes with its own 96px but Figma still specifies
        top padding on this one, exactly as on the Contentieux page. */
     <section className="bg-lilas">
-      <Container className="py-24">
-        <div className="rounded-panel bg-lilas-2 relative overflow-hidden px-12 py-16">
+      <Container className="py-16 lg:py-24">
+        <div className="rounded-panel bg-lilas-2 relative overflow-hidden px-6 py-12 sm:px-12 lg:py-16">
           {/*
             Sanctioned ornament exception: literal Figma coordinates, both
             shapes bleeding past the panel so the rounded edge clips them —
@@ -49,9 +49,18 @@ export function CTAFinal() {
               <p>{t("contact")}</p>
             </div>
             <span aria-hidden="true" className="h-3.5" />
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg">{t("ctaPrimary")}</Button>
-              <Button size="lg" variant="gold">
+            {/* Full width with wrapping labels below sm: the panel is
+                overflow-hidden and these labels overrun its content box on a
+                phone. Same treatment as the home and hub CTA panels. */}
+            <div className="flex w-full flex-wrap justify-center gap-4">
+              <Button size="lg" className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap">
+                {t("ctaPrimary")}
+              </Button>
+              <Button
+                size="lg"
+                variant="gold"
+                className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap"
+              >
                 {t("ctaSecondary")}
               </Button>
             </div>

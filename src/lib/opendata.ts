@@ -23,16 +23,19 @@ export const resultRows: readonly ResultRow[] = [
 /** Keys inside the `OpenData.watch.items` message namespace. */
 export const watchItems = ["rupture", "suretes", "collectives"] as const;
 
-/** Source badges, alternating pale blue / pale gold as the design does. */
+/**
+ * Source badges. Three tints since the colour pass — Judilibre is pale mint
+ * where it used to be pale gold; the other three are unchanged.
+ */
 export type Source = {
   /** Key inside the `OpenData.watch.sources` message namespace. */
   key: "sirene" | "legifrance" | "judilibre" | "bodacc";
-  tone: "blue" | "gold";
+  tone: "blue" | "gold" | "mint";
 };
 
 export const sources: readonly Source[] = [
   { key: "sirene", tone: "blue" },
   { key: "legifrance", tone: "gold" },
-  { key: "judilibre", tone: "gold" },
+  { key: "judilibre", tone: "mint" },
   { key: "bodacc", tone: "blue" },
 ] as const;

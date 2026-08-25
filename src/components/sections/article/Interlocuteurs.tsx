@@ -1,9 +1,8 @@
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import mariela from "@/assets/images/lawyer-portrait-square.jpg";
-import tony from "@/assets/images/tony-portrait-square.jpg";
-import { Button } from "@/components/ui/Button";
+import mariela from "@/assets/images/lawyer-portrait-card.jpg";
+import tony from "@/assets/images/tony-portrait-card.jpg";
 import { Container } from "@/components/ui/Container";
 
 /* Literal keys, so `t(`items.${key}.name`)` stays typed. */
@@ -20,38 +19,58 @@ const tags = ["tag1", "tag2", "tag3"] as const;
  * Same head shape as the Cabinet band above — 10px under the overline, 14px
  * under the title, a full-width `text-small` lead — so it is written out
  * rather than reaching for `SectionHeading`.
+ *
+ * **Restructured by the redesign** (`13323:4272`): the two cards were a
+ * side-by-side pair with 104px circular portraits; they are now **full-width
+ * and stacked**, each with a 200x240 rectangular portrait, a red angle rule
+ * where it was pale gold, a
+ * periwinkle languages line, and **two** CTAs rather than one. Both the card
+ * and its portrait carry heavy asymmetric corners — 80px at the top left,
+ * which is what gives the row its shape.
+ *
+ * **White cards on a lilas ground**, verified by sampling the node render:
+ * `#f6f5f1` covers the section and `#ffffff` the cards. Figma draws a
+ * `0px 14px 34px` shadow on them, which is the hover state — the same call
+ * the home Domaines and Actus grids and the Contrats Domaines make — so it is
+ * on `hover:` rather than permanent.
  */
 export function Interlocuteurs() {
   const t = useTranslations("ArticlePage.interlocuteurs");
 
   return (
-    <section className="bg-white">
-      <Container className="py-24">
+    <section className="bg-lilas">
+      {/* Bottom padding only: Figma puts the overline at y=0 of this section,
+          the same shape the home CTAFinal has. */}
+      <Container className="pb-16 lg:pb-24">
         <p className="text-overline font-poppins text-brique">{t("overline")}</p>
         <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
         <p className="text-small text-encre/62 mt-3.5">{t("lead")}</p>
 
-        {/* 2 -> 1. Figma leaves the cards at content height, not levelled. */}
-        <ul className="mt-11 grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+        <ul className="mt-11 flex flex-col gap-9">
           {lawyers.map(({ key, photo }) => (
             <li
               key={key}
-              className="rounded-note-lg border-encre/8 flex flex-col gap-5.5 border bg-white p-7 sm:flex-row sm:items-start"
+              className="border-encre/8 flex flex-col gap-7 rounded-tl-[80px] rounded-tr-[18px] rounded-br-[60px] rounded-bl-[18px] border bg-white p-5 sm:p-7 transition-shadow hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.1)] sm:flex-row sm:items-start"
             >
-              <Image
-                src={photo}
-                alt={t(`photoAlt.${key}`)}
-                sizes="104px"
-                className="size-26 shrink-0 rounded-full object-cover opacity-90"
-              />
+              <div className="relative h-60 w-50 shrink-0 self-start overflow-hidden rounded-tl-[80px] rounded-tr-[4px] rounded-br-[20px] rounded-bl-[20px]">
+                <Image
+                  src={photo}
+                  alt={t(`photoAlt.${key}`)}
+                  fill
+                  sizes="200px"
+                  className="object-cover"
+                />
+              </div>
 
-              <div className="flex min-w-0 flex-1 flex-col items-start gap-3">
-                <p className="text-h3 font-poppins text-encre">
-                  {t(`items.${key}.name`)}
-                </p>
-                <p className="text-small text-encre/62">
-                  {t(`items.${key}.role`)}
-                </p>
+              <div className="flex min-w-0 flex-1 flex-col items-start gap-4">
+                <div className="flex flex-col gap-1">
+                  <p className="text-h3 font-poppins text-encre">
+                    {t(`items.${key}.name`)}
+                  </p>
+                  <p className="text-small text-encre/62">
+                    {t(`items.${key}.role`)}
+                  </p>
+                </div>
 
                 {/* Sixth pill on the site: lilas ground, encre/62 label. */}
                 <ul className="flex flex-wrap gap-2">
@@ -65,24 +84,32 @@ export function Interlocuteurs() {
                   ))}
                 </ul>
 
-                <p className="text-small text-encre/62">
-                  {t(`items.${key}.languages`)}
-                </p>
+                <div className="flex w-full flex-col items-start gap-2">
+                  <p className="text-small-strong text-periwinkle">
+                    {t(`items.${key}.languages`)}
+                  </p>
 
-                {/* The angle this lawyer takes on this article. */}
-                <p className="text-small text-encre/62 border-pale-gold w-full border-l-3 py-0.5 pl-3.5">
-                  {t.rich(`items.${key}.angle`, {
-                    b: (chunks) => (
-                      <span className="text-button font-poppins text-encre">
-                        {chunks}
-                      </span>
-                    ),
-                  })}
-                </p>
+                  {/* The angle this lawyer takes on this article. */}
+                  <p className="text-small text-encre/62 border-red w-full border-l-3 py-0.5 pl-3.5">
+                    {t.rich(`items.${key}.angle`, {
+                      b: (chunks) => (
+                        <span className="text-button font-poppins text-encre">
+                          {chunks}
+                        </span>
+                      ),
+                    })}
+                  </p>
+                </div>
 
-                <Button variant="outline" className="py-2.75">
-                  {t(`items.${key}.cta`)}
-                </Button>
+                {/* Both inert, like every control on this page. */}
+                <div className="flex flex-wrap gap-4">
+                  <span className="text-button font-poppins bg-encre rounded-full px-5 py-2.75 text-white">
+                    {t(`items.${key}.cta`)}
+                  </span>
+                  <span className="text-button font-poppins text-encre border-encre rounded-full border-[1.5px] px-5 py-2.75">
+                    {t(`items.${key}.cta2`)}
+                  </span>
+                </div>
               </div>
             </li>
           ))}

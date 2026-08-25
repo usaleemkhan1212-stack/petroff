@@ -37,12 +37,10 @@ export type Mission = {
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
   /** Icon tile background — strict blue/gold alternation across the grid. */
   tone: "blue" | "gold";
-  /** Figma draws the first card already lifted; see the note in Domaines.tsx. */
-  raised?: true;
 };
 
 export const missions: readonly Mission[] = [
-  { key: "distribution", Icon: NetworkNodesIcon, tone: "blue", raised: true },
+  { key: "distribution", Icon: NetworkNodesIcon, tone: "blue" },
   { key: "agence", Icon: PersonIcon, tone: "gold" },
   { key: "cgv", Icon: FileLinesIcon, tone: "blue" },
   { key: "industriels", Icon: OfficeBuildingIcon, tone: "gold" },

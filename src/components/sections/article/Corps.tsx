@@ -59,7 +59,7 @@ export function Corps() {
 
   return (
     <section className="bg-white">
-      <Container className="py-24">
+      <Container className="py-16 lg:py-24">
         <div className="flex items-start gap-16">
           <div className="min-w-0 flex-1">
             <SectionTitle id="answer" Icon={DocStack} iconWidth={52} iconHeight={45.5}>{t("answerTitle")}
@@ -245,8 +245,8 @@ export function Corps() {
               </SectionTitle>
             </div>
             <div className="mt-2.5">
-              <RefList>
-                {refKeys.map((key) => (
+              <RefList more={ref("more")}>
+                {refKeys.slice(0, 4).map((key) => (
                   <RefRow
                     key={key}
                     reference={ref(`items.${key}.ref`)}

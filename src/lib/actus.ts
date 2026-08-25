@@ -1,20 +1,22 @@
-import ArcDeTriompheColour from "@/assets/icons/arc-de-triomphe-colour.svg";
-import EiffelTowerColour from "@/assets/icons/eiffel-tower-colour.svg";
-import HaussmannBuildings from "@/assets/icons/haussmann-buildings.svg";
+import benchLaptop from "@/assets/images/bench-laptop.jpg";
+import glassMeetingRoomWide from "@/assets/images/glass-meeting-room-wide.jpg";
+import plantFilledLounge from "@/assets/images/plant-filled-lounge.jpg";
 
 /** Keys inside the `Actus.items` message namespace. */
-export type ArticleKey = "rupture" | "formeSociale" | "implantation";
+export type ArticleKey = "signature" | "formeSociale" | "implantation";
 
 export type Article = {
   key: ArticleKey;
-  /** Illustration centred on the card's tinted thumbnail. */
-  Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-  /** Thumbnail tint — each card gets its own in the design. */
-  tone: "periwinkle" | "gold" | "blue";
+  /**
+   * Card photo, stored at 1205x420 — 3x the comp's 401.67x140 thumbnail, with
+   * Figma's own crop window already baked in, so the markup is a plain
+   * object-cover.
+   */
+  photo: typeof benchLaptop;
 };
 
 export const articles: readonly Article[] = [
-  { key: "rupture", Icon: ArcDeTriompheColour, tone: "periwinkle" },
-  { key: "formeSociale", Icon: HaussmannBuildings, tone: "gold" },
-  { key: "implantation", Icon: EiffelTowerColour, tone: "blue" },
+  { key: "signature", photo: benchLaptop },
+  { key: "formeSociale", photo: plantFilledLounge },
+  { key: "implantation", photo: glassMeetingRoomWide },
 ] as const;

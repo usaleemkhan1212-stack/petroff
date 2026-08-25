@@ -11,8 +11,8 @@ export function Forfaits() {
 
   return (
     <section className="bg-white">
-      <Container className="py-24">
-        <div className="flex flex-col gap-12">
+      <Container className="py-16 lg:py-24">
+        <div className="flex flex-col gap-8 lg:gap-12">
           <SectionHeading
             overline={t("overline")}
             title={t("title")}
@@ -25,14 +25,15 @@ export function Forfaits() {
           <ul className="grid grid-cols-1 gap-5 lg:grid-cols-3">
             {forfaits.map(({ key, featured, largePrice }) => (
               <li key={key} className="flex">
-                {/* Outer plans sit on lilas here, where the Contentieux ones
-                    are white. The featured plan keeps its permanent shadow. */}
+                {/* All three plans are white, like the Contentieux page's —
+                    the Figma render of this section contains zero lilas
+                    pixels. Only the featured plan differs, by its gold border
+                    and permanent shadow. */}
                 <Card
                   className={cn(
                     "relative flex min-w-0 flex-1 flex-col gap-2 px-7 py-9",
-                    featured
-                      ? "border-gold border-2 bg-white shadow-[0px_14px_17px_rgba(0,0,0,0.1)]"
-                      : "bg-lilas",
+                    featured &&
+                      "border-gold border-2 shadow-[0px_14px_17px_rgba(0,0,0,0.1)]",
                   )}
                 >
                   {featured ? (

@@ -29,16 +29,20 @@ export const tocSections = [
  * column — `self-start` is what lets it be, since the row's default stretch
  * would make it as tall as the article and leave nothing to stick.
  *
- * It takes **no height cap and no internal scroll**. A sticky element unpins
- * when its containing block ends, so the rail rides up with the page over the
- * last screenful and its whole height — author card and verification line
- * included — is on screen by the end of the section. Capping it at the
- * viewport instead pinned it forever and buried that bottom behind an
- * internal scrollbar the reader had to find.
+ * Its content runs 1201px against a 900px viewport, so it is **capped at the
+ * viewport and scrolls internally**: put the cursor over the rail and the
+ * wheel moves the rail, not the page, in both directions. Scroll chaining is
+ * deliberately left on, so once the rail reaches either end the page takes
+ * over again and the reader is never trapped in it.
  *
- * Its bottom padding clears the **sticky bar**, which is fixed over the last
- * 78px of the viewport by the time the rail releases: at `pb-4` the
- * verification line unpinned directly underneath it.
+ * This replaces an earlier uncapped version. That one let the rail ride up
+ * with the page and reveal its own bottom over the last screenful, which meant
+ * the author card and verification line simply could not be read until the
+ * very end of a 14,000px article.
+ *
+ * Its bottom padding now sits *inside* the scroll area, where it doubles as
+ * clearance for the **sticky bar** — fixed over the last 78px of the viewport
+ * — so the verification line can always be scrolled clear of it.
  *
  * Client-side only for the scroll-spy: Figma marks the first entry active with
  * a gold edge, and a highlight that never moved would be worse than none.
@@ -69,7 +73,7 @@ export function Rail() {
   }, []);
 
   return (
-    <aside className="sticky top-6 hidden w-75 shrink-0 self-start pb-24 xl:block">
+    <aside className="no-scrollbar sticky top-6 hidden max-h-[calc(100vh-3rem)] w-75 shrink-0 self-start overflow-y-auto pb-24 xl:block">
       <nav aria-label={t("tocLabel")}>
         <p className="text-button font-poppins text-encre/62">{t("tocLabel")}</p>
         <ul className="pt-3.5">

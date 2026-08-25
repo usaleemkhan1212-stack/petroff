@@ -7,7 +7,8 @@ import { type DomaineKey, domaines } from "@/lib/domaines";
  */
 type MessagePath =
   | `ExpertisesPage.domaines.items.${DomaineKey}.title`
-  | "Nav.articleDesign";
+  | "Nav.articleDesign"
+  | "Nav.ecommerce";
 import { isLive } from "@/lib/routes";
 
 /** A sub-item under a primary nav entry. Plain data so it can cross into client components. */
@@ -41,7 +42,10 @@ const expertiseChildren: readonly NavChild[] = domaines
  * article route, so it is labelled as such rather than by its title.
  */
 const bibliothequeChildren: readonly NavChild[] = (
-  [{ key: "articleDesign", href: "/bibliotheque/article-design" }] as const
+  [
+    { key: "articleDesign", href: "/bibliotheque/article-design" },
+    { key: "ecommerce", href: "/bibliotheque/avocat-e-commerce" },
+  ] as const
 )
   .filter(({ href }) => isLive(href))
   .map(({ key, href }) => ({ key, href, labelKey: `Nav.${key}` as const }));

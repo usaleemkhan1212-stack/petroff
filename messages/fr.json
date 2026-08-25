@@ -19,7 +19,8 @@
     "homeLabel": "Petroff — retour à l’accueil",
     "domainsLabel": "Domaines d’expertise",
     "libraryPagesLabel": "Pages de la bibliothèque",
-    "articleDesign": "article-design"
+    "articleDesign": "article-design",
+    "ecommerce": "Avocat e-commerce"
   },
   "Common": {
     "skipToContent": "Aller au contenu",
@@ -60,7 +61,7 @@
     "popular": "Populaire :"
   },
   "Expertises": {
-    "overline": "EXPERTISES",
+    "overline": "Expertises",
     "title": "Tout le droit des affaires, sous un même toit",
     "lead": "Du conseil quotidien au contentieux complexe, le cabinet couvre l’ensemble des besoins juridiques de l’entreprise.",
     "items": {
@@ -99,7 +100,7 @@
     }
   },
   "Bibliotheque": {
-    "overline": "BIBLIOTHÈQUE JURIDIQUE",
+    "overline": "Bibliothèque juridique",
     "title": "Des milliers de pages, à jour et en accès libre",
     "lead": "Guides, fiches pratiques, modèles commentés et jurisprudence — rédigés par le cabinet, reliés aux textes officiels, disponibles en quatre langues.",
     "collections": {
@@ -124,7 +125,7 @@
     }
   },
   "OpenData": {
-    "overline": "DONNÉES & OUTILS — OPEN DATA",
+    "overline": "Données & outils — open data",
     "title": "Branché en direct sur les données publiques",
     "lead": "Le site est connecté aux API publiques françaises : les fiches citent des textes à jour, et nos outils interrogent les registres officiels en temps réel.",
     "verify": {
@@ -176,7 +177,7 @@
     }
   },
   "Cabinet": {
-    "overline": "LE CABINET",
+    "overline": "Le cabinet",
     "title": "Un cabinet parisien, une pratique internationale",
     "lead": "Fondé à Paris, Petroff.law accompagne dirigeants, investisseurs et entreprises étrangères dans toutes les étapes de leur vie juridique en France — en français, anglais, chinois et espagnol.",
     "stats": {
@@ -193,36 +194,32 @@
         "label": "pays d’origine de nos clients"
       }
     },
-    "cta": "Rencontrer l’équipe",
-    "collage": {
-      "paris": "Fondé à Paris",
-      "international": "Pratique internationale"
-    }
+    "cta": "Rencontrer l’équipe"
   },
   "Actus": {
-    "overline": "ACTUALITÉS",
+    "overline": "Actualités",
     "title": "Dernières analyses",
     "all": "Toutes les actualités",
     "items": {
-      "rupture": {
-        "kicker": "CONTENTIEUX",
-        "title": "Rupture brutale des relations commerciales : ce que change la jurisprudence 2026",
+      "signature": {
+        "kicker": "Preuve & contrats",
+        "title": "Signature électronique : ce qui tient devant un juge français",
         "meta": "12 août 2026 · 6 min"
       },
       "formeSociale": {
-        "kicker": "SOCIÉTÉS",
+        "kicker": "Sociétés",
         "title": "SAS ou SARL en 2026 : le comparatif complet pour les fondateurs étrangers",
         "meta": "4 août 2026 · 9 min"
       },
       "implantation": {
-        "kicker": "INTERNATIONAL",
+        "kicker": "International",
         "title": "S’implanter en France : guide des 90 premiers jours d’une filiale",
         "meta": "28 juillet 2026 · 12 min"
       }
     }
   },
   "CTAFinal": {
-    "overline": "CONTACT",
+    "overline": "Contact",
     "title": "Un projet, un litige, une question ?",
     "lead": "Première évaluation de votre dossier, réponse sous 24 h ouvrées. · + 33 (0) 1 78 90 46 46 · Paris",
     "ctaPrimary": "Prendre rendez-vous",
@@ -234,7 +231,7 @@
     "languages": "FR · EN · 中文 · ES",
     "columns": {
       "cabinet": {
-        "title": "LE CABINET",
+        "title": "Le cabinet",
         "items": [
           "Qui sommes-nous",
           "L’équipe",
@@ -243,7 +240,7 @@
         ]
       },
       "ressources": {
-        "title": "RESSOURCES",
+        "title": "Ressources",
         "items": [
           "Bibliothèque juridique",
           "Guides pratiques",
@@ -252,7 +249,7 @@
         ]
       },
       "outils": {
-        "title": "OUTILS",
+        "title": "Outils",
         "items": [
           "Vérifier une entreprise",
           "Veille jurisprudence",
@@ -1410,11 +1407,9 @@
       "lead": "La validité n’est plus le sujet. Un contrat signé sur une plateforme est un écrit que le juge lira. Ce qui se discute, c’est la preuve : l’identification du signataire, et l’intégrité du document depuis la signature.",
       "domain": "Vendre, contracter & commercer",
       "type": "Fiche & FAQ",
-      "readingTime": "12 min de lecture",
+      "readingTime": "12 min de lecture · vérifiée le 19 août 2026",
       "copyLink": "Copier le lien",
       "print": "Imprimer / PDF",
-      "verifiedLabel": "Vérifiée le",
-      "verifiedDate": "19 août 2026",
       "imageAlt": "",
       "articles": {
         "a1366": {
@@ -1430,32 +1425,23 @@
           "description": "Code civil — la dénégation de signature, que le juge doit trancher"
         }
       },
-      "articlePrefix": "Art. "
+      "articlePrefix": "Art. ",
+      "card": {
+        "title": "Un dossier, un avocat.",
+        "body": "Pas de transmission d’un service à l’autre : celui qui prend l’appel est celui qui plaide."
+      },
+      "badge": {
+        "years": "15 ANS",
+        "line1": "de pratique",
+        "line2": "à Paris"
+      }
     },
     "stickyBar": {
       "label": "Proposition de rendez-vous",
       "title": "Une signature à sécuriser, ou déjà contestée ?",
       "detail": "Évaluation de 15 minutes en visio, gratuite · réponse sous 24 heures · + 33 (0) 1 78 90 46 46",
       "cta": "Consulter un avocat",
-      "dismiss": "Masquer cette proposition",
-      "reopen": "Consulter un avocat"
-    },
-    "drawer": {
-      "label": "Demande de consultation",
-      "overline": "CONSULTATION — 15 MINUTES GRATUITES",
-      "close": "Fermer la demande de consultation",
-      "title": "Exposez votre situation",
-      "lead": "Un avocat du cabinet vous répond sous 24 heures et vous indique le périmètre de l’intervention ainsi que son coût, avant toute mise en œuvre.",
-      "objet": "Objet : signature électronique",
-      "situation": "Votre situation",
-      "situationPlaceholder": "Stade de l’opération, difficulté rencontrée, échéance à tenir.",
-      "cta": "Soumettre votre demande",
-      "marks": {
-        "reponse": "<b>Réponse sous 24 heures</b>, par un avocat du cabinet",
-        "visio": "<b>15 minutes</b> d’évaluation gratuite en visio",
-        "prix": "<b>Prix ferme</b> annoncé avant toute intervention"
-      },
-      "phone": "Vous préférez appeler ? <tel>+ 33 (0) 1 78 90 46 46</tel> · Paris"
+      "dismiss": "Masquer cette proposition"
     },
     "corps": {
       "answerTitle": "La réponse en bref",
@@ -1497,11 +1483,11 @@
       "refTitle": "Textes de référence",
       "jurTitle": "Jurisprudence liée",
       "faqTitle": "Questions fréquentes",
-      "takeawaysTitle": "Points clés à retenir"
+      "takeawaysTitle": "Sept points à retenir"
     },
     "simulator": {
       "title": "Votre signature tiendra-t-elle ?",
-      "pill": "GRATUIT · 60 SECONDES",
+      "pill": "Gratuit · 60 secondes",
       "lead": "Indiquez la nature de l’acte, son montant, la qualité de votre cocontractant et le niveau de signature employé : le simulateur détermine si un écrit est exigé, si la présomption de fiabilité vous protège, et sur qui pèsera la charge de la preuve.",
       "fields": {
         "nature": {
@@ -1704,7 +1690,8 @@
           "ref": "C. civ., art. 1359 · C. com., art. L 110-3",
           "summary": "Seuil de 1 500 € et liberté de la preuve commerciale."
         }
-      }
+      },
+      "more": "+9 Voir la liste complète"
     },
     "jurList": {
       "bail": {
@@ -1735,7 +1722,7 @@
     },
     "triage": {
       "title": "Situer votre dossier",
-      "pill": "GRATUIT · 30 SECONDES",
+      "pill": "Gratuit · 60 secondes",
       "lead": "Indiquez le stade auquel se trouve votre opération : l’outil précise la première diligence à accomplir, le délai qui s’y attache et le mode d’honoraires correspondant.",
       "options": {
         "processus": "Nous mettons en place un processus de signature",
@@ -1811,15 +1798,8 @@
       "overline": "Consultation",
       "title": "Votre question ne figure pas parmi celles-ci ?",
       "lead": "Exposez votre situation en quelques lignes. Un avocat du cabinet vous répond sous 24 heures et vous indique, sans engagement, le périmètre de l’intervention et son coût.",
-      "fields": {
-        "nom": "Nom et prénom",
-        "email": "E-mail professionnel",
-        "tel": "Téléphone (facultatif)",
-        "societe": "Société"
-      },
       "situation": "Votre situation en quelques lignes : nature de l’acte, procédé de signature employé, échéance à tenir.",
       "cta": "Soumettre votre question",
-      "footnote": "Échange couvert par le secret professionnel de l’avocat (art. 66-5 de la loi du 31 décembre 1971). Vos données ne servent qu’au traitement de votre demande.",
       "marks": {
         "reponse": "<b>Réponse sous 24 heures</b>",
         "visio": "<b>15 minutes</b> d’évaluation gratuite en visio",
@@ -1898,9 +1878,10 @@
           "tag1": "Contrats commerciaux",
           "tag2": "Preuve & conventions de preuve",
           "tag3": "Contentieux contractuel",
-          "languages": "FR · EN · 中文 · ES — 15 ans de pratique en droit des affaires",
+          "languages": "FR · EN — 15 ans de pratique en droit des affaires",
           "angle": "<b>Sur cette fiche </b>: le choix du niveau de signature, la convention de preuve et la défense de l’acte contesté.",
-          "cta": "Consulter Mᵉ Petrova"
+          "cta": "Consulter Mᵉ Petrova",
+          "cta2": "En savoir plus sur Mᵉ Petrova"
         },
         "bazin": {
           "name": "Mᵉ Tony Bazin",
@@ -1910,7 +1891,8 @@
           "tag3": "Contentieux prud’homal",
           "languages": "FR · EN — 8 ans de pratique · chargé d’enseignement à la Faculté de droit d’Angers",
           "angle": "<b>Sur cette fiche </b>: les documents de la relation de travail signés à distance — contrats, avenants et ruptures — et leur contestation devant le conseil de prud’hommes.",
-          "cta": "Consulter Mᵉ Bazin"
+          "cta": "Consulter Mᵉ Bazin",
+          "cta2": "En savoir plus sur Mᵉ Bazin"
         }
       },
       "photoAlt": {
@@ -1978,5 +1960,99 @@
     "ctaFinal": {
       "title": "Votre situation ne rentre pas dans la fiche ?"
     }
+  },
+  "Consultation": {
+    "label": "Demande de consultation",
+    "close": "Fermer la demande de consultation",
+    "title": "Exposez votre situation",
+    "lead": "Un avocat du cabinet vous répond sous 24 heures et vous indique le périmètre de l’intervention ainsi que son coût, avant toute mise en œuvre.",
+    "objet": "Objet : signature électronique",
+    "fields": {
+      "nom": "Nom et prénom",
+      "email": "E-mail professionnel",
+      "tel": "Téléphone (facultatif)",
+      "societe": "Société"
+    },
+    "situation": "Votre situation",
+    "situationPlaceholder": "Stade de l’opération, difficulté rencontrée, échéance à tenir.",
+    "cta": "Soumettre votre demande",
+    "footnote": "Échange couvert par le secret professionnel de l’avocat (art. 66-5 de la loi du 31 décembre 1971). Vos données ne servent qu’au traitement de votre demande.",
+    "marks": {
+      "reponse": "<b>Réponse sous 24 heures</b>, par un avocat du cabinet",
+      "visio": "<b>15 minutes</b> d’évaluation gratuite en visio",
+      "prix": "<b>Prix ferme</b> annoncé avant toute intervention"
+    },
+    "phone": "<q>Vous préférez appeler ?</q> <tel>+ 33 (0) 1 78 90 46 46</tel> · Paris",
+    "tabLabel": "Consulter un avocat",
+    "overline": "Consultation — 15 minutes gratuites"
+  },
+  "EcommercePage": {
+    "hero": {
+      "crumb": "Accueil · Bibliothèque · Vendre, contracter & commercer · Contrats commerciaux · ",
+      "crumbCurrent": "Signature électronique",
+      "overline": "Avocat en droit du e-commerce",
+      "title": "Avocats du e-commerce en France",
+      "lead": "Le droit français du e-commerce, expliqué et pris en charge. Nos avocats conseillent vendeurs en ligne, places de marché et marques : CGV, parcours de commande, rétractation et garanties, prix et publicité, obligations des plateformes et enquêtes DGCCRF.",
+      "cta": "Parler à un avocat du e-commerce",
+      "ctaNote": "15 minutes gratuites en visio, prix ferme sous 24 h.",
+      "imageAlt": "",
+      "card": {
+        "title": "Un dossier, un avocat.",
+        "body": "Pas de transmission d’un service à l’autre : celui qui prend l’appel est celui qui plaide."
+      },
+      "badge": {
+        "years": "15 ANS",
+        "line1": "de pratique",
+        "line2": "à Paris"
+      },
+      "trust": {
+        "t1": "Conseillé clairement, rédigé pour le juge français",
+        "t2": "Avocats inscrits au Barreau",
+        "t3": "Pour vendeurs en ligne, marques & places de marché",
+        "t4": "Prix ferme, annoncé avant la mission"
+      },
+      "stats": {
+        "retractation": {
+          "value": "14 jours",
+          "label": "de rétractation pour le consommateur sur une vente à distance",
+          "ref": "Art. L. 221-18 C. conso."
+        },
+        "langues": {
+          "value": "FR · EN",
+          "label": "conseil multilingue, actes rédigés en français",
+          "ref": "100% avocat"
+        },
+        "analyse": {
+          "value": "48 h",
+          "label": "pour une première analyse écrite de votre dossier",
+          "ref": "Premier examen offert"
+        },
+        "clic": {
+          "value": "1 clic",
+          "label": "pour se rétracter d’un contrat en ligne, depuis le 19 juin 2026",
+          "ref": "Ord. 2026-2 du 5 janv. 2026"
+        },
+        "secret": {
+          "value": "Art. 66-5",
+          "label": "le secret professionnel qui protège votre dossier",
+          "ref": "Loi du 31 déc. 1971"
+        }
+      }
+    },
+      "principe": {
+        "overline": "Droit du e-commerce",
+        "title": "Des CGV qui tiennent quand la DGCCRF les lit — et quand un client les lit",
+        "p1": "Le droit de la consommation est écrit dans votre tunnel de commande. Ce qui est absent de la page est absent du contrat, et le consommateur garde le bénéfice de l’omission.",
+        "p2": "Le régulateur juge l’interface telle qu’un consommateur la rencontre. Nous rédigeons pour ce lecteur-là — et le même document tient devant l’administration et devant le juge.",
+        "p3": "Un avocat, pas un vendeur de modèles. Vos conditions sont rédigées par des avocats inscrits au Barreau, tenus au secret professionnel. Le coût est annoncé avant chaque étape.",
+        "cta": "Parler à un avocat",
+        "polaroid": "Rédigé par<br></br>des avocats",
+        "card": {
+          "overline": "Notre principe",
+          "title": "L’IA produit, l’avocat engage sa signature.",
+          "body": "Nos outils lisent votre tunnel, vos pages et vos conditions ; un avocat inscrit au Barreau vérifie, corrige et signe. Chaque livrable porte une responsabilité — pas une génération.",
+          "cta": "Voir les forfaits"
+        }
+      }
   }
 }

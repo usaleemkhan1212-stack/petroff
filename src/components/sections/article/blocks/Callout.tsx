@@ -5,8 +5,10 @@ import type { FC, SVGProps } from "react";
  *
  * - `rule` is Figma's `rulebox` — white, with its periwinkle border thickened
  *   to 5px on the left, and a plain `text-button` tag.
- * - `trap` is Figma's `trap` — pale gold, no border, and a brique tag that
- *   carries the **overline's 0.18em tracking** where the rule's does not.
+ * - `trap` is Figma's `trap` — **pale rose at 30% since the redesign**, where
+ *   it was pale gold, with a tag on the same wash and in **red** rather than
+ *   brique. It still carries the **overline's 0.18em tracking** where the
+ *   rule's does not.
  */
 const variants = {
   rule: {
@@ -14,8 +16,8 @@ const variants = {
     tag: "text-button bg-pale-periwinkle text-encre",
   },
   trap: {
-    box: "bg-pale-gold",
-    tag: "text-overline bg-brique/16 text-brique",
+    box: "bg-pale-rose/30",
+    tag: "text-overline bg-pale-rose/30 text-red",
   },
 } as const;
 
@@ -34,7 +36,7 @@ export function Callout({
 }) {
   return (
     <div
-      className={`rounded-note-lg flex flex-col gap-2 p-7 ${variants[variant].box}`}
+      className={`rounded-note-lg flex flex-col gap-2 p-5 sm:p-7 ${variants[variant].box}`}
     >
       <div className="flex items-center gap-3 pb-1">
         {Icon ? (

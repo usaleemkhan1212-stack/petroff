@@ -22,7 +22,7 @@ export function CTAFinal() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
+      <Container className="py-16 lg:py-24">
         <div className="rounded-panel bg-lilas-2 relative overflow-hidden px-12 py-16">
           {/*
             Sanctioned ornament exception: literal Figma coordinates. Both

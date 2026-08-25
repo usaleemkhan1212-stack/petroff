@@ -1,13 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ConsultationDrawer } from "@/components/sections/article/ConsultationDrawer";
-import { SideTab } from "@/components/sections/article/SideTab";
+import { ConsultationDrawer } from "@/components/consultation/ConsultationDrawer";
+import { SideTab } from "@/components/consultation/SideTab";
 import { StickyBar } from "@/components/sections/article/StickyBar";
 
 /**
  * The article's three consultation controls and the one piece of state they
- * share: the gold side tab, the sticky contact bar, and the drawer both of
+ * share: the red side tab, the sticky contact bar, and the drawer both of
  * them open.
  *
  * The article column's own `consult` block deliberately stays out of this —
@@ -46,7 +46,8 @@ export function Consultation() {
   return (
     <>
       <StickyBar onConsult={onOpen} />
-      <SideTab hidden={open} onOpen={onOpen} />
+      {/* Red since the redesign (13318:3413), matching the home tab. */}
+      <SideTab hidden={open} onOpen={onOpen} tone="red" />
       <ConsultationDrawer open={open} onClose={onClose} />
     </>
   );

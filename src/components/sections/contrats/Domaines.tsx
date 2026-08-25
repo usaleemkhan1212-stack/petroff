@@ -19,8 +19,8 @@ export function Domaines() {
 
   return (
     <section className="bg-white">
-      <Container className="py-24">
-        <div className="flex flex-col gap-12">
+      <Container className="py-16 lg:py-24">
+        <div className="flex flex-col gap-8 lg:gap-12">
           <SectionHeading
             overline={t("overline")}
             title={t("title")}
@@ -32,25 +32,18 @@ export function Domaines() {
           <div className="flex flex-col gap-5">
             {/* Nine missions, 3 -> 2 -> 1, cards equal height per row. */}
             <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {missions.map(({ key, Icon, tone, raised }) => (
+              {missions.map(({ key, Icon, tone }) => (
                 <li key={key} className="flex">
                   {/*
-                    Cards rest on lilas here, against the Contentieux page's
-                    white, and lift to white with a 34px shadow on hover.
-                    Figma draws the first card already in that lifted state, so
-                    it is rendered that way rather than "corrected" — if that
-                    turns out to be the designer demonstrating hover, drop
-                    `raised` from the first mission and nothing else changes.
+                    White on white, like the Contentieux page. Settled by
+                    counting pixels in the node render: #ffffff covers both the
+                    section and every card, and lilas appears only inside the
+                    tag pills. Figma draws a shadow on the first card and none
+                    on the others, which is the designer showing `Card`'s hover
+                    state — exactly as on the home Domaines and Actus grids.
+                    The blur is 34px here rather than Card's default 17.
                   */}
-                  <Card
-                    className={cn(
-                      "flex min-w-0 flex-1 flex-col gap-2 px-6 py-7 transition",
-                      "hover:bg-white hover:shadow-[0px_14px_34px_rgba(0,0,0,0.1)]",
-                      raised
-                        ? "bg-white shadow-[0px_14px_34px_rgba(0,0,0,0.1)]"
-                        : "bg-lilas",
-                    )}
-                  >
+                  <Card className="flex min-w-0 flex-1 flex-col gap-2 px-6 py-7 transition hover:shadow-[0px_14px_34px_rgba(0,0,0,0.1)]">
                     <span
                       aria-hidden="true"
                       className={cn(

@@ -19,8 +19,8 @@ export function Prestations() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
-        <div className="flex flex-col gap-12">
+      <Container className="py-16 lg:py-24">
+        <div className="flex flex-col gap-8 lg:gap-12">
           {/* Figma caps the title at 680 too, which is what wraps it to two lines. */}
           <SectionHeading
             overline={t("overline")}

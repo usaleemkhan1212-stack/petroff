@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
+import SpeechBubble from "@/assets/icons/speech-bubble.svg";
 import { Container } from "@/components/ui/Container";
 
 /** Fraction of the page that must be scrolled before the bar appears. */
@@ -14,10 +14,22 @@ const APPEAR_AT = 0.5;
  * It appears once the reader is half way down the page and then stays fixed
  * to the bottom — the page scrolls normally underneath, since the bar is
  * fixed rather than in flow. Its ✕ dismisses it for the rest of the visit;
- * the gold `SideTab` is no longer its collapsed state but a control of its
- * own, so dismissing the bar no longer takes the consultation away with it.
+ * the `SideTab` is no longer its collapsed state but a control of its own, so
+ * dismissing the bar no longer takes the consultation away with it.
  *
- * Hidden below lg, where a 78px bar would cover too much of a phone screen.
+ * **A pale-rose band since the redesign** (`13318:3406`), under a 2px red rule
+ * and 98 tall rather than 78: it was an encre bar with white copy and a gold
+ * button. Its button is now white with red copy and a rotated speech bubble.
+ *
+ * Two deliberate departures from the comp, both asked for:
+ * - its ground is **60%**, not Figma's 30% — the bar is fixed over live page
+ *   content, and at 30% the copy could not be read against whatever ran
+ *   underneath it;
+ * - it fades as well as slides. `translate-y-full` alone left the 2px red rule
+ *   showing along the bottom edge when the bar was dismissed, so the closed
+ *   state carries `opacity-0` too.
+ *
+ * Hidden below lg, where it would cover too much of a phone screen.
  */
 export function StickyBar({
   onConsult,
@@ -57,8 +69,8 @@ export function StickyBar({
       */
       aria-hidden={!barOpen}
       inert={!barOpen}
-      className={`bg-encre fixed inset-x-0 bottom-0 z-20 hidden transition-transform duration-300 motion-reduce:transition-none lg:block ${
-        barOpen ? "translate-y-0" : "translate-y-full"
+      className={`bg-pale-rose/60 border-red fixed inset-x-0 bottom-0 z-20 hidden border-t-2 transition-[translate,opacity] duration-300 motion-reduce:transition-none lg:block ${
+        barOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       }`}
     >
       {/*
@@ -68,27 +80,29 @@ export function StickyBar({
         which stacked the copy, the button and the ✕ vertically and made the
         bar 119 tall against the comp's 78.
       */}
-      <Container className="py-3.5">
+      <Container className="py-6">
         <div className="flex items-center gap-4.5">
           <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-            <p className="text-h4 font-poppins text-white">{t("title")}</p>
-            <p className="text-small text-white/70">{t("detail")}</p>
+            <p className="text-h4 font-poppins text-encre">{t("title")}</p>
+            <p className="text-small text-periwinkle">{t("detail")}</p>
           </div>
 
-          {/* Figma draws 22/11 sides, between Button's sm (20/12) and md (28/12). */}
-          <Button
-            variant="gold"
+          {/* Written out rather than using `Button`: white ground with red
+              copy and a rotated speech bubble is not one of its variants. */}
+          <button
+            type="button"
             onClick={onConsult}
-            className="shrink-0 px-5.5 py-2.75"
+            className="text-button font-poppins text-red focus-visible:outline-gold flex h-10.75 shrink-0 cursor-pointer items-center gap-3 rounded-full bg-white px-5 transition-colors hover:bg-white/85 focus-visible:outline-2 focus-visible:outline-offset-2"
           >
+            <SpeechBubble aria-hidden="true" width={18} height={18} className="-rotate-90" />
             {t("cta")}
-          </Button>
+          </button>
 
           <button
             type="button"
             onClick={() => setDismissed(true)}
             aria-label={t("dismiss")}
-            className="text-lead font-inter w-5.5 shrink-0 cursor-pointer text-center leading-none text-white/70 transition-colors hover:text-white focus-visible:outline-gold focus-visible:outline-2 focus-visible:outline-offset-2"
+            className="text-lead font-inter text-encre/62 hover:text-encre w-5.5 shrink-0 cursor-pointer text-center leading-none transition-colors focus-visible:outline-gold focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <span aria-hidden="true">✕</span>
           </button>

@@ -21,7 +21,7 @@ export function Espace() {
 
   return (
     <section className="bg-white">
-      <Container className="py-24">
+      <Container className="py-16 lg:py-24">
         {/*
           The two columns are NOT equal here, unlike the Contentieux page:
           Figma draws 590.5 + 12 + 642.5 inside the 1245 band, so the ratio is
@@ -30,7 +30,7 @@ export function Espace() {
           the row gap keeps the sibling page's 64px rhythm. The cells stretch
           to equal height, as on the Contentieux page.
         */}
-        <div className="grid grid-cols-1 gap-x-3 gap-y-16 lg:grid-cols-[590.5fr_642.5fr]">
+        <div className="grid grid-cols-1 gap-x-3 gap-y-10 lg:grid-cols-[590.5fr_642.5fr] lg:gap-y-16">
           <div className="flex flex-col gap-5">
             {/* The lead sits 20px under the H2 here, not the usual 12. */}
             <SectionHeading

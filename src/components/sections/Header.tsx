@@ -45,7 +45,7 @@ export function Header() {
                     ) : (
                       <MaybeLink
                         href={item.href}
-                        className="text-nav text-encre hover:text-periwinkle whitespace-nowrap transition-colors"
+                        className="text-small text-encre hover:text-periwinkle whitespace-nowrap transition-colors"
                       >
                         {t(item.key)}
                       </MaybeLink>

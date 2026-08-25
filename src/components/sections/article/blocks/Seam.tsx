@@ -1,13 +1,15 @@
-import LawyerFigure from "@/assets/icons/lawyer-figure.svg";
+import Image from "next/image";
+import lawyerPortrait from "@/assets/images/lawyer-portrait-inline.jpg";
 
 /**
- * Figma's `seam`: a lilas strip with a gold left edge that breaks up the long
- * runs of prose, carrying an illustrated figure, two lines and a link.
+ * Figma's `seam` (`13318:2715`, `13318:3562`): the strip that breaks up the
+ * long runs of prose, carrying a portrait, two lines and a link.
  *
- * The figure is one composed asset — Figma builds it from 29 separately
- * inset vectors, the same shape as the Bibliotheque hero's skyline, so it is
- * flattened into `lawyer-figure.svg` at their exact insets rather than
- * reproduced as 29 positioned elements.
+ * **Pale mint since the redesign**, where it was lilas with a gold left edge,
+ * and a **photograph** where it was the composed `lawyer-figure.svg`. Its
+ * corners are 54px at the top left and 16 elsewhere, and the link now sits
+ * under the copy rather than off to the right — which is most of why the block
+ * grew from 124 to 220.
  */
 export function Seam({
   title,
@@ -19,30 +21,20 @@ export function Seam({
   cta: string;
 }) {
   return (
-    <div className="bg-lilas border-gold flex flex-wrap items-center justify-between gap-5 rounded-r-2xl border-l-4 px-7 py-5">
-      <div className="flex min-w-0 flex-1 items-center gap-5">
-        <LawyerFigure
-          aria-hidden="true"
-          width={50.125}
-          height={84.202}
-          className="hidden shrink-0 sm:block"
-        />
-        {/*
-          Flexed, not a fixed measure. Both seams are exactly 124.2 tall in the
-          comp — the 84.2px figure plus its padding drives the height, and the
-          text is meant to fit beside it. Figma gives the two text frames
-          different widths (421 and 375); pinning either one wraps the other
-          onto a fourth line and pushes that seam to 144.
-        */}
-        <p className="text-encre min-w-0 flex-1">
-          <span className="text-body-strong">{title}</span>
-          <br />
-          <span className="text-body">{body}</span>
-        </p>
+    <div className="bg-pale-mint flex items-center rounded-tl-[54px] rounded-tr-[16px] rounded-br-[16px] rounded-bl-[16px] p-5 sm:py-7 sm:pl-9 sm:pr-9 lg:pr-16">
+      <div className="flex min-w-0 flex-1 items-center gap-7">
+        <div className="relative hidden h-41 w-35.25 shrink-0 overflow-hidden rounded-tl-[59.854px] rounded-tr-[2.993px] rounded-br-[29.927px] rounded-bl-[17.956px] sm:block">
+          <Image src={lawyerPortrait} alt="" fill sizes="141px" className="object-cover" />
+        </div>
+
+        <div className="flex min-w-0 flex-1 flex-col justify-center gap-5">
+          <p className="text-encre min-w-0">
+            <span className="text-body-strong">{title}</span>{" "}
+            <span className="text-body">{body}</span>
+          </p>
+          <span className="text-button font-poppins text-periwinkle">{cta}</span>
+        </div>
       </div>
-      <span className="text-button font-poppins text-periwinkle shrink-0">
-        {cta}
-      </span>
     </div>
   );
 }

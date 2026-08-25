@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import ColumnedBuilding from "@/assets/icons/columned-building.svg";
+import ColumnedBuildingPaleBlue from "@/assets/icons/columned-building-pale-blue.svg";
 import LawyerRobeColour from "@/assets/icons/lawyer-robe-colour.svg";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -9,8 +9,10 @@ export function CTAFinal() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
-        <div className="rounded-panel bg-lilas-2 relative overflow-hidden px-12 py-16">
+      {/* Bottom padding only: both frames give this section pb-96 and no top
+          padding, because Actus above it already closes with its own 96. */}
+      <Container className="pb-16 lg:pb-24">
+        <div className="rounded-panel bg-lilas-2 relative overflow-hidden px-6 py-12 sm:px-12 lg:py-16">
           {/*
             Sanctioned ornament exception: the offsets are the literal Figma
             coordinates, and both shapes deliberately bleed past the panel so
@@ -26,7 +28,7 @@ export function CTAFinal() {
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 hidden lg:block"
           >
-            <ColumnedBuilding
+            <ColumnedBuildingPaleBlue
               width={180}
               height={135}
               className="absolute top-[244px] left-[-30px] opacity-90"
@@ -43,9 +45,17 @@ export function CTAFinal() {
             <h2 className="text-h2 text-encre">{t("title")}</h2>
             <p className="text-body text-encre/62">{t("lead")}</p>
             <span aria-hidden="true" className="h-3.5" />
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg">{t("ctaPrimary")}</Button>
-              <Button size="lg" variant="gold">
+            {/*
+              Below sm the buttons go full width and their labels are allowed
+              to wrap: "Faire évaluer mon dossier" is 266px against a 232px
+              content box at 320, and the panel is overflow-hidden, so
+              whitespace-nowrap clipped it. Figma specifies desktop only.
+            */}
+            <div className="flex w-full flex-wrap justify-center gap-4">
+              <Button size="lg" className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap">
+                {t("ctaPrimary")}
+              </Button>
+              <Button size="lg" variant="gold" className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap">
                 {t("ctaSecondary")}
               </Button>
             </div>

@@ -10,8 +10,8 @@ export function Bib() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
-        <div className="flex flex-col gap-12">
+      <Container className="py-16 lg:py-24">
+        <div className="flex flex-col gap-8 lg:gap-12">
           {/* Overline and H2 only — no lead in this one. */}
           <SectionHeading
             overline={t("overline")}

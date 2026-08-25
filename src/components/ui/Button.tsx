@@ -1,12 +1,14 @@
 import { cn } from "@/lib/utils";
 
-type Variant = "solid" | "outline" | "gold";
+type Variant = "solid" | "outline" | "gold" | "red";
 type Size = "sm" | "md" | "lg";
 
 const variants: Record<Variant, string> = {
   solid: "bg-encre text-white hover:bg-encre/90",
   outline: "border-[1.5px] border-encre text-encre hover:bg-encre/5",
   gold: "bg-gold text-white hover:bg-brique",
+  /* Petroff/Red — the home page consultation drawer's submit. */
+  red: "bg-red text-white hover:bg-red/90",
 };
 
 /** sm = header (20/12), md = search band (28/12), lg = hero (28/16). */

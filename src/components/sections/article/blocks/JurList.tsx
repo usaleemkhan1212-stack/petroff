@@ -15,7 +15,7 @@ export function JurCard({
   children: ReactNode;
 }) {
   return (
-    <li className="rounded-note-lg border-encre/8 flex flex-col border bg-white p-7">
+    <li className="rounded-note-lg border-encre/8 flex flex-col border bg-white p-5 sm:p-7">
       <p className="text-small-strong text-brique">{citation}</p>
       <h3 className="text-h3 text-encre mt-1">{title}</h3>
       <p className="text-body text-encre/62 mt-2">{children}</p>

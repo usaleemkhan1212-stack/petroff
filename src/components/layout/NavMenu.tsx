@@ -61,7 +61,7 @@ export function NavMenu({
     >
       <Link
         href={href}
-        className="text-nav text-encre hover:text-periwinkle whitespace-nowrap transition-colors"
+        className="text-small text-encre hover:text-periwinkle whitespace-nowrap transition-colors"
       >
         {label}
       </Link>
@@ -107,7 +107,7 @@ export function NavMenu({
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="text-nav text-encre hover:text-periwinkle block px-4 py-2.5 transition-colors"
+                  className="text-small text-encre hover:text-periwinkle block px-4 py-2.5 transition-colors"
                 >
                   {t(item.labelKey)}
                 </Link>

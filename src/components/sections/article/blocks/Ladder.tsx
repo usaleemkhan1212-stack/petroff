@@ -34,7 +34,7 @@ export function Ladder() {
       {rungs.map(({ key, Icon, tone }) => (
         <li
           key={key}
-          className="rounded-note-lg border-encre/8 flex flex-col gap-2.5 border bg-white p-7"
+          className="rounded-note-lg border-encre/8 flex flex-col gap-2.5 border bg-white p-5 sm:p-7"
         >
           <div className="flex flex-wrap items-center gap-4">
             <span
@@ -46,10 +46,16 @@ export function Ladder() {
             >
               <Icon className="text-encre" width={24} height={24} />
             </span>
-            <h3 className="text-h3 text-encre min-w-0 flex-1">
+            {/*
+              `grow basis-40`, not `flex-1`. flex-1 sets flex-basis:0, so the
+              row always "fits" and the pill never wraps — it just got squeezed
+              and painted over the title. A 160px basis makes the line overflow
+              on a phone, which is what pushes the pill onto its own row.
+            */}
+            <h3 className="text-h3 text-encre min-w-0 grow basis-40">
               {t(`${key}.title`)}
             </h3>
-            <span className="text-small-strong bg-lilas-2 text-encre/62 rounded-full px-3.5 py-1.25">
+            <span className="text-small-strong bg-pale-mint text-encre/62 shrink-0 rounded-full px-3.5 py-1.25">
               {t(`${key}.level`)}
             </span>
           </div>

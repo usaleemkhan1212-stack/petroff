@@ -22,9 +22,9 @@ export function SearchBand() {
 
   return (
     <section className="bg-encre">
-      <Container className="py-16">
+      <Container className="py-12 lg:py-16">
         <div className="flex flex-col gap-5">
-          <h2 className="text-h2-sm font-poppins text-white">{t("heading")}</h2>
+          <h2 className="text-h3 font-poppins text-white">{t("heading")}</h2>
 
           <form
             role="search"
@@ -48,7 +48,7 @@ export function SearchBand() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t("placeholder")}
-              className="text-body text-encre placeholder:text-encre/50 min-w-0 flex-1 bg-transparent pl-2 text-ellipsis outline-none"
+              className="text-body text-encre placeholder:text-encre/62 min-w-0 flex-1 bg-transparent pl-2 text-ellipsis outline-none"
             />
             <Button type="submit" variant="gold" size="md">
               {t("submit")}

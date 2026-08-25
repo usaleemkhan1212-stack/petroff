@@ -18,6 +18,7 @@ const muted = "text-small text-encre/62";
 const badgeTones = {
   blue: "bg-pale-blue",
   gold: "bg-pale-gold",
+  mint: "bg-pale-mint",
 } as const;
 
 export function OpenData() {
@@ -26,8 +27,8 @@ export function OpenData() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
-        <div className="flex flex-col gap-12">
+      <Container className="py-16 lg:py-24">
+        <div className="flex flex-col gap-8 lg:gap-12">
           <SectionHeading
             overline={t("overline")}
             title={t("title")}
@@ -67,7 +68,7 @@ export function OpenData() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={t("verify.placeholder")}
-                  className="text-body text-encre placeholder:text-encre/50 min-w-0 flex-1 bg-transparent text-ellipsis outline-none"
+                  className="text-body text-encre placeholder:text-encre/62 min-w-0 flex-1 bg-transparent text-ellipsis outline-none"
                 />
                 <Button type="submit">{t("verify.submit")}</Button>
               </form>
@@ -105,7 +106,7 @@ export function OpenData() {
               <ul className="flex flex-col gap-3">
                 {watchItems.map((key) => (
                   <li key={key} className={cn(row, "flex-col gap-1")}>
-                    <p className="text-nav text-encre">
+                    <p className="text-small text-encre">
                       {t(`watch.items.${key}.title`)}
                     </p>
                     <p className={muted}>{t(`watch.items.${key}.meta`)}</p>

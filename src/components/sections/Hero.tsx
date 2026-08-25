@@ -11,7 +11,7 @@ export function Hero() {
       <HeroOrnaments />
 
       <Container className="relative">
-        <div className="mx-auto flex max-w-225 flex-col items-center pt-22.5 pb-24 text-center lg:min-h-165">
+        <div className="mx-auto flex max-w-225 flex-col items-center py-16 text-center lg:min-h-165 lg:pt-22.5 lg:pb-24">
           <p className="text-overline font-poppins text-brique">{t("overline")}</p>
 
           <h1 className="text-display text-encre">

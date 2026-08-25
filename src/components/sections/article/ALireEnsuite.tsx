@@ -42,24 +42,29 @@ export function ALireEnsuite() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
+      {/* Bottom padding only: Figma puts this section's overline at y=0, the
+          same shape Interlocuteurs and the home CTAFinal have. Every ink band
+          in the section was landing a constant 96px low before this. */}
+      <Container className="pb-16 lg:pb-24">
         <p className="text-overline font-poppins text-brique">{t("overline")}</p>
         <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
         <p className="text-small text-encre/62 mt-3.5">{t("lead")}</p>
 
-        {/* Previous / next. Figma sets the two labels differently on purpose:
-            the left one is the brique overline, the right one the periwinkle
-            Button style with no tracking. */}
+        {/* Previous / next. **Both labels are periwinkle since the redesign** —
+            the left one was brique, verified by sampling the node render at
+            #2e5bb8 for both. They keep different type styles on purpose: the
+            left is the overline (0.18em tracking), the right the Button style
+            with none. The section overline above stays brique (#a67c1b). */}
         <nav className="mt-11 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="rounded-note-lg border-encre/8 flex flex-col items-start gap-2 border bg-white p-7">
-            <p className="text-overline font-poppins text-brique">
+          <div className="rounded-note-lg border-encre/8 flex flex-col items-start gap-2 border bg-white p-5 sm:p-7">
+            <p className="text-overline font-poppins text-periwinkle">
               {t("prevLabel")}
             </p>
             <p className="text-h3 font-poppins text-encre">
               {t("items.formation.title")}
             </p>
           </div>
-          <div className="rounded-note-lg border-encre/8 flex flex-col items-end gap-2 border bg-white p-7 text-right">
+          <div className="rounded-note-lg border-encre/8 flex flex-col items-end gap-2 border bg-white p-5 sm:p-7 text-right">
             <p className="text-button font-poppins text-periwinkle">
               {t("nextLabel")}
             </p>
@@ -110,8 +115,9 @@ export function ALireEnsuite() {
           ))}
         </ul>
 
-        {/* The commented model. Bordered but not white — it sits on lilas. */}
-        <div className="rounded-note-lg border-encre/8 mt-6 flex flex-col items-start gap-6.5 border p-7 sm:flex-row sm:items-center">
+        {/* The commented model. **Pale gold since the redesign**, where it was
+            a bare bordered strip on the lilas ground. */}
+        <div className="rounded-note-lg bg-pale-gold mt-6 flex flex-col items-start gap-6.5 p-5 sm:p-7 sm:flex-row sm:items-center">
           <ModelFolder
             aria-hidden="true"
             width={64}
@@ -134,11 +140,22 @@ export function ALireEnsuite() {
           <p className="text-button font-poppins text-encre/62">
             {t("sameCatLabel")}
           </p>
-          {/* Two columns, 32px apart and no row gap — the rules do the work.
-              `items-start` because Figma lets each row keep its own height:
-              a one-line row's rule sits higher than its two-line neighbour's,
-              where a stretched grid would level the two. */}
-          <ul className="grid grid-cols-1 items-start gap-x-8 pt-3.5 sm:grid-cols-2">
+          {/*
+            Two columns 64px apart with a 20px row gap, filled **column-major**
+            — Figma runs the first two items down the left column and the last
+            two down the right, where a plain `grid-cols-2` fills across and
+            interleaves them. `grid-cols-2` is still needed alongside the
+            column flow: without it the tracks size to their content — 557 and
+            624 against Figma's equal 590.5 — and the first row wraps.
+            The rows are `[auto_auto]`, not `grid-rows-2`: Tailwind maps that
+            to `repeat(2, minmax(0,1fr))`, which levels the two tracks, where
+            Figma sizes each to its own content (41 and 66).
+
+            `items-start` because Figma lets each row keep its own height: a
+            one-line row's rule sits higher than its two-line neighbour's,
+            where a stretched grid would level the two.
+          */}
+          <ul className="grid grid-cols-1 items-start gap-x-16 gap-y-5 pt-8.5 sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-[auto_auto]">
             {sameCat.map((key) => (
               <li
                 key={key}

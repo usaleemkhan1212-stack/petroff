@@ -9,8 +9,8 @@ export function Tools() {
 
   return (
     <section className="bg-encre">
-      <Container className="py-16">
-        <div className="flex flex-col gap-12">
+      <Container className="py-12 lg:py-16">
+        <div className="flex flex-col gap-8 lg:gap-12">
           <SectionHeading
             overline={t("overline")}
             title={t("title")}

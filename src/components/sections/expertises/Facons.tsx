@@ -16,8 +16,8 @@ export function Facons() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
-        <div className="flex flex-col gap-12">
+      <Container className="py-16 lg:py-24">
+        <div className="flex flex-col gap-8 lg:gap-12">
           {/* No lead in this one — overline and H2 only. */}
           <SectionHeading
             overline={t("overline")}

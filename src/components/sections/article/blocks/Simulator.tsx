@@ -20,11 +20,11 @@ export function Simulator() {
   const t = useTranslations("ArticlePage.simulator");
 
   return (
-    <div className="rounded-note-lg bg-lilas-2 p-7">
+    <div className="rounded-note-lg bg-lilas-2 p-5 sm:p-7">
       <div className="flex flex-col gap-3">
         <div className="flex flex-wrap items-center gap-3">
           <p className="text-h3 text-encre font-poppins">{t("title")}</p>
-          <span className="text-button font-poppins bg-encre/80 text-rose rounded-full px-3 py-1">
+          <span className="text-button font-poppins bg-encre/8 text-encre/62 rounded-full px-3 py-1">
             {t("pill")}
           </span>
         </div>
@@ -56,13 +56,13 @@ export function Simulator() {
       </div>
 
       <div className="mt-4.5 flex flex-col gap-3.5">
-        <span className="text-button font-poppins bg-gold w-fit rounded-full px-6.5 py-3.5 text-white">
+        <span className="text-button font-poppins bg-encre w-fit rounded-full px-6.5 py-3.5 text-white">
           {t("cta")}
         </span>
         <p className="text-small text-encre/62">{t("note")}</p>
       </div>
 
-      <div className="rounded-note-lg border-encre/10 mt-5 border bg-white px-6 py-5.5">
+      <div className="rounded-note-lg border-encre/10 mt-5 border bg-white px-4 py-5 sm:px-6 sm:py-5.5">
         <div className="flex flex-col gap-3">
           <dl>
             {rows.map((key, index) => (
@@ -86,8 +86,9 @@ export function Simulator() {
             ))}
           </dl>
 
-          {/* Brique at 14% — the only tint of it on the site. */}
-          <p className="rounded-field text-body bg-brique/14 text-brique px-4.5 py-3.5">
+          {/* Pale rose at 30% with red copy since the redesign; it was a
+              brique tint before, the only one on the site. */}
+          <p className="rounded-field text-body bg-pale-rose/30 text-red px-4.5 py-3.5">
             {t.rich("verdict", {
               b: (chunks) => <span className="text-h4 font-poppins">{chunks}</span>,
             })}
@@ -102,15 +103,26 @@ export function Simulator() {
             })}
           </p>
 
-          <div className="rounded-note-lg bg-encre flex flex-col gap-3 p-7">
+          {/* The innermost of three nested panels — outer 28 + result 24 + this 28
+              was 80px of inset a side, leaving 118px of content at 320. */}
+          <div className="rounded-note-lg bg-encre flex flex-col gap-3 p-4 sm:p-7">
             <p className="text-h4 font-poppins text-white">{t("microTitle")}</p>
             <p className="text-small text-white/70">{t("microBody")}</p>
 
+            {/*
+              The field and its button stack until there is room for both.
+              `min-w-0 flex-1` alone let the placeholder shrink below its own
+              content — it wrapped onto four lines while the button stayed
+              beside it and painted over the text. Full width first, side by
+              side from `md` — the pattern the Consult footnote uses, but one
+              breakpoint later: at `sm` the row is only 414 wide and the
+              placeholder still wrapped onto two lines.
+            */}
             <div className="rounded-field flex flex-wrap items-center gap-1.5 bg-white p-1.25">
-              <span className="text-body text-encre/62 min-w-0 flex-1 px-2">
+              <span className="text-body text-encre/62 w-full px-2 md:w-auto md:min-w-0 md:flex-1">
                 {t("microPlaceholder")}
               </span>
-              <span className="text-button font-poppins bg-gold rounded-full px-4 py-2.5 text-white">
+              <span className="text-button font-poppins bg-red w-full rounded-full px-4 py-2.5 text-center text-white md:w-auto">
                 {t("microCta")}
               </span>
             </div>

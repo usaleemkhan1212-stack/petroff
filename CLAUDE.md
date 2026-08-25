@@ -29,6 +29,412 @@ Sections, in order:
 | 9 | CTAFinal | `12843:899` | done |
 | 10 | Footer | `12843:901` | done |
 
+### Redesign pass — frame `13323:4394` (1920x5722)
+
+A second Home frame, being re-derived section by section. Same ten sections in
+the same order; the user reports the changes are mostly colours.
+
+- **Header (`13323:4395`) is unchanged.** `get_design_context` returns code
+  byte-identical to the old `12841:24111` — same `rgba(246,245,242,0.2)` ground,
+  `encre/8` rule, `#122a4c` CTA and active language pill, 72px row in a 1245
+  container — and all four assets (logo mark, wordmark, tagline, phone) match
+  the committed files' path data exactly. **Diff the old node against the new
+  one before rebuilding a section**; one extra call saves a rebuild.
+- Re-deriving it did surface a long-standing deviation, now fixed: Figma
+  specifies the nav links as **Inter Regular 16/1.5** — its "Petroff/Small 16"
+  style, i.e. `text-small` — where the build used the invented `--text-nav`
+  token, Inter **Medium** 16 at line-height normal. Both frames say Regular, so
+  `--text-nav` never had a Figma style behind it. The header links, the
+  `NavMenu` dropdown and the `MobileNav` panel now take `text-small`; all five
+  link widths land within **0.9px** of the comp (82/80/95/130/75 against
+  81.2/79.1/94.1/129.6/74.5). `--text-nav` is still used by the Footer,
+  OpenData and the Contentieux Forfaits — **check each against its own frame**
+  when that section is re-derived rather than changing the token globally.
+- Its measured geometry otherwise matches: row 1245 @ 337.5, logo 148.8x36.4,
+  lang pill 211.8x41.2 @ 1105.3, CTA 211.4x43.2 @ 1324.5, phone exactly 38x38
+  @ 1544.5. The pill's +2 and the header's 73-against-72 are the usual
+  border-box difference. No overflow from 1920 down to 320.
+- The nav cluster sits ~45px left of the comp because our two submenu carets
+  are not in Figma. That is the documented Expertises/Bibliotheque dropdown
+  addition, not a layout fault.
+
+- **Hero (`13323:4447`) changed in exactly three fills, and nothing else.** All
+  seven ornament drawings are byte-identical in path data to the committed
+  assets, every one of the eight ornaments keeps its exact Figma coordinate and
+  box, and the copy is character-identical to `messages/fr.json`. The layout
+  numbers the build already had — 900px inner, `pt-22.5` / `pb-24`, 560px lead,
+  22 and 32px spacers, 660px stage — are unchanged. What moved:
+  - `laurel-branch.svg`: 6 fills brique -> **mint `#44CBA1`**
+  - `courthouse.svg`: 4 fills pale-periwinkle -> **pale-blue `#DCE4F2`**
+  - `arc-de-triomphe.svg`: 2 fills pale-periwinkle -> **pale-blue**
+- `--color-mint` (#44cba1) was added for the first of those. It is Figma's own
+  **"Petroff/Mint"** library style, so it goes in under the `--text-badge`
+  precedent — a named style with no matching token — rather than being invented.
+- **Two of those three files are shared, and were recoloured in place** on the
+  user's instruction to follow Figma: `laurel-branch` is also used by the
+  Contentieux hero and both FAQ illustrations, and `courthouse` by the
+  Contentieux hero. Those pages therefore now show a mint laurel and a pale-blue
+  courthouse **ahead of their own frames being re-derived**. If a redesigned
+  domain frame turns out to keep brique, fork a variant for it rather than
+  reverting the file. `arc-de-triomphe.svg` is home-only, so it carries no such
+  risk.
+- Measured against the frame: section **660 exactly**, and the pale-gold marker
+  bar lands at **exactly 420x26 @ (750, 236)** — all four coordinates. Note
+  Figma draws that bar as a separate rect centred on the 1920 stage where the
+  build anchors it to the highlighted chunk with em units; the two agree to the
+  pixel, so leave it anchored. Overline, title and lead land within 0.6px; the
+  CTA row's 53.2 against 51 is the outline `Button`'s 1.5px border sitting
+  outside the box, as everywhere else.
+- No overflow from 1920 down to 320.
+- **SearchBand (`13323:4519`) is unchanged too** — identical generated code to
+  the old `12843:887`, no assets, no new tokens. Re-deriving it did fix two
+  more long-standing mismatches, on the same "follow Figma" instruction:
+  - its heading is Figma's **"Petroff/H3 Card"** — Poppins SemiBold **20**/1.3,
+    i.e. `text-h3` — where the build used `text-h2-sm` (Poppins SemiBold 24).
+    It now renders 20px on a 26px line box, exactly the comp's text height.
+    `text-h2-sm` is still correct for the consultation drawer, so the token was
+    left alone and only this call site changed.
+  - its placeholder is **encre/62**, where the build used `encre/50`.
+- Measured: form 820x59.2 at y=110 and the gold button 149.2x43.2 both land on
+  the comp; section 295.2 against Figma's 293. The chips drift right by ~2px
+  each — the usual border-box difference, five chips, so the row ends 12.3px
+  past the comp's 1208. Nothing else moved.
+- **Expertises (`13323:4538`) is the first section with a real change**, and it
+  is again colour only: the eight card icon tiles go from a two-colour
+  blue/gold alternation to **four tints**, and the sequence does not repeat —
+  row 1 is blue / pink / mint / gold, row 2 is mint / gold / blue / pink. So
+  `tone` is carried per card in `lib/expertises.ts`, not derived from the index.
+  Everything else — all eight icons (path data and `stroke-width="1.95"`
+  identical to the committed files), the copy, the 296.25 card width, the
+  52px tile at `rounded-tile`, the 12px spacer, the head — is untouched.
+- Two more named library styles became tokens, same precedent as `--color-mint`:
+  **`--color-pale-mint` (#e8f5f1, "Petroff/Pale_Mint")** and **`--color-pink`
+  (#fac5ef, "Petroff/Pink")**. The pink tile is drawn at **40%** —
+  `rgba(250,197,239,0.4)` — so the class is `bg-pink/40`; Figma never uses that
+  colour at full strength here.
+- The **Expertises hub page's own `domaines.ts` still alternates blue/gold**.
+  Its frame (`12858:886`) has not been re-derived, so it was left alone — but it
+  is the obvious next place this four-tint palette will show up.
+- Measured: all eight cards land on their exact Figma x (337.5 / 653.75 / 970 /
+  1286.25) and the head's three bands within 0.2px. Card height 247.6 against
+  245 and row 2 at 560.7 against 558 are the 2px card border, as everywhere.
+  **Figma's own frames are undersized again** — `grid-exp` declares 502 while
+  its two 245 rows plus a 20 gap need 510, and the section declares 891 while
+  its content needs ~899 — the same thing already recorded for the Contrats
+  Domaines grid. Judge this section by the card positions, not its frame height.
+- Figma still draws card 1 with a permanent `0px 14px 17px` drop shadow. That
+  is unchanged from the old frame and is still read as the designer showing
+  `Card`'s hover state, so it is still not reproduced statically.
+- **Bibliotheque (`13323:4607`) changes in one line**: the three big counts are
+  **mint** (`#44CBA1`) where they were `periwinkle`. Same `text-h2` Poppins Bold
+  40 otherwise, and nothing else in the section moved — no assets, no new
+  tokens (mint arrived with the hero), same white ground, same 401.67 cards at
+  `px-7 py-9`, same brique CTAs.
+- Measured: all three cards on their exact Figma x (337.5 / 759.17 / 1180.83),
+  every band within 1.2px, section 671.9 against Figma's 669 — the 2px card
+  border. Card 2's CTA still sits 25px above the other two (494.5 against
+  519.7), which is the comp's own two-line description and the documented
+  "card CTAs are not bottom-aligned" behaviour.
+- **OpenData (`13323:4632`) changes one badge**: **Judilibre is pale mint**
+  where it was pale gold. The other three source badges are unchanged, so
+  `sources` now carries three tints rather than a blue/gold alternation.
+  Nothing else in the section moved — same lilas ground, same 612.5 cards, same
+  dashed `encre/12` rules, same result-green status row.
+- Re-deriving it fixed two more drifts, both the same kinds already corrected
+  on the Header and SearchBand: the veille item title is Figma's **Inter
+  Regular 16/1.5** (`text-small`), not `text-nav`; and its placeholder is
+  **encre/62**, not encre/50.
+- That leaves **exactly one `text-nav` call site on the site** —
+  `contentieux/Forfaits.tsx:54` — on a page whose frame has not been
+  re-derived. Check it against its own frame when that page's turn comes; if it
+  is Regular there too, the token can be deleted outright.
+- Measured: both cards on their exact Figma x (337.5 / 970) at 612.5 wide, the
+  siren field 59.2 tall, and all four badges within 0.7px of their comp widths.
+  The +1px on the field's x and -2 on its width are the card's 1px border,
+  which Figma draws inside; the rows and badges accumulate 1px per dashed rule,
+  so the badge row lands 4.2px low and the section measures 835.4 against 830.
+- **Cabinet (`13323:4679`) is the first structural change of the pass.** Its
+  left column is byte-identical to the old `12843:895`; its right column is
+  entirely new. The collage — pale disc, columned building, sparkle and two
+  tilted polaroid prints on a 440px stage — is replaced by **one 518x592
+  photograph** on a 600px stage, with four different corner radii
+  (tl 200 / tr 10 / br 100 / bl 60). `CabinetCollage.tsx` is deleted and the
+  photo is inline in `Cabinet.tsx`.
+- **Figma stretches that photo non-uniformly, and the stretch is real.** It
+  paints the 3072x4096 source at 521.99x783.22 inside a 518x592 box, so the
+  visible window is 3049x3096 of source squashed to a 0.875 ratio — an 11%
+  horizontal squeeze. Settled by rendering both candidates and diffing them
+  against `get_screenshot` of the image node: the squashed crop matches at
+  **2.35/255**, a uniform `cover` at **27.41**. So the squeeze is baked into
+  the stored file and the markup is a plain `object-cover`.
+  **This is the way to resolve any "is that fill stretched?" question** — build
+  both and diff against the node's own render.
+- `signing-table-overhead.jpg` is stored at 1554x1776, 3x the comp's box, 293KB
+  — the largest photo on the site, and proportionate to the largest box.
+- Unlike the collage it replaces, the photo is **not hidden below `xl`**: one
+  image scales cleanly where five stacked ornaments could not. It is
+  `aspect-[518/592] w-full max-w-129.5` and pinned right, since Figma's
+  left 72.5 + 518 is exactly its 590.5 column.
+- **Figma's stage is 600 tall with the 592 photo at its top**, so the 8px below
+  it is real and sets the section height. Without `xl:h-150` the section
+  measured 784 against the frame's 792; with it, **792 exactly**, and the left
+  column's centring improves to within 1.3px.
+- Its stats are Poppins Bold **40** — `text-h2`, not `text-stat`'s 28. **Both**
+  frames say 40, so this was a long-standing deviation rather than a redesign
+  change. `text-stat` is still used by the Expertises stage and both domain
+  heroes, so the token stays; only this call site changed.
+- `champs-elysees.jpg`, `team-meeting.jpg` and `circle-backdrop.svg` are now
+  **orphans** — nothing imports them. They are left in the tree deliberately,
+  in case the collage comes back.
+- Measured: photo frame **518x592 at (1064.5, 96)** and radii
+  `200px 10px 100px 60px`, all exact; every band in the left column within
+  1.5px; section 792 against 792.
+- **Actus (`13323:4700`) adds one thing and exposed three.** The only true
+  redesign change is the **`vdots` pagination row** (`13323:4882`) under the
+  grid: three dots, the first an active periwinkle 30x9 pill, the other two
+  `encre/20` 9px circles, 12px apart, centred. The old frame has no such row.
+- Everything else the diff turned up was the build drifting from **both**
+  frames:
+  - **The cards carry photographs, and always did.** The old frame ships the
+    same three PNGs at the same crop percentages; the build had shipped tinted
+    panels with monument illustrations instead. Now three real photos.
+  - Its card kicker is Poppins SemiBold 16 at **0.18em** — `text-overline` —
+    not `text-small-strong`'s Inter.
+  - Its head row is **`items-start`**: Figma top-aligns the see-all link with
+    the overline, not with the middle of the heading block.
+  - **Card 1 is the wrong article.** Both frames give it "Preuve & contrats" /
+    "Signature électronique : ce qui tient devant un juge français" — the same
+    piece the Bibliotheque Vitrine and the article detail page carry. The build
+    had an invented "Rupture brutale…" entry. Key renamed `rupture` ->
+    `signature`.
+- **Every section overline on this page was stored uppercase; Figma writes them
+  all mixed-case.** `Expertises`, `Bibliothèque juridique`, `Données & outils —
+  open data` (note the lowercase *outils*), `Le cabinet`, `Actualités`, and the
+  three Actus kickers. Only the Hero's was already right, because it is title
+  case in Figma too. This is the same finding CLAUDE.md already records for the
+  domain pages — mixed case is the rule in this file, not the exception — so
+  **check the casing of any remaining overline against its frame** rather than
+  assuming uppercase.
+- Photos: `bench-laptop.jpg` and `plant-filled-lounge.jpg` are new;
+  `glass-meeting-room-wide.jpg` is a **second crop of a source the repo already
+  had** — its centre crop matches `glass-meeting-room.jpg` at 1.5/255, but the
+  Actus window is a different band, so it ships as a second file under the
+  `reading-outdoors-tall` precedent. All three are 1205x420, 3x the comp's
+  401.67x140 box, with Figma's crop baked in (all three windows are uniform
+  scales, unlike the Cabinet photo).
+- `haussmann-buildings.svg` is now an orphan; `arc-de-triomphe-colour` and
+  `eiffel-tower-colour` are still used by the domain pages.
+- Measured: **all three dots exact** (924 / 966 / 987, 30x9 and 9x9), all three
+  cards on their exact Figma x, thumbnails exactly 140 tall, kicker resolving
+  to Poppins 600 16px / 2.88px tracking, section 712.6 against 711. The see-all
+  link's right edge is exact; it renders 5px wider than the comp because the
+  arrow sits in a `gap-2` span where Figma types a plain space — the same
+  treatment every other "→" CTA on the site uses.
+- **CTAFinal (`13323:4727`) changes one fill**: the columned building's four
+  columns go pale-periwinkle -> **pale-blue**, exactly as the hero's courthouse
+  and arc did. `columned-building.svg` is recoloured in place, which also
+  updates the Contentieux CTAFinal — consistent, since `courthouse.svg` is the
+  same glyph at another box and was already recoloured.
+- The new export is an **exact 1.2x scale** of the committed 150x112 file (max
+  deviation 0.005 across 187 path numbers) and carries no strokes, so one file
+  still serves both boxes. Its `<rect fill="white">` is the **clipPath
+  definition, not a painted background** — inert, and not the white-rect trap
+  recorded elsewhere. Check where the rect sits before stripping one.
+- Two more build drifts fixed, both present in the old frame too:
+  - its overline is **`Contact`**, not `CONTACT`;
+  - the section takes **bottom padding only**. **The note claiming "the home
+    CTAFinal uses `py-24` and that asymmetry is what Figma specifies" was
+    wrong** — both frames give this section `pb-96` with no top padding,
+    because Actus above it already closes with its own 96. Fixing it brought
+    the section to **445.2 against the frame's 445**; it had been 96px tall.
+- Measured: panel 1245x349.2 at y=0, both ornaments at their exact Figma
+  coordinates and boxes (building 180x135 at 307.5/244, robe 130x140 at
+  1363.5/-30), every copy band within 1.5px.
+- **The whole page now measures 5748 against the frame's 5722.** All 26px are
+  accounted for by the per-section border-box differences already recorded
+  (SearchBand +2.2, Expertises +13.3, Bibliotheque +2.9, OpenData +5.4,
+  Actus +1.6, CTAFinal +0.2, header +1) — no section is carrying stray padding.
+  Useful whole-page check once the Footer lands.
+- **Footer (`13323:4754`) is unchanged** — identical generated code to the old
+  `12843:901`, and its three logo assets match the committed files. (The
+  tagline's md5 differs but all 704 of its path numbers agree to within
+  0.00002 — Figma float noise, the same case as the Haussmann exports. Compare
+  numbers, not hashes.)
+- Two pre-existing drifts fixed, both the patterns this pass kept finding:
+  - its column titles are **`Le cabinet` / `Ressources` / `Outils`**, mixed
+    case, not uppercase;
+  - **every string in this footer is white 70%.** The build had three different
+    alphas — 85% on the legal line and links, 60% on the overlines, 65% on the
+    bottom row. Figma sets `rgba(255,255,255,0.7)` on all of them, and the
+    render now resolves to exactly one text colour.
+- Measured: footer 358.2 against 359, the third link column and every column
+  title exact, the bottom rule at 1245 wide. The first two columns sit 3.6 and
+  1.9px right of the comp because they are `w-58` (232) against Figma's
+  233.636 and the group is `justify-end` — the already-recorded "nearest scale
+  value" trade, not a new fault.
+
+### Pass complete — the whole home page
+
+All ten sections re-derived against frame `13323:4394`. Section-by-section
+height against the comp, at 1920:
+
+| Section | Figma | Rendered | Δ |
+|---|---|---|---|
+| Header | 72 | 73.0 | +1.0 |
+| Hero | 660 | 660.0 | 0 |
+| SearchBand | 293 | 295.2 | +2.2 |
+| Expertises | 891 | 904.3 | +13.3 |
+| Bibliotheque | 669 | 671.9 | +2.9 |
+| OpenData | 830 | 835.4 | +5.4 |
+| Cabinet | 792 | 792.0 | 0 |
+| Actus | 711 | 712.6 | +1.6 |
+| CTAFinal | 445 | 445.2 | +0.2 |
+| Footer | 359 | 358.2 | −0.8 |
+| **Page** | **5722** | **5747.8** | **+25.8 (0.45%)** |
+
+Every delta is the border-box difference or, for Expertises, that frame's own
+undersized `grid-exp`. No overflow from 1920 down to 320.
+
+**What the redesign actually changed** — it is a colour pass plus two content
+swaps, nothing structural beyond them:
+
+1. three hero ornament fills (mint laurel, pale-blue courthouse and arc);
+2. the Expertises card tiles, two tints to four;
+3. the Bibliotheque counts, periwinkle to mint;
+4. the OpenData Judilibre badge, pale gold to pale mint;
+5. the Cabinet collage replaced by one 518x592 photograph;
+6. the Actus pagination dot row;
+7. the CTAFinal building's columns, pale-periwinkle to pale-blue.
+
+Three new tokens, all named Figma library styles: `--color-mint`,
+`--color-pale-mint`, `--color-pink`.
+
+**Everything else this pass touched was the build drifting from a frame that
+had not changed** — worth knowing before assuming the next page's build is
+faithful. The recurring shapes were: overlines stored uppercase where Figma
+writes them mixed case (seven of them on this page alone); `--text-nav`'s Inter
+Medium where Figma says Inter Regular 16/1.5; placeholder text at 50% where
+Figma says 62%; and three one-off wrong tokens (`text-h2-sm` for a 20px
+heading, `text-stat` for a 40px stat, `text-small-strong` for a tracked
+overline). **Diff the old node against the new one for every section** — it is
+one extra call and it separates "the designer changed this" from "we built it
+wrong", which need different fixes.
+
+### The home page's consultation drawer — `13323:4833` + `13323:4812`
+
+The home page gets the same sliding consultation panel the article has, opened
+by a **red** side tab. No sticky bar — the home frame draws only the tab.
+
+- **Their bodies are identical.** Both `db` frames are 510x908 with every
+  field, the submit, the footnote, the marks and the phone line at the same
+  offsets. The two drawers differ in exactly five places:
+  1. a **photograph** (126px wide, `self-stretch`) where the article has the
+     composed `lawyer-figure.svg`;
+  2. the **lead sits beside that photo**, under the title, instead of below the
+     figure row — which is the whole of the 256 vs 300 header height;
+  3. the submit and the phone number are **red**, not gold and periwinkle;
+  4. the check marks are **periwinkle**, not result-green;
+  5. its overline is **sentence case**.
+- **That last one is a real per-frame difference, not the casing bug.**
+  `get_metadata` on the article's own drawer shows its text node is literally
+  named `CONSULTATION — 15 MINUTES GRATUITES`, where this frame writes
+  `Consultation — 15 minutes gratuites`. Checking before sharing the string is
+  what caught it — **`get_metadata` is the cheap way to read Figma's exact
+  copy**, since text nodes are named by their content.
+- What is now shared, and how:
+  - **`Consultation`** is the third top-level message namespace after
+    `ContactCta` and `Transparence`. It carries every drawer string plus the
+    tab label and the field labels; only `overline` stays on `ArticlePage.drawer`,
+    the same split the Bibliotheque CTAFinal uses. The article's inline
+    `consult` block reads its field labels and footnote from it too.
+  - **`components/consultation/useDrawerBehaviour.ts`** — focus move, Tab trap,
+    Escape, and the scroll lock with its scrollbar-gutter padding. Identical in
+    both drawers, and a subtly wrong focus trap in one copy is exactly what
+    duplication would have produced.
+  - **`components/consultation/SideTab.tsx`** takes a `tone` — `gold` for the
+    article, `red` for the home page. It replaces
+    `sections/article/SideTab.tsx`.
+  - The two *drawer* components stay separate: the header differs structurally
+    and four colours differ, which is more than a tone prop.
+- The shared `phone` string gained a **`<q>` tag** around its lead-in, because
+  Figma weights "Vous préférez appeler ?" here and draws it plain on the
+  article. The article passes `q: (chunks) => chunks`, so its output is
+  byte-identical to before — verified.
+- New: **`--color-red` (#f01a5d, Figma's "Petroff/Red")**, a `red` `Button`
+  variant, and `lawyer-portrait-tall.jpg` (378x396, 3x the comp's 126x132 box,
+  a centre `object-cover` crop of the same portrait source). `speech-bubble.svg`
+  is reused for the tab icon — its path data matches exactly.
+- Measured against the comp: tab **45x236** flush right and `#F01A5D`; panel
+  **510** wide; overline **exactly 412** at 2.24px tracking; the ✕ exact at
+  x=458, 22x24; the photo **126** wide with radii
+  `59.854px 2.993px 29.927px 17.956px`, all exact. Panel 1175 against Figma's
+  1164 — the fields' documented +4.38 each, plus 3px from `text-h2-sm` drawing
+  the title at 35 where Figma's box is 32, which is the same discrepancy the
+  article's drawer already carries.
+- Behaviour driven and verified on **both** pages: tab visible at scroll 0,
+  opening moves focus to the Nom field, `body` overflow locks and restores,
+  Escape closes, focus returns to the tab, the closed panel is `inert`, and its
+  bleeding `-26px` shadow computes transparent when closed.
+- Its submit is inert like every other form on the site, and — as on the
+  article — **the tab is `lg:flex`, so there is no way to open the drawer below
+  `lg`**. Figma specifies desktop only. Note the home page, unlike the article,
+  has **no inline consultation form to fall back on**, so that is a real gap on
+  mobile rather than a styling one; showing the tab there is a one-class change.
+
+### Responsive spacing pass — home page
+
+Figma specifies desktop only, and the build had been carrying every desktop
+value at every width: six sections at **96px top and bottom on a 375 phone**,
+1152px of pure padding, about 11% of the page, with the head-to-content gap
+stuck at 48 everywhere.
+
+Harmonised on a two-step scale. **Every value at `lg` and above is the Figma
+number**, so the desktop page is byte-identical — re-measured section by
+section, all ten still land exactly where they did (page 5747.8 at 1920, 5815
+at 1280).
+
+| Element | below `lg` | `lg`+ |
+|---|---|---|
+| The five content sections | `py-16` (64) | `py-24` (96) |
+| Their head -> content gap | `gap-8` (32) | `gap-12` (48) |
+| SearchBand band | `py-12` (48) | `py-16` (64) |
+| CTAFinal section | `pb-16` (64) | `pb-24` (96) |
+| CTAFinal panel | `px-6 py-12` | `sm:px-12`, `lg:py-16` |
+| Footer | `pt-12` (48) | `lg:pt-16` (64) |
+| Hero column | `py-16` | `lg:pt-22.5 lg:pb-24` |
+| Cabinet grid | `gap-10` (40) | `xl:gap-16` |
+
+- **`gap-16` on the Cabinet grid was Figma's *column* gap**, but the grid only
+  splits at `xl`, so below that it was acting as a 64px *row* gap between the
+  copy and the photo — larger than any other stacked gap on the page. It is
+  `gap-10 xl:gap-16` now, which leaves the desktop column gap untouched.
+- The card grids keep their flat `gap-5`: 20px is Figma's value and it reads
+  correctly at every width.
+- **This fixed a real clipping bug at 320.** CTAFinal's panel is
+  `overflow-hidden`, and "Faire évaluer mon dossier" is 266px against what was
+  a 232px content box, so the second button was being cut off. The panel's
+  sides now drop to 24px below `sm` and both buttons go full width with their
+  labels allowed to wrap (`whitespace-normal sm:whitespace-nowrap` — `Button`
+  sets `whitespace-nowrap` in its base class, so it has to be overridden, not
+  just omitted). That also closes the standing open item about the CTA panels'
+  48px sides being heavy on a 335px phone.
+- Result: 8463 -> **7869** at 768 and 10909 -> **10283** at 375, with no
+  horizontal overflow from 1920 down to 320 and every route still serving.
+- **The Footer change is site-wide**, since it lives in the layout — desktop
+  unchanged, mobile lighter on every page. **The other pages' sections still
+  carry a flat `py-24`**; harmonising them is the same one-line change per
+  section and should be done when each page is re-derived.
+
+
+
+
+
+
+
+
+
+
+
 All ten sections are built. Header and Footer live in
 `src/app/[locale]/layout.tsx`, so every page gets them; the eight content
 sections are in `page.tsx`.
@@ -53,6 +459,56 @@ so they are deliberately two files. Home sections are still flat in
 starts to grate.
 
 Build one section per turn, then wait for approval before the next.
+
+## Page 2 — redesign check and responsive pass
+
+**The Expertises hub frame `12858:881` is unchanged by the colour pass.**
+Confirmed three ways rather than assumed:
+
+1. `get_metadata` on the frame matches the build exactly — same four sections,
+   same copy, same heights (72 + 784 + 1727 + 669 + 470 + 359 = 4081).
+2. `get_variable_defs` on each of the four sections returns only the
+   pre-existing palette — Brique, Encre, Pale blue, Pale gold, Gold, Lilas,
+   Lilas 2, White. **No Mint, Pale_Mint, Pink or Red anywhere**, so the
+   Domaines tiles keep their two-tone blue/gold alternation where the home
+   grid went to four tints.
+3. Variables do not cover ornaments, whose fills are flattened into the
+   exported vectors — so the Stage and CTAFinal node renders were downloaded
+   and their pixels counted: both still contain **`#c7d6ef` pale-periwinkle**
+   and **no `#dce4f2`**. **`get_variable_defs` plus a pixel histogram of
+   `get_screenshot` is the cheap way to answer "did this frame change?"** —
+   two small calls per section against a full `get_design_context`.
+
+- So `arc-de-triomphe-colour-lg.svg` **keeps its pale-periwinkle** while the
+  home page's `columned-building.svg` and `arc-de-triomphe.svg` are now
+  pale-blue. That is the designer's difference between two frames, not a
+  build inconsistency — do not "fix" it without a redesigned frame.
+
+**Responsive spacing harmonised to match the home page**, same two-step scale,
+every `lg`+ value left at the Figma number:
+
+| Element | below `lg` | `lg`+ |
+|---|---|---|
+| Domaines, Facons | `py-16` | `py-24` |
+| their head -> content gap | `gap-8` | `gap-12` |
+| CTAFinal section | `pb-16` | `pb-24` |
+| CTAFinal panel | `px-6 py-12` | `sm:px-12`, `lg:py-16` |
+
+- Its CTA buttons take the home page's treatment — full width with
+  `whitespace-normal sm:whitespace-nowrap` below `sm`. They are 265 and 258px
+  against a 239px content box at 375, which the `overflow-hidden` panel was
+  clipping; this closes the open item that recorded exactly that.
+- The **Stage was left alone**: its column is already `pt-4 pb-16` under a
+  `py-5` breadcrumb, so it carries no heavy desktop padding to scale down.
+- Desktop is unchanged — 4238.0 at 1920 before and after, with Stage 784
+  exact, Facons 671.9, CTAFinal 470.4 and its buttons 264.9/257.5 against
+  Figma's 265/258. At 375 the page drops 9375 -> 9126.
+- Domaines measures 1880.5 against the frame's 1727 at desktop; that is the
+  already-recorded tag-row wrapping, where Figma clips the third tag and the
+  build wraps it.
+- No horizontal overflow from 1920 down to 320. **The two domain pages and the
+  Bibliotheque still carry a flat `py-24`** — same one-line change each.
+
 
 ## Page 3 — Contentieux & arbitrage (`/expertises/contentieux-arbitrage`), frame `12870:881`
 
@@ -82,6 +538,50 @@ All eleven sections are built. They live in
 returned 63k characters, over the tool's limit, but the response is saved to a
 file and `grep -nE '^  <(frame|instance)' ` on it lists exactly the top-level
 sections.
+
+### Page 3 — redesign check and responsive pass
+
+**The Contentieux frame `12870:881` is unchanged by the colour pass**, and all
+eleven sections were verified by the histogram method rather than by reading:
+`get_variable_defs` on the page frame returns the same pre-existing palette as
+the Contrats page (no Mint, Pale_Mint, Pink or Red), and every section's Figma
+render was compared pixel-for-pixel against the live one.
+
+- Every section is **palette-clean** except **Espace's progress track** (1512px
+  of lilas against Figma's 0) — the documented deliberate override, since Figma
+  paints that track white on a white card and the bar would have no groove. The
+  Contrats page carries the same override at 1872px; the difference is only the
+  two pages' progress values (65 against 60.5).
+- Its Hero and CTAFinal were the two sections the shared-asset leak had broken;
+  both are clean now, and fixing the CTAFinal is what turned up the missing
+  `opacity-90` on its building.
+- Its FAQ frame is **1878 wide**, not 1920 — it auto-sized to the bleeding
+  laurel — so absolute pixel counts run ~2% low against a 1920 capture. The
+  presence/absence comparison is unaffected, but do not read the raw counts as
+  a discrepancy.
+
+**Responsive spacing harmonised**, same two-step scale as the other three pages:
+
+| Element | below `lg` | `lg`+ |
+|---|---|---|
+| The eight `py-24` sections | `py-16` | `py-24` |
+| Tools | `py-12` | `py-16` |
+| Their head -> content gaps | `gap-8` | `gap-12` |
+| Espace's stacked row gap | `gap-10` | `lg:gap-16` |
+| CTAFinal panel | `px-6 py-12` | `sm:px-12`, `lg:py-16` |
+| CTAFinal buttons | full width, wrapping | `sm:w-auto` |
+
+- **Espace's `gap-16` here is Figma's desktop *column* gap** — the grid only
+  splits at `lg`, so below that it was acting as a 64px row gap, the same trap
+  the home Cabinet and the Contrats Espace hit.
+- Desktop unchanged: page 8446 at 1920 before and after, with Domaines 1457.4,
+  Methode 552.3, Espace 645.9, Bib 643.5, FAQ 671.5 and CTAFinal 550.4 all
+  identical. At 375 the page drops 17494 -> 16757.
+- No horizontal overflow from 1920 down to 320; CTA buttons fit at 320, where
+  the `overflow-hidden` panel had been clipping them.
+- **All four built pages now share one spacing scale.** Only the Bibliotheque
+  and the article page still carry a flat `py-24`.
+
 
 ## Page 4 — Contrats & droit commercial (`/expertises/contrats-commerciaux`), frame `12870:1006`
 
@@ -134,8 +634,11 @@ the `ContratsPage` message namespace.
 - Its MidCTA's gold run is Inter 20/**1.55** — exactly `text-lead` — where the
   Contentieux one is 20/1.3 and has to borrow `text-h3`'s metrics. It still
   needs an explicit `font-inter`; see the font-family note under Hard rules.
-- Its Forfaits differs from Contentieux in four places: outer plans are
-  `bg-lilas` not white, the price unit is `text-small` not `text-nav`, feature
+- Its Forfaits differs from Contentieux in three places (**not four — the
+  claim that its outer plans sit on `bg-lilas` was wrong, and is fixed: the
+  Figma render of this section contains zero lilas pixels, so all three plans
+  are white like the Contentieux page's, the featured one differing only by its
+  gold border and permanent shadow**): the price unit is `text-small` not `text-nav`, feature
   text is `encre/62` not `/75`, and **the third plan's price is 40px** where the
   others are 30 (`text-h2` against `text-price`). Because `text-h2` is fluid and
   `text-price` is fixed, that inverts below ~1100px — at 375 the "large" price
@@ -302,13 +805,17 @@ the `ContratsPage` message namespace.
   tracking) against `text-badge` on Contentieux; its result panel is 18px
   (`rounded-note-lg`) against 10px; and its body copy is `white/70` against
   `white/65` and `white/80`. Everything else is identical.
-- Its Domaines cards rest on **lilas against a white section** — the inverse of
-  the Contentieux page — and lift to white with a `0px 14px 34px` shadow on
-  hover. Figma draws the first card already in that lifted state, and unlike
-  the Contentieux page (where card 1 differs only by a shadow on an identical
-  white ground) the difference here is plainly visible, so it is reproduced via
-  a `raised` flag on the first mission. If that turns out to be the designer
-  demonstrating hover, drop the flag and nothing else changes.
+- **Its Domaines cards are white on a white section, exactly like the
+  Contentieux page's — the note that used to stand here, claiming a lilas
+  ground, was wrong**, and the `raised` flag it introduced has been removed.
+  Settled by counting pixels in `get_screenshot` of the node: `#ffffff` covers
+  2.49M pixels — both the section and every card — while `#f6f5f1` appears only
+  in a small bbox that turns out to be the tag pills. The faint
+  `#fbfbfb`/`#fefefe` halo at the first card's edges is a **shadow**, so card 1
+  is the designer showing `Card`'s hover state, exactly as on the home Domaines
+  and Actus grids. Its blur is 34px rather than `Card`'s default 17.
+  **A card that looks tinted in a comp may just be its neighbour's shadow —
+  sample the pixels before encoding a second ground.**
 - **These exports carry a bare `<rect width="26" height="26" fill="white"/>`**
   behind the glyph — an opaque background, not a clip mask. It must be stripped
   or it paints a white square on the coloured icon tile. Earlier exports in this
@@ -325,6 +832,75 @@ the `ContratsPage` message namespace.
 - Four new ornaments — `pen-nib`, `desk-lamp`, `award-rosette`, `open-book`.
   The tower reuses `eiffel-tower-colour` at the same 140x271 the Contentieux
   hero uses, and both sparkles reuse `sparkle`.
+
+### Page 4 — redesign check and responsive pass
+
+**The Contrats frame `12870:1006` is unchanged by the colour pass.**
+`get_variable_defs` on the whole page frame — one call for all eleven sections
+— returns only Periwinkle, Encre, Gold, Brique, White, Pale gold, Pale blue,
+Lilas, Lilas 2, Rose and Result green. **No Mint, Pale_Mint, Pink or Red.** And
+every desktop section still measures exactly what the original build recorded
+(Domaines 1431.4, Methode 552.3, Espace 645.9, Bib 643.5, FAQ 646.4, CTAFinal
+550.4), so nothing moved either. **`get_variable_defs` on a page frame is the
+cheapest possible "did this page change?" check.**
+
+The one real fix was the Domaines card ground, corrected above.
+
+**Responsive spacing harmonised**, same two-step scale as the home page and the
+hub, with every `lg`+ value left at the Figma number:
+
+| Element | below `lg` | `lg`+ |
+|---|---|---|
+| The eight `py-24` sections | `py-16` | `py-24` |
+| Tools | `py-12` | `py-16` |
+| Their head -> content gaps | `gap-8` | `gap-12` |
+| Espace's stacked row gap | `gap-y-10` | `lg:gap-y-16` |
+| CTAFinal panel | `px-6 py-12` | `sm:px-12`, `lg:py-16` |
+| CTAFinal buttons | full width, wrapping | `sm:w-auto` |
+
+- The Hero was already responsive (`pt-16 pb-16 lg:pt-27.25 lg:pb-0`) and
+  MidCTA's `py-9` is small enough to leave.
+- **Espace's `gap-y-16` was never a Figma value** — Figma gives only the 12px
+  *column* gap, and the 64px row gap was chosen to match the sibling page's
+  rhythm. It scales like every other stacked gap now.
+- Desktop unchanged: page 8354 at 1920 before and after, every section
+  identical. At 375 the page drops to 16447 and the CTA buttons fit at 320,
+  where they were being clipped by the `overflow-hidden` panel.
+- No horizontal overflow from 1920 down to 320.
+
+### Recolouring a shared asset in place was a mistake — three files forked back
+
+The home redesign moved three ornament fills. Because those files are shared,
+recolouring them in place silently changed pages whose frames had **not**
+changed, and `get_variable_defs` cannot catch it: an ornament's fills are
+flattened into the exported vector, so they are not Figma variables at all.
+
+Each is now forked — the shared file carries what the **unchanged** frames draw,
+and the redesigned home page imports a variant:
+
+| Shared file (restored) | Home variant |
+|---|---|
+| `laurel-branch.svg` (brique) | `laurel-branch-mint.svg` |
+| `courthouse.svg` (pale-periwinkle) | `courthouse-pale-blue.svg` |
+| `columned-building.svg` (pale-periwinkle) | `columned-building-pale-blue.svg` |
+
+`arc-de-triomphe.svg` needed no fork — only the home hero uses it.
+
+**The method that catches this: render the Figma node with `get_screenshot`,
+screenshot the same live section, and compare exact-hex colour histograms
+against the token palette.** It found the mint laurel on both domain pages, the
+pale-blue courthouse and building on Contentieux, a wrong card ground on
+Contrats Forfaits, and a missing opacity — none of which any amount of reading
+the markup would have shown. Two caveats learned while building it:
+
+- **Match hexes exactly.** A nearest-colour matcher with a tolerance of 6
+  reported a phantom "pale-mint" in the Contrats hero that was just text
+  antialiasing.
+- **A near-miss hex is usually opacity, not a different colour.** The
+  Contentieux CTAFinal read `#cad8f0` in Figma against `#c7d6ef` live: that is
+  pale-periwinkle composited at **0.9** over the lilas-2 panel, so the building
+  was simply missing `opacity-90`. Now fixed, matching the home panel.
+
 
 ## Page 5 — Bibliotheque (`/bibliotheque`), frame `13060:881`
 
@@ -919,18 +1495,29 @@ Block index, in column order: `hdico` / `answer` / prose / `rulebox` /
   14,000px article, leaving nothing to stick — `sticky top-6 self-start` is
   the pair that works. Verified by scrolling: it pins at 24px and stays there
   through the whole column.
-- **It takes no height cap and no internal scroll**, which is what makes its
-  whole height readable. A sticky element unpins when its containing block
-  ends, so the rail rides up over the last screenful and its bottom — CTA
-  card, author card, verification line — is on screen by the end of the
-  section. Capping it at `calc(100vh - 3rem)` with `overflow-y-auto` pinned it
-  forever and hid that bottom behind an internal scrollbar the reader had to
-  find; adding `no-scrollbar` only hid the evidence. Measured at 1920x900:
-  pinned at top 24 until y=14163, then released with its bottom tracking the
-  column's to the page end.
-- Its `pb-24` is **clearance for the sticky bar**, not rhythm. The bar is
-  fixed over the last 78px of the viewport by the time the rail releases, so
-  at `pb-4` the verification line unpinned directly underneath it.
+- **It is capped at the viewport and scrolls internally** —
+  `max-h-[calc(100vh-3rem)] overflow-y-auto`. Its content is **1201px against
+  a 900px viewport**, so without a cap its bottom — CTA card, author card,
+  verification line — could not be read at all until the very end of a
+  14,000px article. Put the cursor over the rail and the wheel moves the rail;
+  scroll chaining is deliberately left **on**, so at either end the page takes
+  over and the reader is never trapped. Verified by dispatching real
+  `Input.dispatchMouseEvent` wheels at 1920x900: rail 0 -> 349 (its full range,
+  1201-852) while the page held, then the page resumed; and back 349 -> 0 on
+  the way up.
+  (An earlier version left it uncapped and let it ride up with the page over
+  the last screenful. **That is the note this replaces** — it read as "the
+  whole height is readable" but in practice meant the bottom third was
+  unreachable for the entire article.)
+- **The bar itself is hidden** (`no-scrollbar`), on the user's instruction: a
+  default 15px scrollbar eats 5% of a 300px rail and reads as a rendering
+  artefact against the card edges. The column still scrolls under the cursor,
+  and the bar takes no space either — measured `offsetWidth - clientWidth = 0`.
+  A `.thin-scrollbar` utility was tried first and removed; do not reintroduce
+  it.
+- Its `pb-24` now sits **inside the scroll area**, where it doubles as
+  clearance for the sticky bar — fixed over the last 78px of the viewport — so
+  the verification line can always be scrolled clear of it.
 - **Its table of contents is real.** The ten headings carry anchor ids and
   `scroll-mt-6`, the entries are `<a href="#...">`, and a scroll-spy moves the
   gold active marker as you read — Figma marks only the first entry active,
@@ -1144,6 +1731,373 @@ section alone.
   clipboard and print opens the dialog. That makes them the first genuinely
   working buttons on the site, and the hero's only client component.
 
+## Page 6 redesign — frame `13318:2398` (1920x19284.6)
+
+A **new** article frame, replacing `13095:881`. Unlike every other page in this
+pass it carries real structural change, not just colour. Section-by-section
+against the live build at 1920:
+
+| Section | Figma | Built | State |
+|---|---|---|---|
+| Hero | 890 | 890.5 | **rebuilt** |
+| Corps | 13966.6 | 14371.4 | +404.8 — outstanding |
+| Cabinet | 774 | 776.9 | unchanged (2.9 = borders) |
+| Interlocuteurs | 900 | 780.4 | −119.6 — outstanding |
+| ALireEnsuite | 1405 | 1461.3 | +56.3 — outstanding |
+| Transparence | 370 | 370.5 | unchanged |
+| CTAFinal | 550 | 550.4 | unchanged |
+
+- Its palette adds **`Petroff/Red`**, which is the **side tab** — now red like
+  the home page's, done with `tone="red"` since `SideTab` was already
+  parameterised.
+- **The article drawer is now the home drawer.** The redesign gives it its own
+  node, **`13318:3628`** — not an edit of `13116:1880`, which still holds the
+  old design and is now dead. The new one is identical to the home page's
+  `13323:4833`: photograph rather than the illustrated figure, lead beside it,
+  sentence-case overline, **red** submit and phone number, **periwinkle** check
+  marks. Its photo export diffs against the stored `lawyer-portrait-tall.jpg`
+  at **0.00**.
+  So the two components were merged into
+  `components/consultation/ConsultationDrawer.tsx`, the article's copy deleted,
+  and `ArticlePage.drawer` — down to the obsolete caps overline — removed. Both
+  pages now read the shared `Consultation` namespace end to end.
+  **Watch for this pattern: a redesign may add a new node rather than edit the
+  old one, so an unchanged `get_design_context` on the id you have recorded
+  does not mean the design is unchanged.** Reading `13116:1880` is exactly what
+  led to reporting "the drawer is unchanged" one turn earlier.
+- Verified on both pages after the merge: red tab, panel 510x1177, sentence-case
+  overline, photo present and no SVG figure, red submit, periwinkle ticks, red
+  phone, focus to the Nom field on open, Escape closes and restores the scroll
+  lock.
+
+- **Corps colour pass, left column, first run.** Compared block by block against
+  the new nodes with the histogram method:
+  | block | Figma | was | done |
+  |---|---|---|---|
+  | `answer` (`13318:2519`) | pale mint | lilas-2 | yes |
+  | `rulebox` (`13318:2533`) | white + periwinkle edge | same | no change |
+  | `ladder` (`13318:2624`) status pill | pale mint | lilas-2 | yes |
+  | `ladder` tiles | blue/gold alternating | same | no change |
+  | `trap` (`13318:2729`) | **pale rose 30% + red tag** | pale gold + brique | yes |
+  | `vigil` (`13318:2818`) | white + encre | same | no change |
+  | `takeaways` (`13318:3062`) | **lilas-2, encre, H3, periwinkle bullet** | encre panel, white, H2, gold | yes |
+- **Corps colour pass, the two tools and the consult block.**
+  | block | Figma | was |
+  |---|---|---|
+  | `outil-simulateur` "Analyser ma situation" | **encre** | gold |
+  | its verdict panel | **pale-rose/30 + red copy** | brique/14 + brique |
+  | its "Soumettre à un avocat" | **red** | gold |
+  | both tools' "60 secondes" pill | **encre/8 ground, encre/62 text** | encre/80 + rose |
+  | `outil-triage` "Consulter un avocat" | **red** | gold |
+  | `consult` | **pale-mint, photo, red overline, encre submit, no marks** | encre panel, dark figure, gold overline, gold submit, three marks |
+- **`consult` is the third block to flip dark -> light**, after Transparence and
+  Takeaways — that is the shape of this redesign. It also drops its three
+  reassurance marks entirely, swaps `lawyer-figure-dark.svg` for a photograph
+  (`lawyer-portrait-consult.jpg`, 422x492 = 3x its 140.657x164 box, the same
+  asymmetric radii as every other portrait on the site) and rounds **only its
+  top corners**. `lawyer-figure-dark.svg` is now an orphan.
+- Both tools' pills read **"Gratitut · 60 secondes"** in Figma — a typo for
+  *Gratuit*, and mixed case where the build had it uppercase. The casing was
+  taken, the typo was not; flag it to the designer.
+- `cmp`, `faq`, `vigil` and `rulebox` compare clean and were left alone.
+
+- **`flex-1` on a row that must wrap is the same bug in a second place.** The
+  Ladder card's header row already carried `flex-wrap`, yet its status pill
+  still painted over the title on a phone: `flex-1` sets `flex-basis: 0`, so
+  the line always "fits" and nothing wraps — the pill simply got squeezed. Its
+  title is `grow basis-40` now (160px), which makes the line genuinely overflow
+  on a narrow card and pushes the pill onto its own row; the pill also takes
+  `shrink-0`. Verified at seven widths: inline down to 560, stacked below 430,
+  **no overlap anywhere**.
+  Together with the simulator's e-mail row, the rule is: **`flex-1` and
+  `flex-wrap` do not co-operate.** If a row is meant to wrap, give its flexible
+  child a real basis.
+- The article's own section padding now runs the site's two-step scale:
+  Corps, Cabinet and CTAFinal `py-16 lg:py-24`, Transparence
+  `pt-12 pb-9 lg:pt-18 lg:pb-13`, Interlocuteurs and ALireEnsuite
+  `pb-16 lg:pb-24` (bottom only, as their frames specify). Desktop is
+  unchanged — 96/96, 72/52 and 0/96 exactly as before, page still 19114.
+- **`min-w-0 flex-1` on a flex item lets it shrink below its own content**, and
+  that is what broke the simulator's e-mail row on a phone: the placeholder
+  collapsed and wrapped onto four lines while the button, which cannot shrink,
+  stayed beside it and painted over the text. `flex-wrap` never fired, because
+  the pair technically still "fitted".
+  The row is `w-full` first and side by side only from **`md`** — one
+  breakpoint later than the Consult footnote's `sm`, because at `sm` the row is
+  just 414 wide and the placeholder still wrapped onto two lines. Verified at
+  ten widths from 1920 to 320: no overlap anywhere, side by side down to 768,
+  stacked below it.
+  Note this is the **opposite** fix to the Tools cards, which needed `min-w-0`
+  *added*. The question to ask is whether the item has content that must not be
+  squeezed — a label may shrink, a field with a placeholder may not.
+
+- **Nested padding is the article's mobile problem, not the section padding.**
+  Its two tools nest three deep — the tool box (28), the result panel (24) and
+  the dark submit panel (28) — which is **80px of inset a side**. At 320 that
+  left the innermost email row **118px** wide; at 375, 173.
+  Every article block now scales its padding below `sm`: outer blocks
+  `p-5 sm:p-7`, the two result panels `px-4 py-5 sm:px-6 sm:py-5.5`, and the
+  innermost dark panel `p-4 sm:p-7`. The row goes to **174 at 320** and **229
+  at 375**, and `sm:` restores Figma's 28/24/28 exactly at desktop — verified,
+  with every section height unchanged.
+  **Measure the nesting, not the outermost padding**: the section shell was
+  never the problem here.
+- **The Figma page frames carry their own corner radius.** It is a canvas
+  artefact and must not be built. Confirmed the site has none: `html`, `body`,
+  `main`, `header` and `footer` all compute `0px 0px 0px 0px`, no section or
+  container-width element carries one, and the viewport corner pixels are
+  filled edge to edge (`#f5f5f0` top, the footer's colour bottom) — a rounded
+  page would show whatever sits behind it there instead.
+  The large radii that *are* real are all per-block: the seam's 54px top left,
+  the Interlocuteurs card and portrait at 80, the `consult` block's top corners
+  and the 200/10/100/60 set on the photos.
+
+- **Four corrections after review, three of them things the checks had missed:**
+  1. **Interlocuteurs is white cards on a lilas ground** — the section was built
+     `bg-white`. Sampling the node render settles it: `#f6f5f1` covers 916k
+     pixels (the section) and `#ffffff` 571k (the cards). Its
+     `0px 14px 34px` shadow is the **hover state**, not a permanent one — the
+     same call the home Domaines and Actus grids and the Contrats Domaines
+     make. That is now the fourth time a Figma-drawn shadow has turned out to
+     be hover; **assume hover unless a second card in the same grid lacks it.**
+  2. **Both prev/next labels are periwinkle.** The left one was brique — the
+     old frame really did set them differently, and the note recording that is
+     now out of date. Sampled at `#2e5bb8` for both. They keep different type
+     styles: the left is the overline (0.18em), the right the Button style with
+     none. **The section overline above them stays brique `#a67c1b`** — a
+     global replace of `text-brique` catches it too, which is exactly the
+     mistake to avoid here.
+  3. The sticky bar left its **2px red rule showing along the bottom edge when
+     dismissed**: `translate-y-full` moves the box but the rule still painted
+     at the boundary. The closed state now carries `opacity-0` as well, and the
+     transition names `[translate,opacity]`.
+  4. Its ground is **60%, not Figma's 30%** — asked for, and justified: the bar
+     is fixed over live page content, and at 30% the copy was unreadable
+     against whatever ran underneath. A deliberate departure from the comp.
+- **ALireEnsuite needed three fixes beyond the pale-gold model row**, none of
+  which a palette comparison could see — it reported "palette ok" throughout.
+  An **ink-band comparison** found all three: every band sat a constant 96px
+  low, and the last four diverged.
+  1. **Bottom padding only.** Its overline is at y=0, like Interlocuteurs and
+     the home CTAFinal. That was the constant 96px.
+  2. **The sub-category list fills column-major** — the first two items run
+     down the left column and the last two down the right. A plain
+     `grid-cols-2` fills across and interleaves them, which is what shipped.
+     It is `sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-[auto_auto]`.
+     - **`grid-cols-2` is still needed alongside the column flow**: without it
+       the tracks size to their content — 557 and 624 against Figma's equal
+       590.5 — and the first row wraps.
+     - **`grid-rows-2` is wrong here.** Tailwind maps it to
+       `repeat(2, minmax(0,1fr))`, which levels the two tracks; Figma sizes
+       each to its own content (41 and 66). `grid-rows-[auto_auto]` is the fix.
+  3. Its label sits **34px** above the first row — 20 to the grid plus a 14px
+     column inset — where the build had 14.
+- After: **1403.3 against 1405**, with **24 ink bands in both and a maximum
+  band offset of 6px**. It had been +56.3 with the bands 96px out.
+- **Lesson: a clean palette comparison does not mean a section is correct.**
+  Run the ink-band profile too — it catches padding, ordering and track-sizing
+  differences that colour counting cannot.
+
+- **The sticky bar is redesigned too** (`13318:3406`), and it is easy to miss:
+  it is `position: fixed`, so it does **not** appear in the page frame's static
+  flow — it sits as a separate node at the end of the tree. Grep the metadata
+  for it rather than assuming the section list is complete.
+  It goes from an encre bar with white copy and a gold button to a
+  **pale-rose/30 band under a 2px red rule**, with an encre title, a
+  **periwinkle** detail line, and a **white button carrying red copy** and a
+  speech bubble rotated -90°. 78 -> 98 tall.
+  Its button is written out rather than using `Button`: white-on-red-copy with
+  an icon is not one of its variants. Measured: bar 100 against 98 (the 2px
+  border), button **43 exactly**, every colour matching.
+- Cabinet and the Footer are **unchanged** — Cabinet compares palette-clean at
+  774 and its `prestgrid` is the same three 399px cards; the Footer is the
+  shared component and its 357 matches.
+
+- **Corps, the rest of the column.**
+  | block | Figma | was |
+  |---|---|---|
+  | `seam` (x2) | **pale mint, photo, 54px top-left corner, link under the copy** | lilas, gold left edge, composed figure, link to the right |
+  | `reflist` | **4 rows + a "+9 Voir la liste complète" outline button** | all 13 rows |
+  | `tl`, `cmp`, `jur-list` | unchanged | — |
+  - The seam went **124 -> 220** because its link moved under the copy; it now
+    measures 220 exactly. The reflist went **1124 -> 415** against Figma's 430.
+    All thirteen references stay in the data — that is what the "+9" counts.
+- **Interlocuteurs is restructured** (`13323:4272`): two side-by-side cards with
+  104px circular portraits become **two full-width stacked cards**, each with a
+  200x240 rectangular portrait, a permanent `0px 14px 34px` shadow, an
+  **80px top-left corner** on both card and portrait, a **red** angle rule where
+  it was pale gold, a **periwinkle** languages line, and **two** CTAs.
+  - **It takes bottom padding only** — Figma puts its overline at y=0. That was
+    the whole of a 102px overshoot; with `pb-16 lg:pb-24` it measures **906.4
+    against 900**.
+  - Two new crops at 3x the 200x240 box: `lawyer-portrait-card.jpg` and
+    `tony-portrait-card.jpg`. Its languages copy also changed, and each lawyer
+    gained a second CTA.
+- **ALireEnsuite**: the commented-model row gains a **pale-gold ground** where
+  it was a bare bordered strip on lilas. Palette-clean after; 1459.3 against
+  1405, which is the already-recorded card-border and sub-category accumulation.
+- **Whole page: 19170 against the frame's 19284.6 — 0.6% under**, with Hero
+  +0.5, Cabinet +2.9, Interlocuteurs +6.4, Transparence +0.5 and CTAFinal +0.4.
+  Corps is −181.7 over 13,966px, which is where the remaining difference sits.
+- Orphans created by this pass: `lawyer-figure.svg`, `lawyer-figure-dark.svg`
+  and the two `-square` portraits are no longer used by the article column.
+
+- **`--color-pale-rose` (#edc2dc) is the one token added here, and it was
+  asked about first.** Unlike Mint, Pale_Mint, Pink and Red it is **not** a
+  named Figma library style — just a raw `rgba(237,194,220,0.3)` fill on the
+  trap box and its tag — so the named-style precedent did not cover it. It is
+  only ever drawn at 30%: `bg-pale-rose/30`.
+- The `answer` box change is the one to remember: **pale mint #e8f5f1 against
+  lilas-2 #e8ecf5**. Those two are indistinguishable by eye and differ only in
+  the green channel; nothing but a pixel comparison would have caught it.
+- `bullet-mark.svg` went gold -> periwinkle. It is used only by `takeaways`,
+  so it was recoloured in place rather than forked.
+- Its title copy also changed: **"Sept points à retenir"**, from "Points clés à
+  retenir".
+- Measured after: takeaways 568 against Figma's 565, four mint ladder pills,
+  trap resolving to `pale-rose/30` with red tag text, answer at
+  `rgb(232,245,241)`.
+
+- **Transparence flipped from dark to light.** `13318:3318` draws it on
+  **white** with an encre title and disclaimer and encre/62 secondary text,
+  where it had been the article's only dark band. The overline stays gold and
+  the closing `Signalez-la-nous.` stays rose; every measurement — 72/52
+  padding, 20px block gaps, the 8px head gap, the 784 head cap and the 1100
+  column at x=360 — is unchanged. Section still 370.
+  **The Bibliotheque hub's Transparence is a different component and stays
+  dark** — confirmed after the change: its band still measures encre 616218.
+  The two share strings through the top-level `Transparence` namespace, which
+  is exactly why they could diverge in colour without touching the copy.
+- Cabinet and CTAFinal compare **palette-clean** against their new nodes
+  (`13318:3141`, `13318:3326`), so neither changed.
+- **Hide `position: fixed` elements before any clip capture on this page.** The
+  red side tab is fixed, so it photobombed every section capture with a
+  constant 9149 red pixels and read as a palette mismatch in Cabinet,
+  Transparence and CTAFinal at once. The same trap the sticky bar caused
+  before; `sect.mjs` now hides every fixed element outside the header.
+
+- **Hero rebuilt to `13318:2451`.** What changed from the old one:
+  - the photo is **470x548** (was 450x414) and has **lost its 2px gold
+    border**; same asymmetric radii. Its stage is 553 wide because Figma sizes
+    that group by its overhanging children, not by the photo, so the photo sits
+    42.53px in. `reading-outdoors-tall.jpg` was re-cropped in place to the new
+    window (1410x1644, 3x) — it had no other user.
+  - the rotated verification chip is replaced by a **`hero-card`** — "Un
+    dossier, un avocat." over a small note, white, `rounded-[16px]`, overhanging
+    the photo's lower left.
+  - a new **"15 ANS" seal**: a 97.333px encre disc with a 2px lilas border,
+    rotated 7°, gold heading over white lines. Figma's 108.47 box is the
+    *rotated bounding box*, so the untransformed box sits at 450.1/64.57 — the
+    same centre-of-rotation correction the Bibliotheque polaroid needed.
+  - **`Art.` is periwinkle, where it was gold.**
+  - the verification line folds into the meta string: "12 min de lecture ·
+    vérifiée le 19 août 2026".
+  - the row is `items-center` with a **36px gap**, where the old one was
+    `items-start` with none.
+- **The hero card is a two-thirds-scaled component instance**, which is where
+  its 14.667/9.333px type and 16.667px padding come from — all arbitrary
+  values, none on the spacing scale. Its body sits well under the design
+  system's own 16px floor; that is what the comp draws and it is worth raising
+  with the designer.
+- Measured: section **890.5 against 890**, photo 470x548 at the exact offset
+  with radii `200px 10px 100px 60px` and no border, card 213.3x98 at (0, 428),
+  badge bounding box 108.5 at (444.5, 59) rotated 7deg, articles row at y=688.
+  No horizontal overflow from 1920 down to 320.
+
+
+## Page 7 — Avocat e-commerce (`/bibliotheque/avocat-e-commerce`), frame `13331:10364`
+
+1920x17207. **Despite its frame name — the designer duplicated the fiche frame,
+so it still reads "Fiche : Signature électronique" — this is a practice-area
+landing page for e-commerce law.** Do not go by the frame title.
+
+Its sections live in `src/components/sections/ecommerce/` and its copy under
+the `EcommercePage` namespace. Reachable from the Bibliotheque submenu, which
+now carries two children.
+
+| # | Section | Node ID | Figma h | Status |
+|---|---|---|---|---|
+| 1 | Hero (crumb + row + trust + stats) | `13331:10417` | 1104 | done |
+| 2 | Principe + intro | `13331:11415` | 1197 | done |
+| 3 | Notre rôle | `13331:11795` | 1155 | |
+| 4 | Quand consulter | `13331:11924` | 944 | |
+| 5 | Comment nous aidons | `13331:11970` | 4432 | |
+| 6 | Forfaits | `13331:12906` | 988 | |
+| 7 | Comment ça marche | `13331:12970` | 1159 | |
+| 8 | Comprendre le droit | `13331:13264` | 2221 | |
+| 9 | FAQ | `13331:13351` | 844 | |
+| 10 | Interlocuteurs | `13331:11124` | 996 | |
+| 11 | ALireEnsuite | `13331:11178` | 818 | |
+| 12 | Transparence | `13331:11268` | 370 | |
+| 13 | CTAFinal | `13331:11276` | 550 | |
+| + | sidetab | `13331:11356` | 45x236 | |
+
+- **Its hero is one Figma frame holding four bands** — crumb, headline row,
+  trust strip and stat band — so it is one `<section>` here and measures
+  against 1104 directly. **1103.8**, with the stage (1029.5/118, 553x548), the
+  photo (1072, 470x548), the trust strip (y=714, h=100) and the stat row
+  (y=878) all landing exactly.
+- **The trust strip must not sit inside `Container`.** Its four claims need
+  1430px and Figma's own frame is padded to 1245, so the row overflows that
+  padding and centres across the full 1920. Capping it at the container width
+  wrapped it to two lines and made the strip 136 against the comp's 100.
+- **`max-w-full` does not contain an offset absolute bar.** The pale-gold
+  marker is pinned `left-[6.098em]` to underline "e-commerce"; `max-w-full`
+  caps its width but not its left edge, so at 375 it reached x=431 and pushed
+  the whole page sideways. It is `hidden sm:block` — below `sm` the title wraps
+  after "Avocats du" anyway, which would leave the bar under the wrong word.
+- Its photo, hero card and "15 ANS" seal are the **article hero's exact
+  construction**, including the 42.53px inset and the rotated-bounding-box
+  correction. `ecommerce-lawyer.jpg` is 1410x1644, 3x the 470x548 box.
+- The gold trust dot is a `bg-gold size-2.5 rounded-full` span, not an asset —
+  Figma exports it as a 10px SVG circle, which is not worth a file.
+- **Principe + intro** measures **1198.67 against Figma's 1197**, with the
+  illustration exactly 537.5x414 and the dark card exactly 611x414. Its left
+  column profiles 17 ink bands in both renders, every one within 1-2px.
+- Its row is 610 + 24 + 611 = the container's whole 1245, so it only holds
+  together at **`xl`**; below that it stacks in DOM order — illustration,
+  headline, paragraphs, CTA, then the card. At `xl` the intro column is
+  `items-end` so the panel's right edge closes the column; once stacked it is
+  `items-start` and aligns with the copy.
+- **Its illustration is a second Paris skyline, not the Bibliotheque hero's.**
+  Same 450x414 panel with the same corner radii, and the same two stars at the
+  same sizes (31.8656 and 20.7127), but a **narrower Eiffel tower** (80x243.1
+  against 141.8x280.4), **five** Haussmann blocks against that one's three, and
+  three tower groups it does not have. So it ships as its own composed
+  `paris-skyline-ecommerce.svg`, built from the twelve pieces at their own
+  mask-positions exactly as `paris-skyline.svg` is — one file rather than nine
+  sized ornaments. Every fill mapped to an existing token; no new colours.
+- It needs a **601px viewport** (537.5 of illustration inside `Container`'s
+  padding), so it is `hidden sm:block`. Below `sm` the section is copy only —
+  the same call the Bibliotheque hero's collage makes at `xl`.
+- Its polaroid repeats that hero's rotation correction: Figma's 0/121 is the
+  *bounding box* of the -8deg frame, so the untransformed 150x202 card sits at
+  **13.33/130.46**. Unlike the Bibliotheque one it carries **no `mix-blend`
+  tint** — the print is a plain crop. `smiling-lawyer-square.jpg` is new (360px,
+  3x the 120 print) and is a different person from both `lawyer-portrait` and
+  `tony-portrait`.
+- **Its card body wraps to four lines where Figma fits three**, and the whole
+  difference is ~2.5px of glyph metrics: Figma's line 2 fills 511 of the 515
+  content box, and the same line needs ~513.5 here. Nothing is misconfigured —
+  same 515px measure, same 18/1.4. The card is a fixed 414 at `xl`, so it costs
+  no height; the button simply sits 26px lower than the comp. This is the
+  half-percent Inter drift already recorded for the article's prose.
+- Its two buttons are `Button size="lg"` (28/16) — Figma's `btn` exactly, solid
+  encre in the intro and `variant="gold"` in the card. Both inert.
+- **The card is sticky at `xl`**, on the user's instruction — Figma draws it
+  static. The intro column is 1005 tall against the card's 414, so it pins at
+  24px and rides the rest of that column past. `self-start` is what makes that
+  possible: the row is `items-start`, so the card keeps its own height rather
+  than stretching to the row and leaving nothing to stick. Verified by
+  scrolling — `sticky` and pinned at top 24 through 800px of scroll at 1920 and
+  1280, `static` at 1024 and 375 where the two columns stack.
+- **`Page.captureScreenshot` hangs at narrow widths if the prep script awaits
+  every image.** A lazy `next/image` that is never scrolled near never fires
+  `load`, so `Promise.all` over `document.images` never settles and the capture
+  never runs — it reads as a wedged browser. Race that wait against a timeout.
+
+
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.
@@ -1166,6 +2120,14 @@ section alone.
   consultation drawer's overline; asked before adding, because it is the one
   overline in the file that is not +18% and the difference is load-bearing:
   at 0.18em its string overruns its 412px slot and wraps).
+  Plus `--color-mint` (#44cba1) — Figma's own "Petroff/Mint" library
+  style, the redesigned home hero's laurel branch; added under the same
+  named-style precedent, not invented.
+  Then `--color-pale-mint` (#e8f5f1, "Petroff/Pale_Mint") and `--color-pink`
+  (#fac5ef, "Petroff/Pink", only ever drawn at 40%) for the redesigned
+  Expertises card tiles — same precedent again.
+  And `--color-pale-rose` (#edc2dc, the article trap callout, always at 30%) —
+  **asked about**, because unlike those four it is a raw fill, not a named style.
 - **`text-*` tokens carry size, line-height, weight and tracking — never the
   font family.** A `text-lead` span inside a `font-poppins` paragraph renders
   in Poppins, not Inter, and reads visibly wider and heavier. Pair the token
@@ -1184,8 +2146,8 @@ section alone.
   `<span>` for everything else, so nothing can navigate to a 404. Add a path to
   `liveRoutes` the moment its page lands and every call site starts linking.
   Live today: `/`, `/expertises`, `/expertises/contentieux-arbitrage`,
-  `/expertises/contrats-commerciaux`, `/bibliotheque` and
-  `/bibliotheque/article-design`.
+  `/expertises/contrats-commerciaux`, `/bibliotheque`,
+  `/bibliotheque/article-design` and `/bibliotheque/avocat-e-commerce`.
 - `Button` still has no `href` prop by design — wrap the call site in `Link`
   when a CTA needs to navigate. `LanguageSwitcher`'s `Link` branch is dead
   today (only `fr` is registered) and is the locale mechanism, not a route.
@@ -1218,7 +2180,11 @@ asset URLs, so `curl` those rather than spending a second call on
    a **content** change to `globals.css` does, and is far cheaper than the
    `rm -rf .next` remedy. Probe with an *empty* `<div>`: an ungenerated class
    measures 0px, where a div with text misleads you with its content height.
-6. Build, then **measure the rendered DOM against the spec** by driving Chrome
+6. `npx tsc --noEmit` exits **1 with no diagnostics at all** under the
+   agent sandbox, which reads as a failing typecheck and is not one. Run
+   `node ./node_modules/typescript/lib/tsc.js --noEmit` instead — that reports
+   the real result.
+7. Build, then **measure the rendered DOM against the spec** by driving Chrome
    over CDP (`--remote-debugging-port`, `Emulation.setDeviceMetricsOverride`,
    `Runtime.evaluate`). Check for horizontal overflow at 1920/1280/768/375.
    Do not trust `--window-size` screenshots at narrow widths; they misreport.

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import SealRibbon from "@/assets/icons/seal-ribbon.svg";
 import heroPhoto from "@/assets/images/reading-outdoors-tall.jpg";
 import { Container } from "@/components/ui/Container";
 import { heroArticles } from "@/lib/article";
@@ -23,24 +22,22 @@ export function Hero() {
         </p>
       </Container>
 
-      <Container className="pt-14 pb-3.5">
+      <Container className="py-8 lg:py-14">
         {/*
-          No gap: Figma's row is the copy column flexing against a 504px image
-          stage inside the 1245 band, which leaves the copy 741 wide. A gap-12
-          takes it to 693 and pushes the title onto a third line — the same
-          trap the Bibliotheque hero hit.
+          Figma's row: the copy column flexing against a 553px image stage
+          inside the 1245 band with a 36px gap, which leaves the copy 656 wide.
+          Centred, not top-aligned.
         */}
-        <div className="flex items-start">
+        <div className="flex items-center gap-9">
           <div className="flex min-w-0 flex-1 flex-col gap-5.5">
             <p className="text-overline font-poppins text-brique">{t("overline")}</p>
 
             {/*
               46/52 rather than the fluid text-display: this is an article
-              title inside a 715px measure, not a page hero. The pale-gold
-              marker sits behind the first line, as in the other heroes — but
-              it is a fixed 12.17em bar rather than a highlighted chunk, so it
-              needs max-w-full: below ~500px it is wider than the column and
-              pushed the whole page to 410.
+              title inside a 656px measure, not a page hero. The pale-gold
+              marker is a fixed 12.17em bar rather than a highlighted chunk, so
+              it needs max-w-full: below ~500px it would otherwise be wider
+              than the column and push the whole page sideways.
             */}
             <h1 className="text-article-title text-encre font-poppins relative">
               <span
@@ -50,9 +47,7 @@ export function Hero() {
               <span className="relative">{t("title")}</span>
             </h1>
 
-            <p className="text-lead font-inter text-encre/62 max-w-179">
-              {t("lead")}
-            </p>
+            <p className="text-lead font-inter text-encre/62">{t("lead")}</p>
 
             <div className="flex flex-wrap items-center gap-2.25">
               <span className={`${pill} bg-pale-periwinkle`}>{t("domain")}</span>
@@ -63,35 +58,62 @@ export function Hero() {
             <ArticleActions copyLabel={t("copyLink")} printLabel={t("print")} />
           </div>
 
-          {/* The photo panel takes the same asymmetric radii as the
-              Bibliotheque hero's skyline, here with a 2px gold border. */}
-          <div className="relative hidden h-103.5 w-126 shrink-0 xl:block">
-            <div className="border-gold absolute top-0 right-0 h-103.5 w-112.5 overflow-hidden rounded-tl-[200px] rounded-tr-[10px] rounded-br-[100px] rounded-bl-[60px] border-2">
+          {/*
+            The photo stage. Figma sizes this group by its outermost children
+            rather than by the photo: the card overhangs to the left and the
+            badge to the right, so the 470px photo sits 42.5px in. Its radii
+            are the same asymmetric set the Bibliotheque hero and the home
+            Cabinet photo use, and it carries no border since the colour pass.
+
+            Shown from xl only — 656 of copy plus 553 of stage needs 1245,
+            which the container cannot give below that.
+          */}
+          <div className="relative hidden h-137 w-[553px] shrink-0 xl:block">
+            <div className="absolute top-0 left-[42.53px] h-137 w-117.5 overflow-hidden rounded-tl-[200px] rounded-tr-[10px] rounded-br-[100px] rounded-bl-[60px]">
               <Image
                 src={heroPhoto}
                 alt={t("imageAlt")}
-                sizes="450px"
+                sizes="470px"
                 className="h-full w-full object-cover"
               />
             </div>
 
             {/*
-              Verification chip, leaning off the panel's lower left. Figma's
-              0/306 is the rotated frame's bounding box; CSS rotates about the
-              centre, so the untransformed box sits at 2.6/313 — the same
-              correction the Bibliotheque hero's polaroid needed.
+              Figma scales this card to two thirds of a 320px component, which
+              is where its 14.667/9.333px type and 16.667px padding come from —
+              arbitrary values because none of them sit on the spacing scale.
+              Its body is well under the design system's 16px floor; that is
+              what the comp draws, and worth raising with the designer.
             */}
-            <figure className="absolute top-[313px] left-[2.6px] flex -rotate-5 items-center gap-3 rounded-field bg-white px-4 py-3 shadow-[0px_16px_36px_0px_rgba(18,42,76,0.16)]">
-              <SealRibbon aria-hidden="true" width={19.13} height={30} />
-              <figcaption className="flex flex-col">
-                <span className="text-small text-encre/62">
-                  {t("verifiedLabel")}
-                </span>
-                <span className="text-button font-poppins text-encre">
-                  {t("verifiedDate")}
-                </span>
+            <figure className="absolute top-[428px] left-0 flex w-[213.333px] flex-col gap-[5.333px] rounded-[16px] bg-white p-[16.667px] shadow-[0px_14.667px_36.667px_0px_rgba(18,42,76,0.12)]">
+              <figcaption className="text-encre font-poppins text-[14.667px] leading-[17.333px] font-semibold">
+                {t("card.title")}
               </figcaption>
+              <p className="text-encre/62 font-inter text-[9.333px] leading-[14px]">
+                {t("card.body")}
+              </p>
             </figure>
+
+            {/*
+              The seal. Figma's 108.47 box is the rotated bounding box of a
+              97.333 circle, and CSS rotates about the centre, so the
+              untransformed box sits at 450.1/64.57 — the same correction the
+              Bibliotheque polaroid and the old verification chip needed.
+            */}
+            <div
+              aria-hidden="true"
+              className="border-lilas bg-encre absolute top-[64.57px] left-[450.1px] flex size-[97.333px] rotate-7 flex-col items-center justify-center rounded-full border-2 text-center"
+            >
+              <span className="text-gold font-poppins text-[18px] leading-[1.35] font-bold">
+                {t("badge.years")}
+              </span>
+              <span className="font-inter text-[14px] leading-[1.2] font-semibold text-white">
+                {t("badge.line1")}
+              </span>
+              <span className="font-inter text-[14px] leading-[1.2] font-semibold text-white">
+                {t("badge.line2")}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -100,7 +122,8 @@ export function Hero() {
           {heroArticles.map((key) => (
             <li key={key} className="w-70">
               <p className="text-encre font-poppins">
-                <span className="text-h3 text-gold">{t("articlePrefix")}</span>
+                {/* Periwinkle since the colour pass; it was gold before. */}
+                <span className="text-h3 text-periwinkle">{t("articlePrefix")}</span>
                 <span className="text-price">{t(`articles.${key}.number`)}</span>
               </p>
               <p className="text-small text-encre/62 max-w-65">

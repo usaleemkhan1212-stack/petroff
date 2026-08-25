@@ -59,7 +59,7 @@ export function Cabinet() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
+      <Container className="py-16 lg:py-24">
         <p className="text-overline font-poppins text-brique">{t("overline")}</p>
         <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
         <p className="text-small text-encre/62 mt-3.5">{t("lead")}</p>
@@ -68,7 +68,7 @@ export function Cabinet() {
         <ul className="mt-11 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {prestations.map(({ key, Icon, tone, href, price }) => (
             <li key={key} className="flex">
-              <div className="rounded-note-lg border-encre/8 flex min-w-0 flex-1 flex-col gap-2 border bg-white p-7">
+              <div className="rounded-note-lg border-encre/8 flex min-w-0 flex-1 flex-col gap-2 border bg-white p-5 sm:p-7">
                 <span
                   aria-hidden="true"
                   className={cn(

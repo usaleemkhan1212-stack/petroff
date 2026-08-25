@@ -10,7 +10,7 @@ export function Faq() {
   return (
     /* overflow-hidden: the laurel bleeds past the container by design. */
     <section className="overflow-hidden bg-white">
-      <Container className="py-24">
+      <Container className="py-16 lg:py-24">
         <div className="flex items-center justify-between gap-12">
           <div className="flex min-w-0 flex-col gap-3">
             <SectionHeading

@@ -21,14 +21,14 @@ export function Espace() {
 
   return (
     <section className="bg-white">
-      <Container className="py-24">
+      <Container className="py-16 lg:py-24">
         {/*
           Copy and mock sit side by side, stacking below lg. Figma marks the
           row items-center but gives both cells self-stretch, which overrides
           it — so the columns are equal height and the mock fills its cell with
           its content packed to the top. Grid stretches by default.
         */}
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col gap-5">
             {/* The lead sits 20px under the H2 here, not the usual 12. */}
             <SectionHeading

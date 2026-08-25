@@ -10,8 +10,8 @@ export function CTAFinal() {
   return (
     /* No top padding here: Facons above already closes with its own 96px. */
     <section className="bg-lilas">
-      <Container className="pb-24">
-        <div className="rounded-panel bg-lilas-2 relative overflow-hidden px-12 py-16">
+      <Container className="pb-16 lg:pb-24">
+        <div className="rounded-panel bg-lilas-2 relative overflow-hidden px-6 py-12 sm:px-12 lg:py-16">
           {/*
             Sanctioned ornament exception: the offsets are the literal Figma
             coordinates, and both shapes deliberately bleed past the panel so
@@ -46,9 +46,17 @@ export function CTAFinal() {
               <p>{t("contact")}</p>
             </div>
             <span aria-hidden="true" className="h-3.5" />
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg">{t("ctaPrimary")}</Button>
-              <Button size="lg" variant="gold">
+            {/*
+              Below sm the buttons go full width and their labels may wrap:
+              these two are 265 and 258px against a 239px content box at 375,
+              and the panel is overflow-hidden. Same treatment as the home
+              CTAFinal. Figma specifies desktop only.
+            */}
+            <div className="flex w-full flex-wrap justify-center gap-4">
+              <Button size="lg" className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap">
+                {t("ctaPrimary")}
+              </Button>
+              <Button size="lg" variant="gold" className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap">
                 {t("ctaSecondary")}
               </Button>
             </div>

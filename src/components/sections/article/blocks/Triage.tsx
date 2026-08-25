@@ -17,10 +17,10 @@ export function Triage() {
   const t = useTranslations("ArticlePage.triage");
 
   return (
-    <div className="rounded-note-lg bg-lilas-2 p-7">
+    <div className="rounded-note-lg bg-lilas-2 p-5 sm:p-7">
       <div className="flex flex-wrap items-center gap-3">
         <p className="text-h3 text-encre font-poppins">{t("title")}</p>
-        <span className="text-button font-poppins bg-encre/80 text-rose rounded-full px-3 py-1">
+        <span className="text-button font-poppins bg-encre/8 text-encre/62 rounded-full px-3 py-1">
           {t("pill")}
         </span>
       </div>
@@ -49,7 +49,7 @@ export function Triage() {
         })}
       </ul>
 
-      <div className="rounded-note-lg border-encre/10 mt-5 flex flex-col gap-3 border bg-white px-6 py-5.5">
+      <div className="rounded-note-lg border-encre/10 mt-5 flex flex-col gap-3 border bg-white px-4 py-5 sm:px-6 sm:py-5.5">
         <dl>
           {rows.map((key, index) => (
             <div
@@ -71,7 +71,7 @@ export function Triage() {
 
         <p className="text-body text-encre/62">{t("note")}</p>
 
-        <span className="text-button font-poppins bg-gold w-fit rounded-full px-6.5 py-3.5 text-white">
+        <span className="text-button font-poppins bg-red w-fit rounded-full px-6.5 py-3.5 text-white">
           {t("cta")}
         </span>
       </div>

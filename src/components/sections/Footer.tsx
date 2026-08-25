@@ -7,18 +7,20 @@ import { cn } from "@/lib/utils";
 export function Footer() {
   const t = useTranslations("Footer");
 
+  /* Figma writes every string in this footer at white 70%: the legal line,
+     the language list, the column titles, the links and the bottom row. */
   return (
     <footer className="bg-encre">
-      <Container className="pt-16 pb-9">
+      <Container className="pt-12 pb-9 lg:pt-16">
         <div className="flex flex-col gap-12">
           {/* Brand block left, link columns right; they stack below lg. */}
           <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex max-w-82 flex-col gap-5">
               <div className="flex flex-col gap-3">
                 <Logo tone="onDark" />
-                <p className="text-small text-white/85">{t("legal")}</p>
+                <p className="text-small text-white/70">{t("legal")}</p>
               </div>
-              <p className="text-overline font-poppins text-white/60">
+              <p className="text-overline font-poppins text-white/70">
                 {t("languages")}
               </p>
             </div>
@@ -47,14 +49,14 @@ export function Footer() {
                     i < footerColumns.length - 1 && "xl:w-58",
                   )}
                 >
-                  <h2 className="text-overline font-poppins text-white/60">
+                  <h2 className="text-overline font-poppins text-white/70">
                     {t(`columns.${key}.title`)}
                   </h2>
                   <ul className="flex flex-col gap-2">
                     {(t.raw(`columns.${key}.items`) as string[]).map((label) => (
                       <li key={label}>
                         {/* Reads as a link but does not navigate — no route yet. */}
-                        <span className="text-small text-white/85">{label}</span>
+                        <span className="text-small text-white/70">{label}</span>
                       </li>
                     ))}
                   </ul>
@@ -64,8 +66,8 @@ export function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-6">
-            <p className="text-small text-white/65">{t("copyright")}</p>
-            <p className="text-small text-white/65">{t("legalLinks")}</p>
+            <p className="text-small text-white/70">{t("copyright")}</p>
+            <p className="text-small text-white/70">{t("legalLinks")}</p>
           </div>
         </div>
       </Container>

@@ -1,8 +1,9 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { CabinetCollage } from "@/components/sections/CabinetCollage";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import signingTable from "@/assets/images/signing-table-overhead.jpg";
 import { cabinetStats } from "@/lib/cabinet";
 
 export function Cabinet() {
@@ -10,10 +11,9 @@ export function Cabinet() {
 
   return (
     <section className="bg-white">
-      <Container className="py-24">
-        {/* Copy and collage sit side by side from xl; below that the collage
-            is hidden and the copy takes the full width. */}
-        <div className="grid items-center gap-16 xl:grid-cols-2">
+      <Container className="py-16 lg:py-24">
+        {/* Copy and photo sit side by side from xl, stacking below it. */}
+        <div className="grid items-center gap-10 xl:grid-cols-2 xl:gap-16">
           <div className="flex flex-col gap-5">
             <SectionHeading
               overline={t("overline")}
@@ -24,7 +24,9 @@ export function Cabinet() {
             <dl className="flex flex-wrap gap-9">
               {cabinetStats.map((key) => (
                 <div key={key} className="flex flex-col gap-1">
-                  <dt className="text-stat font-poppins text-encre">
+                  {/* Poppins Bold 40 — text-h2, not text-stat's 28. Both this
+                      frame and the one it replaces specify 40 here. */}
+                  <dt className="text-h2 font-poppins text-encre">
                     {t(`stats.${key}.value`)}
                   </dt>
                   <dd className="text-small text-encre/62">
@@ -39,7 +41,27 @@ export function Cabinet() {
             </Button>
           </div>
 
-          <CabinetCollage />
+          {/*
+            Figma pins the photo to the right edge of its 590.5px column
+            (left 72.5 + 518 = 590.5) and gives it four different corner
+            radii. Unlike the collage it replaces it is not hidden below xl —
+            one photo scales down cleanly where five stacked ornaments could
+            not. The four radii are literal design geometry with no token,
+            the same call CabinetCollage made for its 6px polaroid corners.
+          */}
+          {/* Figma's stage is 600 tall with the 592 photo at its top, so the
+              extra 8px is real and sets the section height. */}
+          <div className="flex items-start justify-end xl:h-150">
+            <div className="relative aspect-[518/592] w-full max-w-129.5 overflow-hidden rounded-tl-[200px] rounded-tr-[10px] rounded-br-[100px] rounded-bl-[60px]">
+              <Image
+                src={signingTable}
+                alt=""
+                fill
+                sizes="(min-width: 1280px) 518px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
         </div>
       </Container>
     </section>
