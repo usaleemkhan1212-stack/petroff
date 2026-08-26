@@ -49,7 +49,7 @@ export function CTAFinal() {
           </div>
 
           <div className="relative flex flex-col items-center gap-3 text-center">
-            <p className="text-overline font-poppins text-brique">
+            <p className="text-overline font-poppins uppercase text-brique">
               {shared("overline")}
             </p>
             <h2 className="text-h2 text-encre">{t("title")}</h2>

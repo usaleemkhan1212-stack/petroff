@@ -35,7 +35,7 @@ export function Consult() {
           <Image src={lawyerPortrait} alt="" fill sizes="141px" className="object-cover" />
         </div>
         <div className="flex min-w-0 flex-1 flex-col gap-2">
-          <p className="text-overline font-poppins text-red">{t("overline")}</p>
+          <p className="text-overline font-poppins uppercase text-red">{t("overline")}</p>
           <p className="text-h3 font-poppins text-encre">{t("title")}</p>
           <p className="text-body text-encre/62">{t("lead")}</p>
         </div>

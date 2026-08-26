@@ -16,7 +16,7 @@ export function Transparence() {
             overline and 4px under the title, where SectionHeading uses one
             gap for both.
           */}
-          <p className="text-overline font-poppins text-gold">{t("overline")}</p>
+          <p className="text-overline font-poppins uppercase text-gold">{t("overline")}</p>
           <h2 className="text-h2 mt-2.5 text-white">{t("title")}</h2>
           <p className="text-body mt-1 text-white/70">{t("sources")}</p>
 

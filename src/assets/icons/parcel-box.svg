@@ -1,0 +1,20 @@
+<svg width="213" height="201" viewBox="0 0 213 201" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="art">
+<path id="Vector" d="M106.496 40.3603L183.708 81.7899L106.496 123.219L29.2834 81.7899L106.496 40.3603Z" fill="var(--color-pale-gold)"/>
+<path id="Vector_2" d="M29.2834 81.7901L106.496 123.22V195.387L29.2834 153.958V81.7901Z" fill="var(--color-brique)"/>
+<path id="Vector_3" d="M183.713 81.7899L106.5 123.219V195.387L183.713 153.957V81.7899Z" fill="var(--color-gold)"/>
+<g id="Vector_4">
+<path d="M106.5 122.688L106.5 190.558Z" fill="black"/>
+<path d="M106.5 122.688L106.5 190.558" stroke="var(--color-encre)" stroke-width="3" stroke-linecap="round"/>
+</g>
+<g id="Vector_5">
+<path d="M106.5 44.3766L106.5 122.688Z" fill="black"/>
+<path d="M106.5 44.3766L106.5 122.688" stroke="var(--color-encre)" stroke-opacity="0.62" stroke-width="3" stroke-linecap="round"/>
+</g>
+<path id="Vector_6" d="M154.035 135.74L122.085 153.114V177.17L154.035 159.796V135.74Z" fill="var(--color-lilas)"/>
+<g id="Vector_7">
+<path d="M145.918 149.847L127.28 160.539ZM138.967 160.539L127.28 167.065Z" fill="black"/>
+<path d="M145.918 149.847L127.28 160.539M138.967 160.539L127.28 167.065" stroke="var(--color-brique)" stroke-linecap="round"/>
+</g>
+</g>
+</svg>

@@ -35,7 +35,7 @@ export function Stage() {
         */}
         <div className="flex flex-col items-center pt-4 pb-16 lg:min-h-180">
           <div className="mx-auto flex max-w-200 flex-col items-center text-center">
-            <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
             <span aria-hidden="true" className="h-2.5" />
 
             <h1 className="text-display text-encre">

@@ -24,7 +24,7 @@ export function ParCategorie() {
       {/* 1200 centred inside the Container lands on 360, as in Resultats. */}
       <Container className="py-21.5">
         <div className="mx-auto max-w-300">
-          <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+          <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
           <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
           <p className="text-body text-encre/62 mt-1.5 max-w-190">{t("lead")}</p>
 

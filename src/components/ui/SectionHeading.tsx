@@ -35,7 +35,7 @@ export function SectionHeading({
 }) {
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <p className={cn("text-overline font-poppins", tones[tone].overline)}>
+      <p className={cn("text-overline font-poppins uppercase", tones[tone].overline)}>
         {overline}
       </p>
       <h2 className={cn("text-h2", tones[tone].title)}>{title}</h2>

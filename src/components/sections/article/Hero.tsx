@@ -30,7 +30,7 @@ export function Hero() {
         */}
         <div className="flex items-center gap-9">
           <div className="flex min-w-0 flex-1 flex-col gap-5.5">
-            <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
 
             {/*
               46/52 rather than the fluid text-display: this is an article

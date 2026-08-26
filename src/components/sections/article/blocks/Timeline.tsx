@@ -34,7 +34,7 @@ export function TimelineItem({
         className="bg-periwinkle relative mt-2.75 size-3.5 shrink-0 rounded-full border-4 border-white"
       />
       <div className="flex min-w-0 flex-1 flex-col gap-1">
-        <p className="text-overline font-poppins text-brique">{step}</p>
+        <p className="text-overline font-poppins uppercase text-brique">{step}</p>
         <h3 className="text-h3 text-encre">{title}</h3>
         <p className="text-body text-encre/62">{children}</p>
       </div>

@@ -381,6 +381,36 @@ by a **red** side tab. No sticky bar — the home frame draws only the tab.
   has **no inline consultation form to fall back on**, so that is a real gap on
   mobile rather than a styling one; showing the tab there is a one-class change.
 
+### Home page — the Hero/SearchBand overlap
+
+Asked for: as the reader scrolls, the SearchBand climbs over the Hero's bottom
+edge so the Hero appears to lose height and tuck underneath — **20px, and no
+more**. It lives in `SearchBand.tsx`, which was already the page's one client
+section, so it needed no wrapper and no extra DOM node.
+
+- **A negative `margin-top`, not a transform.** Everything below the band has
+  to come up with it: a `translateY` would leave the eight sections after it
+  20px too low and open a gap above the footer. The margin makes the document
+  itself 20px shorter, which is exactly right.
+- Its ramp is `min(scrollY / 120, 1) * 20`, **rounded to whole pixels** — 20
+  steps at one every 6px of scroll, which reads as continuous at this size and
+  caps the re-renders at 21 rather than one per frame. Pulling the band up is a
+  layout change, so that rounding is what keeps it cheap. Both constants are
+  named at the top of the file.
+- The band takes **`relative z-10`** so its `bg-encre` ground paints over the
+  Hero once the margin bites; the header is z-30, well clear.
+- **Nothing moves under `prefers-reduced-motion: reduce`** — the effect's
+  effect hook returns before it subscribes, so the margin stays 0.
+- Verified by driving real scroll at 1920: overlap **0 / 5 / 10 / 15 / 20** at
+  scrollY 0 / 30 / 60 / 90 / 120, holding at 20 through 300 and 900, with the
+  Hero's bottom and the band's top coincident at rest (both 733) and 20 apart
+  after. Document **5748 -> 5728**, exactly the 20. Under reduce: `margin-top`
+  0 and the document 5748 at every scroll position.
+- **At rest the page is unchanged** — all eight sections still measure
+  660 / 295.2 / 904.3 / 671.9 / 835.4 / 792 / 712.6 / 445.2 and the page 5748,
+  the same numbers this file's table records. No horizontal overflow at 1920,
+  1280, 768, 375 or 320.
+
 ### Responsive spacing pass — home page
 
 Figma specifies desktop only, and the build had been carrying every desktop
@@ -1308,6 +1338,20 @@ its 21 ink bands align 1:1 with the comp's.
 - **The side tab's own shadow is correct and stays**: `13170:1046` specifies
   `0px 10px 30px rgba(18,42,76,0.2)`, which is what is built. Re-checked in
   Figma when the drawer's bleeding shadow was first read as the tab's.
+- **The tab's only hover state is a 6px nudge out of the edge** — 45 to 51
+  wide over 180ms, growing leftward because it is pinned to `right: 0`. Taken
+  from a mockup the user supplied (`.sidetab:hover{padding-right:19px}`), so
+  **Figma draws no hover state at all**; it is a deliberate addition. The
+  ground does **not** change with it — the old `hover:bg-brique` was removed on
+  the user's instruction, and `background-color` came out of the transition
+  list with it. The two remaining transitions carry their own durations —
+  `[transition-duration:300ms,180ms]` against `transition-[translate,width]` —
+  so the nudge stays quick while the slide keeps the 300ms it shares with the
+  drawer panel.
+  Verified with real `Input.dispatchMouseEvent` hovers on all three pages that
+  carry the tab: 45 -> 51 -> 45, the right edge never moving, the fill holding
+  at `rgb(240,26,93)` throughout, and opening, Escape, focus return and the
+  `inert` slide-out all unchanged.
 - Its `role="dialog"` panel is kept mounted and translated out rather than
   unmounted, so the transition runs both ways, and carries `aria-hidden` +
   `inert` while it is out. The backdrop is `pointer-events-none opacity-0`
@@ -2005,6 +2049,540 @@ against the live build at 1920:
   No horizontal overflow from 1920 down to 320.
 
 
+## Page 8 — new-article-page (`/bibliotheque/new-article-page`), frame `13318:2398`
+
+**A second build of the frame `/bibliotheque/article-design` was made from.**
+Same article — same crumb, same title, same hero card and badge — but the frame
+has grown since that page was derived, so this one is being rebuilt section by
+section against the current nodes while the old page stays untouched for
+comparison. Asked for explicitly; the slug is the user's.
+
+| | when article-design was built | now |
+|---|---|---|
+| Corps | 13966.6 | **14362.6** |
+| ALireEnsuite | 1405 | **1411** |
+| Page frame | 19284.6 | **19686.6** |
+
+Hero, Cabinet, Interlocuteurs, Transparence and CTAFinal are unchanged heights.
+
+- Its components are their own copies under `src/components/sections/new-article/`,
+  so an edit here never reaches the original. **Its copy is not duplicated** —
+  the article is the same article, so these sections read the existing
+  `ArticlePage` namespace and only what the new frame actually changes goes into
+  `NewArticlePage`. `ArticleActions` is imported from the original rather than
+  copied: it takes both labels as props and holds nothing page-specific.
+
+| # | Section | Node ID | Figma h | Status |
+|---|---|---|---|---|
+| 1 | Hero | `13318:2451` | 890 | done |
+| 2 | Corps | `13318:2503` | 14362.6 | in progress |
+| 3 | Cabinet | `13318:3141` | 774 | |
+| 4 | Interlocuteurs | `13318:3188` | 900 | |
+| 5 | ALireEnsuite | `13318:3230` | 1411 | |
+| 6 | Transparence | `13318:3318` | 370 | |
+| 7 | CTAFinal | `13318:3326` | 550 | |
+| + | sidetab | `13318:3413` | 45x236 | |
+
+- **Nothing on this page is ported.** A first attempt copied the original
+  page's components and only fixed the spacing; that produced the old design on
+  the new rhythm, and the user rejected it. Every component here is derived
+  from its current node.
+- **Hero: 890.5 against 890**, with the photo, hero card, badge box and
+  code-articles row on Figma's exact coordinates — photo **(1072, 102)
+  470x548**, card **(1029.5, 530) 213.3x98**, badge box **(1474, 161) 108.47**,
+  articles **(337.5, 672) 1245x123.5**, marker within 1.3px.
+- Its body padding is **40 above and 72 below**, not a symmetric 56: Figma
+  centres a 1245 grid at HeroFiche y=40 whose three rows — the 548 hero row,
+  the articles band and a 1px rule — sit on a 22px row gap, and closes the 828
+  band 72 below. With 56/56 every element in the body sits **16px low** while
+  the section still measures 890.5, which is how a wrong pad hides.
+- The gold marker sits **0.804em** below the title box — 37px, the foot of line
+  one — where the original page has 0.591em.
+- **Let Figma's own 108.47 box centre the badge.** The export wraps the rotated
+  97.333 disc in a 108.47 flex box at 444.53/59, so placing that box and
+  centring the disc inside it avoids the rotate-about-the-centre arithmetic the
+  polaroid and the old verification chip needed.
+- **`get_metadata` and `get_design_context` disagree about the badge by 12px.**
+  The metadata puts its box at 456.39 inside the 553 stage; the export says
+  444.53, and 444.53 + 108.47 is exactly 553, so the export is the
+  self-consistent one and is what is built. Where the two differ, prefer the
+  export.
+- Two icons matched existing files exactly and are reused (`link.svg`,
+  `printer.svg`); `bench-laptop-portrait.jpg` is new — 1410x1644, 3x the
+  470x548 box, and **not** the original hero's `reading-outdoors-tall.jpg`.
+- **Never quote a raw Figma class string in this file.** Tailwind v4 scans the
+  project root, `.md` included, so a `gap-[var(--petroff…)]` written in prose is
+  compiled as a real utility. That one is invalid CSS, and it took the whole
+  stylesheet down — `Parsing CSS source code failed`, every page served as the
+  error shell, and nothing in `src/` to show for it. Describe such classes;
+  never paste them.
+- No horizontal overflow from 1920 down to 320.
+- Reachable from the **Bibliotheque submenu, which now carries three children**
+  — verified by opening it: `article-design`, `Avocat e-commerce`,
+  `new-article-page`.
+
+### Page 8 — Corps, to build
+
+The column (`13318:2505`) is a flat stack of **twenty blocks on a uniform 48px
+gap** — every wrapper's end plus 48 is exactly the next one's start, to
+14170.57 — with a uniform **24** inside each block. That replaces the original
+page's per-block spacer frames (18, 56, 16, 30).
+
+Its full design is saved: one `get_design_context` with `forceCode`, 100k
+characters, **19 assets already downloaded**, so no further Figma calls are
+needed for this column. What that spec shows, against the original page:
+
+- **`<ref>` is Inter SemiBold 18/1.5 in plain encre**, not 16/1.45 in brique.
+  Counting the column's inline spans settles a run that appears in three forms:
+  **28 at 18/1.5 encre, 2 brique, 2 at 16/1.45** — the first is the rule.
+  `<b>` is unchanged, Poppins SemiBold 18/1.35, 15 occurrences.
+- Fills have moved again — read the fill, never assume the last pass holds:
+  `answer` is **lilas-2** (it went pale mint, and has come back); `trap` is
+  **lilas with a stone tag in brique** (it was pale gold, then pale rose at 30%
+  with a red tag); both `seam`s are **lilas-2 with a filled gold pill** where
+  they were pale mint with a periwinkle text link.
+- The simulator's four bands are on a uniform 36.
+- Content: the `juge` block loses its sub-heading; the consult block's three
+  reassurance marks return as a row **beneath** it; `takeaways` gains a heading
+  above it, "Points clés à retenir", the string its own title used to carry.
+- **Figma puts the column band at x=402.5, not 337.5.** Its Corps frame is an
+  auto-layout row whose first child is a stray 1px `marks` frame, and
+  337.5 + 1 + 64 is exactly 402.5 — an artefact, not intent.
+
+**Rail (`13318:3093`) and the first three blocks are built.** Measured: column
+**881 at x=338**, rail **300 at x=1283** — a 64px gap, the container's whole
+1245 — and blocks 1, 2, 3 at **0/478, 526/476, 1050/207** against Figma's
+0/475, 523/475, 1046/204. Every gap measures 48.
+
+- The rail's TOC, CTA card and author card are character-identical to the
+  original page's copy, so they read `ArticlePage.rail`. **Its verification
+  line is not**: Figma now writes just `Vérifié le 19 août 2026` — masculine,
+  and without the old "Signaler une inexactitude" link — so that one string
+  lives in `NewArticlePage.rail`.
+- Its seal glyph matched `seal-ribbon.svg` exactly and is reused;
+  `lawyer-portrait-rail.jpg` is a new window on the portrait source
+  `lawyer-portrait-card.jpg` already uses (732x420, 3x the 244x140 box).
+- Figma renders the TOC's last entry, "Questions fréquentes", at Poppins Bold
+  40 — the section-title style leaking into a list item. Built like the other
+  nine.
+- **The active marker moves as you read** — an `IntersectionObserver` spy, the
+  one behaviour on this rail Figma does not draw: it marks only the first entry
+  gold, which is a state rather than a fixed style.
+
+**Block 4, the simulator (`13318:2543`), is built.** Lilas-2, 18px corners, and
+its four bands on a uniform **36**. Measured 1305/1364 against Figma's
+1298/1350, with the bands at 28/115, 179/181, 396/85, 517/819 against 28/114,
+178/176, 390/85, 511/811.
+
+- **Three of its fills moved again.** Its CTA is **gold** (it had gone encre);
+  the verdict panel is **pale blue with encre copy** (it was brique at 14%,
+  then pale rose at 30% with red copy); and the submit panel is **pale blue
+  with an encre button**, where it was a dark encre panel with a red one.
+- **Its four result values carry Figma's own widths** — 347, 337, 246, 363 —
+  which are narrower than the row can give, so they wrap. Those are stale
+  auto-layout widths and they break mid-citation, but reproducing them is what
+  matches the 811px result panel: letting them flex, as the original page
+  does, costs **62** of it. They still flex below `sm`, where the row is too
+  narrow for any of them.
+- Its chevron matched `chevron-down.svg` exactly and is reused. Its pill copy
+  reads `Gratitut · 60 secondes` in Figma — still the typo already recorded;
+  the stored string says `Gratuit`.
+
+**Blocks 5-7 — `niveaux`, `ladder`, `cmp` — are built.**
+
+- The `ladder`'s four tile tints are **pale blue, pale gold, pink at 40%, pale
+  mint** — they do not track the level and do not repeat, so they are carried
+  per rung. Every status pill is pale mint whatever the tile.
+- That pink is Figma's `rgba(239,207,217,0.4)`, a **third** pink value. Once
+  composited it lands within two units of `--color-pink-soft` at the same
+  alpha, so that token is reused rather than a third one added — the same call
+  the arc reuse makes.
+- `cmp` is a real table with an **encre header band**, 230/325/325 columns and
+  five rows on `encre/6` rules. Its two right-hand body columns are Inter 16,
+  not the body's 18; only the level itself is Poppins SemiBold 18.
+- **All six icons this pass needed matched existing files exactly** — `key`,
+  `circle-slash`, `circle-half`, `padlock`, `courthouse-line`,
+  `warning-circle`. Run the path-data match before adding anything.
+- **The typed catalogue earned its keep**: the fourth ladder key is
+  `authentique`, not the `manuscrite` the tile order suggested, and `tsc`
+  caught it before it ever rendered.
+- **A `**16**/1.5` written inside a JSDoc block comment closes the comment** —
+  the `**` before the `/` is a `*/`, and everything after it parses as code.
+  It cost two rounds here, because the note explaining the trap contained the
+  trap. Write such measurements out in words inside comments.
+
+**Blocks 8-10 — `seam`, `juge` + `trap`, `denie` + `tl` — are built.**
+
+- Both seams are **lilas-2** with a 54px top-left corner, 36 of padding left
+  against 64 right, and a **filled gold button** where the original page has a
+  periwinkle text link. Their labels therefore lose the trailing `→` the link
+  carried, which is why `NewArticlePage` holds two CTA strings of its own. The
+  portrait is the stored `lawyer-portrait-inline.jpg`, already 422x492 —
+  exactly 3x this box.
+- **The `denie` wrapper is the one block whose inner gap is not 24.** It nests
+  the heading and its paragraph as a group and then leaves **36** before the
+  timeline. Missing that is −12.
+- **The timeline's rail is drawn per item, not once.** Figma pins a single 2px
+  pale-periwinkle bar at a fixed 435px height, which only holds at the width it
+  was measured on. Each item draws its own connector and the last drops it, so
+  the line always starts and stops on a dot. Deliberate.
+- **A stored string was truncated, and only measuring found it.** Timeline step
+  4 came out 132 against Figma's 158 — one line short. `ArticlePage`'s copy
+  drops "du signataire contestataire sans avoir vérifié au préalable si le
+  procédé était qualifié", which leaves the sentence ungrammatical: "mis la
+  preuve à la charge (Cass. …)". The frame carries it in full, so the complete
+  version lives in `NewArticlePage.timeline.s4Body` and this page reads that
+  for step 4. **The original page still shows the truncated sentence** — worth
+  fixing there too, separately.
+- `calendar-dots.svg` is new — the `denie` heading now carries a 46px glyph
+  where it had none. Every other glyph this pass matched an existing file
+  exactly: `shield-badge`, `open-code`, `balance-scales`, `doc-stack`.
+
+**Blocks 15-16 — `reflist`, `jur-list` — are built.** The reflist is four ruled
+rows on a 24px gap closing with an outline "+9" button; all thirteen references
+stay in the data, which is what the +9 counts. Each `jur` card stacks its
+brique citation, 20px title and body **flush — the card carries no gap of its
+own** — which is why it now lands at +13 where the ported version was +73.
+
+**Blocks 11-14 — `forme`, the second seam, `organiser`, `vigil` — are built.**
+Three needed no new component; `vigil` is four ruled rows with no gap between
+them, 18 of padding each side, an 18px gap to a 24px glyph and an `encre/10`
+rule under every row including the last. All four of its icons matched existing
+files exactly — `inbox`, `page-corner`, `monument`, `clock`.
+
+**Blocks 17-20 — `triage`, `faq`, `consult` + `marks`, `takeaways` — are
+built, and the column is complete.**
+
+- `triage` keeps its **gold** CTA and pale-blue result panel, matching the
+  simulator above it; its third option is still the one Figma marks chosen, and
+  is reproduced as `aria-current` on a list row rather than as a control that
+  does nothing. Its own CTA copy, note and disclaimer moved into
+  `NewArticlePage.triage`.
+- **The consult block and its three reassurance marks are one card, not two.**
+  Figma rounds the form's top left to 54 and top right to 18, the strip rounds
+  the two bottom corners, and an `encre/20` rule separates them — so a single
+  lilas-2 column, not a block plus a strip on the 48 rhythm.
+- **Do not give that marks row a column gap.** Figma sets only `gap-y-8px` and
+  lets `justify-between` space the three items; adding `gap-x-6` pushed them to
+  816 against 809 available and wrapped the third onto a second row, taking the
+  strip from 64 to 97 and the block from 668 to 708. Removing it landed both.
+- **Its `whitespace-nowrap` has to be `sm:whitespace-nowrap`.** The longest
+  mark is 306.8px wide, which with the strip's 20px sides overruns a 320
+  viewport by 27 — the only overflow the sweep found on this page. Below `sm`
+  it wraps.
+- **`takeaways` is pink again, and its bullet is gold.** Its ground is
+  `#EFCFD9` at 40% — a **third** hex under the library name "Petroff/Pink",
+  beside `--color-pink` (#FAC5EF) and `--color-pink-soft` (#F0D5DD). Composited
+  at 40% over white it lands under 3/255 from `pink-soft`, so that token is
+  reused rather than a fourth near-identical colour added. **The name is not a
+  stable key in this file — compare the hex every time.**
+- Its bullet is **gold** where the original page's is periwinkle, and
+  `bullet-mark.svg` is shared, so it is **forked** to `bullet-mark-gold.svg`
+  rather than recoloured — the same call the mint laurel and pale-blue
+  courthouse forks make.
+- Its heading, "Points clés à retenir", is a `SectionTitle` with no glyph over
+  the box, whose own title stays "Sept points à retenir". All seven point
+  strings are character-identical to `ArticlePage.takeaways`, so only the
+  heading is new copy.
+
+Blocks 1-20 against the frame:
+
+| # | block | Figma h | built h | Δ |
+|---|---|---|---|---|
+| 1 | answer | 475 | 478 | +3 |
+| 2 | ecrit | 475 | 476 | +1 |
+| 3 | rulebox | 204 | 207 | +3 |
+| 4 | simulateur | 1350 | 1364 | +14 |
+| 5 | niveaux | 675 | 678 | +3 |
+| 6 | ladder | 787 | 797 | +10 |
+| 7 | cmp | 668 | 675 | +7 |
+| 8 | seam | 220 | 220 | **0** |
+| 9 | juge | 602 | 602 | **0** |
+| 10 | denie + tl | 838 | 836 | -2 |
+| 11 | forme | 636 | 637 | +1 |
+| 12 | seam | 220 | 220 | **0** |
+| 13 | organiser | 886 | 889 | +3 |
+| 14 | vigil | 471 | 477 | +6 |
+| 15 | reflist | 500 | 508 | +8 |
+| 16 | jur-list | 1044 | 1057 | +13 |
+| 17 | triage | 813 | 829 | +16 |
+| 18 | faq | 1092 | 1119 | +27 |
+| 19 | consult + marks | 668 | 676 | +8 |
+| 20 | takeaways | 635 | 638 | +3 |
+
+**All twenty built, every one within 27, and the column measures 14295.4
+against Figma's 14170.57 — 0.88% over more than fourteen thousand pixels.**
+No horizontal overflow at 1920, 1280, 768, 375 or 320.
+
+**Cabinet (`13318:3141`) is built: 776.9 against Figma's 774**, with every
+band exact — overline at 96, title 126.8, lead 186.8, grid 254.8, footnote row
+627.9 — and all three cards on their exact Figma x at exactly 399 wide
+(337.5 / 760.5 / 1183.5). The 2.9 is one card border plus line rounding.
+
+- **One thing changed from the original page: card 3's tile is pale mint**,
+  where that build repeats card 1's pale blue. The other two are unchanged.
+- **Figma marks the row `items-start` and stretches only the first card**, so
+  cards 2 and 3 keep their own heights (373.1 / 371.4 / 372.3) — the
+  Interlocuteurs shape, not the levelled grid the original page uses. It only
+  shows when card 1 is not the tallest, which is why it is easy to miss.
+- **All three icons match existing files exactly and are reused** —
+  `file-lines`, `shield-check-wide`, `balance-scale`. Two of them carry the
+  library's 1.95 stroke against this export's 2.1125; that is the already
+  recorded 0.16px difference at 26px, invisible. **No new assets.**
+- Its copy is character-identical to `ArticlePage.cabinet`, so no new strings
+  either. Its head is written out (10 under the overline, 14 under the title,
+  lead `text-small` at the full 1245) and its lead is Inter 16, not 18.
+
+**Interlocuteurs (`13318:3188`) is built: 906.4 against Figma's 900** — the
+same number the original page's records, and the 6.4 is the two card borders
+plus line rounding. Bands exact: overline at 0, title 30.8, lead 90.8, grid
+158.8; portrait **200x240 at x=366.5**; card radii `80/18/60/18` and portrait
+`80/4/20/20`, all exact; angle rule red, languages periwinkle, ground lilas.
+
+- **It takes bottom padding only** — Figma puts its overline at y=0, since
+  Cabinet above closes with its own 96. (The e-commerce twin is the one that
+  pads both sides.)
+- **Figma draws the `0px 14px 34px` shadow on the first card only**, so it is
+  the hover state, not a permanent one — carried on `hover:`. That is the fifth
+  time on this build; assume hover unless a second card in the same grid has it
+  too.
+- Its two cards are **not levelled** (298 / 317.6, 36 apart) — Figma marks the
+  grid `items-start` and neither card carries `self-stretch`.
+- **No new assets.** Both portrait exports are the raw sources; run through
+  Figma's own placement (card 1 a plain centre `cover`, card 2 at 125.18% /
+  151.44% with a −12.59% / −0.19% offset) they diff against the stored
+  `lawyer-portrait-card.jpg` and `tony-portrait-card.jpg` at **1.09 and 1.81
+  of 255** — JPEG noise, so the stored crops are exact.
+- No new strings either: everything but the angle note is the shared top-level
+  `Interlocuteurs` namespace, and the angle comes from
+  `ArticlePage.interlocuteurs`.
+
+**ALireEnsuite (`13318:3230`) is built: 1419.3 against Figma's 1411.** Five
+blocks on a uniform 36px gap — head, prev/next, a 3-up library grid, the
+commented-model row and the sub-category list — with every gap measuring 36
+exactly, all three cards on their exact Figma x at 399 wide, and the
+sub-category columns at 590.5 + 64 + 590.5 = the container's whole 1245.
+
+- **It takes bottom padding only**, like Interlocuteurs above it.
+- **Its head gaps are 16 and 16 here**, not the 10 / 14 the original page's
+  build uses — Figma wraps the three lines in one 16px column (`13427:15828`,
+  a node id from the newer range, so this is a real change).
+- **The card descriptions are Inter 16 (`text-small`)**, not the body's 18.
+- **Both prev/next labels are periwinkle** but keep different type styles —
+  the left is the overline (0.18em tracking), the right the Button style with
+  none.
+- **The sub-category list is two explicit columns in Figma now**
+  (`13323:4355` / `13323:4356`), each holding its two rows — so the
+  column-major fill is structural rather than the `grid-flow-col` trick the
+  original page needed, and each row keeps its own height for free.
+- **No new assets and no new strings.** `model-folder.svg` is path-identical to
+  the export, the three photo exports run through Figma's own placement diff
+  against the stored crops at 2.7 / 4.0 / 2.7 of 255, and the copy is
+  character-identical to `ArticlePage.alire`.
+- **The `Container` trap cost a round here.** `flex flex-col gap-9` passed to
+  `Container` lands on its padded OUTER div, leaving the inner max-w div as a
+  single flex child — so all five blocks stacked flush and the section came out
+  **1275.3, exactly 4 x 36 short**. The column has to go *inside* `Container`.
+  Same fault the article's sticky bar hit; it is worth checking the gap
+  measures what you asked for whenever a `Container` carries flex classes.
+
+**Transparence (`13318:3318`) is built: 369.5 against Figma's 370**, with
+every band on the comp — overline 62, title 90.8, sources 144.8, disclaimer
+190, note 260.4 — the band at x=360 and 1200 wide, and the two text measures at
+784 and 1100. White ground, gold overline, encre disclaimer, rose closing
+sentence, all five strings from the shared `Transparence` namespace.
+
+- **Its column is vertically centred in the band, not padded 72/52.** Figma
+  pins the group at `top: 62.43` over 246.4 of content, leaving 61.2 below.
+  **Both readings total 370**, so the section height cannot tell them apart —
+  an **ink-band profile of the node render** settles it: the overline's cap top
+  is at **y=67**, which is what a 62.43 box gives, where 72 would put it at
+  ~76.5.
+- **That makes the original page's Transparence 10px low on every band** —
+  `/bibliotheque/article-design` measures its overline at 72 against this
+  page's 62, and its section at 370.5 because 72 + 246.5 + 52 also lands on
+  370. The note in this file recording "72/52 padding … unchanged" was wrong.
+  Left alone on the original page, which is kept for comparison; **worth
+  fixing there separately**, like the truncated timeline string.
+- The lesson generalises: **a correct section height is not evidence of correct
+  padding.** Two pads that sum the same put every band in a different place,
+  and only a band profile or the export's own offset shows which.
+
+**CTAFinal (`13318:3326`) is built: 550.4 against Figma's 550**, and both
+ornaments land on their exact Figma coordinates — the magnifier 150x150 at
+(0.5, 231) inside the panel and the nib 103.125x150 at (1169.5, 0). Panel
+1245x358.4 at y=96, 28px corner, lilas-2; every copy band exact (overline 160,
+title 192.8, lead 250.8, phone 276, CTA row 339.2).
+
+- Only its **title** is this page's own; the overline, lead, phone line and
+  both button labels come from `ContactCta` and its `ask` pair — the same split
+  the original page's and the hub's panels make. No new strings.
+- **Both ornaments reuse existing files.** The magnifier at 150 is an exact
+  uniform 150/140 scale of `magnifier-check.svg` — 66 path numbers matching to
+  **0.0000** — with `stroke-width` left at 10 rather than scaling to 10.71,
+  which is 0.7px on a 150px ornament. The nib at 103.125x150 is a non-uniform
+  stretch of `pen-nib.svg`'s 110x153, exact because that glyph carries no
+  strokes. No new assets.
+
+**The side tab (`13318:3413`) and the sticky bar (`13318:3406`) are built,
+and the page is complete.** Both are `position: fixed`, so they sit as separate
+nodes at the end of the frame's tree rather than in the static flow — grep the
+metadata for them rather than assuming the section list is complete.
+
+- **The tab is the shared `SideTab` at `tone="red"`, unchanged.** Measured
+  exactly **45x236** flush right, `rgb(240,26,93)`, shadow
+  `0px 10px 30px rgba(18,42,76,0.2)`, radius `14px 0 0 14px` — every value the
+  node's. Its 18px glyph is path-identical to `speech-bubble.svg`. The drawer
+  is the shared `ConsultationDrawer`; this frame draws no drawer of its own.
+- **The sticky bar has moved again, so it is NOT the bar the original page
+  carries.** It is now a **lilas band at 60% under a 1px `encre/30` rule**,
+  with an encre title, an **encre** detail line and a **red button with white
+  copy**. The original page's is a pale-rose band under a **2px red** rule,
+  with a **periwinkle** detail line and a **white** button carrying red copy —
+  every one of those inverted. Note Figma now specifies the 60% ground itself,
+  where the original build had to depart from a 30% comp to keep the copy
+  readable over live page content. **This is the second time this node has been
+  redesigned; read it, never port it.**
+- Measured: bar **99.3 against 98** (its 1px border, drawn inside in Figma),
+  button **43 exactly**, icon resolving to `-90deg`, ground `lilas/0.6`, rule
+  `1px encre/0.3`. It still fades as well as slides — `translate-y-full` alone
+  leaves the rule painting along the bottom edge when dismissed.
+- **A 60% ground over white needs a backdrop blur or it reads as solid.**
+  `rgba(246,245,241,0.6)` composites over the article's white column to
+  `rgb(250,249,247)` — sampled, and within a unit of the arithmetic — which is
+  near enough to white that the bar looked opaque while the page text stayed
+  sharp behind it. `backdrop-blur-lg` (**16px**) is what makes the translucency
+  visible; asked for. Verified by sampling the band right of the bar's own
+  copy: 942 distinct colours with **luma bottoming out at 120**, where sharp
+  encre glyphs would reach 18-40. **The export carries no blur radius**, so
+  16px is a judgement call rather than a Figma number.
+- Note the **original page's bar carries the same 60% ground with no blur**,
+  and would read the same way; left alone with the rest of that page.
+- Behaviour driven and verified: bar hidden and `inert` at scroll 0, visible
+  and pinned to the bottom past 50%, the tab opening the drawer at 510 with
+  focus landing on the Nom field, `body` overflow locking and restoring,
+  Escape closing and returning focus to the tab, and the ✕ dismissing the bar
+  while leaving the tab in place.
+
+**One real overflow, and it is the recorded shape.** At 640 the page ran to
+646 with **no element's box outside the viewport** — the simulator's fourth
+result value was painting past its own box. Its `<dd>` carries Figma's stale
+347/337/246/363 widths from `sm`, but at 640 the 380px label plus a 24px gap
+leaves about **66px** inside three levels of nested padding, and `min-w-0` lets
+the value shrink below its own content. The pair sits side by side from **`md`**
+now and stacks below it. Desktop is untouched — Corps still 14487.4 and the
+page still 19832. **`documentElement.scrollWidth` is what catches this; an
+element scan does not**, because every rect stays inside the page.
+
+**`<ref>` citations go gold on hover.** The article body's legal citations —
+`(C. civ., art. 1366)`, `(Cass. com., 13 mars 2024, n° 22-16.487)` and 41 more
+on this page — are destined to link out to the text they name, so they take
+`hover:text-gold` with a colour transition and a pointer cursor. **Figma draws
+no hover state for them; this is a deliberate addition, asked for.** They stay
+`<span>`s until there is somewhere to point them, under the rule that nothing
+navigates to a route that does not exist, so the cursor is an affordance for
+the link they are about to become.
+
+- It lives once, in `new-article/blocks/Prose.tsx`'s `proseTags`, which is
+  where every `<ref>` in the column resolves — the five blocks that pass their
+  own rich-text handlers (`Consult`, `Simulator`, `Triage`, `Interlocuteurs`,
+  `Transparence`) carry `b`/`s`/`link`, never `ref`.
+- Verified with a real `Input.dispatchMouseEvent` over `(C. civ., art. 1366)`:
+  `rgb(18,42,76)` at rest, **`rgb(217,164,65)`** on hover, back to encre off.
+- The original page's `<ref>` is a different style anyway
+  (`text-small-strong text-brique`, the pre-redesign 16/1.45 run) and was left
+  alone with the rest of that page.
+
+**Anchor jumps ease rather than snap.** The rail's table of contents was
+landing on its heading instantly; `scroll-behavior: smooth` now sits on `html`
+in the base layer, wrapped in `@media (prefers-reduced-motion: no-preference)`
+so a reader who has asked for less motion still gets the instant jump.
+
+- It is **site-wide**, since it lives in `globals.css` — but this TOC is the
+  only place on the site with in-page anchors today, so nothing else changes.
+- Guarded with a media query rather than a `motion-reduce:` utility, because
+  the rule belongs to `html`, which no component owns.
+- Verified by clicking real TOC entries and sampling `scrollY` per frame:
+  **56 distinct positions** over 900ms at no-preference against **1** under
+  reduce, `scrollBehavior` computing `smooth` and `auto` respectively, the hash
+  updating natively in both, and all three sampled headings landing at
+  **23.5-23.9px** from the top — the `scroll-mt-6` the headings already carry.
+
+### Page 8 — responsive pass
+
+Asked for: harmonise and reduce the mobile gaps, and check the nested cards.
+**Every `lg`+ value is left at the Figma number, so desktop is byte-identical**
+— re-measured after each change, all seven sections and the 19832 page total
+unchanged.
+
+**The page was carrying three flat values that ignored the site's two-step
+scale**, and they were the whole of the airiness:
+
+| Element | was | below `lg` | `lg`+ |
+|---|---|---|---|
+| Corps' 20-block column | `gap-12` flat | `gap-8` (32) | `gap-12` (48) |
+| its `denie` inner group | `gap-9` flat | `gap-6` | `gap-9` |
+| ALireEnsuite's five blocks | `gap-9` flat | `gap-6` | `gap-9` |
+| Interlocuteurs' two cards | `gap-9` flat | `gap-6` | `gap-9` |
+| Cabinet / Interlocuteurs head -> grid | `mt-11` flat | `mt-8` | `mt-11` |
+| the five padded sections | `py-16 lg:py-24` | `py-12 sm:py-16` | `py-24` |
+
+- A flat `gap-12` across twenty blocks is **912px of pure gap on a phone**;
+  that one line is the biggest single lever on this page.
+- The section padding gains a **`sm` step** (48 / 64 / 96) rather than the
+  site's usual two. That is new for section padding but not for this codebase —
+  `p-5 sm:p-7` and `px-6 sm:px-12` already work that way. **The other seven
+  pages still use a flat `py-16` below `lg`**, so this page is now one step
+  lighter than they are on a phone; sweeping them is the same one-line change
+  each.
+- Result at 375: the six between-section gaps are **80 / 96 / 48 / 48 / 96 /
+  96** — every one a multiple of 48, where they had been 80 / 128 / 64 / 64 /
+  112 / 112. The 80 is the Hero, whose own body padding is 32; it is left
+  alone rather than *grown* to 96.
+
+**Cards inside cards.** The simulator nests four levels — block, result panel,
+submit panel, field row — which at 320 was **136px of horizontal inset** before
+any content, leaving the innermost box 126px. Only the **nested** levels were
+tightened, so the outer blocks keep one rhythm with their unnested neighbours:
+
+| level | was | below `sm` | `sm`+ |
+|---|---|---|---|
+| outer block | `p-5 sm:p-7` | **unchanged** | 28 |
+| result panel | `p-4 sm:p-6` | `p-3` (12) | 24 |
+| submit panel | `p-4 sm:p-7` | `p-3` (12) | 28 |
+| Triage's result panel | `px-4 py-5` | `px-3 py-4` | 24 / 22 |
+
+That takes the panel chain from 136 to **112**, and the innermost content box
+from 126 to 160 at 320.
+
+- **The e-mail field's padding had to move to `md`, not `sm`.** Figma's pill is
+  `pl-16 pr-4` because the button sits flush inside it on the right — which is
+  only true once the two share a row, and they only do from `md`. While they
+  are stacked that left the placeholder **touching the right edge** with 12px
+  on the left. It is a symmetric `p-3` below `md` now. Caught by looking at a
+  render, not by any measurement: nothing overflowed and no height was wrong.
+
+### Page 8 complete — seven sections plus the fixed pair
+
+| Section | Figma | Rendered | Δ |
+|---|---|---|---|
+| Hero | 890 | 890.5 | +0.5 |
+| Corps | — | 14487.4 | — |
+| Cabinet | 774 | 776.9 | +2.9 |
+| Interlocuteurs | 900 | 906.4 | +6.4 |
+| ALireEnsuite | 1411 | 1419.3 | +8.3 |
+| Transparence | 370 | 369.5 | −0.5 |
+| CTAFinal | 550 | 550.4 | +0.4 |
+| sticky bar | 98 | 99.3 | +1.3 |
+| side tab | 45x236 | 45x236 | **0** |
+
+Page **19832** at 1920. Every delta is the border-box difference. **No
+horizontal overflow at any of nine widths from 1920 down to 320.**
+
+Assets added across the whole page: `bench-laptop-portrait.jpg`,
+`lawyer-portrait-rail.jpg`, `calendar-dots.svg` and `bullet-mark-gold.svg` —
+four files, everything else matched something already in the tree.
+
 ## Page 7 — Avocat e-commerce (`/bibliotheque/avocat-e-commerce`), frame `13331:10364`
 
 1920x17207. **Despite its frame name — the designer duplicated the fiche frame,
@@ -2019,18 +2597,18 @@ now carries two children.
 |---|---|---|---|---|
 | 1 | Hero (crumb + row + trust + stats) | `13331:10417` | 1104 | done |
 | 2 | Principe + intro | `13331:11415` | 1197 | done |
-| 3 | Notre rôle | `13331:11795` | 1155 | |
-| 4 | Quand consulter | `13331:11924` | 944 | |
-| 5 | Comment nous aidons | `13331:11970` | 4432 | |
-| 6 | Forfaits | `13331:12906` | 988 | |
-| 7 | Comment ça marche | `13331:12970` | 1159 | |
-| 8 | Comprendre le droit | `13331:13264` | 2221 | |
-| 9 | FAQ | `13331:13351` | 844 | |
-| 10 | Interlocuteurs | `13331:11124` | 996 | |
-| 11 | ALireEnsuite | `13331:11178` | 818 | |
-| 12 | Transparence | `13331:11268` | 370 | |
-| 13 | CTAFinal | `13331:11276` | 550 | |
-| + | sidetab | `13331:11356` | 45x236 | |
+| 3 | Notre rôle | `13331:11795` | 1155 | done |
+| 4 | Quand consulter | `13331:11924` | 944 | done |
+| 5 | Comment nous aidons | `13331:11970` | 4726 | done |
+| 6 | Forfaits | `13331:12906` | 988 | done |
+| 7 | Comment ça marche | `13331:12970` | 1159 | done |
+| 8 | Comprendre le droit | `13331:13264` | 2221 | done |
+| 9 | FAQ | `13331:13351` | 844 | done |
+| 10 | Interlocuteurs | `13331:11124` | 996 | done |
+| 11 | ALireEnsuite | `13331:11178` | 818 | done |
+| 12 | Transparence | `13331:11268` | 370 | done |
+| 13 | CTAFinal | `13331:11276` | 550 | done |
+| + | sidetab | `13331:11356` | 45x236 | done |
 
 - **Its hero is one Figma frame holding four bands** — crumb, headline row,
   trust strip and stat band — so it is one `<section>` here and measures
@@ -2095,8 +2673,404 @@ now carries two children.
   every image.** A lazy `next/image` that is never scrolled near never fires
   `load`, so `Promise.all` over `document.images` never settles and the capture
   never runs — it reads as a wedged browser. Race that wait against a timeout.
+- **Notre rôle** measures **1160.55 against Figma's 1155**, with every ink band
+  in the head, the six checks and all three cards within 5px, and the
+  photograph diffing against the node render at **1.96/255** — JPEG noise, so
+  its crop and box are exact.
+- **Figma clips its own head here.** The title's frame is 820 wide and the
+  lead's 720, inside a 679 column marked `overflow-clip`, so the comp cuts both
+  off mid-word ("des vende|"). They wrap here instead, the same call the
+  Expertises stage and both domain heroes make — and it costs no height,
+  because the title still lands on two lines at 679.
+- Its head is written out rather than using `SectionHeading`: a flat 12px under
+  both the overline and the title, where that component uses one gap for both.
+- **Its overline is the first on the site that Figma uppercases in the style.**
+  The text node stores `Notre rôle · Petroff Avocats` mixed case and the style
+  sets `text-transform: uppercase`, so the string is stored as written and the
+  call site carries `uppercase`. That is the opposite of the mixed-case finding
+  everywhere else — **read the transform, not just the stored string**.
+- Its check bullet is a plain `bg-gold size-3 rounded-full` span. Figma exports
+  it as a 12px SVG circle, which is not worth a file — the same call the hero's
+  trust dot makes. Figma puts it at the text box's y=0, not optically centred
+  on the first line, and that is reproduced.
+- `card-payment-laptop.jpg` is new: 1410x1644, 3x the 470x548 box, a uniform
+  crop (the window's 0.8577 aspect matches the box exactly, so no stretch).
+  Its box and radii are the hero photo's.
+- Two mobile-only departures, desktop untouched: the checks take `gap-5` below
+  `lg` because each item runs to five lines there and Figma's 12px stops
+  reading as separation, and the card row is `lg:grid-cols-3` rather than
+  `md:` — three 218px cards at 768 are too narrow for a 20px heading.
+- **Its last check ends `en bonne forme ; coût`** — Figma writes an ordinary
+  space before the semicolon, so on a narrow column the `;` can start a line.
+  The copy is left character-identical to the export; worth raising with the
+  designer, since French typography wants a narrow no-break space there.
+- **Quand consulter** measures **946.23 against Figma's 944**, with 21 ink
+  bands in both and every one within 2px, and the card region diffing against
+  the node render at **1.07/255**.
+- **Its "Parlons-en" card shipped unreadable in Figma and the designer has
+  since fixed it.** The first version filled the card Lilas 2 while keeping the
+  site's onDark tone set on top — gold overline, white title, white/70 lead and
+  footnote — so the copy was invisible; it was built that way verbatim on the
+  user's instruction. The updated node **keeps the pale ground and darkens the
+  copy**: encre title, encre/62 lead and footnote, and a **gold** button where
+  it had been red. The five trigger bullets went **periwinkle to gold** in the
+  same pass — a change nothing in the card would have led you to.
+  Re-derived by **diffing the old node render against the new one pixel for
+  pixel**, which named every changed band (the card's title, lead, button and
+  footnote, and the bullet column) and proved the left column's head untouched.
+  That diff is the cheapest way to answer "what did they change?" — far
+  cheaper than re-reading the export. After: the card region's palette matches
+  count for count (gold 9116 against 9190, encre 6631 against 7286), the whole
+  section diffs at **3.02/255**, its 21 ink bands still land within 2px, and
+  its height is unchanged at 946.23.
+- **`flex-1` does not split a row evenly when one side is padded.** Both
+  columns are 598.5 in Figma; as two `flex-1` siblings the padded card came out
+  **634.5** and the triggers column **562.5** — exactly its 72px of padding
+  moved across — because `flex-basis: 0` cannot resolve below the padding sum,
+  so the padding is added on top of the item's share rather than sitting inside
+  it. `min-w-0` does not help. The row is a `lg:grid-cols-2` now, whose tracks
+  are equal whatever the padding, and both columns land on 598.5 exactly.
+  That 36px of lost measure was the whole of a +52.6 overshoot: it wrapped the
+  lead and one trigger body onto an extra line each. **This is the third flex
+  trap on the build, after `flex-1` blocking `flex-wrap` and `min-w-0` letting
+  a field collapse — reach for a grid whenever two columns must be equal.**
+- **Figma names the card's frame `sticky`**, and it is 399 tall against the
+  column's 752, so it is `lg:sticky lg:top-6 lg:self-start` like the Principe
+  card. Verified: `sticky` and pinned at 24 at 1920 and 1024, `static` at 900
+  and 375 where the columns stack.
+- Its two columns hold only text, so the row splits at **`lg`** rather than
+  waiting for `xl` as the two photo rows do.
+- Its trigger bullet is a 14px **periwinkle** circle — again a span, not a
+  file. Its section overline is uppercased in the style, like Notre rôle's.
+- **Comment nous aidons** measures **4784.4 against Figma's 4726 — +1.2% over
+  more than four thousand pixels.** Twelve service cards in two independent
+  columns, broken by two photographs, two illustrated tiles and two CTA seams.
+- **The saved page metadata is stale for this section, and the table above said
+  4432.** Its CTA rows carry node ids in the `13416:…` range against the
+  frame's `13331:…`, so the designer added the divider-plus-button row after
+  the `get_metadata` snapshot — which also means every `svc` height in that
+  snapshot predates it. `get_screenshot` reports the node's **current** size
+  (4726), and `get_design_context`'s own `grid-rows` list gives the current
+  per-card heights. **Check a node's id range against its frame's before
+  trusting a saved metadata height.**
+- Against those current row heights every card lands **+5.5 to +5.7** — the
+  `Card` border plus sub-pixel line rounding — and the two tiles land −5.3,
+  which is only that our columns are 598.5 where Figma's are 610.
+- **Figma's own grid is 1268 wide inside the 1245 band** (610 + 48 + 610), so
+  it overhangs the container by 23px. Equal grid tracks put the columns at
+  598.5, the same call every other oversized frame gets.
+- The columns are **lists, not rows** — Figma gives each its own sequence and
+  they do not line up — so they stack one after the other below `lg` rather
+  than interleaving.
+- **`get_design_context` reported two fills wrongly, and a pixel count settled
+  both.** It gives the second seam `bg-[#122a4c]` with white copy; the node
+  renders **`#f3e5ea`**, which is `pale-rose` at 30% over lilas, with the same
+  gold overline, encre title and gold button as the mint seam. And it gives the
+  cart tile `bg-[#e8ecf5]`; the node renders **`#f3e3c0`**, pale gold. This is
+  the second time this tool has misreported a fill, after the Methode badges —
+  **histogram the node render before trusting a panel colour.**
+- Our rose seam resolves to `#f4e6ea` against Figma's `#f3e5ea`: one unit in R
+  and G, because Tailwind composites the 30% in **oklab** where Figma blends in
+  sRGB. Imperceptible, and the article's trap callout already renders this way.
+- Figma draws **no shadow** on these cards — sampling right below a card edge
+  returns plain lilas — so `Card`'s hover-only shadow is correct here.
+- **A `Page.captureScreenshot` clip taller than the emulated viewport paints
+  blank past it.** The first capture of this section was correct for its top
+  2000px and empty for the remaining 2800, which read as three missing panel
+  fills. Grow the viewport to the section's own height before capturing
+  anything this tall; `s5/shoot.mjs` in the scratchpad does it in two steps.
+- Two new illustrations, `shopfront.svg` (142x160) and `shopping-cart-scene.svg`
+  (137x160), every fill mapped to an existing token; two new photographs at
+  1830x840, 3x the 610x280 tile. Its list bullet is a 10px **rose** span.
+- Its cards' CTA is an outline **gold** border with **brique** copy — not one of
+  `Button`'s variants, so it is written out. Six of the twelve carry Figma's
+  `rounded-bl-[120px]` flourish with the deeper bottom padding that goes with
+  it; the other six are plain `rounded-card`.
+- **Forfaits** measures **993.1 against Figma's 988**, with every band in both
+  card columns within 5px and the palette matching count for count (gold 13919
+  against 13420). No assets, no new tokens.
+- It is the **fourth Forfaits on the site** and ports the domain pages' anatomy
+  almost exactly — same `Card`, same `-top-4 left-5` badge absorbing the 2px
+  border, same gold-bordered featured plan with its permanent
+  `0px 14px 17px` shadow, same 40px price on that plan against the others' 30,
+  same non-bottom-aligned CTAs. Three differences: **no unit or flash line**
+  beside the price, its feature text is **`text-small`** where the domain pages
+  use `text-body`, and the head is written out because this page's overlines
+  are uppercased in the style.
+- Its `✓` is the same system-font fallback the domain pages record — 36 pixels
+  of result-green against Figma's 123, because the Inter subset carries no
+  U+2713 and the substitute draws a lighter check. Left as the browser draws it.
+- Its footnote is 967 wide; `max-w-242` (968) is the nearest scale value, the
+  same trade the footer columns make.
+- **Comment ça marche** measures **1171 against Figma's 1159**, and the whole
+  12px is the five step cards' 2px borders — the band offsets accumulate
+  +1, +3, +6, +8, +10 straight down the list. Its right-hand card matches
+  within 3px and the palette matches count for count (lilas-2 8316 against
+  8264, gold 25747 against 26022).
+- **It is the second grid on this page for the same reason as Quand consulter**:
+  598.5 + 48 + 598.5, with the right column padded. As two `flex-1` siblings
+  the card would take its 28px of padding *on top of* its half.
+- **Its two doors are a picture of a chosen state, not controls.** Figma marks
+  the first selected — white, raised on a `0px 8px 22px` shadow, gold icon —
+  and gives the second no target, so they are `<li>`s with `aria-current` on
+  the chosen one, the same call `outil-triage` makes on the article.
+- Two new 26px icons at the library's `stroke-width="1.95"`, both converted to
+  `currentColor` so the chosen/unchosen tone lives at the call site:
+  `storefront.svg` and `package-box.svg`. Neither matched an existing file.
+- Its entry rows are separated by a **`2 2` dashed encre/10 rule**, exported as
+  a 542.5x1 SVG; it is a `border-t border-dashed border-encre/10`, not a file.
+  Note this is encre/**10**, where OpenData's dashed rules are encre/12.
+- Its numeral tile is 44px `rounded-field` lilas-2 with a **periwinkle** 20px
+  numeral, and the numerals are `aria-hidden` inside a real `<ol>` — the same
+  treatment the domain pages' Methode gives them.
+- **Its card is sticky at `lg`**, on the user's instruction — Figma draws it
+  static, as it does the Principe one. At ~545 tall against the steps column's
+  ~1075 it pins at 24px and rides the five steps past, then leaves with its row
+  as the section ends. Verified: `sticky` and pinned at 24 at 1920, 1280 and
+  1024, `static` at 900 and 375 where the columns stack. Section height
+  unchanged at 1171.
+- **Three of this page's sections now carry a sticky right column** — Principe
+  (`xl`), Quand consulter (`lg`) and this one (`lg`). Figma names only the
+  Quand consulter frame `sticky`; the other two were asked for. In all three
+  `self-start` is the load-bearing class.
+- **Comprendre le droit** measures **2238.7 against Figma's 2221**. Ten
+  explainer cards on a **lilas-2** ground; every card is +3 to +4 taller than
+  the comp's (the `Card` border plus line rounding), which accumulates to +14
+  by the fifth row and is the whole of the section's +17.7.
+- **Detect card boxes, not ink bands, when a grid's cards do not line up.** The
+  ink-band profile went badly out of step here because the two columns break at
+  different heights; scanning one column at an x **inside the card but left of
+  its 28px padding** gives clean card tops and heights, and lines up 10 for 10.
+- **Figma calls the block `masonry` but does not behave like one**: its rows
+  are aligned, so every row is as tall as its taller card and a short card
+  leaves a hole beneath it. **Built as real masonry on the user's
+  instruction** — two independent columns, each a flex stack packing upward on
+  the same 24px gap, cards alternating left/right by index so the placement
+  still matches the comp. A `grid-cols-2` cannot do this; the horizontal gap
+  stays the grid's, so both columns are still Figma's 610 (610.5 measured).
+  That closes every hole and takes the section to **2188.3 against the comp's
+  2221** — under it now, which is the point.
+  Below `lg` the two stacks follow one another, so the reading order there is
+  the odd cards then the even ones; DOM order and visual order still agree, so
+  no `order` trickery and no screen-reader mismatch.
+- **Only the first card carries Figma's `0px 14px 34px` shadow**, checked by
+  sampling four pixels below every one of the ten: the other nine sit on flat
+  lilas-2. That is the designer showing `Card`'s hover state for the **fifth**
+  time, so it is not reproduced statically. Its blur is 34 against `Card`'s 17,
+  the same outlier the home Actus grid has.
+- **Its tag chips are tinted per card, and the pattern is not derivable from
+  the index.** Four grounds cycling and five text colours, sampled card by
+  card: pale-gold/brique, pink-soft/40 + red, pale-mint/result-green,
+  pale-blue/periwinkle — and `plateformes` is the odd one, the same pale-mint
+  ground as `garanties` but **mint** copy. Carried as a `chip` key per note,
+  like the redesigned home Expertises tiles.
+- **`--color-pink-soft` (#f0d5dd) is new, and it was asked about — because
+  Figma gives it the same library name as an existing token with a different
+  hex.** The chip fill is literally `rgba(240,213,221,0.4)` and the style list
+  calls it "Petroff/Pink", but `--color-pink` is already #fac5ef from the
+  Expertises tiles. Repointing that token would have silently recoloured a page
+  whose frame has not changed — the shape of the shared-asset leak this build
+  already had to undo — so both are kept until the designer says which the name
+  should carry. **Watch for this: a Figma style name is not a stable key.**
+- Note `get_variable_defs` on the masonry reported Petroff/Pink as **#DBB9C1**
+  while `get_design_context` on a card gave `rgba(240,213,221,0.4)` and named
+  it #F0D5DD. The literal CSS is the one to trust; #DBB9C1 is that colour
+  already composited. Third time this tool family has disagreed with itself
+  about a fill.
+- Its chip is 12/4 where the Vitrine's type pill is 11/3, so it is a variant of
+  its own — the site's **seventh** pill. Its "Parler à un avocat →" is
+  periwinkle `text-button`, with the arrow in a `gap-2` span as everywhere else.
+- **FAQ** measures **858.4 against Figma's 844**, and the whole 14.4 is the
+  seven accordion rows' 2px borders — the offsets accumulate +1, +2, +4, +6,
+  +8, +10, +12, +14 straight down. 12 ink bands in both.
+- **Its questions are Poppins SemiBold 20 (`text-h3`)**, where both domain
+  pages' are Inter 18 (`text-body-strong`). **Check the style before copying
+  one FAQ onto another** — everything else about the row is identical.
+- Behaviour verified by driving it: seven native `<details>` sharing a `name`,
+  the first open as the comp draws it, closed answers failing
+  `checkVisibility()`, clicking the third closing the first, summaries
+  tabbable, and the marker resolving to `rotate: 90deg` when open (read
+  `rotate`, not `transform` — Tailwind v4 rotates via the standalone property).
+- **Only one new asset.** The laurel's path data is an **exact** match for
+  `laurel-branch-mint.svg` — the variant the redesigned home hero introduced,
+  now used by a second page — and the sparkle is an exact 1.15x of
+  `sparkle.svg`, which carries no strokes, so both reuse. Only
+  `paris-rooftops-scene.svg` (313x400.64, 264 paths) is new; it is a different
+  drawing from both `paris-scene.svg` and `la-defense-scene.svg`.
+- Nineteen of that scene's fills have no token — roof slates, stonework,
+  terracotta chimneys — and stay **raw hex**, the same call `paris-scene.svg`
+  makes for its shading fills. Everything that is a token is mapped, and the
+  file says so in a comment.
+- **Figma's band overflows again**: 820 + 48 + 383 = 1251 inside 1245, so the
+  list flexes and the illustration lands **exactly 6px left** of the comp
+  (right edge 1740 against 1746, top identical at 92) — the same difference the
+  Contrats FAQ records. Its palette matches count for count: mint 3048 against
+  3065, gold 2553 against 2557, pale-periwinkle 602 against 603.
+- Its `rounded-t-full` resolves to exactly Figma's 156.5 for a 313 box, as on
+  the domain pages; the laurel bleeds past the 383 box, so the section is
+  `overflow-hidden`.
+- **Six of its seven answers are drafts, not Figma copy** — Figma supplies only
+  the first. They were composed strictly from facts already stated elsewhere on
+  this page (the 66-5 secret professionnel stat, the ordonnance n° 2026-2, the
+  DGCCRF forfait's three steps, the convention d'honoraires, the Pack CGV's
+  1 490 € entry point). No new figures or legal claims. **That takes the
+  sign-off list from sixteen drafted answers to twenty-two.**
+- **Interlocuteurs is the article's section, duplicated.** Every value matches:
+  the 80px top-left corner on card and portrait, the red angle rule, the
+  periwinkle languages line, the lilas chips, both CTAs, and the
+  `0px 14px 34px` shadow on the **first card only** — checked below both cards'
+  edges here too, so it is the hover state again. The portrait export diffs
+  against the stored `lawyer-portrait-card.jpg` at **1.09/255**, so no new
+  assets at all. Measures **1002.4 against 996**, card boxes at 256/296 and
+  590/315 against 256/294 and 588/311 — the border, twice.
+- **One real difference: this section takes top padding as well as bottom.**
+  Figma puts its overline at y=96 where the article's sits at y=0.
+- Its copy is **character-identical** to the article's, angle notes included, so
+  everything but the angle moved to a shared top-level **`Interlocuteurs`**
+  namespace — the fourth after `ContactCta`, `Transparence` and `Consultation`.
+  Each page keeps only `angle.<lawyer>`. Verified after the move: the article's
+  section still measures **906.4** and neither page shows a missing key.
+- **Its angle notes are today the article's verbatim** — "Sur cette fiche : le
+  choix du niveau de signature, la convention de preuve…", which is the
+  signature électronique article's subject, not e-commerce. That is the
+  duplicated-frame leftover this page's heading note warns about; keeping
+  `angle` per page is exactly what lets the designer rewrite one without
+  touching the other. **Flag it — it is wrong content, faithfully built.**
+- **ALireEnsuite is the closest match on this page: 818.23 against Figma's
+  818.** 12 ink bands in both, every one within 2px, and the palette matching
+  count for count (pale-periwinkle 15434 against 16047, pale-blue 4747 against
+  4936, pale-gold 1352 against 1406).
+- **Bottom padding only** — Figma puts its overline at y=0, the shape this
+  page's Interlocuteurs and the home CTAFinal also have. Its head is written
+  out: 10px under the overline, 14px under the title.
+- Its pills are the **Vitrine's data-driven type pill reused exactly** — pale
+  gold for a guide, pale blue for a fiche, domain always pale periwinkle, all
+  at 11/3 — so no eighth variant. Its dot row is the home Actus row verbatim
+  (30x9 periwinkle pill, two `encre/20` 9px circles, 12px apart) and is
+  `aria-hidden`, since three cards are all on screen at once.
+- Three photos at 1197x672, 3x the 399x224 box. **`card-payment-laptop-wide.jpg`
+  is a second crop of the source Notre rôle already uses** — the two exports
+  diff at **0.00** — so it ships as its own file under the
+  `glass-meeting-room-wide` precedent rather than being re-derived from the
+  tall crop. `laptop-by-column.jpg` and `card-and-coffee-laptop.jpg` are new;
+  only the first takes a Figma placement (118.76% height, top −18.8%).
+- **Transparence is the article's band, duplicated** — and this page is now the
+  **third** user of the shared top-level `Transparence` namespace, after the
+  article and the Bibliotheque hub. Every value matches the article's: white
+  ground, gold overline, encre title, encre/62 sources, a full-encre
+  disclaimer, the closing `Signalez-la-nous.` in rose, the 1100 column at
+  x=360, the head capped at 784 with 8/8 gaps, 20px block gaps and 72/52
+  padding. No assets, no new tokens.
+- Measures **370.5 against 370**, 7 ink bands in both within 2px, and both
+  paragraphs wrap at the same word (extents 361-1441 against 361-1439 and
+  361-1435 against 361-1432) — the same numbers the article's records.
+- **One difference: this frame uppercases the overline in the style.** That is
+  why one shared string renders `Sources & transparence` on the article and
+  `SOURCES & TRANSPARENCE` here. Confirmed after the build that the other two
+  blocks are untouched — the article's still 370.5 on white with
+  `text-transform: none`, the hub's still 341.4 on encre.
+- **This page uppercases every overline in the style; the article page
+  uppercases none.** That is a per-page rule, not a per-string one, so the same
+  shared copy is correct in both places.
+- **CTAFinal is the site's seventh closing panel, and the tightest match on the
+  page: 550.36 against 550**, with four of its five ink bands at **Δ0** and
+  both ornaments landing exactly (parcel 377,358→451,453 identical; globe
+  1485,96→1582,175 against 1581,175). Palette matches count for count.
+- **It takes top padding as well as bottom** — Figma puts its panel at y=96,
+  because the Transparence band above closes with only 52. Building it
+  bottom-only put every band a constant **−96** out and the section at 454
+  against 550; that constant offset is the signature of a missing pad.
+- Only its title is this page's own; the overline, lead, phone line and both
+  button labels come from `ContactCta` and its `ask` pair — the same split the
+  article's and the hub's panels make. **Figma's title reads "ne rentre pas
+  dans dans nos services" — a doubled word.** Corrected here and flagged, the
+  same call the `Gratitut` typo got.
+- Two new ornaments, `parcel-box.svg` (213x201) and `globe-paper-plane.svg`
+  (153x136); every fill mapped to an existing token. The globe is pinned to the
+  panel's **right** edge rather than to Figma's `left: 1134.5px`, so it holds
+  its inset as the panel narrows — the article panel's treatment.
+- **The side tab is the home page's, unchanged.** `13331:11356` is red
+  `#f01a5d` with the same speech-bubble icon and "Consulter un avocat", so the
+  home wrapper moved from `sections/Consultation.tsx` to
+  **`components/consultation/Consultation.tsx`** and both pages import it.
+  Verified on both after the move: tab exactly **45x236** flush right and
+  `rgb(240,26,93)`, the drawer opening at 510, focus landing on the Nom field,
+  `body` locking and restoring, Escape closing.
+- Figma draws **no sticky bar and no drawer frame** for this page — only the
+  tab — exactly as the home frame does; the drawer is the shared component.
+
+### Page 7 complete — thirteen sections and the side tab
+
+| Section | Figma | Rendered | Δ |
+|---|---|---|---|
+| Hero | 1104 | 1103.8 | −0.2 |
+| Principe + intro | 1197 | 1198.7 | +1.7 |
+| Notre rôle | 1155 | 1160.5 | +5.5 |
+| Quand consulter | 944 | 946.2 | +2.2 |
+| Comment nous aidons | 4726 | 4784.4 | +58.4 |
+| Forfaits | 988 | 993.1 | +5.1 |
+| Comment ça marche | 1159 | 1171.0 | +12.0 |
+| Comprendre le droit | 2221 | 2188.3 | −32.7 * |
+| FAQ | 844 | 858.4 | +14.4 |
+| Interlocuteurs | 996 | 1002.4 | +6.4 |
+| ALireEnsuite | 818 | 818.2 | +0.2 |
+| Transparence | 370 | 370.5 | +0.5 |
+| CTAFinal | 550 | 550.4 | +0.4 |
+| **Sections** | **17072** | **17145.9** | **+73.9 (0.43%)** |
+
+\* Comprendre le droit is **under** the comp because its two columns pack as
+real masonry rather than in aligned rows — a deliberate deviation, asked for.
+
+Every delta is the border-box difference; the two largest (Comment nous aidons,
+Comprendre le droit) are twelve and ten card borders respectively. **Note the
+page frame still reads 17207, which is stale** — it was not resized when
+Comment nous aidons grew from 4432 to 4726, so compare section by section
+rather than against the frame total.
+
+No horizontal overflow at any of twelve widths from 1920 down to 320.
 
 
+
+## Eyebrows are uppercase site-wide
+
+**Every section eyebrow, card kicker and panel overline renders in all caps on
+every page**, asked for after the e-commerce hero's `13331:10425`. It is done
+with a `uppercase` class at the call site, **not** by rewriting the strings:
+the French copy stays stored in its natural casing (`Avocat en droit du
+e-commerce`, `Le cabinet`, `Méthode`), which keeps accents and the message
+catalogue readable and matches how Figma itself does it on this page — a
+`text-transform` in the style rather than caps in the text node.
+
+**This deliberately overrides the mixed-case finding recorded throughout this
+file.** Several frames — the home page's seven overlines, the domain pages'
+`Méthode` / `Espace client`, the Actus and Methode card kickers — genuinely
+write their eyebrows mixed case, and the build was corrected to match. The
+instruction supersedes that: do not "fix" an eyebrow back to mixed case on the
+strength of an older note here.
+
+`SectionHeading` carries the class, which covers about thirty sections at once;
+the rest are the sections that write their head out. 32 call sites in all.
+
+**Five things share the overline style but are NOT eyebrows and stay as they
+are** — check against this list before adding `uppercase` anywhere new:
+
+| Not an eyebrow | Where |
+|---|---|
+| `← précédent` / `SUIVANT →` | the article's prev/next navigation |
+| `Piège fréquent` | the article `trap` callout's badge |
+| `Art. L. 221-18 C. conso.` and the other four | e-commerce hero stat citations |
+| `FR · EN · 中文 · ES` | the footer's languages line |
+| `Le cabinet` / `Ressources` / `Outils` | footer column headings, which Figma draws mixed case |
+
+The consultation drawer's overline **is** included, and it fits: uppercase at
+`--text-overline-tight`'s 0.14em measures **403.7 in its 412px slot**, the same
+number this file already records for the old all-caps string. At the ordinary
+0.18em it would not.
+
+Verified after the change on all seven pages: no eyebrow left in mixed case
+except those five, every page height unchanged (home 5748, Expertises 4238,
+Contentieux 8446, Contrats 8354, Bibliotheque 6271, article 19114, e-commerce
+17577), and no horizontal overflow at 1920, 375 or 320.
 
 ## Hard rules
 
@@ -2128,6 +3102,10 @@ now carries two children.
   Expertises card tiles — same precedent again.
   And `--color-pale-rose` (#edc2dc, the article trap callout, always at 30%) —
   **asked about**, because unlike those four it is a raw fill, not a named style.
+  And `--color-pink-soft` (#f0d5dd, the e-commerce tag chips, always at 40%) —
+  **asked about**, because Figma gives it the *same* library name as
+  `--color-pink` (#fac5ef) with a different hex, so repointing the existing
+  token would have recoloured the Expertises tiles unasked.
 - **`text-*` tokens carry size, line-height, weight and tracking — never the
   font family.** A `text-lead` span inside a `font-poppins` paragraph renders
   in Poppins, not Inter, and reads visibly wider and heavier. Pair the token

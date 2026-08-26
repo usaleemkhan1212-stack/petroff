@@ -46,7 +46,7 @@ export function ALireEnsuite() {
           same shape Interlocuteurs and the home CTAFinal have. Every ink band
           in the section was landing a constant 96px low before this. */}
       <Container className="pb-16 lg:pb-24">
-        <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+        <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
         <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
         <p className="text-small text-encre/62 mt-3.5">{t("lead")}</p>
 

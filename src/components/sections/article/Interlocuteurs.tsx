@@ -35,14 +35,18 @@ const tags = ["tag1", "tag2", "tag3"] as const;
  * on `hover:` rather than permanent.
  */
 export function Interlocuteurs() {
-  const t = useTranslations("ArticlePage.interlocuteurs");
+  /* Everything but the angle note is shared with the e-commerce page's own
+     Interlocuteurs, so it lives in the top-level `Interlocuteurs` namespace —
+     the same split the Bibliotheque CTAFinal makes against `ContactCta`. */
+  const t = useTranslations("Interlocuteurs");
+  const page = useTranslations("ArticlePage.interlocuteurs");
 
   return (
     <section className="bg-lilas">
       {/* Bottom padding only: Figma puts the overline at y=0 of this section,
           the same shape the home CTAFinal has. */}
       <Container className="pb-16 lg:pb-24">
-        <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+        <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
         <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
         <p className="text-small text-encre/62 mt-3.5">{t("lead")}</p>
 
@@ -91,7 +95,7 @@ export function Interlocuteurs() {
 
                   {/* The angle this lawyer takes on this article. */}
                   <p className="text-small text-encre/62 border-red w-full border-l-3 py-0.5 pl-3.5">
-                    {t.rich(`items.${key}.angle`, {
+                    {page.rich(`angle.${key}`, {
                       b: (chunks) => (
                         <span className="text-button font-poppins text-encre">
                           {chunks}

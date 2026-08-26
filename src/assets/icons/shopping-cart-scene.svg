@@ -1,0 +1,39 @@
+<svg width="137" height="160" viewBox="0 0 137 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="art" clip-path="url(#clip-shopping-cart-scene)">
+<path id="Vector" d="M10.275 49.6571H28.2562L38.5312 78.8" stroke="var(--color-encre)" stroke-width="8.4375" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M121.587 65.9429H37.675C34.8376 65.9429 32.5375 68.2454 32.5375 71.0857V71.9429C32.5375 74.7832 34.8376 77.0857 37.675 77.0857H121.587C124.425 77.0857 126.725 74.7832 126.725 71.9429V71.0857C126.725 68.2454 124.425 65.9429 121.587 65.9429Z" fill="var(--color-gold)"/>
+<path id="Vector_3" d="M35.9625 77.0857H125.013L110.456 119.943H46.2375L35.9625 77.0857Z" fill="var(--color-periwinkle)"/>
+<path id="Vector_4" d="M46.2375 84.8H115.594L104.462 112.229H53.0875L46.2375 84.8Z" fill="var(--color-pale-periwinkle)"/>
+<g id="Vector_5">
+<path d="M63.3625 86.5143L60.7938 110.514ZM82.2 86.5143L81.3438 110.514ZM101.038 86.5143L103.606 110.514Z" fill="black"/>
+<path d="M63.3625 86.5143L60.7938 110.514M82.2 86.5143L81.3438 110.514M101.038 86.5143L103.606 110.514" stroke="var(--color-periwinkle)" stroke-width="4.6875" stroke-linecap="round"/>
+</g>
+<path id="Vector_6" d="M57.3687 149.943C63.5164 149.943 68.5 144.954 68.5 138.8C68.5 132.646 63.5164 127.657 57.3687 127.657C51.2211 127.657 46.2375 132.646 46.2375 138.8C46.2375 144.954 51.2211 149.943 57.3687 149.943Z" fill="var(--color-gold)"/>
+<path id="Vector_7" d="M57.3687 143.514C59.9697 143.514 62.0781 141.404 62.0781 138.8C62.0781 136.196 59.9697 134.086 57.3687 134.086C54.7678 134.086 52.6594 136.196 52.6594 138.8C52.6594 141.404 54.7678 143.514 57.3687 143.514Z" fill="var(--color-encre)"/>
+<path id="Vector_8" d="M101.038 149.943C107.185 149.943 112.169 144.954 112.169 138.8C112.169 132.646 107.185 127.657 101.038 127.657C94.8899 127.657 89.9062 132.646 89.9062 138.8C89.9062 144.954 94.8899 149.943 101.038 149.943Z" fill="var(--color-gold)"/>
+<path id="Vector_9" d="M101.037 143.514C103.638 143.514 105.747 141.404 105.747 138.8C105.747 136.196 103.638 134.086 101.037 134.086C98.4366 134.086 96.3281 136.196 96.3281 138.8C96.3281 141.404 98.4366 143.514 101.037 143.514Z" fill="var(--color-encre)"/>
+<g id="art_2">
+<path id="Vector_10" d="M79.4586 0.421875L106.607 14.9325L79.4586 29.4432L52.3097 14.9325L79.4586 0.421875Z" fill="var(--color-pale-gold)"/>
+<path id="Vector_11" d="M52.3097 14.9326L79.4586 29.4432V54.7198L52.3097 40.2092V14.9326Z" fill="var(--color-brique)"/>
+<path id="Vector_12" d="M106.609 14.9325L79.46 29.4432V54.7198L106.609 40.2091V14.9325Z" fill="var(--color-gold)"/>
+<g id="Vector_13">
+<path d="M79.46 29.2571L79.46 53.0286Z" fill="black"/>
+<path d="M79.46 29.2571L79.46 53.0286" stroke="var(--color-encre)" stroke-width="3" stroke-linecap="round"/>
+</g>
+<g id="Vector_14">
+<path d="M79.46 1.82857L79.46 29.2571Z" fill="black"/>
+<path d="M79.46 1.82857L79.46 29.2571" stroke="var(--color-encre)" stroke-opacity="0.62" stroke-width="3" stroke-linecap="round"/>
+</g>
+<path id="Vector_15" d="M96.174 33.8286L84.94 39.9137V48.3392L96.174 42.2541V33.8286Z" fill="var(--color-lilas)"/>
+<g id="Vector_16">
+<path d="M93.3198 38.7696L86.7667 42.5142ZM90.876 42.5142L86.7667 44.8Z" fill="black"/>
+<path d="M93.3198 38.7696L86.7667 42.5142M90.876 42.5142L86.7667 44.8" stroke="var(--color-brique)" stroke-linecap="round"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip-shopping-cart-scene">
+<rect width="137" height="160" fill="white"/>
+</clipPath>
+</defs>
+</svg>

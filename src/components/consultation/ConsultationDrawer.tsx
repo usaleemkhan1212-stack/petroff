@@ -99,7 +99,7 @@ export function ConsultationDrawer({
                 carries: Figma leaves this string exactly 412px of a 450px row
                 once the 22px close control and its 16px gap are taken out.
               */}
-              <p className="text-overline-tight font-poppins text-brique min-w-0 flex-1">
+              <p className="text-overline-tight font-poppins text-brique min-w-0 flex-1 uppercase">
                 {t("overline")}
               </p>
               <button

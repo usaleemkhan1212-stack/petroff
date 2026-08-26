@@ -20,7 +20,8 @@
     "domainsLabel": "Domaines d’expertise",
     "libraryPagesLabel": "Pages de la bibliothèque",
     "articleDesign": "article-design",
-    "ecommerce": "Avocat e-commerce"
+    "ecommerce": "Avocat e-commerce",
+    "newArticle": "new-article-page"
   },
   "Common": {
     "skipToContent": "Aller au contenu",
@@ -45,6 +46,37 @@
     "sources": "Légifrance (PISTE) · Judilibre · BODACC · INSEE Sirene · données INPI",
     "disclaimer": "Les données proviennent des registres publics officiels et sont généralement fiables ; des erreurs ponctuelles restent possibles et les résultats ne constituent pas un avis juridique.",
     "translation": "La bibliothèque s’écrit en français et se lit dans votre langue : traduction adossée à un glossaire juridique quadrilingue maintenu par le cabinet. Une inexactitude ? <link>Signalez-la-nous.</link>"
+  },
+  "Interlocuteurs": {
+    "overline": "Vos interlocuteurs",
+    "title": "Qui traite ce sujet au cabinet",
+    "lead": "Deux avocats, deux angles : les contrats commerciaux, et les documents de la relation de travail.",
+    "items": {
+      "petrova": {
+        "name": "Mᵉ Mariela Petrova",
+        "role": "Associée · Barreau de Paris — Toque #C2396",
+        "tag1": "Contrats commerciaux",
+        "tag2": "Preuve & conventions de preuve",
+        "tag3": "Contentieux contractuel",
+        "languages": "FR · EN — 15 ans de pratique en droit des affaires",
+        "cta": "Consulter Mᵉ Petrova",
+        "cta2": "En savoir plus sur Mᵉ Petrova"
+      },
+      "bazin": {
+        "name": "Mᵉ Tony Bazin",
+        "role": "Avocat au Barreau d’Angers, depuis 2016",
+        "tag1": "Droit du travail",
+        "tag2": "Sécurité sociale & URSSAF",
+        "tag3": "Contentieux prud’homal",
+        "languages": "FR · EN — 8 ans de pratique · chargé d’enseignement à la Faculté de droit d’Angers",
+        "cta": "Consulter Mᵉ Bazin",
+        "cta2": "En savoir plus sur Mᵉ Bazin"
+      }
+    },
+    "photoAlt": {
+      "petrova": "Portrait de Mᵉ Mariela Petrova",
+      "bazin": "Portrait de Mᵉ Tony Bazin"
+    }
   },
   "Hero": {
     "overline": "Cabinet D’avocats — Droit Des Affaires · Paris",
@@ -1868,36 +1900,9 @@
       "allLink": "Toutes les prestations — Vendre, contracter & commercer"
     },
     "interlocuteurs": {
-      "overline": "Vos interlocuteurs",
-      "title": "Qui traite ce sujet au cabinet",
-      "lead": "Deux avocats, deux angles : les contrats commerciaux, et les documents de la relation de travail.",
-      "items": {
-        "petrova": {
-          "name": "Mᵉ Mariela Petrova",
-          "role": "Associée · Barreau de Paris — Toque #C2396",
-          "tag1": "Contrats commerciaux",
-          "tag2": "Preuve & conventions de preuve",
-          "tag3": "Contentieux contractuel",
-          "languages": "FR · EN — 15 ans de pratique en droit des affaires",
-          "angle": "<b>Sur cette fiche </b>: le choix du niveau de signature, la convention de preuve et la défense de l’acte contesté.",
-          "cta": "Consulter Mᵉ Petrova",
-          "cta2": "En savoir plus sur Mᵉ Petrova"
-        },
-        "bazin": {
-          "name": "Mᵉ Tony Bazin",
-          "role": "Avocat au Barreau d’Angers, depuis 2016",
-          "tag1": "Droit du travail",
-          "tag2": "Sécurité sociale & URSSAF",
-          "tag3": "Contentieux prud’homal",
-          "languages": "FR · EN — 8 ans de pratique · chargé d’enseignement à la Faculté de droit d’Angers",
-          "angle": "<b>Sur cette fiche </b>: les documents de la relation de travail signés à distance — contrats, avenants et ruptures — et leur contestation devant le conseil de prud’hommes.",
-          "cta": "Consulter Mᵉ Bazin",
-          "cta2": "En savoir plus sur Mᵉ Bazin"
-        }
-      },
-      "photoAlt": {
-        "petrova": "Portrait de Mᵉ Mariela Petrova",
-        "bazin": "Portrait de Mᵉ Tony Bazin"
+      "angle": {
+        "petrova": "<b>Sur cette fiche </b>: le choix du niveau de signature, la convention de preuve et la défense de l’acte contesté.",
+        "bazin": "<b>Sur cette fiche </b>: les documents de la relation de travail signés à distance — contrats, avenants et ruptures — et leur contestation devant le conseil de prud’hommes."
       }
     },
     "alire": {
@@ -2039,20 +2044,528 @@
         }
       }
     },
-      "principe": {
-        "overline": "Droit du e-commerce",
-        "title": "Des CGV qui tiennent quand la DGCCRF les lit — et quand un client les lit",
-        "p1": "Le droit de la consommation est écrit dans votre tunnel de commande. Ce qui est absent de la page est absent du contrat, et le consommateur garde le bénéfice de l’omission.",
-        "p2": "Le régulateur juge l’interface telle qu’un consommateur la rencontre. Nous rédigeons pour ce lecteur-là — et le même document tient devant l’administration et devant le juge.",
-        "p3": "Un avocat, pas un vendeur de modèles. Vos conditions sont rédigées par des avocats inscrits au Barreau, tenus au secret professionnel. Le coût est annoncé avant chaque étape.",
-        "cta": "Parler à un avocat",
-        "polaroid": "Rédigé par<br></br>des avocats",
-        "card": {
-          "overline": "Notre principe",
-          "title": "L’IA produit, l’avocat engage sa signature.",
-          "body": "Nos outils lisent votre tunnel, vos pages et vos conditions ; un avocat inscrit au Barreau vérifie, corrige et signe. Chaque livrable porte une responsabilité — pas une génération.",
-          "cta": "Voir les forfaits"
+    "principe": {
+      "overline": "Droit du e-commerce",
+      "title": "Des CGV qui tiennent quand la DGCCRF les lit — et quand un client les lit",
+      "p1": "Le droit de la consommation est écrit dans votre tunnel de commande. Ce qui est absent de la page est absent du contrat, et le consommateur garde le bénéfice de l’omission.",
+      "p2": "Le régulateur juge l’interface telle qu’un consommateur la rencontre. Nous rédigeons pour ce lecteur-là — et le même document tient devant l’administration et devant le juge.",
+      "p3": "Un avocat, pas un vendeur de modèles. Vos conditions sont rédigées par des avocats inscrits au Barreau, tenus au secret professionnel. Le coût est annoncé avant chaque étape.",
+      "cta": "Parler à un avocat",
+      "polaroid": "Rédigé par<br></br>des avocats",
+      "card": {
+        "overline": "Notre principe",
+        "title": "L’IA produit, l’avocat engage sa signature.",
+        "body": "Nos outils lisent votre tunnel, vos pages et vos conditions ; un avocat inscrit au Barreau vérifie, corrige et signe. Chaque livrable porte une responsabilité — pas une génération.",
+        "cta": "Voir les forfaits"
+      }
+    },
+    "role": {
+      "overline": "Notre rôle · Petroff Avocats",
+      "title": "Le partenaire juridique des vendeurs en ligne en France",
+      "lead": "Donner aux vendeurs en ligne, places de marché et marques un accès direct au droit de la consommation et du e-commerce : audits, CGV, échanges avec le régulateur et contentieux, par des avocats inscrits au Barreau.",
+      "checks": {
+        "c1": "Auditer le tunnel — fiche produit, panier, paiement, confirmation : là où le Code de la consommation s’applique et où une enquête commence.",
+        "c2": "Rédiger les conditions — CGV, mentions légales, politiques de rétractation, de retour et de livraison, rédigées pour le marché français.",
+        "c3": "Gérer le régulateur — questionnaires DGCCRF, contrôles, injonctions et transactions, traités en votre nom.",
+        "c4": "Défendre les réclamations — réclamations de consommateurs, actions d’associations, litiges avec places de marché ou prestataires de paiement.",
+        "c5": "Coordonner le transfrontalier — un seul corps de conditions cohérent au lieu de dix-sept.",
+        "c6": "Notre méthode — conseil clair ; actes et procédures en bonne forme ; coût annoncé avant chaque étape."
+      },
+      "cta": "Parler à un avocat",
+      "imageAlt": "Une cliente règle une commande en ligne, carte bancaire à la main devant son ordinateur portable.",
+      "cards": {
+        "conseil": {
+          "title": "Conseil e-commerce, sans jargon",
+          "body": "Le droit de la consommation expliqué clairement — l’obligation, l’exposition et les options, avant que vous ne vous engagiez."
+        },
+        "actes": {
+          "title": "Des actes rédigés pour la France",
+          "body": "CGV, mentions légales et politiques écrites pour le consommateur et le régulateur français, pas traduites pour eux."
+        },
+        "defense": {
+          "title": "La défense en France",
+          "body": "Enquêtes DGCCRF, réclamations de consommateurs et litiges de plateformes, conduits devant les juridictions françaises."
         }
       }
+    },
+    "quand": {
+      "overline": "Quand nous saisir",
+      "title": "Quand consulter un avocat en droit du e-commerce ?",
+      "lead": "La vente en ligne en France pose les mêmes questions, dans le même ordre. Voici celles que nos clients nous apportent le plus souvent.",
+      "items": {
+        "lancement": {
+          "title": "Vous lancez une boutique française",
+          "body": "Un site, une app ou un checkout localisé va être mis en ligne — les conditions et le parcours doivent être justes avant la première commande."
+        },
+        "dgccrf": {
+          "title": "La DGCCRF vous a contacté",
+          "body": "Un questionnaire, un procès-verbal ou un projet d’injonction : le délai est court, et ce que vous écrivez entre au dossier."
+        },
+        "marketplace": {
+          "title": "Vous vendez via une place de marché",
+          "body": "Conditions de plateforme, vérification du vendeur, règles de classement et de suspension s’appliquent à vous."
+        },
+        "retours": {
+          "title": "Les retours et remboursements coûtent cher",
+          "body": "Rétractation, conformité et vices cachés sont trois régimes différents ; une politique écrite pour l’un est appliquée aux trois."
+        },
+        "cgv": {
+          "title": "Vos CGV ont été traduites, pas rédigées",
+          "body": "Les clauses qui comptent pour un juge français n’ont jamais figuré dans l’original."
+        }
+      },
+      "card": {
+        "overline": "Parlons-en",
+        "title": "Un questionnaire DGCCRF sur le bureau, un tunnel à sécuriser ?",
+        "lead": "Exposez la situation en quelques lignes. Un avocat vous répond avec les délais qui courent, les options ouvertes et un prix ferme.",
+        "cta": "Parler à un avocat",
+        "footnote": "15 minutes gratuites en visio, prix ferme sous 24 h."
+      }
+    },
+    "aide": {
+      "overline": "Accompagnement juridique",
+      "title": "Comment nous aidons les vendeurs en ligne",
+      "lead": "Chaque dossier est traité par un spécialiste inscrit au Barreau : ce que le Code exige, ce que la DGCCRF regardera, et ce que la mission coûte au regard de ce qu’elle protège.",
+      "examine": "Ce que nous examinons",
+      "result": "Résultat",
+      "services": {
+        "cgv": {
+          "title": "Des CGV pour le marché français",
+          "lead": "Les CGV sont le seul document que le consommateur français est réputé avoir accepté — et le premier qu’un enquêteur lit.",
+          "bullets": [
+            "Le contenu obligatoire, et ce qui manque à la version actuelle",
+            "Les mentions légales exigées par la loi du 21 juin 2004",
+            "Livraison, transfert des risques, responsabilité du transporteur",
+            "Loi applicable et juridiction, et leur effet face à un consommateur"
+          ],
+          "result": "Vous vendez sur des conditions rédigées pour le marché français, opposables au client.",
+          "cta": "Rédiger les CGV"
+        },
+        "retractation": {
+          "title": "Le droit de rétractation, un clic compris",
+          "lead": "Quatorze jours, portés à douze mois sans information. Depuis le 19 juin 2026, une fonction de rétractation doit figurer sur l’interface.",
+          "bullets": [
+            "Le point de départ du délai, selon le type de contrat",
+            "La fonction exigée par l’ordonnance n° 2026-2",
+            "L’accusé de réception sur support durable",
+            "Les exceptions, d’interprétation stricte"
+          ],
+          "result": "Le processus respecte les règles en vigueur ; les remboursements suivent le Code.",
+          "cta": "Corriger le parcours"
+        },
+        "prix": {
+          "title": "Prix, promotions et réductions",
+          "lead": "Une réduction annoncée se calcule sur le prix le plus bas des trente jours précédents.",
+          "bullets": [
+            "Le prix de référence et la règle des trente jours",
+            "L’affichage des prix, taxes et frais de livraison",
+            "Le prix personnalisé et l’information qu’il impose",
+            "Drip pricing, pièges à abonnement, options présélectionnées"
+          ],
+          "result": "Les promotions reposent sur une base que vous pouvez prouver.",
+          "cta": "Vérifier les prix"
+        },
+        "avis": {
+          "title": "Avis consommateurs et transparence des classements",
+          "lead": "Publier des avis emporte des obligations : collecte, vérification, motif de rejet, durée. Les classements doivent divulguer leurs paramètres.",
+          "bullets": [
+            "L’information exigée à côté des avis publiés",
+            "Vérification, modération et motifs de rejet",
+            "Avis payés, incités ou sollicités, et leur traitement",
+            "La divulgation du placement payé"
+          ],
+          "result": "Avis et classements présentés dans des conditions conformes au Code.",
+          "cta": "Revoir les avis"
+        },
+        "abonnements": {
+          "title": "Abonnements, reconduction et résiliation",
+          "lead": "Un contrat conclu en ligne doit pouvoir être résilié en ligne. La reconduction tacite porte ses propres obligations.",
+          "bullets": [
+            "La fonction de résiliation électronique et son emplacement",
+            "L’avis de reconduction et la fenêtre ouverte",
+            "Les durées minimales et leurs conditions",
+            "Les hausses de prix en cours de contrat"
+          ],
+          "result": "Les abonnés partent comme ils sont venus ; le revenu récurrent repose sur des contrats qui tiennent.",
+          "cta": "Corriger l’abonnement"
+        },
+        "securite": {
+          "title": "Sécurité des produits, conformité et rappels",
+          "lead": "Le règlement général sur la sécurité des produits s’applique depuis le 13 décembre 2024.",
+          "bullets": [
+            "Une personne responsable établie dans l’UE",
+            "Les informations de sécurité et de traçabilité",
+            "L’étiquetage et les notices en français",
+            "Rappel, retrait et notification aux autorités"
+          ],
+          "result": "Les produits listés peuvent être licitement vendus en France ; un incident se traite comme une procédure.",
+          "cta": "Vérifier la conformité"
+        },
+        "precontractuel": {
+          "title": "Information précontractuelle et parcours de commande",
+          "lead": "L’article L. 221-5 liste ce qui doit être donné avant la commande ; L. 221-14 prescrit la double confirmation et le bouton « oblige à payer ».",
+          "bullets": [
+            "L’information exigée avant la commande, et où elle s’affiche",
+            "Le double clic et le libellé du bouton de paiement",
+            "La confirmation sur support durable",
+            "Cases pré-cochées et paiements supplémentaires, interdits"
+          ],
+          "result": "Le parcours satisfait le Code à chaque étape ; le contrat est valablement formé.",
+          "cta": "Auditer le tunnel"
+        },
+        "garanties": {
+          "title": "Garanties légales, retours et après-vente",
+          "lead": "Deux garanties légales à côté de toute garantie commerciale : conformité (2 ans, présomption) et vices cachés.",
+          "bullets": [
+            "La garantie de conformité, sa durée et sa présomption",
+            "L’extension de six mois en cas de réparation",
+            "La garantie des vices cachés et son délai propre",
+            "Les garanties commerciales et leur présentation"
+          ],
+          "result": "Les retours sont traités sous le régime qui s’applique réellement à chaque réclamation.",
+          "cta": "Revoir les garanties"
+        },
+        "publicite": {
+          "title": "Publicité, influenceurs et pratiques commerciales",
+          "lead": "La pratique trompeuse est un délit, jusqu’à 300 000 € portables à 10 % du chiffre d’affaires. Le critère : l’impression d’ensemble.",
+          "bullets": [
+            "Les allégations du site, des campagnes et des partenaires",
+            "Les allégations environnementales et leur justification",
+            "Le marketing d’influence, sa transparence et ses contrats",
+            "Pratiques agressives, urgence, comptes à rebours"
+          ],
+          "result": "La campagne dit ce qu’elle peut prouver ; les mentions sont là où elles doivent être.",
+          "cta": "Revoir la campagne"
+        },
+        "marketplace": {
+          "title": "Places de marché et obligations de plateforme",
+          "lead": "Exploiter une marketplace ajoute une couche réglementaire : information des consommateurs, transparence P2B, obligations du DSA.",
+          "bullets": [
+            "Si l’opérateur est intermédiaire, vendeur, ou les deux",
+            "L’information due au consommateur",
+            "L’identification du vendeur avant mise en ligne",
+            "Notification-action et décisions motivées"
+          ],
+          "result": "Le rôle de l’opérateur est correctement qualifié ; seules les obligations qui en découlent s’appliquent.",
+          "cta": "Qualifier la plateforme"
+        },
+        "donnees": {
+          "title": "Données, cookies et consentement marketing",
+          "lead": "Une boutique est un traitement de données. Traceurs (art. 82) et prospection (CPCE) exigent un consentement.",
+          "bullets": [
+            "Le registre des traitements et la base légale",
+            "La politique de confidentialité et son emplacement",
+            "Refuser aussi simple qu’accepter",
+            "Emailing et SMS marketing, et leur consentement"
+          ],
+          "result": "La boutique collecte sur une base défendable ; la couche de consentement satisfait la CNIL.",
+          "cta": "Mettre en conformité"
+        },
+        "transfrontalier": {
+          "title": "Vente transfrontalière, TVA, juridiction et livraison",
+          "lead": "Vendre vers la France pose des questions de fiscalité, de juridiction et d’accès à la fois.",
+          "bullets": [
+            "La TVA, le guichet unique et le régime d’importation",
+            "Si l’opération crée un établissement en France",
+            "Juridiction et loi applicable en contrat de consommation",
+            "Les règles de géoblocage"
+          ],
+          "result": "Vous vendez sur une base juste fiscalement, opposable et praticable — avant que le volume ne coûte cher.",
+          "cta": "Structurer la vente"
+        }
+      },
+      "seams": {
+        "fiches": {
+          "overline": "Parlons-en",
+          "title": "Vos fiches produits sont-elles à jour du nouveau règlement sécurité ?",
+          "body": "Fabricant, importateur UE et avertissements y sont obligatoires depuis décembre 2024 — à défaut, retrait du produit.",
+          "cta": "Faire vérifier vos fiches"
+        },
+        "prix": {
+          "overline": "Parlons-en",
+          "title": "Vos réductions respectent-elles la règle des trente jours ?",
+          "body": "Le prix de référence, c’est le plus bas des trente derniers jours — pas le prix barré d’hier.",
+          "cta": "Faire auditer vos prix"
+        }
+      },
+      "photoAlt": {
+        "balcony": "Une commerçante travaille sur son ordinateur portable en terrasse, au téléphone avec un client.",
+        "shopping": "Une cliente parcourt une boutique de vêtements en ligne sur son ordinateur portable."
+      }
+    },
+    "forfaits": {
+      "overline": "Forfaits",
+      "title": "Des missions à prix affiché",
+      "lead": "Trois points d’entrée. Chaque mission commence par une convention d’honoraires écrite ; toute étape supplémentaire est chiffrée avant d’être engagée.",
+      "badge": "LE PLUS DEMANDÉ",
+      "items": {
+        "audit": {
+          "title": "Audit du tunnel de commande",
+          "price": "990 €",
+          "description": "Vos pages telles qu’un client français les rencontre — et telles qu’un enquêteur les lira.",
+          "features": [
+            "Fiche produit, panier, paiement, confirmation",
+            "Score de conformité /100 et rapport écrit",
+            "Corrections classées par exposition"
+          ],
+          "cta": "Commander l’audit"
+        },
+        "pack": {
+          "title": "Pack CGV e-commerce",
+          "price": "1 490 €",
+          "description": "Le socle contractuel complet d’une boutique tournée vers la France, rédigé — pas traduit.",
+          "features": [
+            "CGV, mentions légales, politiques de rétractation et de retour",
+            "Fonction « un clic » et médiation en conformité",
+            "Relecture du bouton de paiement et de l’info précontractuelle"
+          ],
+          "cta": "Commander le pack"
+        },
+        "dgccrf": {
+          "title": "Réponse DGCCRF",
+          "price": "Sur devis",
+          "description": "Questionnaire, contrôle ou injonction — par phases plafonnées, position arrêtée avec vous.",
+          "features": [
+            "Analyse du courrier et des délais",
+            "Projet de réponse et pièces, validés ensemble",
+            "Suivi jusqu’à la clôture ou la transaction"
+          ],
+          "cta": "Demander un devis"
+        }
+      },
+      "footnote": "Montants indicatifs de maquette. Tarif membre avec l’abonnement Conformité & Suivi (199 €/mois) — le contentieux n’entre jamais dans l’abonnement : le tarif membre s’applique."
+    },
+    "process": {
+      "overline": "Comment ça marche",
+      "title": "Un processus clair pour votre dossier e-commerce",
+      "lead": "Choisissez votre point d’entrée — le processus s’adapte à votre situation.",
+      "steps": {
+        "dossier": {
+          "title": "Envoyez le dossier",
+          "body": "Le site, les CGV, le courrier du régulateur, ou quelques lignes sur la situation."
+        },
+        "analyse": {
+          "title": "Analyse claire",
+          "body": "Ce que le Code exige, les délais qui courent, et les options réellement ouvertes."
+        },
+        "devis": {
+          "title": "Devis forfaitaire",
+          "body": "Le périmètre, les livrables et le coût, annoncés avant que le travail ne commence."
+        },
+        "execution": {
+          "title": "Exécution",
+          "body": "Rédaction, négociation, correspondance régulateur et procédures, restituées clairement."
+        },
+        "suivi": {
+          "title": "Suivi dans la durée",
+          "body": "Vos CGV et votre interface tenues à jour au fil des réformes, avec un interlocuteur unique."
+        }
+      },
+      "doors": {
+        "overline": "Deux portes",
+        "title": "Boutique en création, ou déjà en ligne ?",
+        "creation": {
+          "label": "Je lance ma boutique",
+          "note": "Site en création"
+        },
+        "enLigne": {
+          "label": "Je vends déjà",
+          "note": "Boutique en ligne"
+        }
+      },
+      "entry": {
+        "overline": "Votre point d’entrée",
+        "title": "Pack CGV e-commerce",
+        "rows": {
+          "etape": {
+            "label": "Première étape",
+            "value": "Cadrage du parcours"
+          },
+          "delai": {
+            "label": "Délai",
+            "value": "avant la mise en ligne"
+          },
+          "forfait": {
+            "label": "Forfait",
+            "value": "1 490 €"
+          }
+        },
+        "cta": "Commander le pack"
+      }
+    },
+    "comprendre": {
+      "overline": "Comprendre le droit",
+      "title": "Comprendre le droit français du e-commerce",
+      "cta": "Parler à un avocat",
+      "items": {
+        "lcen": {
+          "tag": "LCEN",
+          "title": "La loi qui gouverne la vente en ligne",
+          "p1": "La loi du 21 juin 2004 pour la confiance dans l’économie numérique est le cadre du commerce en ligne : mentions légales et régime du contrat électronique.",
+          "p2": "Elle rend le vendeur responsable de plein droit de la bonne exécution, même confiée à d’autres. Une livraison perdue est son problème avant celui du transporteur.",
+          "p3": "Cette règle ne s’écarte pas par une clause contre le consommateur."
+        },
+        "retractation": {
+          "tag": "Rétractation",
+          "title": "Quatorze jours, et désormais un clic",
+          "p1": "Quatorze jours pour se rétracter, sans motif ; portés à douze mois sans information.",
+          "p2": "Depuis le 19 juin 2026, une fonction de rétractation doit figurer sur l’interface, avec accusé de réception sur support durable.",
+          "p3": "Les exceptions s’interprètent strictement, et la charge de la preuve pèse sur le vendeur."
+        },
+        "garanties": {
+          "tag": "Garanties",
+          "title": "Deux garanties légales, pas une",
+          "p1": "La conformité dure deux ans, avec présomption pour un bien neuf ; une réparation la prolonge de six mois.",
+          "p2": "La garantie des vices cachés ouvre une action dans les deux ans de la découverte.",
+          "p3": "Les conditions doivent énoncer ces garanties : les taire est une omission trompeuse."
+        },
+        "prix": {
+          "tag": "Prix",
+          "title": "Ce que vous pouvez appeler une réduction",
+          "p1": "Une réduction s’annonce sur le prix le plus bas des trente jours précédents.",
+          "p2": "Les prix s’affichent TTC, frais de livraison donnés avant la commande.",
+          "p3": "Un prix personnalisé par décision automatisée doit être divulgué."
+        },
+        "pratiques": {
+          "tag": "Pratiques",
+          "title": "Les pratiques trompeuses et leur coût",
+          "p1": "Trompeuse : confusion, information fausse ou omission, appréciée sur l’impression d’ensemble.",
+          "p2": "Jusqu’à deux ans d’emprisonnement et 300 000 €, portables à 10 % du chiffre d’affaires.",
+          "p3": "Interface, campagne et conditions doivent dire la même chose."
+        },
+        "dgccrf": {
+          "tag": "DGCCRF",
+          "title": "Le régulateur que vous rencontrerez",
+          "p1": "Autorité de la consommation et de la concurrence, elle enquête sur plainte et par balayages, y compris contre un vendeur étranger.",
+          "p2": "Pouvoirs : demande d’information, injonctions sous astreinte, amendes, renvoi pénal — et publication des décisions.",
+          "p3": "La première réponse écrite décide de la suite du dossier."
+        },
+        "mediation": {
+          "tag": "Médiation",
+          "title": "La médiation de la consommation est obligatoire",
+          "p1": "Tout professionnel doit offrir l’accès gratuit à un médiateur et en donner les coordonnées.",
+          "p2": "La plateforme européenne RLL a fermé le 20 juillet 2025 : les CGV qui y renvoient sont à corriger.",
+          "p3": "Son absence est une infraction visible de l’extérieur."
+        },
+        "plateformes": {
+          "tag": "Plateformes",
+          "title": "Les places de marché sous le DSA",
+          "p1": "Le DSA s’applique en totalité depuis le 17 février 2024 : vérifier les vendeurs, notification-action, décisions motivées.",
+          "p2": "Les obligations montent avec le rôle et la taille ; l’ARCOM coordonne en France.",
+          "p3": "La plateforme police la conformité commercialement, avant le régulateur."
+        },
+        "distance": {
+          "tag": "À distance",
+          "title": "Tout peut se faire à distance",
+          "p1": "Société, contrat, pouvoir et procès sans mettre les pieds en France ; signature électronique valable.",
+          "p2": "Les rares démarches physiques passent par procuration ou le consulat.",
+          "p3": "Visioconférences, e-signature, portails documentaires — seul le fuseau de Paris ne bouge pas."
+        },
+        "choisir": {
+          "tag": "Choisir",
+          "title": "Choisir un avocat e-commerce en France",
+          "p1": "Seul un avocat peut vous représenter en justice, et seul son dossier est couvert par le secret professionnel.",
+          "p2": "Cherchez le titre réglementé, une expérience réelle de la procédure DGCCRF, une plume que vous pouvez juger.",
+          "p3": "Et demandez le prix — un avocat qui chiffre avant chaque étape vous dit comment tout se passera."
+        }
+      }
+    },
+    "faq": {
+      "overline": "Questions fréquentes",
+      "title": "Vendre en ligne en France",
+      "items": {
+        "entite": {
+          "question": "Nous n’avons pas d’entité en France. Le droit français s’applique-t-il ?",
+          "answer": "En substance, oui. Dès lors que vous dirigez votre activité vers les consommateurs français, les protections impératives de leur loi de résidence s’appliquent quoi que prévoient vos conditions, et le consommateur peut saisir les tribunaux de son domicile."
+        },
+        "traduire": {
+          "question": "Peut-on simplement traduire nos conditions en français ?",
+          "answer": "Non. Les clauses qui comptent pour un juge français n’ont souvent jamais figuré dans l’original : une traduction ne fait que reporter un texte écrit pour un autre marché. Nous rédigeons les CGV, les mentions légales et les politiques pour le consommateur et le régulateur français, plutôt que de les traduire pour eux."
+        },
+        "confidentiel": {
+          "question": "Nos échanges avec vous sont-ils confidentiels ?",
+          "answer": "Oui. Vos interlocuteurs sont des avocats inscrits au Barreau, tenus au secret professionnel de l’article 66-5 de la loi du 31 décembre 1971 — et seul le dossier d’un avocat en est couvert."
+        },
+        "unClic": {
+          "question": "Qu’est-ce que l’obligation de rétractation en un clic ?",
+          "answer": "Depuis le 19 juin 2026, l’ordonnance n° 2026-2 du 5 janvier 2026 impose une fonction de rétractation sur l’interface elle-même, avec accusé de réception sur support durable. Le délai reste de quatorze jours, porté à douze mois faute d’information, et les exceptions s’interprètent strictement."
+        },
+        "dgccrf": {
+          "question": "La DGCCRF nous a envoyé un questionnaire. Comment répondre ?",
+          "answer": "Vite et par écrit : le délai est court, et ce que vous écrivez entre au dossier — la première réponse décide de la suite. Nous analysons le courrier et les délais, préparons le projet de réponse et les pièces, les validons avec vous, puis suivons le dossier jusqu’à la clôture ou la transaction."
+        },
+        "honoraires": {
+          "question": "Comment fonctionnent vos honoraires ?",
+          "answer": "Au forfait, annoncé avant que le travail ne commence. Chaque mission part d’une convention d’honoraires écrite qui fixe le périmètre, les livrables et le coût ; toute étape supplémentaire est chiffrée avant d’être engagée, et une réponse au régulateur se conduit par phases plafonnées."
+        },
+        "lancement": {
+          "question": "Nous lançons en France le trimestre prochain. Que faire en premier ?",
+          "answer": "Le cadrage du parcours, avant la mise en ligne : les conditions et le tunnel doivent être justes avant la première commande. C’est le point d’entrée du Pack CGV e-commerce, à 1 490 €."
+        }
+      }
+    },
+    "interlocuteurs": {
+      "angle": {
+        "petrova": "<b>Sur cette fiche </b>: le choix du niveau de signature, la convention de preuve et la défense de l’acte contesté.",
+        "bazin": "<b>Sur cette fiche </b>: les documents de la relation de travail signés à distance — contrats, avenants et ruptures — et leur contestation devant le conseil de prud’hommes."
+      }
+    },
+    "alire": {
+      "overline": "Dans la bibliothèque",
+      "title": "Pour aller au fond du sujet",
+      "lead": "Guides, fiches sourcées et modèles commentés — écrits par des avocats, adossés aux textes officiels.",
+      "read": "Lire",
+      "items": {
+        "cgv": {
+          "domain": "Vendre, contracter & commercer",
+          "type": "Fiche & FAQ",
+          "title": "CGV e-commerce : les mentions qui manquent presque toujours",
+          "description": "Contenu obligatoire, garanties légales, médiation : ce qu’un enquêteur cherche d’abord.",
+          "meta": "Fiche · 8 min ·",
+          "photoAlt": "Un commerçant travaille sur son ordinateur portable, adossé à une colonne de pierre."
+        },
+        "retractation": {
+          "domain": "Vendre, contracter & commercer",
+          "type": "Guide",
+          "title": "Rétractation « un clic » : ce que l’ordonnance de 2026 impose",
+          "description": "La fonction sur l’interface, l’accusé de réception, et l’amende en cas d’oubli.",
+          "meta": "Guide · 12 min ·",
+          "photoAlt": "Une cliente règle un achat en ligne, carte bancaire à la main devant son ordinateur."
+        },
+        "pratiques": {
+          "domain": "Résoudre les litiges",
+          "type": "Fiche & FAQ",
+          "title": "Pratiques commerciales trompeuses : le coût réel",
+          "description": "Le critère de l’impression d’ensemble, et l’amende jusqu’à 10 % du chiffre d’affaires.",
+          "meta": "Fiche · 7 min ·",
+          "photoAlt": "Une carte bancaire tendue au-dessus d’un ordinateur portable ouvert sur un bureau."
+        }
+      }
+    },
+    "ctaFinal": {
+      "title": "Votre situation ne rentre pas dans nos services ?"
+    }
+  },
+  "NewArticlePage": {
+    "corps": {
+      "takeawaysHeading": "Points clés à retenir"
+    },
+    "rail": {
+      "verified": "Vérifié le 19 août 2026"
+    },
+    "seam1": {
+      "cta": "Faire cadrer le processus"
+    },
+    "seam2": {
+      "cta": "Vérifier la forme applicable"
+    },
+    "timeline": {
+      "s4Body": "Avec une signature qualifiée, c’est la partie qui dénie qui supporte l’effort ; en dessous, il revient à celle qui se prévaut du contrat. La Cour de cassation l’a rappelé en cassant une décision qui avait mis la preuve à la charge du signataire contestataire sans avoir vérifié au préalable si le procédé était qualifié <ref>(Cass. 3e civ., 5 mars 2026, n° 24-21.034)</ref>."
+    },
+    "triage": {
+      "cta": "Consulter un avocat",
+      "ctaNote": "15 minutes gratuites",
+      "disclaimer": "Orientation <s>(démo).</s> Elle ne constitue pas un avis juridique et ne dispense pas de l’examen des pièces du dossier."
+    }
   }
 }

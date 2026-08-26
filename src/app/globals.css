@@ -45,6 +45,14 @@
      Expertises card icon tile. */
   --color-pink: #fac5ef;
 
+  /* A SECOND colour Figma also names "Petroff/Pink" — the e-commerce page's
+     tag chips, drawn `rgba(240,213,221,0.4)`, i.e. `bg-pink-soft/40`. It is a
+     different hex from --color-pink above, under the same library name, so
+     both are kept until the designer says which the name should carry.
+     Repointing --color-pink instead would silently recolour the Expertises
+     tiles on a frame that has not changed. Asked before adding. */
+  --color-pink-soft: #f0d5dd;
+
   /* --- Greens ----------------------------------------------------------- */
   /* Figma's "Petroff/Pale_Mint" — an Expertises card icon tile. */
   --color-pale-mint: #e8f5f1;
@@ -219,6 +227,19 @@
 }
 
 @layer base {
+  /*
+    Anchor jumps ease rather than snap — the article's table of contents is the
+    one place on the site that uses them, and its ten headings carry
+    `scroll-mt-6` so each lands clear of the top. Guarded rather than paired
+    with `motion-reduce:`, so it never applies to a reader who has asked for
+    less motion; the jump is then instant, as it was.
+  */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     background-color: var(--color-lilas);
     color: var(--color-encre);
@@ -287,3 +308,11 @@
     }
   }
 }
+
+/* rescan: triage */
+
+/* rescan: faq */
+
+/* rescan: faq pad */
+
+/* rescan: consult */

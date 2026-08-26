@@ -65,7 +65,7 @@ export function Resultats() {
             Gold at Poppins 16/1.2, not the brique text-overline every other
             section uses — this one really is the Button style in gold.
           */}
-          <p className="text-button font-poppins text-gold">{t("overline")}</p>
+          <p className="text-button font-poppins uppercase text-gold">{t("overline")}</p>
           <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
 
           <div className="mt-6 flex flex-wrap items-center gap-y-3">

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Actus } from "@/components/sections/Actus";
 import { Bibliotheque } from "@/components/sections/Bibliotheque";
 import { CTAFinal } from "@/components/sections/CTAFinal";
-import { Consultation } from "@/components/sections/Consultation";
+import { Consultation } from "@/components/consultation/Consultation";
 import { Cabinet } from "@/components/sections/Cabinet";
 import { Expertises } from "@/components/sections/Expertises";
 import { OpenData } from "@/components/sections/OpenData";

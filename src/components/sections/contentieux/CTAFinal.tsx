@@ -42,7 +42,7 @@ export function CTAFinal() {
           {/* gap-3 here, not the Expertises CTAFinal's gap-4: Figma specifies 12px
               on this panel and 16px on that one. */}
           <div className="relative flex flex-col items-center gap-3 text-center">
-            <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
             <h2 className="text-h2 text-encre">{t("title")}</h2>
             {/* Two lines, no gap between them — the 16px stack gap wraps the pair. */}
             <div className="text-body text-encre/62">

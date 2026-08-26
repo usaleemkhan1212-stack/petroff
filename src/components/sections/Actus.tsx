@@ -39,7 +39,7 @@ export function Actus() {
                   <div className="flex flex-col gap-2 px-6 pt-6 pb-7">
                     {/* Poppins SemiBold 16 at 0.18em — the overline style,
                         not Inter. Both frames specify the tracking. */}
-                    <p className="text-overline font-poppins text-brique">
+                    <p className="text-overline font-poppins uppercase text-brique">
                       {t(`items.${key}.kicker`)}
                     </p>
                     <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>

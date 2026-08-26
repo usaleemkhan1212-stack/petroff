@@ -8,7 +8,8 @@ import { type DomaineKey, domaines } from "@/lib/domaines";
 type MessagePath =
   | `ExpertisesPage.domaines.items.${DomaineKey}.title`
   | "Nav.articleDesign"
-  | "Nav.ecommerce";
+  | "Nav.ecommerce"
+  | "Nav.newArticle";
 import { isLive } from "@/lib/routes";
 
 /** A sub-item under a primary nav entry. Plain data so it can cross into client components. */
@@ -45,6 +46,7 @@ const bibliothequeChildren: readonly NavChild[] = (
   [
     { key: "articleDesign", href: "/bibliotheque/article-design" },
     { key: "ecommerce", href: "/bibliotheque/avocat-e-commerce" },
+    { key: "newArticle", href: "/bibliotheque/new-article-page" },
   ] as const
 )
   .filter(({ href }) => isLive(href))

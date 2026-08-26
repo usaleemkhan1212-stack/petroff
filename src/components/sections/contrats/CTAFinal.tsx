@@ -41,7 +41,7 @@ export function CTAFinal() {
 
           {/* gap-3, as on the Contentieux panel; the Expertises one is gap-4. */}
           <div className="relative flex flex-col items-center gap-3 text-center">
-            <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
             <h2 className="text-h2 text-encre">{t("title")}</h2>
             {/* Two lines, no gap between them — the 12px stack gap wraps the pair. */}
             <div className="text-body text-encre/62">

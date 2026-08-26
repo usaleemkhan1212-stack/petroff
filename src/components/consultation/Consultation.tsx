@@ -1,15 +1,17 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { SideTab } from "@/components/consultation/SideTab";
 import { ConsultationDrawer } from "@/components/consultation/ConsultationDrawer";
+import { SideTab } from "@/components/consultation/SideTab";
 
 /**
- * The home page's consultation controls and the one piece of state they share:
- * the red side tab (`13323:4812`) and the drawer it opens (`13323:4833`).
+ * A red side tab and the drawer it opens, plus the one piece of state they
+ * share. Used by the home page (`13323:4812` + `13323:4833`) and the
+ * e-commerce page (`13331:11356`), whose tabs are identical: same red, same
+ * speech-bubble icon, same "Consulter un avocat".
  *
- * Unlike the article's wrapper there is no sticky bar — the home frame draws
- * only the tab.
+ * Unlike the article's wrapper there is no sticky bar — neither frame draws
+ * one.
  */
 export function Consultation() {
   const [open, setOpen] = useState(false);

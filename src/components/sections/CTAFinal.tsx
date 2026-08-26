@@ -41,7 +41,7 @@ export function CTAFinal() {
           </div>
 
           <div className="relative flex flex-col items-center gap-4 text-center">
-            <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
             <h2 className="text-h2 text-encre">{t("title")}</h2>
             <p className="text-body text-encre/62">{t("lead")}</p>
             <span aria-hidden="true" className="h-3.5" />

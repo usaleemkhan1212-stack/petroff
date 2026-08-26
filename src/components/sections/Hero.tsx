@@ -12,7 +12,7 @@ export function Hero() {
 
       <Container className="relative">
         <div className="mx-auto flex max-w-225 flex-col items-center py-16 text-center lg:min-h-165 lg:pt-22.5 lg:pb-24">
-          <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+          <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
 
           <h1 className="text-display text-encre">
             {t.rich("title", {

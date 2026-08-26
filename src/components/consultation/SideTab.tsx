@@ -3,10 +3,13 @@
 import { useTranslations } from "next-intl";
 import SpeechBubble from "@/assets/icons/speech-bubble.svg";
 
-/** Gold on the article (`13170:1046`), red on the home page (`13323:4812`). */
+/**
+ * Gold on the article (`13170:1046`), red on the home page (`13323:4812`).
+ * No hover colour: the tab's only hover state is the nudge below.
+ */
 const tones = {
-  gold: "bg-gold hover:bg-brique",
-  red: "bg-red hover:bg-brique",
+  gold: "bg-gold",
+  red: "bg-red",
 } as const;
 
 /**
@@ -22,6 +25,13 @@ const tones = {
  * it at desktop. On the article, readers there still get the same form inline
  * as the `consult` block; the home page has no such fallback, so showing it on
  * mobile is a one-class change if that gap matters.
+ *
+ * **Its only hover state is a 6px nudge out of the edge** — 45 to 51 wide,
+ * over 180ms, growing leftward because the tab is pinned to `right: 0`. Taken
+ * from the mockup's `.sidetab:hover{padding-right:19px}`; the ground does not
+ * change with it, on the user's instruction. The two transitions carry their
+ * own durations, so the nudge stays quick while the slide keeps the 300ms it
+ * shares with the drawer panel. Figma draws no hover state at all.
  */
 export function SideTab({
   hidden,
@@ -40,7 +50,7 @@ export function SideTab({
       onClick={onOpen}
       aria-hidden={hidden}
       inert={hidden}
-      className={`${tones[tone]} fixed top-1/2 right-0 z-20 hidden h-59 w-11.25 -translate-y-1/2 cursor-pointer items-center justify-center gap-3 rounded-l-[14px] text-white shadow-[0px_10px_30px_0px_rgba(18,42,76,0.2)] transition-[translate,background-color] duration-300 [writing-mode:vertical-rl] motion-reduce:transition-none lg:flex ${
+      className={`${tones[tone]} fixed top-1/2 right-0 z-20 hidden h-59 w-11.25 -translate-y-1/2 cursor-pointer items-center justify-center gap-3 rounded-l-[14px] text-white shadow-[0px_10px_30px_0px_rgba(18,42,76,0.2)] transition-[translate,width] [transition-duration:300ms,180ms] [writing-mode:vertical-rl] hover:w-12.75 motion-reduce:transition-none lg:flex ${
         hidden ? "translate-x-full" : "translate-x-0"
       }`}
     >

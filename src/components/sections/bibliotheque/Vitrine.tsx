@@ -92,7 +92,7 @@ export function Vitrine() {
         */}
         <div className="flex items-end gap-8">
           <div className="min-w-0 flex-1">
-            <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
             <h2 className="text-h2 text-encre mt-2">{t("title")}</h2>
             <p className="text-small text-encre/62 mt-3">{t("lead")}</p>
           </div>

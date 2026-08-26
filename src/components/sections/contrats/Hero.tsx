@@ -45,7 +45,7 @@ export function Hero() {
         */}
         <div className="flex flex-col items-center gap-3 pt-16 pb-16 lg:min-h-180 lg:pt-27.25 lg:pb-0">
           <div className="mx-auto flex max-w-215 flex-col items-center gap-3 text-center">
-            <p className="text-overline font-poppins text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
             <span aria-hidden="true" className="h-3" />
 
             <h1 className="text-display text-encre">
