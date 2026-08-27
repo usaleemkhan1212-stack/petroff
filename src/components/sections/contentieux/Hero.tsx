@@ -37,33 +37,38 @@ export function Hero() {
         </nav>
 
         {/*
-          Figma pins this column at y=130.5 inside the 720px stage that follows
-          the 64px breadcrumb band, so lg:pt-32.5 puts the overline back on its
-          designed line. Below lg the ornaments are gone and 130px of head room
+          Figma centres this column in the 720px stage — `top: calc(50% -
+          33.5px)` over 561 of content, which puts its first line at stage
+          y=46, i.e. 110 into the section. It used to sit at 130.5; the frame
+          moved it up 84. Below lg the ornaments are gone and that head room
           reads as a gap, so it drops to 64. min-h holds the 720px stage the
           ornament coordinates are measured against.
         */}
-        <div className="flex flex-col items-center gap-3 pt-16 pb-16 lg:min-h-180 lg:pt-32.5 lg:pb-10">
+        <div className="flex flex-col items-center gap-3 pt-16 pb-16 lg:min-h-180 lg:pt-11.5 lg:pb-10">
           <div className="mx-auto flex max-w-215 flex-col items-center gap-3 text-center">
             <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
             <span aria-hidden="true" className="h-3" />
 
-            <h1 className="text-display text-encre">
+            {/* `relative z-0` makes the h1 its own stacking context so the
+                marker below can sit at `-z-10` — behind every glyph, which is
+                what Figma draws (the rect is the stage's first child). Without
+                it the bar is a positioned element painting over the plain text
+                that follows the highlighted word. */}
+            <h1 className="text-display text-encre relative z-0">
               {t.rich("title", {
                 /*
-                  Sanctioned em exception. Figma draws this bar at
-                  (613, 278.5) 150x22 on the stage: 2.206em wide and
-                  0.324em tall against the 68px display size, struck
-                  through the middle of the glyphs rather than under
-                  them, and centred 0.351em right of the word itself.
+                  Sanctioned em exception. Figma now draws this bar at
+                  (615, 217) 204x22 on the stage — wider than the word and
+                  struck low through line two, where it used to be 150x22 at
+                  (613, 278.5). 204/68 = 3em wide, 22/68 = 0.3235em tall.
                 */
                 hl: (chunks) => (
                   <span className="relative inline-block">
                     <span
                       aria-hidden="true"
-                      className="bg-pale-gold absolute bottom-[0.455em] left-[calc(50%+0.351em)] h-[0.324em] w-[2.206em] -translate-x-1/2 rounded"
+                      className="bg-pale-gold absolute -z-10 bottom-[0.117em] left-[calc(50%+0.778em)] h-[0.3235em] w-[3em] -translate-x-1/2 rounded-[4px]"
                     />
-                    <span className="relative">{chunks}</span>
+                    <span>{chunks}</span>
                   </span>
                 ),
               })}
@@ -91,7 +96,8 @@ export function Hero() {
           <dl className="flex flex-wrap justify-center gap-9">
             {heroStats.map((key) => (
               <div key={key} className="flex flex-col items-center gap-1">
-                <dt className="text-stat font-poppins text-encre">
+                {/* Poppins Bold 40 — Petroff/H2 Section, not `text-stat`'s 28. */}
+                <dt className="text-h2 font-poppins text-encre">
                   {t(`stats.${key}.value`)}
                 </dt>
                 <dd className="text-small text-encre/62">{t(`stats.${key}.label`)}</dd>

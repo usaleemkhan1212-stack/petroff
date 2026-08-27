@@ -1,4 +1,5 @@
 import EiffelTowerColour from "@/assets/icons/eiffel-tower-colour.svg";
+import LaurelBranchMint from "@/assets/icons/laurel-branch-mint.svg";
 import GlobePlane from "@/assets/icons/globe-plane.svg";
 import LouvrePyramid from "@/assets/icons/louvre-pyramid.svg";
 import ParisBridge from "@/assets/icons/paris-bridge.svg";
@@ -30,6 +31,9 @@ export function StageOrnaments() {
       <div className="absolute left-1/2 h-full w-[1920px] -translate-x-1/2">
         <ScalesOfJusticeWide className="absolute top-[60px] left-[285px]" />
         <Sparkle className="absolute top-[300px] left-[290px]" width={46} height={46} />
+        {/* New in the redesign: the mint laurel, path-identical to the fork
+            the home hero introduced, now on its third page. */}
+        <LaurelBranchMint className="absolute top-[267px] left-[417px]" />
         <ParisBridge className="absolute top-[652px] left-[166px]" />
         <LouvrePyramid className="absolute top-[693px] left-[460px]" />
         <EiffelTowerColour

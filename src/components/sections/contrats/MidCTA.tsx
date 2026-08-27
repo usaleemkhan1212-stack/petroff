@@ -14,15 +14,15 @@ export function MidCTA() {
           <p className="text-h3 font-poppins text-white">
             {t.rich("text", {
               /*
-                text-lead is 20/1.55 with weight 400, exactly what Figma
-                specifies for this gold run — unlike the Contentieux MidCTA,
-                whose gold half is 20/1.3 and borrows text-h3's metrics.
-                font-inter is required: the token carries size, line-height and
-                weight but not family, so without it the span inherits the
+                Inter Regular 20/1.55 in white 70% — `text-lead` exactly. This
+                run was gold; the frame changed the colour, and the Contentieux
+                twin made the same move, so both MidCTAs now read identically.
+                `font-inter` is required: the token carries size, line-height
+                and weight but not family, so without it the span inherits the
                 paragraph's Poppins and renders visibly wider.
               */
               hl: (chunks) => (
-                <span className="text-lead font-inter text-gold">{chunks}</span>
+                <span className="text-lead font-inter text-white/70">{chunks}</span>
               ),
             })}
           </p>

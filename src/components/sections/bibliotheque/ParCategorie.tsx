@@ -3,9 +3,18 @@ import { Container } from "@/components/ui/Container";
 import { categories } from "@/lib/bibliotheque";
 import { cn } from "@/lib/utils";
 
+/*
+  Four tints since the redesign, where this grid alternated blue/gold. The
+  pink is Figma's `#EFCFD9` at 40% — the same third hex under the library name
+  "Petroff/Pink" the Expertises hub and the new article's ladder both use, so
+  `--color-pink-soft` is reused rather than a fourth pink added. Compare the
+  hex, never the style name.
+*/
 const tones = {
   blue: "bg-pale-periwinkle",
   gold: "bg-pale-gold",
+  mint: "bg-pale-mint",
+  pink: "bg-pink-soft/40",
 } as const;
 
 /**
@@ -22,7 +31,7 @@ export function ParCategorie() {
   return (
     <section className="bg-lilas">
       {/* 1200 centred inside the Container lands on 360, as in Resultats. */}
-      <Container className="py-21.5">
+      <Container className="py-16 lg:py-21.5">
         <div className="mx-auto max-w-300">
           <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
           <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>

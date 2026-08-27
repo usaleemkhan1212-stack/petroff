@@ -7,10 +7,11 @@ export function Hero() {
   const t = useTranslations("BibliothequePage.hero");
 
   return (
-    /* Figma draws an empty 62px crumb band above the content, then a 16px
-       gap — 78px of head room, closing with 32px. */
+    /* Figma draws an empty **40px** crumb band above the content and closes
+       71 below — the band used to be 62 + a 16px gap, so the copy sits 38
+       higher than it did. 40 + 549 + 71 is the section's 660 exactly. */
     <section className="bg-lilas">
-      <Container className="pt-19.5 pb-8">
+      <Container className="pt-10 pb-17.75">
         <div className="flex flex-col gap-7.5">
           {/*
             No gap: Figma's own row is 692 + 511 inside the 1245 band, which

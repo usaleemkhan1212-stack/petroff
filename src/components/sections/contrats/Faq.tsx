@@ -13,7 +13,9 @@ export function Faq() {
       <Container className="py-16 lg:py-24">
         {/* Top-aligned here, where the Contentieux row is centred. */}
         <div className="flex items-start gap-12">
-          <div className="flex min-w-0 flex-col gap-3">
+          {/* `flex-1` so the column keeps its 820 measure: with the answer
+              capped, nothing inside forces the width any more. */}
+          <div className="flex min-w-0 flex-1 flex-col gap-3">
             <SectionHeading
               overline={t("overline")}
               title={t("title")}
@@ -54,7 +56,14 @@ export function Faq() {
                       </span>
                     </summary>
 
-                    <p className="text-body text-encre/62 mt-2">
+                    {/*
+                      Capped at a reading measure. Figma runs the answer the
+                      full 814 of the row — about 100 characters a line, well
+                      past comfortable — so it wraps at 640 (the same measure
+                      `SectionHeading`'s lead uses) while the question row
+                      stays full width. A deliberate departure, asked for.
+                    */}
+                    <p className="text-body text-encre/62 mt-2 max-w-160">
                       {t(`items.${key}.answer`)}
                     </p>
                   </details>

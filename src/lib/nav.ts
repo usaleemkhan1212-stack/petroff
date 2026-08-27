@@ -7,6 +7,7 @@ import { type DomaineKey, domaines } from "@/lib/domaines";
  */
 type MessagePath =
   | `ExpertisesPage.domaines.items.${DomaineKey}.title`
+  | "Nav.servicePage"
   | "Nav.articleDesign"
   | "Nav.ecommerce"
   | "Nav.newArticle";
@@ -28,13 +29,36 @@ export type NavChild = {
  * `routes.ts`, so a domain appears here the moment its page lands and never
  * before — the menu only ever lists pages you can open.
  */
-const expertiseChildren: readonly NavChild[] = domaines
-  .filter(({ href }) => isLive(href))
-  .map(({ key, href }) => ({
-    key,
-    href,
-    labelKey: `ExpertisesPage.domaines.items.${key}.title`,
-  }));
+const expertiseChildren: readonly NavChild[] = [
+  ...domaines
+    .filter(({ href }) => isLive(href))
+    .map(({ key, href }): NavChild => ({
+      key,
+      href,
+      labelKey: `ExpertisesPage.domaines.items.${key}.title`,
+    })),
+  /*
+    Service pages sit a level below a domain — this one's crumb reads
+    Accueil · Expertises · Contentieux & arbitrage · Litiges entre associés —
+    but the submenu is a flat list, so they are appended after the domains
+    rather than nested. Same purpose as the rest of this menu: it exists so a
+    page is reachable while it is being built.
+  */
+  ...(
+    [
+      {
+        key: "servicePage",
+        href: "/expertises/contentieux-arbitrage/service-page",
+      },
+    ] as const
+  )
+    .filter(({ href }) => isLive(href))
+    .map(({ key, href }): NavChild => ({
+      key,
+      href,
+      labelKey: `Nav.${key}` as const,
+    })),
+];
 
 /**
  * Library pages that are not part of the design's own navigation. Like the

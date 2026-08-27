@@ -23,7 +23,7 @@ export function Forfaits() {
 
           {/* Three plans, 3 -> 1, equal height so the CTAs align. */}
           <ul className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-            {forfaits.map(({ key, featured }) => (
+            {forfaits.map(({ key, featured, largePrice }) => (
               <li key={key} className="flex">
                 <Card
                   className={cn(
@@ -48,10 +48,16 @@ export function Forfaits() {
                   <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
 
                   <p className="flex flex-wrap items-baseline gap-2">
-                    <span className="text-price font-poppins text-encre">
+                    {/* The two outer plans are 40px, the featured middle one 30. */}
+                    <span
+                      className={cn(
+                        "font-poppins text-encre",
+                        largePrice ? "text-h2" : "text-price",
+                      )}
+                    >
                       {t(`items.${key}.price`)}
                     </span>
-                    <span className="text-nav text-encre/62">
+                    <span className="text-small text-encre/62">
                       {t(`items.${key}.unit`)}
                     </span>
                   </p>
@@ -70,7 +76,7 @@ export function Forfaits() {
                         >
                           ✓
                         </span>
-                        <span className="text-body text-encre/75 min-w-0 flex-1">
+                        <span className="text-body text-encre/62 min-w-0 flex-1">
                           {feature}
                         </span>
                       </li>

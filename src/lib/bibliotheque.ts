@@ -152,19 +152,23 @@ export type CategoryKey =
 export const categories: readonly {
   key: CategoryKey;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-  /** Icon tile background — strict blue/gold alternation across the grid. */
-  tone: "blue" | "gold";
+  /**
+   * Icon tile background. Four tints since the redesign, and the sequence
+   * does not repeat — so it is carried per category rather than derived from
+   * the index, exactly as the redesigned Expertises grids are.
+   */
+  tone: "blue" | "gold" | "mint" | "pink";
   /** How many subcategory pills the tile carries. */
   tags: number;
 }[] = [
   { key: "creer", Icon: PersonIcon, tone: "blue", tags: 5 },
   { key: "vendre", Icon: FileLinesIcon, tone: "gold", tags: 4 },
-  { key: "acheter", Icon: ShuffleArrowsIcon, tone: "blue", tags: 4 },
-  { key: "marque", Icon: RosetteCheckIcon, tone: "gold", tags: 4 },
+  { key: "acheter", Icon: ShuffleArrowsIcon, tone: "pink", tags: 4 },
+  { key: "marque", Icon: RosetteCheckIcon, tone: "mint", tags: 4 },
   { key: "recruter", Icon: PeoplePairIcon, tone: "blue", tags: 4 },
   { key: "locaux", Icon: HouseIcon, tone: "gold", tags: 4 },
-  { key: "fiscal", Icon: PercentIcon, tone: "blue", tags: 4 },
-  { key: "litiges", Icon: BalanceScaleIcon, tone: "gold", tags: 4 },
+  { key: "fiscal", Icon: PercentIcon, tone: "mint", tags: 4 },
+  { key: "litiges", Icon: BalanceScaleIcon, tone: "pink", tags: 4 },
   { key: "payer", Icon: EnvelopeIcon, tone: "blue", tags: 4 },
 ] as const;
 

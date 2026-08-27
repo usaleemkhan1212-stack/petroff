@@ -27,8 +27,13 @@ export type DomaineKey =
 export type Domaine = {
   key: DomaineKey;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-  /** Icon tile background — alternates pale blue / pale gold across the grid. */
-  tone: "blue" | "gold";
+  /*
+    Icon tile background. Four tints since the redesign, and the sequence does
+    not repeat — blue / gold / mint / pink, then mint / blue / gold / blue,
+    then pink / mint / gold — so it is carried per domain rather than derived
+    from the index. Sampled tile by tile from the node render.
+  */
+  tone: "blue" | "gold" | "mint" | "pink";
   /** Intended route. Not rendered until the page exists — see `routes.ts`. */
   href: string;
 };
@@ -49,39 +54,39 @@ export const domaines: readonly Domaine[] = [
   {
     key: "capitalRisque",
     Icon: TrendingUpIcon,
-    tone: "blue",
+    tone: "mint",
     href: "/expertises/capital-risque",
   },
   {
     key: "contrats",
     Icon: DocumentIcon,
-    tone: "gold",
+    tone: "pink",
     href: "/expertises/contrats-commerciaux",
   },
   {
     key: "contentieux",
     Icon: GavelIcon,
-    tone: "blue",
+    tone: "mint",
     href: "/expertises/contentieux-arbitrage",
   },
   {
     key: "litigesAssocies",
     Icon: PeopleDisputeIcon,
-    tone: "gold",
+    tone: "blue",
     href: "/expertises/litiges-entre-associes",
   },
   {
     key: "propriete",
     Icon: RegisteredTrademarkIcon,
-    tone: "blue",
+    tone: "gold",
     href: "/expertises/propriete-intellectuelle",
   },
-  { key: "social", Icon: UsersIcon, tone: "gold", href: "/expertises/droit-social" },
-  { key: "fiscal", Icon: PercentIcon, tone: "blue", href: "/expertises/droit-fiscal" },
+  { key: "social", Icon: UsersIcon, tone: "blue", href: "/expertises/droit-social" },
+  { key: "fiscal", Icon: PercentIcon, tone: "pink", href: "/expertises/droit-fiscal" },
   {
     key: "immobilier",
     Icon: BuildingIcon,
-    tone: "blue",
+    tone: "mint",
     href: "/expertises/immobilier-entreprise",
   },
   {

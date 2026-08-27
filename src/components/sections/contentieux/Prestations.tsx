@@ -5,9 +5,12 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { prestations } from "@/lib/contentieux";
 import { cn } from "@/lib/utils";
 
+/* Four tints since the redesign — blue, gold, pink, mint across the row. */
 const tones = {
   blue: "bg-pale-blue",
   gold: "bg-pale-gold",
+  mint: "bg-pale-mint",
+  pink: "bg-pink-soft/40",
 } as const;
 
 /** Third copy of this pill — worth extracting to ui/ once a fourth appears. */

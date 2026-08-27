@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Consultation } from "@/components/consultation/Consultation";
 import { CTAFinal } from "@/components/sections/bibliotheque/CTAFinal";
 import { Hero } from "@/components/sections/bibliotheque/Hero";
 import { ParCategorie } from "@/components/sections/bibliotheque/ParCategorie";
@@ -32,6 +33,10 @@ export default async function BibliothequePage({
       <Vivante />
       <Transparence />
       <CTAFinal />
+
+      {/* New in the redesign (`13415:15644`): the shared red tab and drawer,
+          unchanged from the home page's — this frame draws no sticky bar. */}
+      <Consultation />
     </>
   );
 }

@@ -84,7 +84,10 @@ export function Vitrine() {
 
   return (
     <section className="bg-lilas">
-      <Container className="py-24">
+      {/* 64 above, 96 below — Figma's own asymmetry since the redesign, where
+          this section used to take 96 on both sides. Two-step below lg, as
+          every other page's sections do. */}
+      <Container className="pt-12 pb-16 lg:pt-16 lg:pb-24">
         {/*
           Written out rather than using SectionHeading: this head puts 8px
           under the overline and 12px under the title where SectionHeading

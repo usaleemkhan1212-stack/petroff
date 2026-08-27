@@ -1,7 +1,8 @@
 import ArcDeTriompheColourXl from "@/assets/icons/arc-de-triomphe-colour-xl.svg";
 import Courthouse from "@/assets/icons/courthouse.svg";
 import EiffelTowerColour from "@/assets/icons/eiffel-tower-colour.svg";
-import LaurelBranch from "@/assets/icons/laurel-branch.svg";
+// Mint since the redesign — this frame now names Petroff/Mint.
+import LaurelBranch from "@/assets/icons/laurel-branch-mint.svg";
 import LawyerRobeColour from "@/assets/icons/lawyer-robe-colour.svg";
 import Sparkle from "@/assets/icons/sparkle.svg";
 
@@ -18,7 +19,7 @@ import Sparkle from "@/assets/icons/sparkle.svg";
  * the scale is non-uniform — the exports set preserveAspectRatio="none".
  *   tower      56x96   -> 140x271  (2.5, 2.8229)   as StageOrnaments already does
  *   courthouse 250x185 -> 240x178  (0.96, 0.9622)
- *   laurel     120x150 -> 120x150  identical box
+ *   laurel     120x150 -> 120x150  identical box, mirrored
  *   robe       130x140 -> 160x170  (1.2308, 1.2143)
  *   sparkle    40x40   -> 36 and 46, both uniform
  *
@@ -46,8 +47,12 @@ export function HeroOrnaments() {
           width={46}
           height={46}
         />
+        {/* Moved and mirrored in the redesign: Figma's inset resolves to
+            (211, 119) and wraps it in a `-scale-x-100`. It used to sit at
+            (207.9, 362) the right way round. Prefer the export's inset here —
+            `get_metadata` reports x=331, which is the box's right edge. */}
         <LaurelBranch
-          className="absolute top-[362px] left-[207.9px]"
+          className="absolute top-[119px] left-[211px] -scale-x-100"
           width={120}
           height={150}
         />

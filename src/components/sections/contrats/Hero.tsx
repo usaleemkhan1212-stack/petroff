@@ -43,12 +43,16 @@ export function Hero() {
           No bottom padding at lg: Figma's stage is simply 720px tall with the
           content ending inside it, so min-h-180 supplies the height.
         */}
-        <div className="flex flex-col items-center gap-3 pt-16 pb-16 lg:min-h-180 lg:pt-27.25 lg:pb-0">
+        <div className="flex flex-col items-center gap-3 pt-16 pb-16 lg:min-h-180 lg:pt-11.5 lg:pb-0">
           <div className="mx-auto flex max-w-215 flex-col items-center gap-3 text-center">
             <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
             <span aria-hidden="true" className="h-3" />
 
-            <h1 className="text-display text-encre">
+            {/* `relative z-0` makes the h1 its own stacking context so the
+                marker below can sit at `-z-10` — behind every glyph, which is
+                what Figma draws. Its bar is wider than the highlighted chunk,
+                so without this it paints over the plain text that follows. */}
+            <h1 className="text-display text-encre relative z-0">
               {t.rich("title", {
                 /*
                   Sanctioned em exception, as on the Contentieux hero. Figma
@@ -61,9 +65,9 @@ export function Hero() {
                   <span className="relative inline-block">
                     <span
                       aria-hidden="true"
-                      className="bg-pale-gold absolute bottom-[0.455em] left-[calc(50%-0.563em)] h-[0.324em] w-[4.471em] -translate-x-1/2 rounded"
+                      className="bg-pale-gold absolute -z-10 bottom-[0.014em] left-[calc(50%-0.563em)] h-[0.3235em] w-[4.471em] -translate-x-1/2 rounded-[4px]"
                     />
-                    <span className="relative">{chunks}</span>
+                    <span>{chunks}</span>
                   </span>
                 ),
               })}
@@ -88,7 +92,8 @@ export function Hero() {
           <dl className="flex flex-wrap justify-center gap-9">
             {heroStats.map((key) => (
               <div key={key} className="flex flex-col items-center gap-1">
-                <dt className="text-stat font-poppins text-encre">
+                {/* Poppins Bold 40 — Petroff/H2 Section, not `text-stat`'s 28. */}
+                <dt className="text-h2 font-poppins text-encre">
                   {t(`stats.${key}.value`)}
                 </dt>
                 <dd className="text-small text-encre/62">{t(`stats.${key}.label`)}</dd>

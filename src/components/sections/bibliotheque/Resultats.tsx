@@ -59,7 +59,7 @@ export function Resultats() {
         Figma bands this section at 1200 rather than the shared 1245, which is
         exactly 1200 centred inside the Container — so x still lands on 360.
       */}
-      <Container className="pt-21.5 pb-16.5">
+      <Container className="pt-16 pb-12 lg:pt-21.5 lg:pb-16.5">
         <div className="mx-auto max-w-300">
           {/*
             Gold at Poppins 16/1.2, not the brique text-overline every other
@@ -90,7 +90,7 @@ export function Resultats() {
                 aria-hidden="true"
                 width={12}
                 height={8}
-                className="text-encre pointer-events-none absolute top-1/2 right-5 -translate-y-1/2"
+                className="text-encre pointer-events-none absolute top-1/2 right-4.25 -translate-y-1/2"
               />
             </div>
 
@@ -113,7 +113,7 @@ export function Resultats() {
                 aria-hidden="true"
                 width={12}
                 height={8}
-                className="text-encre pointer-events-none absolute top-1/2 right-5 -translate-y-1/2"
+                className="text-encre pointer-events-none absolute top-1/2 right-4.25 -translate-y-1/2"
               />
             </div>
 
@@ -190,8 +190,17 @@ export function Resultats() {
                         {shared(`contents.${key}.description`)}
                       </p>
 
-                      {/* mt-auto holds the meta row on the card's bottom edge. */}
-                      <p className="text-small-strong text-encre/62 mt-auto">
+                      {/*
+                        mt-auto holds the meta row on the card's bottom edge.
+                        A flex row since the redesign: Figma splits the run
+                        into its own text node and the "Lire" link on an 8px
+                        gap, where it used to be one inline run. The leading
+                        text is an anonymous flex item, so its trailing space
+                        is trimmed at end-of-line and the 8px is all that
+                        separates the two — which is what the comp draws. The
+                        Vitrine's meta is still one inline run; check each.
+                      */}
+                      <p className="text-small-strong text-encre/62 mt-auto flex items-center gap-2">
                         {t.rich(`meta.${key}`, {
                           cta: (chunks) => (
                             <span className="text-button font-poppins text-periwinkle">

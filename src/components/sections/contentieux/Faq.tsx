@@ -12,7 +12,9 @@ export function Faq() {
     <section className="overflow-hidden bg-white">
       <Container className="py-16 lg:py-24">
         <div className="flex items-center justify-between gap-12">
-          <div className="flex min-w-0 flex-col gap-3">
+          {/* `flex-1` so the column keeps its 820 measure: with the answer
+              capped, nothing inside forces the width any more. */}
+          <div className="flex min-w-0 flex-1 flex-col gap-3">
             <SectionHeading
               overline={t("overline")}
               title={t("title")}
@@ -34,7 +36,9 @@ export function Faq() {
                     open={key === faqExpandedKey}
                     className="border-encre/7 rounded-tile details-panel group border px-6 py-4"
                   >
-                    <summary className="flex w-full cursor-pointer list-none items-start gap-4 [&::-webkit-details-marker]:hidden">
+                    {/* No gap: Figma lets the question box run right up to the
+                        marker, which is what the Contrats twin already does. */}
+                    <summary className="flex w-full cursor-pointer list-none items-start [&::-webkit-details-marker]:hidden">
                       <span className="text-body-strong text-encre min-w-0 flex-1">
                         {t(`items.${key}.question`)}
                       </span>
@@ -46,13 +50,20 @@ export function Faq() {
                       */}
                       <span
                         aria-hidden="true"
-                        className="text-small text-encre/50 inline-block transition-transform duration-240 group-open:rotate-90 motion-reduce:transition-none"
+                        className="text-small text-encre/62 inline-block transition-transform duration-240 group-open:rotate-90 motion-reduce:transition-none"
                       >
                         ▸
                       </span>
                     </summary>
 
-                    <p className="text-body text-encre/62 mt-2">
+                    {/*
+                      Capped at a reading measure. Figma runs the answer the
+                      full 814 of the row — about 100 characters a line, well
+                      past comfortable — so it wraps at 640 (the same measure
+                      `SectionHeading`'s lead uses) while the question row
+                      stays full width. A deliberate departure, asked for.
+                    */}
+                    <p className="text-body text-encre/62 mt-2 max-w-160">
                       {t(`items.${key}.answer`)}
                     </p>
                   </details>

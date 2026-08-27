@@ -34,12 +34,14 @@ export function Tools() {
                   {/* Title and badge share a row, wrapping on narrow cards. */}
                   <div className="flex flex-wrap items-center gap-3">
                     <h3 className="text-h3 text-white">{t(`items.${key}.title`)}</h3>
-                    <span className="text-badge font-poppins text-rose bg-encre/80 rounded-full px-3 py-1">
+                    {/* Poppins SemiBold 16 with no tracking — `text-button`. This frame used
+                        to set `text-badge` here; it now matches the Contrats twin. */}
+                    <span className="text-button font-poppins text-rose bg-encre/80 rounded-full px-3 py-1">
                       {t(`items.${key}.badge`)}
                     </span>
                   </div>
 
-                  <p className="text-small text-white/65">
+                  <p className="text-small text-white/70">
                     {t(`items.${key}.description`)}
                   </p>
 
@@ -65,8 +67,8 @@ export function Tools() {
                     </Button>
                   </div>
 
-                  <div className="rounded-note w-full bg-white/9 px-4 py-3">
-                    <p className="text-small text-white/80">{t("result")}</p>
+                  <div className="rounded-note-lg w-full bg-white/9 px-4 py-3">
+                    <p className="text-small text-white/70">{t("result")}</p>
                   </div>
                 </div>
               </li>

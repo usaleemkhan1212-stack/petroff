@@ -13,9 +13,16 @@ export function MidCTA() {
         <div className="flex flex-wrap items-center justify-between gap-6">
           <p className="text-h3 font-poppins text-white">
             {t.rich("text", {
-              // Same 20px and line-height, just Inter Regular in gold.
+              /*
+                Inter Regular 20/1.55 in white 70% — `text-lead` exactly. This
+                run used to be gold at 20/1.3, borrowing `text-h3`'s metrics;
+                the frame moved it to the Contrats twin's line-height and
+                changed the colour. `font-inter` is required: the token carries
+                size, line-height and weight but never the family, and the
+                paragraph around it is Poppins.
+              */
               hl: (chunks) => (
-                <span className="text-gold font-inter font-normal">{chunks}</span>
+                <span className="text-lead font-inter text-white/70">{chunks}</span>
               ),
             })}
           </p>

@@ -34,27 +34,22 @@ export function HeroIllustration() {
         13.36/131.46 for its bounding box to land there. Ornament
         coordinates, so literal px — the sanctioned exception.
       */}
-      <figure className="absolute top-[131.46px] left-[13.36px] w-[150px] -rotate-8 rounded-lg bg-white px-3 pt-3 pb-5.5 drop-shadow-[0px_16px_18px_rgba(18,42,76,0.16)]">
-        <div className="relative h-30 w-31.5 overflow-hidden rounded">
+      <figure className="absolute top-[131.46px] left-[13.36px] h-[202px] w-[150px] -rotate-8 rounded-tl-[60px] rounded-tr-[8px] rounded-br-[30px] rounded-bl-[30px] bg-white drop-shadow-[0px_16px_18px_rgba(18,42,76,0.16)]">
+        {/* Figma places the print at (13.42, 12.31) at a flat 120 square, with
+            the same asymmetric radii every other portrait on the site carries.
+            It is a plain crop now — the pale-blue `mix-blend-color` duotone and
+            the 90% opacity the frame used to draw are both gone. */}
+        <div className="absolute top-[12.31px] left-[13.42px] size-[120px] overflow-hidden rounded-tl-[59.854px] rounded-tr-[2.993px] rounded-br-[29.927px] rounded-bl-[17.956px]">
           <Image
             src={lawyerPortrait}
             alt=""
             width={378}
             height={360}
-            sizes="126px"
-            className="h-full w-full object-cover opacity-90"
-          />
-          {/*
-            Figma tints the print with pale blue on a `color` blend, which
-            keeps the photo's luminosity and takes the tint's hue — a duotone,
-            not an overlay.
-          */}
-          <span
-            aria-hidden="true"
-            className="bg-pale-blue absolute inset-0 mix-blend-color"
+            sizes="120px"
+            className="h-full w-full object-cover"
           />
         </div>
-        <figcaption className="text-button font-poppins text-encre mt-2.5 text-center">
+        <figcaption className="text-button font-poppins text-encre absolute top-[142px] left-1/2 w-[126px] -translate-x-1/2 text-center">
           {/* Designed line break — it wraps after "des" without it. */}
           {t.rich("polaroid", { br: () => <br /> })}
         </figcaption>

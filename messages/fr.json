@@ -21,7 +21,8 @@
     "libraryPagesLabel": "Pages de la bibliothèque",
     "articleDesign": "article-design",
     "ecommerce": "Avocat e-commerce",
-    "newArticle": "new-article-page"
+    "newArticle": "new-article-page",
+    "servicePage": "service-page"
   },
   "Common": {
     "skipToContent": "Aller au contenu",
@@ -298,7 +299,7 @@
       "breadcrumbLabel": "Fil d’Ariane",
       "crumbHome": "Accueil",
       "crumbCurrent": "Expertises",
-      "overline": "EXPERTISES",
+      "overline": "Expertises",
       "title": "Tout le droit des affaires, sous un <hl>même toit.</hl>",
       "lead": "Onze domaines, une même méthode : le conseil d’avocat au cœur, l’intendance industrialisée autour — forfaits affichés, abonnements, outils en ligne.",
       "ctaPrimary": "Choisir un domaine",
@@ -323,10 +324,11 @@
       }
     },
     "domaines": {
-      "overline": "NOS DOMAINES",
+      "overline": "Nos domaines",
       "title": "Choisissez votre sujet, on s’occupe du droit",
       "lead": "Chaque domaine a sa page : le cœur de métier, les outils en ligne, les forfaits et la bibliothèque associée.",
       "cta": "Découvrir",
+      "ctaLawyers": "Avocats du domaine",
       "items": {
         "societes": {
           "title": "Droit des sociétés & gouvernance",
@@ -435,7 +437,7 @@
       }
     },
     "facons": {
-      "overline": "UNE MÊME MÉTHODE PARTOUT",
+      "overline": "Une même méthode partout",
       "title": "Trois façons de travailler avec nous",
       "items": {
         "abonnement": {
@@ -462,7 +464,7 @@
       "crumbHome": "Accueil",
       "crumbExpertises": "Expertises",
       "crumbCurrent": "Contentieux & arbitrage",
-      "overline": "EXPERTISES — CONTENTIEUX & ARBITRAGE",
+      "overline": "Expertises — contentieux & arbitrage",
       "title": "Défendre vos intérêts, <hl>vite</hl> et jusqu’au bout.",
       "lead": "Litiges commerciaux, contractuels et entre associés : stratégie d’abord, procédure quand il faut — référés, fond, arbitrage et exécution, en France et à l’international.",
       "ctaPrimary": "Parler à un avocat",
@@ -490,6 +492,7 @@
       "overline": "LE CŒUR DU MÉTIER",
       "title": "Du précontentieux à l’exécution",
       "lead": "Un litige se gagne d’abord par la stratégie : évaluation lucide, pièces solides, procédure choisie — et une exécution qui transforme le jugement en paiement.",
+      "cta": "Voir le service",
       "footnote": "Ces missions font l’objet d’un devis par phases (analyse → stratégie → exécution), avec budget plafonné par étape et point d’arbitrage à chaque fin de phase.",
       "items": {
         "strategie": {
@@ -559,7 +562,7 @@
       }
     },
     "tools": {
-      "overline": "LEGAL TECH — L’INTENDANCE EN LIGNE",
+      "overline": "Legal tech — l’intendance en ligne",
       "title": "Quatre outils pour évaluer votre litige",
       "lead": "Démo interactive — les résultats de la maquette sont fictifs.",
       "result": "Démo interactive — cliquez pour voir un exemple de résultat.",
@@ -595,7 +598,7 @@
       }
     },
     "prestations": {
-      "overline": "GESTION COURANTE",
+      "overline": "Gestion courante",
       "title": "Le socle, industrialisé et au forfait",
       "lead": "Les prestations récurrentes, produites avec nos outils et validées par un avocat — pour réserver le temps d’expertise à ce qui le mérite.",
       "items": {
@@ -813,7 +816,7 @@
       "crumbHome": "Accueil",
       "crumbExpertises": "Expertises",
       "crumbCurrent": "Contrats & droit commercial",
-      "overline": "EXPERTISES — CONTRATS & DROIT COMMERCIAL",
+      "overline": "Expertises — contrats & droit commercial",
       "title": "Des contrats qui <hl>tiennent —</hl> négociés, signés, vivants.",
       "lead": "CGV, distribution, agence, sous-traitance, contrats internationaux : des accords clairs, négociés à votre avantage, et suivis pendant toute leur vie.",
       "ctaPrimary": "Parler à un avocat",
@@ -841,6 +844,7 @@
       "overline": "LE CŒUR DU MÉTIER",
       "title": "Négocier, sécuriser, faire vivre vos accords",
       "lead": "Un bon contrat prévient le litige et prépare la victoire s’il survient. Nous les négocions, les rédigeons et les suivons.",
+      "cta": "Voir le service",
       "footnote": "Ces missions font l’objet d’un devis par phases (analyse → stratégie → exécution), avec budget plafonné par étape et point d’arbitrage à chaque fin de phase.",
       "items": {
         "distribution": {
@@ -909,7 +913,7 @@
       }
     },
     "tools": {
-      "overline": "LEGAL TECH — L’INTENDANCE EN LIGNE",
+      "overline": "Legal tech — l’intendance en ligne",
       "title": "Quatre outils pour des contrats sous contrôle",
       "lead": "Démo interactive — les résultats de la maquette sont fictifs.",
       "result": "Démo interactive — cliquez pour voir un exemple de résultat.",
@@ -945,7 +949,7 @@
       }
     },
     "prestations": {
-      "overline": "GESTION COURANTE",
+      "overline": "Gestion courante",
       "title": "Le socle, industrialisé et au forfait",
       "lead": "Les prestations récurrentes, produites avec nos outils et validées par un avocat — pour réserver le temps d’expertise à ce qui le mérite.",
       "items": {
@@ -2566,6 +2570,460 @@
       "cta": "Consulter un avocat",
       "ctaNote": "15 minutes gratuites",
       "disclaimer": "Orientation <s>(démo).</s> Elle ne constitue pas un avis juridique et ne dispense pas de l’examen des pièces du dossier."
+    }
+  },
+  "ServicePage": {
+    "hero": {
+      "crumb": "Accueil · Expertises · Contentieux & arbitrage · ",
+      "crumbCurrent": "Litiges entre associés",
+      "overline": "Litige entre associés : avocat en droit des sociétés à Paris",
+      "title": "Litige entre associés : reprenez la main.",
+      "lead": "Votre associé bloque la société, vous écarte de la gestion ou organise votre sortie ? Nous intervenons pour sécuriser vos droits, préserver les preuves et débloquer la situation — négociation, référé ou procédure au fond.",
+      "checks": {
+        "pouvoir": "Un associé n’est jamais sans pouvoir : la théorie de l’abus fait tomber une résolution.",
+        "strategie": "Stratégie de sortie, de gouvernance ou de contentieux selon votre objectif.",
+        "rachat": "La plupart des litiges finissent par un rachat : l’expert de l’art. 1843-4 fixe un prix qui lie."
+      },
+      "ctaPrimary": "Évaluer ma situation",
+      "ctaSecondary": "Parler à un avocat",
+      "firm": "Petroff Avocats",
+      "firmDetails": " · 182 rue de Rivoli, 75001 Paris · RCS Paris 814433470 · Toque #C2396 — Barreau de Paris.",
+      "imageAlt": "Une avocate du cabinet dans une rue parisienne, dossier sous le bras",
+      "card": {
+        "line1": "Le délai court",
+        "line2": "dès le premier fait"
+      },
+      "badge": {
+        "years": "15 ANS",
+        "line1": "de pratique",
+        "line2": "à Paris"
+      }
+    },
+    "trust": {
+      "reponse": "Réponse sous 48 h",
+      "confidentiel": "Échange confidentiel",
+      "devis": "Devis annoncé avant intervention"
+    },
+    "quand": {
+      "overline": "Quand faire appel à un avocat",
+      "title": "Vous êtes confronté à l’une de ces situations ?",
+      "lead": "Neuf situations qui appellent une intervention — et, souvent, une mesure à prendre avant l’assemblée suivante. Le point commun : un préjudice qui s’installe si personne n’agit.",
+      "imageAlt": "Trois associés discutant devant un immeuble de bureaux",
+      "note": "<s>Le temps joue.</s> L’action en nullité d’une décision sociale se prescrit par trois ans (art. L. 235-9 C. com.) ; certaines mesures — suspension d’une résolution, séquestre, administrateur provisoire — ne s’obtiennent utilement qu’avant que le fait accompli ne s’installe.",
+      "cta": "Contacter un avocat",
+      "items": {
+        "dividendes": {
+          "title": "Les dividendes ne tombent jamais",
+          "body": "Des bénéfices systématiquement mis en réserve au profit des majoritaires peuvent, selon les circonstances, caractériser <b>un abus de majorité</b>."
+        },
+        "gestion": {
+          "title": "Vous êtes écarté de la gestion",
+          "body": "Le refus d’information ou des décisions prises en violation de vos droits peuvent justifier une <b>demande de communication, une expertise ou une contestation.</b>"
+        },
+        "dilution": {
+          "title": "Votre part est diluée",
+          "body": "Une augmentation de capital ou une opération destinée à vous affaiblir peut être <b>contestée si elle porte irrégulièrement atteinte à vos droits.</b>"
+        },
+        "information": {
+          "title": "L’information vous est refusée",
+          "body": "L’associé dispose de <b>droits d’information et de communication </b>; des mesures judiciaires peuvent permettre d’obtenir ou de préserver les documents utiles."
+        },
+        "dirigeant": {
+          "title": "Le dirigeant se sert",
+          "body": "Rémunérations, conventions ou flux suspects peuvent justifier une <b>expertise de gestion, des mesures de preuve ou une action en responsabilité.</b>"
+        },
+        "assemblee": {
+          "title": "L’assemblée est bloquée",
+          "body": "Un blocage 50/50 peut conduire, selon sa gravité, à <b>un mandataire ad hoc, un administrateur provisoire ou une solution de sortie.</b>"
+        },
+        "exclusion": {
+          "title": "On vous pousse dehors",
+          "body": "Une exclusion ou un rachat forcé impose de vérifier la clause, la procédure suivie et la valorisation de vos titres."
+        },
+        "cession": {
+          "title": "Une cession est bloquée",
+          "body": "Agrément, préemption ou désaccord sur le prix peuvent déclencher des <b>mécanismes statutaires, contractuels ou légaux de sortie et de valorisation.</b>"
+        },
+        "pacte": {
+          "title": "Le pacte d’associés est violé",
+          "body": "La violation d’une clause de préemption, put, call, drag ou tag peut ouvrir droit à <b>exécution, réparation ou contestation de l’opération.</b>"
+        }
+      }
+    },
+    "mission": {
+      "overline": "Ce que comprend la mission",
+      "title": "Une position sécurisée, puis imposée",
+      "lead": "De l’analyse à la clôture : chaque phase produit un livrable, avec un budget annoncé d’avance.",
+      "polaroid": "Rédigé par<br></br>des avocats",
+      "cta": "Demander une évaluation et un devis",
+      "items": {
+        "evaluation": {
+          "title": "Évaluation écrite",
+          "body": "Chances, risques et stratégie, en français clair, sous cinq jours ouvrés."
+        },
+        "preuve": {
+          "title": "Phase de preuve",
+          "body": "Constats, sommations interpellatives, mesures de l’article 145 avant tout procès."
+        },
+        "negociation": {
+          "title": "Négociation",
+          "body": "Depuis une position prête au contentieux — c’est ce qui fait la force de l’accord."
+        },
+        "urgence": {
+          "title": "Mesures d’urgence",
+          "body": "Référé, séquestre, mandataire ad hoc ou administrateur provisoire selon le péril."
+        },
+        "fond": {
+          "title": "Procédure au fond",
+          "body": "Nullité, responsabilité, action ut singuli, révocation, dissolution en dernier recours."
+        },
+        "cloture": {
+          "title": "Clôture",
+          "body": "Protocole, cession des titres, valorisation à dire d’expert, exécution du jugement."
+        }
+      },
+      "card": {
+        "overline": "Le livrable",
+        "title": "Un dossier tenu, pas un avis en l’air",
+        "body": "Vous repartez avec une note d’analyse écrite, une chronologie des faits opposable, la liste des preuves à sécuriser et la voie procédurale choisie — pas une simple opinion orale. Chaque pièce est datée, chaque échéance identifiée, en français comme en anglais.",
+        "cta": "Parler à un avocat"
+      }
+    },
+    "procedons": {
+      "overline": "Comment nous procédons",
+      "title": "Comment nous vous aidons à résoudre un litige entre associés",
+      "lead": "Une méthode en six temps — de l’analyse lucide à la clôture qui transforme le jugement en paiement.",
+      "imageAlt": "Une associée consultant une tablette devant une façade vitrée",
+      "cta": "Parler à un avocat",
+      "items": {
+        "evaluer": {
+          "title": "Nous évaluons votre position et l’exposition d’en face",
+          "body": "Statuts, pacte d’associés, registres et comptes : une opinion écrite sur vos chances et sur les risques de l’adversaire."
+        },
+        "securiser": {
+          "title": "Nous sécurisons l’information et la preuve",
+          "body": "Droit de communication, questions écrites au dirigeant, expertise de gestion, mesures de l’article 145 avant le procès."
+        },
+        "negocier": {
+          "title": "Nous négocions en position de force",
+          "body": "La plupart des dossiers se règlent par une sortie négociée ; la puissance de l’accord reflète la qualité du dossier."
+        },
+        "proteger": {
+          "title": "Nous protégeons la société là où elle est en danger",
+          "body": "Référé, mandataire ad hoc, administrateur provisoire : préserver l’entreprise sans la détruire."
+        },
+        "plaider": {
+          "title": "Nous plaidons au fond",
+          "body": "Nullité, dommages-intérêts, action ut singuli, révocation judiciaire, dissolution en dernier recours."
+        },
+        "cloturer": {
+          "title": "Nous clôturons le litige",
+          "body": "Protocole transactionnel, cession des titres, valorisation à dire d’expert, exécution du jugement jusqu’au paiement."
+        }
+      }
+    },
+    "documents": {
+      "overline": "Ce que nous devons analyser",
+      "title": "Ce qu’il nous faut pour résoudre votre litige",
+      "lead": "Quatre familles de documents décident, à elles seules, de la stratégie.",
+      "imageAlt": "Un associé travaillant sur son ordinateur portable devant une façade à colonnes",
+      "items": {
+        "statuts": {
+          "title": "Statuts & pacte",
+          "body": "Clauses de cession, mécanismes de sortie, gouvernance, majorités requises : la loi des parties d’abord."
+        },
+        "registre": {
+          "title": "Le registre social",
+          "body": "Convocations, ordres du jour, procès-verbaux, résolutions : la nullité se joue sur la forme autant que le fond."
+        },
+        "comptes": {
+          "title": "Les comptes & les flux",
+          "body": "Historique des dividendes, rémunération du dirigeant, conventions réglementées : où va vraiment la valeur."
+        },
+        "objectif": {
+          "title": "Votre objectif",
+          "body": "Rester et gouverner, sortir et valoriser, ou prendre le contrôle : la stratégie découle de votre but."
+        }
+      },
+      "closing": {
+        "title": "Rassemblez trois documents, nous faisons le reste",
+        "lead": "Statuts, pacte s’il existe, et le dernier procès-verbal d’assemblée suffisent pour une première lecture. Le reste se complète en cours de mission.",
+        "cta": "Nous envoyer les documents"
+      }
+    },
+    "analyse": {
+      "overline": "Comment Petroff Avocats traite ces litiges",
+      "title": "De l’analyse à la résolution",
+      "lead": "Nous prenons le dossier de bout en bout : lecture du droit français des sociétés, réponse aux questions que se posent un associé ou un conseil étranger — quel levier, à quel coût, en combien de temps, pour quelles issues réalistes. Les conclusions vous sont livrées en français comme en anglais ; la procédure est conduite en France par le cabinet, et nous nous coordonnons avec vos conseils habituels.",
+      "quote": "« Une recherche informe ; un avocat conseille. »",
+      "attribution": "— Mᵉ Mariela Petrova",
+      "polaroid": "Rédigé par<br></br>des avocats",
+      "cta": "Parler à un avocat plaidant"
+    },
+    "forfaits": {
+      "overline": "Tarifs transparents",
+      "title": "Ce que coûte la résolution d’un litige entre associés",
+      "lead": "Honoraire ferme par phase ; les frais extérieurs sont facturés à part, à prix coûtant. Montants indicatifs de maquette.",
+      "badge": "LE PLUS DEMANDÉ",
+      "cta": "Obtenir mon devis ferme",
+      "footnote": "<b>Article 700 & dépens.</b> Le juge peut mettre une partie de vos frais et honoraires à la charge de l’adversaire qui succombe. Ce n’est jamais garanti, mais nous le demandons et le chiffrons systématiquement.",
+      "items": {
+        "diagnostic": {
+          "title": "Diagnostic stratégique",
+          "description": "Analyse des statuts, du pacte et des pièces, évaluation des chances et plan d’action chiffré. Rapport sous 5 jours. <b>À partir de 990 € HT</b> (indicatif de maquette).",
+          "featuresLabel": "Compris dans l’honoraire",
+          "features": [
+            "Évaluation écrite du dossier",
+            "Stratégie & négociation",
+            "Mises en demeure & sommations",
+            "Actes de procédure & plaidoiries",
+            "Protocole / actes de cession",
+            "Exécution du jugement"
+          ]
+        },
+        "phases": {
+          "title": "Missions par phases",
+          "description": "Le complexe traité par étapes : budget plafonné par phase, point d’arbitrage à chaque fin d’étape, vous décidez de continuer ou non. <b>Honoraire de résultat possible sur convention.</b>",
+          "featuresLabel": "Sur devis, après cadrage",
+          "features": [
+            "Périmètre confirmé après analyse",
+            "Honoraire de résultat éventuel",
+            "Missions longues au fond",
+            "Coordination avec vos conseils"
+          ]
+        },
+        "referé": {
+          "title": "Référé & conservatoire",
+          "description": "Suspension d’une résolution, administrateur provisoire, séquestre : intervention sous 48 h. <b>Sur devis</b> selon la juridiction et les délais.",
+          "featuresLabel": "Facturé en sus, à prix coûtant",
+          "features": [
+            "Frais de greffe & droits de plaidoirie",
+            "Commissaire de justice",
+            "Honoraires d’expert judiciaire",
+            "Traductions assermentées",
+            "Frais d’exécution"
+          ]
+        }
+      }
+    },
+    "droit": {
+      "overline": "Ce que le droit français donne",
+      "title": "Ce que le droit français donne à l’associé en conflit",
+      "lead": "Dix leviers, avec le texte, le seuil et la voie procédurale — pour transformer un rapport de force en droits exerçables.",
+      "cta": "Obtenir mon devis ferme",
+      "items": {
+        "abus": {
+          "kicker": "Abus de majorité / minorité",
+          "title": "Des semaines pour protéger, des mois pour le fond",
+          "body": "Les mesures conservatoires s’obtiennent en quelques semaines par la voie du référé ; l’action au fond devant le tribunal de commerce prend des mois, davantage en cas d’expertise ou d’appel. Une transaction ferme la porte à la réouverture. Une clause d’arbitrage peut déplacer le litige."
+        },
+        "assemblee": {
+          "kicker": "Forcer une assemblée",
+          "title": "Un dirigeant qui ne convoque pas peut être remplacé par un mandataire",
+          "body": "En SARL, l’associé détenant la moitié des parts — ou le dixième des associés représentant le dixième du capital — peut provoquer une assemblée. À défaut, le juge désigne un mandataire pour la convoquer. Dans les sociétés par actions, un seuil de 5 % et la voie de l’urgence ouvrent la même faculté."
+        },
+        "blocage": {
+          "kicker": "Blocage 50/50",
+          "title": "Le 50/50 est une situation juridique, avec des sorties de droit",
+          "body": "Trois instruments, par gradation : le mandataire ad hoc pour une décision précise, l’administrateur provisoire en cas de paralysie et de péril imminent, la dissolution pour mésentente (art. 1844-7, 5°). La jurisprudence refuse la dissolution à l’associé qui a lui-même provoqué la paralysie."
+        },
+        "sortie": {
+          "kicker": "La sortie",
+          "title": "Nul n’est tenu de rester associé à n’importe quel prix",
+          "body": "La plupart des litiges se dénouent par une cession. Quand les parties s’accordent sur le principe mais pas sur le prix, l’expert de l’article 1843-4 fixe une valeur qui lie. Les clauses de buy-sell, d’exclusion ou de sortie du pacte s’exécutent, sous réserve de la prohibition des clauses léonines (art. 1844-1)."
+        },
+        "shotgun": {
+          "kicker": "La clause américaine",
+          "title": "L’un fixe le prix, l’autre choisit d’acheter ou de vendre",
+          "body": "La clause de shotgun (« buy or sell ») dénoue un blocage sans juge : un associé propose un prix, l’autre choisit — au même prix — de vendre ou d’acheter, dans un délai fixé. Celui qui offre ignore de quel côté se fera l’opération : c’est ce qui discipline le prix."
+        },
+        "etranger": {
+          "kicker": "Associé étranger, société française",
+          "title": "Le droit français régit la société, quoi que prévoie le pacte",
+          "body": "Une société dont le siège est en France relève du droit français (art. 1837 C. civ., L. 210-3 C. com.) ; le règlement Bruxelles I bis réserve au juge du siège la validité des décisions sociales. Le pacte peut porter sa propre loi et son forum, sans écarter ces règles. Nous conduisons la procédure française et coordonnons vos conseils étrangers."
+        }
+      },
+      "card": {
+        "overline": "Le livrable",
+        "title": "Le bon levier, pas dix pistes.",
+        "body": "Sur votre dossier, ces leviers ne se valent pas tous — le référé, le seuil, la voie procédurale se choisissent au cas par cas. Vous repartez avec une note d’analyse écrite, une chronologie des faits opposable, la liste des preuves à sécuriser et la voie retenue. Datée, chiffrée, en français comme en anglais — pas une opinion orale.",
+        "cta": "Parler à un avocat"
+      }
+    },
+    "midCta": {
+      "title": "Faites évaluer votre situation par nos avocats",
+      "lead": "Décrivez votre blocage en une ligne. Une avocate du cabinet vous rappelle et vous indique la première mesure à prendre.",
+      "fieldLabel": "Votre numéro de téléphone",
+      "placeholder": "+ 33...",
+      "cta": "Poser ma question",
+      "note": "Confidentiel · sans engagement · réponse sous 48 h"
+    },
+    "essentiel": {
+      "overline": "À retenir",
+      "title": "L’essentiel en six points",
+      "boxTitle": "Sept points à retenir",
+      "imageAlt": "Deux associés assis dans l’herbe, ordinateur portable ouvert",
+      "cta": "Résoudre mon litige",
+      "items": {
+        "nullite": "Une résolution abusive est <b>nulle</b> ; des dommages-intérêts peuvent suivre.",
+        "minorites": "Les minorités qualifiées <b>font ouvrir les livres </b>(5 % / 10 %) ; l’article 145 sécurise la preuve.",
+        "escalade": "Le blocage s’escalade : <b>mandataire ad hoc → administrateur provisoire → dissolution</b>.",
+        "revocation": "Le dirigeant se révoque pour juste motif ; <b>responsabilité en trois ans.</b>",
+        "pacte": "Le <b>pacte s’exécute</b> ; clauses de buy-sell et de sortie sont opposables.",
+        "prix": "Accord sur la sortie, désaccord sur le prix = <b>expert de l’art. 1843-4</b>, dont l’évaluation lie."
+      }
+    },
+    "faq": {
+      "overline": "Questions fréquentes",
+      "title": "Litiges entre associés : questions & réponses",
+      "items": {
+        "minoritaire": {
+          "question": "Je suis minoritaire : ai-je vraiment des droits ?",
+          "answer": "Oui : droit à l’information et à la communication de documents, droit de vote, droit de contester une décision abusive, expertise de gestion au-delà d’un seuil de détention (5 % dans les sociétés par actions, 10 % en SARL), et action en responsabilité contre le dirigeant, y compris ut singuli. L’article 145 du CPC permet, avant tout procès, de faire établir et conserver la preuve."
+        },
+        "abus": {
+          "question": "Qu’est-ce qu’un abus de majorité — et de minorité ?",
+          "answer": "Des bénéfices systématiquement mis en réserve au profit des majoritaires peuvent, selon les circonstances, caractériser un abus de majorité ; la résolution abusive est alors nulle, et des dommages-intérêts peuvent suivre. Les mesures conservatoires s’obtiennent en quelques semaines par la voie du référé ; l’action au fond devant le tribunal de commerce prend des mois."
+        },
+        "rachat": {
+          "question": "Puis-je forcer mon coassocié à me racheter — ou à me vendre ?",
+          "answer": "Les clauses de buy-sell, d’exclusion ou de sortie du pacte s’exécutent, sous réserve de la prohibition des clauses léonines (art. 1844-1). La clause de shotgun dénoue un blocage sans juge : un associé propose un prix, l’autre choisit — au même prix — de vendre ou d’acheter, dans un délai fixé."
+        },
+        "blocage": {
+          "question": "La société est bloquée en 50/50 : que faire ?",
+          "answer": "Trois instruments, par gradation : le mandataire ad hoc pour une décision précise, l’administrateur provisoire en cas de paralysie et de péril imminent, la dissolution pour mésentente (art. 1844-7, 5°). La jurisprudence refuse la dissolution à l’associé qui a lui-même provoqué la paralysie."
+        },
+        "prix": {
+          "question": "Comment est fixé le prix des parts en cas de désaccord ?",
+          "answer": "Quand les parties s’accordent sur le principe de la cession mais pas sur le prix, l’expert de l’article 1843-4 fixe une valeur qui lie. C’est la voie la plus fréquente : la plupart des litiges entre associés se dénouent par une cession."
+        },
+        "dirigeant": {
+          "question": "Le dirigeant peut-il être révoqué ou poursuivi ?",
+          "answer": "Le dirigeant se révoque pour juste motif, et sa responsabilité se prescrit par trois ans. Rémunérations, conventions ou flux suspects peuvent justifier une expertise de gestion, des mesures de preuve ou une action en responsabilité, y compris ut singuli."
+        },
+        "delais": {
+          "question": "Combien de temps ai-je pour agir ?",
+          "answer": "L’action en nullité d’une décision sociale se prescrit par trois ans (art. L. 235-9 C. com.). Certaines mesures — suspension d’une résolution, séquestre, administrateur provisoire — ne s’obtiennent utilement qu’avant que le fait accompli ne s’installe : le délai court dès le premier fait."
+        }
+      }
+    },
+    "allerPlusLoin": {
+      "overline": "Aller plus loin",
+      "title": "Sécuriser votre société",
+      "lead": "Les interventions qui préviennent le prochain litige — ou le règlent à la racine.",
+      "cta": "En savoir plus",
+      "quote": "Devis",
+      "bookCta": "Réserver une consultation gratuite",
+      "items": {
+        "constitution": {
+          "title": "Constitution de SAS",
+          "body": "Statuts, dépôt du capital, immatriculation, Kbis — de bout en bout, sans déplacement."
+        },
+        "transformation": {
+          "title": "Transformation SARL → SAS",
+          "body": "Décision des associés, réécriture des statuts, conséquences fiscales et sociales."
+        },
+        "pacte": {
+          "title": "Statuts & pacte d’associés",
+          "body": "Gouvernance, clauses de cession, sortie et exclusion — verrouillées avant la signature."
+        },
+        "preuve": {
+          "title": "Convention de preuve",
+          "body": "Sécuriser en amont la signature, les registres et la traçabilité des décisions."
+        }
+      }
+    },
+    "interlocuteurs": {
+      "angle": "<s>Sur cette fiche </s>: le choix du niveau de signature, la convention de preuve et la défense de l’acte contesté.",
+      "partnerLabel": "Partenaire du cabinet",
+      "profileCta": "Voir le profil",
+      "partners": {
+        "cochet": {
+          "name": "Mᵉ Mathieu Cochet",
+          "speciality": "Contentieux financier",
+          "bar": "Barreau de Grasse",
+          "cta": "Consulter Mᵉ Cochet",
+          "photoAlt": "Portrait de Mᵉ Mathieu Cochet"
+        },
+        "mehandzhiyska": {
+          "name": "Mᵉ Nevena Mehandzhiyska",
+          "speciality": "Notariat & transmission",
+          "bar": "Notaire · Toulouse",
+          "cta": "Consulter Mᵉ Mehandziyska",
+          "photoAlt": "Portrait de Mᵉ Nevena Mehandzhiyska"
+        },
+        "bazin": {
+          "name": "Mᵉ Tony Bazin",
+          "speciality": "Droit social & contentieux",
+          "bar": "Barreau d’Angers",
+          "cta": "Consulter Mᵉ Bazin",
+          "photoAlt": "Portrait de Mᵉ Tony Bazin"
+        }
+      }
+    },
+    "themesLies": {
+      "overline": "Thèmes liés",
+      "title": "Au-delà du litige entre associés",
+      "lead": "Les sujets voisins que traite le cabinet, avec l’avocat qui les prend en charge.",
+      "cta": "Parler à un avocat",
+      "read": "Lire l’article",
+      "bookCta": "Réserver une consultation gratuite",
+      "items": {
+        "rupture": {
+          "title": "Rupture brutale des relations commerciales",
+          "body": "Préavis, ancienneté, dépendance économique : évaluation de l’exposition et défense."
+        },
+        "recouvrement": {
+          "title": "Recouvrement de créances",
+          "body": "Impayés, sommes contractuelles, dommages : évaluation puis recouvrement gradué."
+        },
+        "fiscalite": {
+          "title": "Fiscalité du dirigeant",
+          "body": "Rémunération vs dividendes, holding, management packages : structurer avant de céder."
+        },
+        "distribution": {
+          "title": "Distribution & franchise",
+          "body": "Territoire, exclusivité, sélection, obligations du réseau — rédaction et contentieux."
+        },
+        "ma": {
+          "title": "Cession & acquisition (M&A)",
+          "body": "Due diligence, garantie d’actif-passif, earn-out : sécuriser l’opération et l’après."
+        },
+        "arbitrage": {
+          "title": "Arbitrage & international",
+          "body": "Clauses compromissoires, exequatur, litiges multi-juridictions — CCI et ad hoc."
+        }
+      }
+    },
+    "alire": {
+      "overline": "Dans la bibliothèque",
+      "title": "À lire sur le litige entre associés",
+      "lead": "Guides, fiches sourcées et modèles commentés — écrits par des avocats, adossés aux textes officiels.",
+      "domain": "Résoudre les litiges",
+      "read": "Lire →",
+      "items": {
+        "abus": {
+          "type": "Guide",
+          "title": "Abus de majorité : le guide 2026",
+          "description": "Conditions, preuve, sanctions et délais — avec les décisions récentes qui font autorité.",
+          "meta": "Fiche · 8 min ·"
+        },
+        "blocage": {
+          "type": "Fiche & FAQ",
+          "title": "Sortir d’un blocage 50/50 sans détruire la société",
+          "description": "Mandataire ad hoc, administrateur provisoire, dissolution : la bonne mesure au bon moment.",
+          "meta": "Guide · 12 min ·"
+        },
+        "prix": {
+          "type": "Fiche & FAQ",
+          "title": "Article 1843-4 : qui fixe le prix de vos parts ?",
+          "description": "Désignation de l’expert, méthode, portée de l’évaluation, voies de recours limitées.",
+          "meta": "Fiche · 7 min ·"
+        }
+      }
+    },
+    "ctaFinal": {
+      "title": "Votre situation ne rentre pas dans nos services ?"
     }
   }
 }

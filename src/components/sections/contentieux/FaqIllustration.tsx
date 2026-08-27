@@ -1,4 +1,5 @@
-import LaurelBranch from "@/assets/icons/laurel-branch.svg";
+// Mint since the redesign — this frame now names Petroff/Mint.
+import LaurelBranch from "@/assets/icons/laurel-branch-mint.svg";
 import ParisScene from "@/assets/icons/paris-scene.svg";
 import Sparkle from "@/assets/icons/sparkle.svg";
 

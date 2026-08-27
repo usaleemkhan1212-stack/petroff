@@ -8,8 +8,8 @@ export type FaconKey = "abonnement" | "forfaits" | "phases";
 export type Facon = {
   key: FaconKey;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-  /** Icon tile background — blue, gold, blue across the row. */
-  tone: "blue" | "gold";
+  /** Icon tile background — blue, gold, mint across the row. */
+  tone: "blue" | "gold" | "mint";
   /** Intended route. Not rendered until the page exists — see `routes.ts`. */
   href: string;
 };
@@ -17,5 +17,5 @@ export type Facon = {
 export const facons: readonly Facon[] = [
   { key: "abonnement", Icon: CalendarIcon, tone: "blue", href: "/abonnements" },
   { key: "forfaits", Icon: StarIcon, tone: "gold", href: "/forfaits" },
-  { key: "phases", Icon: PhaseBarsIcon, tone: "blue", href: "/methode" },
+  { key: "phases", Icon: PhaseBarsIcon, tone: "mint", href: "/methode" },
 ] as const;

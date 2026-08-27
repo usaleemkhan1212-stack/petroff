@@ -1,0 +1,19 @@
+<!--
+  Figma 13445:23744 - the MidCTA phone field prefix.
+
+  Its three fills are the French flag official colours (#000091, white,
+  #E1000F) and stay raw hex: a national flag is content, not brand
+  colour, the same call paris-scene.svg makes for its shading fills.
+-->
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="France (FR)" clip-path="url(#clip-flag-fr)">
+<path id="Vector" d="M0 0H21V16H0V0Z" fill="white"/>
+<path id="Vector_2" d="M0 0H6.99891V16H0V0Z" fill="#000091"/>
+<path id="Vector_3" d="M14 0H20.9989V16H14V0Z" fill="#E1000F"/>
+</g>
+<defs>
+<clipPath id="clip-flag-fr">
+<rect width="21" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

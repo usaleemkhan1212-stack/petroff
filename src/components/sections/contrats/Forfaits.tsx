@@ -56,7 +56,6 @@ export function Forfaits() {
                     >
                       {t(`items.${key}.price`)}
                     </span>
-                    {/* text-small here, not the Contentieux page's text-nav. */}
                     <span className="text-small text-encre/62">
                       {t(`items.${key}.unit`)}
                     </span>

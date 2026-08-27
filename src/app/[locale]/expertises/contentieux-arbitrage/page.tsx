@@ -1,3 +1,4 @@
+import { Consultation } from "@/components/consultation/Consultation";
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -38,6 +39,8 @@ export default async function ContentieuxPage({
       <Bib />
       <Faq />
       <CTAFinal />
+      {/* New in the redesign: the red side tab (`13395:14965`). */}
+      <Consultation />
     </>
   );
 }

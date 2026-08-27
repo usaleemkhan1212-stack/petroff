@@ -4,9 +4,12 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { espaceFeatures, espaceProgress, espaceRows } from "@/lib/contentieux";
 import { cn } from "@/lib/utils";
 
+/* Four tints since the redesign — blue, gold, pink, mint down the list. */
 const tones = {
   blue: "bg-pale-blue",
   gold: "bg-pale-gold",
+  mint: "bg-pale-mint",
+  pink: "bg-pink-soft/40",
 } as const;
 
 /** How each mock status reads: settled, waiting on someone, not started. */

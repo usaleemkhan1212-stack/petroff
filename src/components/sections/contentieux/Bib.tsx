@@ -25,7 +25,9 @@ export function Bib() {
             {collections.map(({ key, href }) => (
               <li key={key} className="flex">
                 <Card className="flex min-w-0 flex-1 flex-col gap-2 px-7 py-9">
-                  <p className="text-h2 font-poppins text-periwinkle">
+                  {/* Mint since the redesign — the same move the home
+                      Bibliotheque counts made; they were periwinkle. */}
+                  <p className="text-h2 font-poppins text-mint">
                     {t(`items.${key}.count`)}
                   </p>
                   <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>

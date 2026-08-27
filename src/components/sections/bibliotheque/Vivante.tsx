@@ -8,7 +8,7 @@ export function Vivante() {
   return (
     <section className="bg-lilas">
       {/* 1200 centred inside the Container lands on 360, as in Resultats. */}
-      <Container className="py-21.5">
+      <Container className="py-16 lg:py-21.5">
         <div className="mx-auto max-w-300">
           <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
           <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>

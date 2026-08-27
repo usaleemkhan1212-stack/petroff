@@ -1,0 +1,25 @@
+<!--
+  Figma 13445:18143 — the litiges hero card glyph.
+
+  Identical geometry to calendar-dots.svg at an exact 40/46, but its
+  periwinkle band is stroke-width 8 where that file carries 2.45, so the band
+  reads thick here and thin there. Rendering the 46px file at 40 would draw a
+  2.13px band against Figma's 8 — far past the magnifier/Cabinet tolerance —
+  so this is a fork, not a reuse.
+-->
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<path id="Vector" d="M32 6.28571H8C5.79086 6.28571 4 8.07658 4 10.2857V30.8571C4 33.0663 5.79086 34.8571 8 34.8571H32C34.2091 34.8571 36 33.0663 36 30.8571V10.2857C36 8.07658 34.2091 6.28571 32 6.28571Z" fill="var(--color-pale-blue)"/>
+<g id="Vector_2">
+<path d="M4 14.2857H36Z" fill="black"/>
+<path d="M4 14.2857H36" stroke="var(--color-periwinkle)" stroke-width="8"/>
+</g>
+<path id="Vector_3" d="M13.7126 3.14287C13.7126 2.35389 13.073 1.71429 12.284 1.71429C11.4951 1.71429 10.8555 2.35389 10.8555 3.14287V8.28572C10.8555 9.0747 11.4951 9.7143 12.284 9.7143C13.073 9.7143 13.7126 9.0747 13.7126 8.28572V3.14287Z" fill="var(--color-encre)"/>
+<path id="Vector_4" d="M29.1423 3.14287C29.1423 2.35389 28.5027 1.71429 27.7137 1.71429C26.9248 1.71429 26.2852 2.35389 26.2852 3.14287V8.28572C26.2852 9.0747 26.9248 9.7143 27.7137 9.7143C28.5027 9.7143 29.1423 9.0747 29.1423 8.28572V3.14287Z" fill="var(--color-encre)"/>
+<path id="Vector_5" d="M13.7154 24C14.9778 24 16.0011 22.9767 16.0011 21.7143C16.0011 20.4519 14.9778 19.4286 13.7154 19.4286C12.453 19.4286 11.4297 20.4519 11.4297 21.7143C11.4297 22.9767 12.453 24 13.7154 24Z" fill="var(--color-gold)"/>
+<path id="Vector_6" opacity="0.3" d="M20.5709 24C21.8332 24 22.8566 22.9767 22.8566 21.7143C22.8566 20.4519 21.8332 19.4286 20.5709 19.4286C19.3085 19.4286 18.2852 20.4519 18.2852 21.7143C18.2852 22.9767 19.3085 24 20.5709 24Z" fill="var(--color-encre)"/>
+<path id="Vector_7" opacity="0.3" d="M27.4302 24C28.6926 24 29.716 22.9767 29.716 21.7143C29.716 20.4519 28.6926 19.4286 27.4302 19.4286C26.1679 19.4286 25.1445 20.4519 25.1445 21.7143C25.1445 22.9767 26.1679 24 27.4302 24Z" fill="var(--color-encre)"/>
+<path id="Vector_8" opacity="0.3" d="M13.7154 30.8571C14.9778 30.8571 16.0011 29.8338 16.0011 28.5714C16.0011 27.3091 14.9778 26.2857 13.7154 26.2857C12.453 26.2857 11.4297 27.3091 11.4297 28.5714C11.4297 29.8338 12.453 30.8571 13.7154 30.8571Z" fill="var(--color-encre)"/>
+<path id="Vector_9" d="M20.5709 30.8571C21.8332 30.8571 22.8566 29.8338 22.8566 28.5714C22.8566 27.3091 21.8332 26.2857 20.5709 26.2857C19.3085 26.2857 18.2852 27.3091 18.2852 28.5714C18.2852 29.8338 19.3085 30.8571 20.5709 30.8571Z" fill="var(--color-periwinkle)"/>
+</g>
+</svg>

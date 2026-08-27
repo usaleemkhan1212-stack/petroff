@@ -20,7 +20,7 @@ export function HeroSearch() {
       <form
         role="search"
         onSubmit={(e) => e.preventDefault()}
-        className="border-encre/12 flex w-full max-w-160 items-center rounded-full border-[1.5px] bg-white p-1"
+        className="border-encre/12 flex w-full max-w-160 items-center rounded-full border-[1.5px] bg-white p-[4.5px]"
       >
         <label htmlFor="library-search" className="sr-only">
           {t("searchLabel")}
@@ -38,20 +38,22 @@ export function HeroSearch() {
           placeholder={t("searchPlaceholder")}
           className="text-body text-encre placeholder:text-encre/62 min-w-0 flex-1 bg-transparent pl-4.75 text-ellipsis outline-none"
         />
-        {/* Figma draws 24px sides, between Button's md (28) and sm (20). */}
-        <Button type="submit" size="lg" className="px-6">
+        {/* Figma draws a 140x50 button — 26px sides, between Button's md (28)
+            and sm (20). */}
+        <Button type="submit" size="lg" className="px-6.5">
           {t("searchSubmit")}
         </Button>
       </form>
 
-      <div className="flex w-full max-w-152.25 flex-col gap-2.75">
+      <div className="flex w-full max-w-160 flex-col gap-3">
         <p className="text-small-strong text-encre/62">{t("suggestionsLabel")}</p>
         {/*
-          Figma lays these out as an equal-width 3x2 grid, which clips the
-          first chip's label. They size to their content here and wrap, which
-          reproduces the same 3 + 2 arrangement without the clipping.
+          Figma sizes each chip to its own label now — 16px sides on a 12px
+          gap, wrapping 3 + 2 inside the full 640. It used to draw an
+          equal-width 3x2 grid that clipped the first label, which is why the
+          build carried 14px sides and a 609 cap; both are gone.
         */}
-        <div className="flex flex-wrap gap-2.5">
+        <div className="flex flex-wrap gap-3">
           {heroSuggestions.map((key) => (
             <Chip
               key={key}

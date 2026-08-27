@@ -5,9 +5,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { missions } from "@/lib/contrats";
 import { cn } from "@/lib/utils";
 
+/*
+  Four tints since the redesign. The pink is Figma's `#EFCFD9` at 40%, which
+  composites within 3/255 of `--color-pink-soft` — the same reuse the hub and
+  the Contentieux grid make.
+*/
 const tones = {
   blue: "bg-pale-blue",
   gold: "bg-pale-gold",
+  mint: "bg-pale-mint",
+  pink: "bg-pink-soft/40",
 } as const;
 
 /** Fourth copy of this pill — extract to ui/ next time it is touched. */
@@ -43,7 +50,17 @@ export function Domaines() {
                     state — exactly as on the home Domaines and Actus grids.
                     The blur is 34px here rather than Card's default 17.
                   */}
-                  <Card className="flex min-w-0 flex-1 flex-col gap-2 px-6 py-7 transition hover:shadow-[0px_14px_34px_rgba(0,0,0,0.1)]">
+                  {/* Figma spaces every child by a flat 16 since the redesign,
+                      where it mixed an 8px gap with 12/10px spacer frames. The
+                      one exception is `transparence`, whose card the frame
+                      still sets to 8 — reproduced, but almost certainly a slip
+                      in the comp. */}
+                  <Card
+                    className={cn(
+                      "flex min-w-0 flex-1 flex-col px-6 py-7 transition hover:shadow-[0px_14px_34px_rgba(0,0,0,0.1)]",
+                      key === "transparence" ? "gap-2" : "gap-4",
+                    )}
+                  >
                     <span
                       aria-hidden="true"
                       className={cn(
@@ -53,13 +70,11 @@ export function Domaines() {
                     >
                       <Icon className="text-encre" />
                     </span>
-                    <span aria-hidden="true" className="h-3" />
 
                     <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
                     <p className="text-body text-encre/62">
                       {t(`items.${key}.description`)}
                     </p>
-                    <span aria-hidden="true" className="h-2.5" />
 
                     <ul className="flex flex-wrap gap-2">
                       {(t.raw(`items.${key}.tags`) as string[]).map((label) => (
@@ -68,6 +83,20 @@ export function Domaines() {
                         </li>
                       ))}
                     </ul>
+
+                    {/* New in the redesign: a ruled footer whose pill takes the
+                        card's own tint. Inert — no per-domain page exists. */}
+                    <div className="mt-auto flex flex-col gap-4">
+                      <span aria-hidden="true" className="bg-encre/10 h-px w-full" />
+                      <span
+                        className={cn(
+                          "text-button font-poppins text-encre w-fit rounded-full px-7 py-4",
+                          tones[tone],
+                        )}
+                      >
+                        {t("cta")}
+                      </span>
+                    </div>
                   </Card>
                 </li>
               ))}

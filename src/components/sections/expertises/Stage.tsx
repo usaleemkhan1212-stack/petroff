@@ -27,16 +27,25 @@ export function Stage() {
         </nav>
 
         {/*
-          Figma pins this column at y=17 so it overlaps the 64px breadcrumb
-          band. In flow the column follows the breadcrumb instead, so its top
-          padding drops from 64 to 16 and the overline still lands at the
-          designed y. min-h holds the 784px stage height the ornament
-          coordinates are measured against.
+          The copy starts 90px into the section, which is where the home
+          hero's overline sits — so the two centred heroes land in exactly the
+          same place and the block does not jump between pages. The breadcrumb
+          band above is 64, hence 26 of padding here.
+
+          **This is a deliberate departure from the comp**, asked for: this
+          frame puts its `inner` column at y=110, 20px lower. Cross-page
+          consistency wins over the per-frame number, the same way the
+          uppercase eyebrows do.
+
+          min-h holds the 784px stage height the ornament coordinates are
+          measured against.
         */}
-        <div className="flex flex-col items-center pt-4 pb-16 lg:min-h-180">
+        <div className="flex flex-col items-center pt-6.5 pb-16 lg:min-h-180">
           <div className="mx-auto flex max-w-200 flex-col items-center text-center">
+            {/* No spacer under the overline, so the title lands on the same
+                y as the home hero's. This frame draws a 10px one; dropping it
+                is part of the same cross-page alignment as the 26 above. */}
             <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
-            <span aria-hidden="true" className="h-2.5" />
 
             <h1 className="text-display text-encre">
               {t.rich("title", {

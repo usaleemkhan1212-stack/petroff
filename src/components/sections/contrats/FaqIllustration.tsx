@@ -1,5 +1,8 @@
 import LaDefenseScene from "@/assets/icons/la-defense-scene.svg";
-import LaurelBranch from "@/assets/icons/laurel-branch.svg";
+// Mint since the redesign — this frame names Petroff/Mint, as the
+// Contentieux twin's now does. That leaves `laurel-branch.svg` (brique) an
+// orphan: every laurel on the site is now the mint fork.
+import LaurelBranch from "@/assets/icons/laurel-branch-mint.svg";
 import Sparkle from "@/assets/icons/sparkle.svg";
 
 /**

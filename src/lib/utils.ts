@@ -20,7 +20,6 @@ const twMerge = extendTailwindMerge({
             "h3",
             "h4",
             "lead",
-            "nav",
             "body",
             "small",
             "small-strong",

@@ -35,19 +35,25 @@ export type Mission = {
   key: MissionKey;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
   /** Icon tile background — strict blue/gold alternation across the grid. */
-  tone: "blue" | "gold";
+  tone: "blue" | "gold" | "mint" | "pink";
+  /*
+    Figma grounds this one card's tag pill white where the other eight are
+    lilas. Almost certainly a slip in the comp, but reproduced rather than
+    tidied away — flagged to the designer.
+  */
+  whiteTag?: true;
 };
 
 export const missions: readonly Mission[] = [
   { key: "strategie", Icon: LightbulbIcon, tone: "blue" },
   { key: "referes", Icon: LightningBoltIcon, tone: "gold" },
-  { key: "commercial", Icon: BalanceScaleIcon, tone: "blue" },
-  { key: "contractuels", Icon: FileLinesIcon, tone: "gold" },
+  { key: "commercial", Icon: BalanceScaleIcon, tone: "mint" },
+  { key: "contractuels", Icon: FileLinesIcon, tone: "pink" },
   { key: "associes", Icon: PeopleDisputeIcon, tone: "blue" },
   { key: "arbitrage", Icon: GlobeIcon, tone: "gold" },
-  { key: "mediation", Icon: ChainLinkIcon, tone: "blue" },
-  { key: "execution", Icon: DatabaseIcon, tone: "gold" },
-  { key: "defense", Icon: ShieldCheckIcon, tone: "blue" },
+  { key: "mediation", Icon: ChainLinkIcon, tone: "mint" },
+  { key: "execution", Icon: DatabaseIcon, tone: "gold", whiteTag: true },
+  { key: "defense", Icon: ShieldCheckIcon, tone: "pink" },
 ] as const;
 
 /** Keys inside the `ContentieuxPage.prestations.items` message namespace. */
@@ -56,14 +62,15 @@ export type PrestationKey = "misesEnDemeure" | "injonctions" | "creances" | "vei
 export type Prestation = {
   key: PrestationKey;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-  tone: "blue" | "gold";
+  /* Four tints since the redesign — blue, gold, pink, mint across the row. */
+  tone: "blue" | "gold" | "mint" | "pink";
 };
 
 export const prestations: readonly Prestation[] = [
   { key: "misesEnDemeure", Icon: EnvelopeIcon, tone: "blue" },
   { key: "injonctions", Icon: FileLinesIcon, tone: "gold" },
-  { key: "creances", Icon: FolderIcon, tone: "blue" },
-  { key: "veille", Icon: BellIcon, tone: "gold" },
+  { key: "creances", Icon: FolderIcon, tone: "pink" },
+  { key: "veille", Icon: BellIcon, tone: "mint" },
 ] as const;
 
 /** Keys inside the `ContentieuxPage.forfaits.items` message namespace. */
@@ -73,14 +80,20 @@ export type Forfait = {
   key: ForfaitKey;
   /** The gold-bordered middle plan carrying the badge. */
   featured?: true;
+  /**
+   * Figma sets the two outer plans' amounts at 40px and the featured middle
+   * one at 30 — the inverse of the Contrats page, where only the third is
+   * large. Do not carry one page's flag pattern to the other.
+   */
+  largePrice?: true;
   /** How many ✓ lines the plan lists. */
   features: number;
 };
 
 export const forfaits: readonly Forfait[] = [
-  { key: "diagnostic", features: 5 },
+  { key: "diagnostic", largePrice: true, features: 5 },
   { key: "urgence", featured: true, features: 5 },
-  { key: "fond", features: 5 },
+  { key: "fond", largePrice: true, features: 5 },
 ] as const;
 
 /** Keys inside the `ContentieuxPage.methode.items` message namespace, in order. */
@@ -92,12 +105,13 @@ export type EspaceFeatureKey = "avancement" | "coffre" | "alertes" | "langues";
 export const espaceFeatures: readonly {
   key: EspaceFeatureKey;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-  tone: "blue" | "gold";
+  /* Four tints since the redesign — blue, gold, pink, mint down the list. */
+  tone: "blue" | "gold" | "mint" | "pink";
 }[] = [
   { key: "avancement", Icon: MonitorChartIcon, tone: "blue" },
   { key: "coffre", Icon: LockIcon, tone: "gold" },
-  { key: "alertes", Icon: BellIcon, tone: "blue" },
-  { key: "langues", Icon: GlobeIcon, tone: "gold" },
+  { key: "alertes", Icon: BellIcon, tone: "pink" },
+  { key: "langues", Icon: GlobeIcon, tone: "mint"},
 ] as const;
 
 /** How far the mock dossier has progressed, as a percentage of the bar. */

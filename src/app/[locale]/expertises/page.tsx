@@ -1,6 +1,8 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Consultation } from "@/components/consultation/Consultation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { CTAFinal } from "@/components/sections/expertises/CTAFinal";
 import { Domaines } from "@/components/sections/expertises/Domaines";
 import { Facons } from "@/components/sections/expertises/Facons";
@@ -21,9 +23,13 @@ export default async function ExpertisesPage({
   return (
     <>
       <Stage />
-      <Domaines />
+      {/* Climbs 20px over the Stage as the reader scrolls. */}
+      <ScrollOverlap>
+        <Domaines />
+      </ScrollOverlap>
       <Facons />
       <CTAFinal />
+      <Consultation />
     </>
   );
 }

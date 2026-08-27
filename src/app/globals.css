@@ -132,12 +132,6 @@
   --text-h2--letter-spacing: 0em;
   --text-h2--font-weight: 700;
 
-  /* Inter Medium 16 — header/footer navigation links */
-  --text-nav: 1rem;
-  --text-nav--line-height: normal;
-  --text-nav--letter-spacing: 0em;
-  --text-nav--font-weight: 500;
-
   /* Poppins SemiBold 18 — Figma's "Petroff/H4", the sticky bar's headline */
   --text-h4: 1.125rem;
   --text-h4--line-height: 1.35;
@@ -309,10 +303,6 @@
   }
 }
 
-/* rescan: triage */
 
-/* rescan: faq */
 
-/* rescan: faq pad */
 
-/* rescan: consult */

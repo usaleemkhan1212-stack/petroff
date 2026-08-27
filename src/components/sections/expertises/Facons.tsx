@@ -6,9 +6,11 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { facons } from "@/lib/facons";
 import { cn } from "@/lib/utils";
 
+/* Card 3's tile went pale mint in the redesign; the other two are unchanged. */
 const tones = {
   blue: "bg-pale-blue",
   gold: "bg-pale-gold",
+  mint: "bg-pale-mint",
 } as const;
 
 export function Facons() {

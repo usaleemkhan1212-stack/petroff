@@ -36,19 +36,23 @@ export type Mission = {
   key: MissionKey;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
   /** Icon tile background — strict blue/gold alternation across the grid. */
-  tone: "blue" | "gold";
+  /*
+    Four tints since the redesign, non-repeating across the nine domains.
+    Sampled from the node's own export, card by card.
+  */
+  tone: "blue" | "gold" | "mint" | "pink";
 };
 
 export const missions: readonly Mission[] = [
-  { key: "distribution", Icon: NetworkNodesIcon, tone: "blue" },
-  { key: "agence", Icon: PersonIcon, tone: "gold" },
-  { key: "cgv", Icon: FileLinesIcon, tone: "blue" },
-  { key: "industriels", Icon: OfficeBuildingIcon, tone: "gold" },
-  { key: "sousTraitance", Icon: ChainLinkIcon, tone: "blue" },
-  { key: "rupture", Icon: WarningTriangleIcon, tone: "gold" },
-  { key: "transparence", Icon: PercentRoundedIcon, tone: "blue" },
-  { key: "international", Icon: GlobeIcon, tone: "gold" },
-  { key: "negociations", Icon: LightbulbIcon, tone: "blue" },
+  { key: "distribution", Icon: NetworkNodesIcon, tone: "blue"},
+  { key: "agence", Icon: PersonIcon, tone: "gold"},
+  { key: "cgv", Icon: FileLinesIcon, tone: "mint"},
+  { key: "industriels", Icon: OfficeBuildingIcon, tone: "pink"},
+  { key: "sousTraitance", Icon: ChainLinkIcon, tone: "mint"},
+  { key: "rupture", Icon: WarningTriangleIcon, tone: "gold"},
+  { key: "transparence", Icon: PercentRoundedIcon, tone: "blue"},
+  { key: "international", Icon: GlobeIcon, tone: "gold"},
+  { key: "negociations", Icon: LightbulbIcon, tone: "pink"},
 ] as const;
 
 /** Keys inside the `ContratsPage.prestations.items` message namespace. */
@@ -57,12 +61,17 @@ export type PrestationKey = "modeles" | "relecture" | "traductions" | "contrathe
 export const prestations: readonly {
   key: PrestationKey;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-  tone: "blue" | "gold";
+  /*
+    Four tints since the redesign — blue, gold, mint, pink across the row.
+    Note the order differs from the Contentieux page's (blue/gold/pink/mint):
+    check each frame, do not carry the sibling's sequence.
+  */
+  tone: "blue" | "gold" | "mint" | "pink";
 }[] = [
   { key: "modeles", Icon: BookIcon, tone: "blue" },
   { key: "relecture", Icon: LightningBoltIcon, tone: "gold" },
-  { key: "traductions", Icon: GlobeIcon, tone: "blue" },
-  { key: "contratheque", Icon: FolderIcon, tone: "gold" },
+  { key: "traductions", Icon: GlobeIcon, tone: "mint"},
+  { key: "contratheque", Icon: FolderIcon, tone: "pink"},
 ] as const;
 
 /** Keys inside the `ContratsPage.methode.items` message namespace. */
@@ -91,12 +100,13 @@ export type EspaceFeatureKey = "avancement" | "coffre" | "alertes" | "langues";
 export const espaceFeatures: readonly {
   key: EspaceFeatureKey;
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
-  tone: "blue" | "gold";
+  /* Four tints since the redesign — blue, gold, pink, mint down the list. */
+  tone: "blue" | "gold" | "mint" | "pink";
 }[] = [
   { key: "avancement", Icon: MonitorChartIcon, tone: "blue" },
   { key: "coffre", Icon: LockIcon, tone: "gold" },
-  { key: "alertes", Icon: BellIcon, tone: "blue" },
-  { key: "langues", Icon: GlobeIcon, tone: "gold" },
+  { key: "alertes", Icon: BellIcon, tone: "pink"},
+  { key: "langues", Icon: GlobeIcon, tone: "mint"},
 ] as const;
 
 /**

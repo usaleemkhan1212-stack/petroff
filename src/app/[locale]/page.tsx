@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Actus } from "@/components/sections/Actus";
 import { Bibliotheque } from "@/components/sections/Bibliotheque";
 import { CTAFinal } from "@/components/sections/CTAFinal";
@@ -24,7 +25,10 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   return (
     <>
       <Hero />
-      <SearchBand />
+      {/* Climbs 20px over the Hero as the reader scrolls. */}
+      <ScrollOverlap>
+        <SearchBand />
+      </ScrollOverlap>
       <Expertises />
       <Bibliotheque />
       <OpenData />
