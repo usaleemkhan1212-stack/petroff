@@ -4102,9 +4102,18 @@ dot beside a `text-h3` label, the row centred across the full width.
   unit gap in the catalogue uses a thin space (U+2009) — `ContentieuxPage`'s own
   `48 h` included. Stored with the thin space, the same deliberate deviation
   the apostrophes take.
-- Measured: section **100**, items at **y=37** and 26 tall, all three within
-  **1.3px** of their Figma x (463.8 / 766.4 / 1094.5 against 462.5 / 766.5 /
-  1095.5), gaps 96 exactly, dot 10x10 at y=45 in gold, label Poppins 600 20/26.
+- Measured: section **100**, items at **y=37** and 26 tall, dot 10x10 at y=45
+  in gold, label Poppins 600 20/26. Before the change the three items landed
+  within **1.3px** of their Figma x (463.8 / 766.4 / 1094.5 against 462.5 /
+  766.5 / 1095.5) on a 96px gap.
+- **Justified rather than centred, asked for.** Figma centres the row on a
+  fixed 96px gap, which leaves ~125 of slack either side of the 1245 band; the
+  row now sits inside `Container` with `lg:justify-between`, so the first claim
+  starts at **337.5** and the last ends at **1582.5** — the container's own
+  edges — with even 222px gaps. Section still 100 and items still at y=37. A
+  deliberate departure from the comp. Below `lg` the row can wrap, where
+  `justify-between` would strand a lone item on the last line, so it stays
+  centred on a real gap until then.
 
 **A new headless Chrome shifted every measurement 7.5px, and it looked like a
 layout fault.** This one paints a 15px scrollbar where the previous instance
@@ -4640,6 +4649,211 @@ leviers" over six, "**Sept** points à retenir" over six, "**Deux** avocats" ove
 four — plus the Interlocuteurs angle note, which is still the *signature
 électronique* article's copy, exactly as the e-commerce page's is.
 **Six more drafted FAQ answers** take the sign-off list to **twenty-eight**.
+
+## Page 10 — personal-page (`/le-cabinet/personal-page`), frame `13495:29357`
+
+1920x**6266**, named "Petroff.law — Personal page" — Mᵉ Mariela Petrova's
+profile. Its crumb reads *Accueil · Le Cabinet · Mᵉ Mariela Petrova*, which is
+where the route comes from.
+
+**Its frame total is stale**, like the last two pages': the footer ends at
+**4489**, not 6266. Compare section by section.
+
+| # | Section | Node ID | Figma h | Subject | Status |
+|---|---|---|---|---|---|
+| 1 | Hero | `13495:30072` | 740 | crumb + profile row + stat band | done |
+| 2 | Vitrine | `13495:29858` | 527 | En bref + Domaines d'intervention | done |
+| 3 | Principe + intro | `13495:30380` | 830 | Parcours & qualifications | done |
+| 4 | FAQ | `13544:33769` | 940 | Questions fréquentes | done |
+| 5 | lawcard | `13544:34906` | 1021 | Contact — Parlez à Mariela Petrova | done |
+| + | sidetab | `13495:29913` | 45x236 | | done |
+
+Its sections live in `src/components/sections/personal/` and its copy under the
+**`PersonalPage`** namespace.
+
+- **Le Cabinet gains the site's third dropdown**, and it is the first whose own
+  page does not exist. `NavMenu` linked its parent with a plain `Link`, which
+  would have navigated to a 404 — it takes **`MaybeLink`** now, so the parent
+  renders as a span while the child is a real link. Verified: the parent is a
+  `SPAN`, the panel lists `personal-page`, and no header anchor points at
+  `/le-cabinet`.
+- **That third caret broke the header at exactly 1280, on every page.** The
+  desktop nav appears at `xl`, where the container gives it 1216; with three
+  dropdowns its content needs ~1237, so `documentElement.scrollWidth` read
+  1281. Three header gaps now tighten by a total of 24 between `xl` and `2xl`
+  and return to the Figma numbers at `2xl` — the header is pixel-specified at
+  1920 and must not move there. Verified after: row still **1245 at x=337.5**,
+  logo 148.8x36.4, header 73, and all ten routes clean at 1920 / 1280 / 375
+  with every page height unchanged.
+
+#### Hero (`13495:30072`) — built, **740 exactly**
+
+Two bands: a 62px lilas crumb, then a 678 `HeroFiche` centring a 1245 grid at
+**y=56** — a 414 hero row and a 123 stat band on a 30px gap — closing 55 below.
+
+- **The row takes no gap.** 692 of copy plus the 511 stage is 1203 inside the
+  1245 container, which `justify-between` spaces by exactly **42** — the same
+  arithmetic the Bibliotheque hero uses.
+- Measured, all fiche-relative: row at **56**, column **692** at x=337.5, stage
+  **511** flush with the container's right edge, photo **450x414 at stage x=61**
+  with radii `200px 10px 100px 60px`, hero card at stage **(0, 309)**, band at
+  **500** and **123** tall with its three 280 columns at y=29 on a 20px gap.
+  The copy column is `items-center` in the 414 row.
+- Its title is Figma's own **Display H1** — Poppins Bold 68 on a 1.06 line box
+  at -0.01em — so `text-display` matches exactly, resolving to 68px/72.08.
+- **Two of its three assets reuse.** `seal-ribbon.svg` at 1.2x (deviation
+  **0.0022**, the same box the service hero uses) and — the surprise —
+  **`courthouse.svg` at a fourth box**, 55x40 against its 250x185 native:
+  axis-aware deviation **0.0013** at a non-uniform (0.22, 0.2162), matching
+  fills, and the glyph carries no strokes so the stretch is exact. Note it is
+  the pale-periwinkle original, not the `-pale-blue` fork.
+- `mariela-portrait-hero.jpg` is new — Figma paints the source at 138% width
+  and 100% height, which is a 1% horizontal squeeze, so it is stored as a
+  uniform crop of source x 0-2968 at 1350x1242, 3x the box.
+- **The stat band needs 880** (three 280 columns plus their gaps), which the
+  container cannot give until `lg`, so it stacks below that. At `sm` it
+  overflowed to 852.
+
+#### En bref (`13495:29858`) — built, 532.8 against 527
+
+A 679 copy column beside a 470 list of practice areas. **The row takes no gap**
+— 679 + 470 is 1149 inside 1245, which `justify-between` spaces by exactly 96 —
+and the band is **`pt-64 pb-96`**, not a symmetric 96.
+
+- Measured: row at **64**, column **679 at x=337.5**, list **470 at x=1112.5**
+  (so the gap is exactly 96), head 128.8 against 129, body at **216.8**, list
+  title 20.8, rows at **100.8** and **56** each against Figma's 55. The +5.8 is
+  the six row borders.
+- Its rows carry **no gap**; each closes on its own `encre/10` rule.
+- **Figma draws the first row entirely in brique** — tick, label and arrow —
+  where the other five are a result-green tick, an encre label and an encre/62
+  arrow. Read as the **hover state** rather than a permanent highlight: nothing
+  on a profile page makes "Droit des sociétés" current, and this is the sixth
+  time the comp has shown one row of a list in its hover state. Applied to all
+  six on `hover`/`focus-visible` instead — verified with a real pointer, label
+  and arrow both resolving to `rgb(166,124,27)`.
+- Its rows point at the domain pages they name, so **two of the six are real
+  links** (`contrats-commerciaux`, `contentieux-arbitrage`) and the other four
+  are spans — verified `SPAN,SPAN,A,SPAN,SPAN,A`.
+- Its arrow is another **SF Symbols `arrow.right` placeholder**; rendered as the
+  site's usual `→` rather than a new file.
+- No new assets, no new tokens.
+
+#### Parcours (`13495:30380`) — built, 835.7 against 830
+
+A 679 timeline beside a 329 side column. **The row takes no gap**: Figma spaces
+the two with `justify-between`, which gives 237 inside the 1245 container, and
+the side column carries its own **`pr-96`** so its content is 233 wide with its
+right edge 96 in from the container. It splits at `xl` — 679 + 329 needs 1008.
+
+- Measured: head **78.8 against 79**, row at **210.8**, list **679 at x=337.5**,
+  side column **329 at x=1253.5** — Figma's exact 916 inside the row — five
+  timeline rows of **96.2** against 95 on a 12px gap, year resolving to
+  `text-price` 30px in pale-periwinkle. The +5.7 is the five row borders.
+- **One label wraps where Figma fits it on one line.** "Avocat européen ·
+  depuis 2012" needs ~236 in the 233 column, so its item runs 71.2 against
+  47.2 and the side column's three blocks sit ~25px lower than the comp
+  (Figma 0 / 203 / 319, built 0 / 228 / 376). That is the half-percent Inter
+  drift this file already records for the article prose and the Cabinet cards.
+  **It costs no section height** — the side column is 509 against the
+  timeline's 529, so the timeline sets the row either way.
+- Its "Langues de travail" row is the same story at the other end: Figma's
+  three labels need 277 in the 233 column and it **clips** the third; they wrap
+  here, as every other clipped row on the site does.
+- The last block carries **no rule** — only the first two close on one.
+- Its three language labels are typed uppercase in the text node; stored
+  natural and uppercased at the call site, per the site-wide rule.
+- No new assets, no new tokens.
+
+#### FAQ (`13544:33769`) — built, 979.9 against 940
+
+Seven questions beside the arch illustration — **but the illustration is on the
+LEFT here**, where every other FAQ on the site puts it on the right. White
+ground; the accordion follows on a 48px gap.
+
+- Measured: illustration **383x440 at x=337.5**, accordion at **x=768.5** —
+  both Figma's own — so the gap is exactly **48**. Head 124.8, list at 232.8,
+  row 1 **219.1**, seven rows, the first open.
+- **Its whole composition is mirrored**, and the offsets are exact: arch at
+  illustration-relative **(17.5, 8)** against the right-hand version's 70.5,
+  sparkle at **(331.5, 17)** rather than (49, -4), and the laurel bleeding off
+  the **lower left** at **(-102.5, 335.5)** under a `-scale-x-100` — its
+  `inset-[76.25% 95.43% -10.34% -26.76%]` resolves to exactly that. Verified
+  `scale: -1 1`; Tailwind v4 flips via the standalone property, so `transform`
+  reads `none`.
+- **That is a fifth `FaqIllustration`**, and the first to mirror. All three
+  assets still reuse — laurel 0.0023, arch 0.004, sparkle an exact 1.15x.
+- The documented **squeeze** again, mirrored: 383 + 48 + 820 is 1251 inside
+  1245, so the accordion flexes to **814** and ends flush with the container.
+- The +39.9 is identical to the service page's FAQ: the deliberate answer cap
+  costs one line (+25.2) and the seven row borders +14. Row anatomy is that
+  page's exactly — white on `encre/7` at a 14px corner, 24/16 padding, an 8px
+  gap, a `text-h3` question with **no gap** to the marker, and a
+  **full-strength encre** answer.
+- **Its copy is the service page's verbatim, title included** ("Litiges entre
+  associés : questions & réponses") — a leftover from the duplicated frame,
+  exactly like the e-commerce Interlocuteurs angle note. Stored per page so
+  either can be rewritten alone. **Flag it: on a profile page it is wrong
+  content, faithfully built.**
+
+#### Contact (`13544:34906`) — built, 1027.5 against 1021
+
+A 1245 white card on a full-width **lilas** band, inset **120 above and 99
+below** — an asymmetry worth reading from the frame rather than assuming 96.
+
+- Measured: card at **y=120**, 1245 wide, radii **80 / 18 / 60 / 18** and the
+  `0px 14px 34px` shadow exact; left column **221 at card-relative 65** (64
+  padding + the 1px border), right column at **350** and 830 wide, portrait
+  **221x265** with its own `80 / 4 / 20 / 20`, head **187.2 against 187**,
+  textarea **155** at 408, footer **90 exactly**. The +6.5 is the card and
+  input borders.
+- **Its shadow is hover only**, asked for. The comp draws it lifted, but it is
+  a single card with no sibling to settle it, and every Figma-drawn shadow on
+  this build has turned out to be the hover state — so it follows the
+  Interlocuteurs lawcard, whose radii it already shares. Verified: `none` at
+  rest, `rgba(0,0,0,0.1) 0px 14px 34px` on hover, section height unchanged.
+  **The rule is now simply: a Figma-drawn card shadow is the hover state**, the
+  only standing exception being the Forfaits featured plan, where it marks the
+  highlighted card rather than a state.
+- `lawyer-portrait-card.jpg` reuses (diffs at 3.48 at this box, with the next
+  candidate 3.57 — all three are crops of the same portrait). No new assets.
+- Its marks are a **periwinkle Inter Bold tick** on a 26px line box, with a
+  Poppins SemiBold periwinkle lead-in — a different tick from the result-green
+  ones everywhere else on the site.
+- Its inputs are real and labelled but deliberately **not in a `<form>`**, like
+  Tools, SearchBand and the article's consult block.
+- **Two form-control gotchas cost 16px between them, and only measuring the
+  group found either.** A form control does not inherit the token's
+  line-height, so each input rendered **62.2 against Figma's 57** until
+  `leading-[1.4]` was set explicitly; and a `textarea` is `inline-block` by
+  default, so its wrapper picked up ~6px of line-box descender until the field
+  class took `block`. Both are invisible field by field — the fields group read
+  335.4 against 325 and neither child looked wrong.
+
+### Page 10 complete — five sections plus the tab
+
+| # | Section | Figma | Rendered | Δ |
+|---|---|---|---|---|
+| 1 | Hero | 740 | 740.0 | **0** |
+| 2 | En bref | 527 | 532.8 | +5.8 |
+| 3 | Parcours | 830 | 835.7 | +5.7 |
+| 4 | FAQ | 940 | 979.9 | +39.9 * |
+| 5 | Contact | 1021 | 1027.5 | +6.5 |
+| + | side tab | 45x236 | 45x236 | **0** |
+| **Sections** | **4058** | **4115.9** | **+57.9 (1.4%)** |
+
+Page **4547** at 1920. \* The FAQ's +39.9 is the deliberate answer cap plus its
+seven row borders, exactly as on the service page; every other delta is the
+border-box difference. **No horizontal overflow at any of nine widths.**
+
+**One new asset on the whole page** — `mariela-portrait-hero.jpg`. Everything
+else matched: `seal-ribbon` at 1.2x, **`courthouse.svg` at a fourth box**, the
+three FAQ ornaments, and `lawyer-portrait-card.jpg`.
+
+**Two comp leftovers to flag**, both from the duplicated frame: the FAQ's whole
+block — title included, "Litiges entre associés : questions & réponses" — is
+the service page's verbatim on a profile page; and its seven questions are that
+page's too. Stored per page so either can be rewritten alone.
 
 ## FAQ answers are capped at a reading measure
 

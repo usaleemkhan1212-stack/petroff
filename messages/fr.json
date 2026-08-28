@@ -22,7 +22,9 @@
     "articleDesign": "article-design",
     "ecommerce": "Avocat e-commerce",
     "newArticle": "new-article-page",
-    "servicePage": "service-page"
+    "servicePage": "service-page",
+    "cabinetPagesLabel": "Pages du cabinet",
+    "personalPage": "personal-page"
   },
   "Common": {
     "skipToContent": "Aller au contenu",
@@ -3024,6 +3026,164 @@
     },
     "ctaFinal": {
       "title": "Votre situation ne rentre pas dans nos services ?"
+    }
+  },
+  "PersonalPage": {
+    "hero": {
+      "crumb": "Accueil · Le Cabinet · ",
+      "crumbCurrent": "Mᵉ Mariela Petrova",
+      "overline": "Avocate au Barreau de Paris",
+      "name": "Mariela Petrova",
+      "role": "Associée · Droit des sociétés, contrats & contentieux des affaires",
+      "lead": "Conseil clair, pratique et bilingue pour les entrepreneurs et les sociétés internationales qui s’implantent et se développent en France.",
+      "ctaPrimary": "Prendre rendez-vous",
+      "phone": "+ 33 (0) 1 78 90 46 46",
+      "firm": "Petroff Avocats",
+      "firmDetails": " · 182 rue de Rivoli, 75001 Paris · RCS Paris 814433470 · Toque #C2396 — Barreau de Paris.",
+      "imageAlt": "Portrait de Mᵉ Mariela Petrova devant un immeuble de bureaux",
+      "card": {
+        "line1": "Barreau de Paris",
+        "line2": "depuis 2004"
+      },
+      "stats": {
+        "experience": {
+          "value": "15 ans+",
+          "label": "de pratique du droit des affaires français et européen"
+        },
+        "barreau": {
+          "value": "2004",
+          "label": "inscrite au Barreau de Paris"
+        },
+        "langues": {
+          "value": "FR · EN · BG",
+          "label": "conseil et actes en trois langues"
+        }
+      }
+    },
+    "enBref": {
+      "overline": "En bref",
+      "title": "L’affaire d’abord, la procédure ensuite",
+      "body1": "Avocate qualifiée en France, Mᵉ Petrova exerce depuis plus de quinze ans en droit des affaires français et européen — de la création et la structuration de sociétés aux opérations de M&A, en passant par les contrats, la propriété intellectuelle, l’immobilier et le contentieux.",
+      "body2": "La plupart de ses clients sont établis hors de France : tout se traite à distance et dans les deux langues, sans avoir à se déplacer.",
+      "listTitle": "Domaines d’intervention",
+      "items": {
+        "societes": "Droit des sociétés & structuration",
+        "fusions": "Fusions-acquisitions & capital-risque",
+        "contrats": "Contrats commerciaux",
+        "propriete": "Propriété intellectuelle & RGPD",
+        "immobilier": "Immobilier d’entreprise",
+        "contentieux": "Contentieux & arbitrage"
+      }
+    },
+    "parcours": {
+      "overline": "Parcours & qualifications",
+      "title": "Formation, barreaux et langues",
+      "items": {
+        "m2commerce": {
+          "year": "2002",
+          "title": "Master 2 — Droit du commerce international",
+          "detail": "Université Paris II Panthéon-Assas"
+        },
+        "m2tech": {
+          "year": "2003",
+          "title": "Master 2 — Droit des technologies de l’information",
+          "detail": "Université Paris II Panthéon-Assas"
+        },
+        "llm": {
+          "year": "2004",
+          "title": "LL.M. — Droit des affaires de l’Union européenne",
+          "detail": "University of Leicester (Royaume-Uni)"
+        },
+        "paris": {
+          "year": "2004",
+          "title": "Admission au Barreau de Paris",
+          "detail": "Prestation de serment — avocate inscrite depuis 2004"
+        },
+        "sofia": {
+          "year": "2012",
+          "title": "Inscription au Barreau de Sofia",
+          "detail": "En qualité d’avocat européen (français) — Bulgarie"
+        }
+      },
+      "barreaux": {
+        "title": "Barreaux",
+        "paris": {
+          "name": "Barreau de Paris",
+          "detail": "Toque #C2396 · depuis 2004"
+        },
+        "sofia": {
+          "name": "Barreau de Sofia",
+          "detail": "Avocat européen · depuis 2012"
+        }
+      },
+      "languages": {
+        "title": "Langues de travail",
+        "fr": "Français",
+        "en": "Anglais",
+        "bg": "Bulgare"
+      },
+      "membership": {
+        "title": "Membre",
+        "paris": "Barreau de Paris",
+        "aamti": "AAMTI"
+      }
+    },
+    "faq": {
+      "overline": "Questions fréquentes",
+      "title": "Litiges entre associés : questions & réponses",
+      "items": {
+        "minoritaire": {
+          "question": "Je suis minoritaire : ai-je vraiment des droits ?",
+          "answer": "Oui : droit à l’information et à la communication de documents, droit de vote, droit de contester une décision abusive, expertise de gestion au-delà d’un seuil de détention (5 % dans les sociétés par actions, 10 % en SARL), et action en responsabilité contre le dirigeant, y compris ut singuli. L’article 145 du CPC permet, avant tout procès, de faire établir et conserver la preuve."
+        },
+        "abus": {
+          "question": "Qu’est-ce qu’un abus de majorité — et de minorité ?",
+          "answer": "Des bénéfices systématiquement mis en réserve au profit des majoritaires peuvent, selon les circonstances, caractériser un abus de majorité ; la résolution abusive est alors nulle, et des dommages-intérêts peuvent suivre. Les mesures conservatoires s’obtiennent en quelques semaines par la voie du référé ; l’action au fond devant le tribunal de commerce prend des mois."
+        },
+        "rachat": {
+          "question": "Puis-je forcer mon coassocié à me racheter — ou à me vendre ?",
+          "answer": "Les clauses de buy-sell, d’exclusion ou de sortie du pacte s’exécutent, sous réserve de la prohibition des clauses léonines (art. 1844-1). La clause de shotgun dénoue un blocage sans juge : un associé propose un prix, l’autre choisit — au même prix — de vendre ou d’acheter, dans un délai fixé."
+        },
+        "blocage": {
+          "question": "La société est bloquée en 50/50 : que faire ?",
+          "answer": "Trois instruments, par gradation : le mandataire ad hoc pour une décision précise, l’administrateur provisoire en cas de paralysie et de péril imminent, la dissolution pour mésentente (art. 1844-7, 5°). La jurisprudence refuse la dissolution à l’associé qui a lui-même provoqué la paralysie."
+        },
+        "prix": {
+          "question": "Comment est fixé le prix des parts en cas de désaccord ?",
+          "answer": "Quand les parties s’accordent sur le principe de la cession mais pas sur le prix, l’expert de l’article 1843-4 fixe une valeur qui lie. C’est la voie la plus fréquente : la plupart des litiges entre associés se dénouent par une cession."
+        },
+        "dirigeant": {
+          "question": "Le dirigeant peut-il être révoqué ou poursuivi ?",
+          "answer": "Le dirigeant se révoque pour juste motif, et sa responsabilité se prescrit par trois ans. Rémunérations, conventions ou flux suspects peuvent justifier une expertise de gestion, des mesures de preuve ou une action en responsabilité, y compris ut singuli."
+        },
+        "delais": {
+          "question": "Combien de temps ai-je pour agir ?",
+          "answer": "L’action en nullité d’une décision sociale se prescrit par trois ans (art. L. 235-9 C. com.). Certaines mesures — suspension d’une résolution, séquestre, administrateur provisoire — ne s’obtiennent utilement qu’avant que le fait accompli ne s’installe : le délai court dès le premier fait."
+        }
+      }
+    },
+    "contact": {
+      "overline": "Contact",
+      "title": "Parlez à Mariela Petrova, avocat au Barreau de Paris.",
+      "lead": "Décrivez votre situation en quelques lignes. Le périmètre et le coût vous sont confirmés avant toute mise en œuvre — en français comme en anglais.",
+      "photoAlt": "Portrait de Mᵉ Mariela Petrova",
+      "name": "Mᵉ Mariela Petrova",
+      "address": "Avocate au Barreau de Paris<br></br>182 rue de Rivoli, 75001 Paris<br></br>FR · EN · BG",
+      "marks": {
+        "reponse": "<s>Réponse sous 24 heures</s>, par un avocat du cabinet",
+        "evaluation": "<s>15 minutes</s> d’évaluation gratuite en visio",
+        "prix": "<s>Prix ferme</s> annoncé avant toute intervention"
+      },
+      "fields": {
+        "situation": "Votre situation",
+        "nom": "Nom et prénom",
+        "email": "E-mail",
+        "telephone": "Téléphone",
+        "societe": "Société"
+      },
+      "cta": "Demander à être rappelé",
+      "phone": "<s>Vous préférez appeler ? </s><n>+ 33 (0) 1 78 90 46 46</n> · Paris",
+      "secret": "Échanges couverts par le secret professionnel de l’avocat — art. 66-5 de la loi du 31 décembre 1971."
     }
   }
 }

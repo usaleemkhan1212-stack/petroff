@@ -8,6 +8,7 @@ import { type DomaineKey, domaines } from "@/lib/domaines";
 type MessagePath =
   | `ExpertisesPage.domaines.items.${DomaineKey}.title`
   | "Nav.servicePage"
+  | "Nav.personalPage"
   | "Nav.articleDesign"
   | "Nav.ecommerce"
   | "Nav.newArticle";
@@ -61,6 +62,17 @@ const expertiseChildren: readonly NavChild[] = [
 ];
 
 /**
+ * Le Cabinet's pages. Its own `/le-cabinet` does not exist yet, so the parent
+ * renders as a span while this child is a real link — which is why `NavMenu`
+ * takes `MaybeLink` for the parent rather than `Link`.
+ */
+const cabinetChildren: readonly NavChild[] = (
+  [{ key: "personalPage", href: "/le-cabinet/personal-page" }] as const
+)
+  .filter(({ href }) => isLive(href))
+  .map(({ key, href }): NavChild => ({ key, href, labelKey: `Nav.${key}` as const }));
+
+/**
  * Library pages that are not part of the design's own navigation. Like the
  * Expertises submenu, this exists so a page is reachable while it is being
  * built — the article detail page is a static design study, not a real
@@ -85,11 +97,16 @@ export type NavItem = {
   /** Rendered as a dropdown in the header and nested in the mobile panel. */
   children?: readonly NavChild[];
   /** Key inside `Nav` for the dropdown toggle's screen-reader label. */
-  submenuLabel?: "domainsLabel" | "libraryPagesLabel";
+  submenuLabel?: "domainsLabel" | "libraryPagesLabel" | "cabinetPagesLabel";
 };
 
 export const navItems: readonly NavItem[] = [
-  { key: "cabinet", href: "/le-cabinet" },
+  {
+    key: "cabinet",
+    href: "/le-cabinet",
+    children: cabinetChildren,
+    submenuLabel: "cabinetPagesLabel",
+  },
   {
     key: "expertises",
     href: "/expertises",

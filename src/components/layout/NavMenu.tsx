@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { MaybeLink } from "@/components/ui/MaybeLink";
 import type { NavChild } from "@/lib/nav";
 
 /**
@@ -10,7 +11,8 @@ import type { NavChild } from "@/lib/nav";
  * Expertises domains and the Bibliotheque's extra pages, which is why child
  * labels arrive as full message paths rather than keys in one namespace.
  *
- * The parent still links to its own page; the caret beside it opens the list.
+ * The parent links to its own page when that page exists — Le Cabinet's does
+ * not yet, so it renders as a span — and the caret beside it opens the list.
  * Pointer users get it on hover, everyone else on click, and it closes on
  * Escape or a click outside. Every entry is a page that exists — `nav.ts`
  * builds the list from `routes.ts` — so these are plain links.
@@ -59,12 +61,15 @@ export function NavMenu({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <Link
+      {/* MaybeLink, not Link: a parent can now carry a submenu while its own
+          page does not exist yet — Le Cabinet is the first — and nothing on
+          the site may navigate to a 404. */}
+      <MaybeLink
         href={href}
         className="text-small text-encre hover:text-periwinkle whitespace-nowrap transition-colors"
       >
         {label}
-      </Link>
+      </MaybeLink>
 
       <button
         type="button"
