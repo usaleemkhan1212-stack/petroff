@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
@@ -88,13 +89,13 @@ export function Forfaits() {
                       its CTA ~26px above the other two. */}
                   <span aria-hidden="true" className="h-2.5" />
 
-                  <Button
+                  <ConsultButton
                     size="md"
                     variant={featured ? "gold" : "outline"}
                     className="self-start"
                   >
                     {t(`items.${key}.cta`)}
-                  </Button>
+                  </ConsultButton>
                 </Card>
               </li>
             ))}

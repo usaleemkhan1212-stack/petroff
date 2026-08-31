@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 import PlusCircle from "@/assets/icons/plus-circle.svg";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
@@ -112,17 +113,12 @@ export function Domaines() {
                 <span aria-hidden="true" className="h-3" />
 
                 <h3 className="text-h3 text-encre">{t("transverse.title")}</h3>
-                <p className="text-body text-encre/62">
-                  {t("transverse.description")}
-                </p>
+                <p className="text-body text-encre/62">{t("transverse.description")}</p>
                 <span aria-hidden="true" className="h-3.5" />
 
-                <MaybeLink
-                  href="/contact"
-                  className="text-button font-poppins bg-gold hover:bg-brique self-start rounded-full px-7 py-4 text-white transition-colors"
-                >
+                <ConsultTrigger className="text-button font-poppins bg-gold hover:bg-brique self-start rounded-full px-7 py-4 text-white transition-colors">
                   {t("transverse.cta")}
-                </MaybeLink>
+                </ConsultTrigger>
               </Card>
             </li>
           </ul>

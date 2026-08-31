@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import coffeePhoto from "@/assets/images/card-and-coffee-laptop.jpg";
 import paymentPhoto from "@/assets/images/card-payment-laptop-wide.jpg";
 import columnPhoto from "@/assets/images/laptop-by-column.jpg";
+import { CardCarousel } from "@/components/ui/CardCarousel";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +21,9 @@ const cards = [
   { key: "cgv", photo: columnPhoto, type: "fiche" },
   { key: "retractation", photo: coffeePhoto, type: "guide" },
   { key: "pratiques", photo: paymentPhoto, type: "fiche" },
+  /* A stand-in so the carousel has a fourth page to scroll to — remove it
+     when a real fourth item exists. */
+  { key: "demo", photo: columnPhoto, type: "guide" },
 ] as const satisfies readonly {
   key: string;
   photo: StaticImageData;
@@ -47,11 +51,20 @@ export function ALireEnsuite() {
         <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
         <p className="text-small text-encre/62 mt-3.5">{t("lead")}</p>
 
-        {/* Equal height, 3 -> 1; the bodies stay top-aligned. */}
-        <ul className="mt-11 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {/* Equal height; a carousel below `lg`, the comp's 3-up grid at it. */}
+        <CardCarousel
+          label={t("carouselLabel")}
+          count={cards.length}
+          className="mt-11"
+          trackClassName="gap-6"
+          dotsClassName="mt-8.5"
+        >
           {cards.map(({ key, photo, type }) => (
-            <li key={key} className="flex">
-              <article className="rounded-note-lg border-encre/8 flex min-w-0 flex-1 flex-col overflow-hidden border bg-white">
+            <li
+              key={key}
+              className="flex min-w-0 shrink-0 basis-full snap-start sm:basis-[calc((100%-24px)/2)] lg:basis-[calc((100%-48px)/3)]"
+            >
+              <article className="rounded-note-lg border-encre/8 flex min-w-0 flex-1 flex-col overflow-hidden border bg-white transition-shadow hover:shadow-[0px_14px_34px_rgba(0,0,0,0.1)]">
                 <div className="relative aspect-[399/224] w-full shrink-0">
                   <Image
                     src={photo}
@@ -77,9 +90,7 @@ export function ALireEnsuite() {
                     </li>
                   </ul>
 
-                  <h3 className="text-h3 text-encre">
-                    {t(`items.${key}.title`)}
-                  </h3>
+                  <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
                   <p className="text-small text-encre/62">
                     {t(`items.${key}.description`)}
                   </p>
@@ -98,18 +109,7 @@ export function ALireEnsuite() {
               </article>
             </li>
           ))}
-        </ul>
-
-        {/*
-          Figma's pagination dots, the same row the home Actus carries.
-          Decorative: the frame supplies exactly three cards and all three are
-          on screen at once, so there is nothing to page through.
-        */}
-        <div aria-hidden="true" className="mt-8.5 flex justify-center gap-3">
-          <span className="bg-periwinkle h-2.25 w-7.5 rounded-full" />
-          <span className="bg-encre/20 size-2.25 rounded-full" />
-          <span className="bg-encre/20 size-2.25 rounded-full" />
-        </div>
+        </CardCarousel>
       </Container>
     </section>
   );

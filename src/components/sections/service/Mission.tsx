@@ -2,11 +2,18 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import ParisRooftops from "@/assets/icons/paris-rooftops-wide.svg";
 import portrait from "@/assets/images/lawyer-portrait-polaroid.jpg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /** The six phases of the mission, in Figma's order. */
-const phases = ["evaluation", "preuve", "negociation", "urgence", "fond", "cloture"] as const;
+const phases = [
+  "evaluation",
+  "preuve",
+  "negociation",
+  "urgence",
+  "fond",
+  "cloture",
+] as const;
 
 /**
  * Figma `13445:20731` — "Une position sécurisée, puis imposée".
@@ -34,10 +41,7 @@ export function Mission() {
               Hidden below sm, where a 450 panel cannot fit — the same call the
               e-commerce Principe illustration and the Cabinet collage make.
             */}
-            <div
-              aria-hidden="true"
-              className="relative hidden h-103.5 w-full sm:block"
-            >
+            <div aria-hidden="true" className="relative hidden h-103.5 w-full sm:block">
               <div className="bg-lilas-2 absolute top-0 right-0 h-full w-full max-w-112.5 overflow-hidden rounded-tl-[200px] rounded-tr-[10px] rounded-br-[100px] rounded-bl-[60px]">
                 {/* Figma places the scene at (108.5, 27.56) in the column,
                     i.e. 120.5 left of the panel, and lets the panel clip it. */}
@@ -95,9 +99,7 @@ export function Mission() {
                     <h3 className="text-h4 font-poppins text-encre">
                       {t(`items.${key}.title`)}
                     </h3>
-                    <p className="text-body text-encre/62">
-                      {t(`items.${key}.body`)}
-                    </p>
+                    <p className="text-body text-encre/62">{t(`items.${key}.body`)}</p>
                   </div>
                 </li>
               ))}
@@ -107,13 +109,13 @@ export function Mission() {
                 with the label allowed to wrap below sm. `Button` sets
                 whitespace-nowrap in its base class, so it has to be
                 overridden rather than just omitted. */}
-            <Button
+            <ConsultButton
               size="lg"
               variant="gold"
               className="w-full whitespace-normal sm:w-auto sm:self-start sm:whitespace-nowrap"
             >
               {t("cta")}
-            </Button>
+            </ConsultButton>
           </div>
 
           {/* Figma names this frame `sticky`, and at 414 against the column's
@@ -128,9 +130,9 @@ export function Mission() {
               </h3>
             </div>
             <p className="text-body text-white/70">{t("card.body")}</p>
-            <Button size="lg" variant="gold">
+            <ConsultButton size="lg" variant="gold">
               {t("card.cta")}
-            </Button>
+            </ConsultButton>
           </div>
         </div>
       </Container>

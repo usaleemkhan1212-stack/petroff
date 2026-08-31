@@ -81,6 +81,29 @@
       "bazin": "Portrait de Mᵉ Tony Bazin"
     }
   },
+  "Lawcard": {
+    "overline": "Contact",
+    "title": "Parlez à Mariela Petrova, avocat au Barreau de Paris.",
+    "lead": "Décrivez votre situation en quelques lignes. Le périmètre et le coût vous sont confirmés avant toute mise en œuvre — en français comme en anglais.",
+    "photoAlt": "Portrait de Mᵉ Mariela Petrova",
+    "name": "Mᵉ Mariela Petrova",
+    "address": "Avocate au Barreau de Paris<br></br>182 rue de Rivoli, 75001 Paris<br></br>FR · EN · BG",
+    "marks": {
+      "reponse": "<s>Réponse sous 24 heures</s>, par un avocat du cabinet",
+      "evaluation": "<s>15 minutes</s> d’évaluation gratuite en visio",
+      "prix": "<s>Prix ferme</s> annoncé avant toute intervention"
+    },
+    "fields": {
+      "situation": "Votre situation",
+      "nom": "Nom et prénom",
+      "email": "E-mail",
+      "telephone": "Téléphone",
+      "societe": "Société"
+    },
+    "cta": "Demander à être rappelé",
+    "phone": "<s>Vous préférez appeler ? </s><n>+ 33 (0) 1 78 90 46 46</n> · Paris",
+    "secret": "Échanges couverts par le secret professionnel de l’avocat — art. 66-5 de la loi du 31 décembre 1971."
+  },
   "Hero": {
     "overline": "Cabinet D’avocats — Droit Des Affaires · Paris",
     "title": "Le droit des affaires,<br></br><hl>clairement.</hl>",
@@ -250,8 +273,14 @@
         "kicker": "International",
         "title": "S’implanter en France : guide des 90 premiers jours d’une filiale",
         "meta": "28 juillet 2026 · 12 min"
+      },
+      "demo": {
+        "kicker": "Carte de démonstration",
+        "title": "Quatrième article — carte de démonstration",
+        "meta": "À remplacer · carrousel"
       }
-    }
+    },
+    "carouselLabel": "Actualités"
   },
   "CTAFinal": {
     "overline": "Contact",
@@ -294,7 +323,7 @@
       }
     },
     "copyright": "© 2026 Petroff.law — Tous droits réservés",
-    "legalLinks": "Mentions légales · Confidentialité · Médiateur de la consommation"
+    "legalLinks": "Mentions légales · <c>Confidentialité</c> · Médiateur de la consommation"
   },
   "ExpertisesPage": {
     "stage": {
@@ -1530,49 +1559,87 @@
       "fields": {
         "nature": {
           "label": "Nature de l’acte",
-          "value": "Contrat synallagmatique (fourniture, distribution, prestation)"
+          "options": {
+            "synallagmatique": "Contrat synallagmatique (fourniture, distribution, prestation)",
+            "unilateral": "Engagement unilatéral de payer une somme d’argent",
+            "authentique": "Acte que la loi soumet à la forme authentique"
+          }
         },
         "qualite": {
           "label": "Qualité du cocontractant",
-          "value": "Non-commerçant, ou acte civil"
+          "options": {
+            "com": "Commerçant, engagé par un acte de commerce",
+            "civ": "Non-commerçant, ou acte civil"
+          }
         },
         "montant": {
-          "label": "Montant en jeu (€)",
-          "value": "45000"
+          "label": "Montant en jeu (€)"
         },
         "niveau": {
           "label": "Niveau de signature employé",
-          "value": "Signature électronique simple (clic sur plateforme)"
+          "options": {
+            "simple": "Signature électronique simple (clic sur plateforme)",
+            "avancee": "Signature avancée, sans certificat qualifié",
+            "qualifiee": "Signature électronique qualifiée",
+            "avocat": "Acte sous signature privée contresigné par avocat"
+          }
         }
       },
       "cta": "Analyser ma situation",
       "note": "Analyse conduite par un avocat inscrit au Barreau de Paris — Toque #C2396.",
       "rows": {
         "ecrit": {
-          "label": "Écrit exigé pour la preuve",
-          "value": "Oui, au-delà de 1 500 € (C. civ. art. 1359)"
+          "label": "Écrit exigé pour la preuve"
         },
         "presomption": {
-          "label": "Présomption de fiabilité",
-          "value": "Non — réservée à la signature qualifiée"
+          "label": "Présomption de fiabilité"
         },
         "charge": {
-          "label": "Charge de la preuve en cas de contestation",
-          "value": "À la partie qui invoque l’acte"
+          "label": "Charge de la preuve en cas de contestation"
         },
         "mention": {
-          "label": "Mention en toutes lettres et en chiffres",
-          "value": "Non exigée pour un acte synallagmatique"
+          "label": "Mention en toutes lettres et en chiffres"
         }
       },
-      "verdict": "<b>Position à renforcer. </b>Aucune présomption, un écrit exigé : c’est vous qui devrez établir l’identification du signataire et l’intégrité du document.",
       "disclaimer": "Résultat <s>(démo).</s> Analyse indicative établie sur les seuls paramètres saisis ; elle ne dispense pas de l’examen de l’acte et du procédé de signature réellement employé.",
       "microTitle": "Soumettre ce résultat à l’analyse d’un avocat",
       "microBody": "Nous vérifions le procédé employé et vous indiquons sous 24 heures ce qu’il vous faudrait produire si la signature était contestée.",
       "microPlaceholder": "votre e-mail professionnel",
       "microLabel": "Votre e-mail professionnel",
       "microCta": "Soumettre à un avocat",
-      "microFootnote": "Échange couvert par le secret professionnel de l’avocat (art. 66-5 de la loi du 31 décembre 1971). Réponse sous 24 heures, sans engagement."
+      "microFootnote": "Échange couvert par le secret professionnel de l’avocat (art. 66-5 de la loi du 31 décembre 1971). Réponse sous 24 heures, sans engagement.",
+      "results": {
+        "ecrit": {
+          "libre": "Non exigé — preuve libre (C. com. art. L 110-3)",
+          "oui": "Oui, au-delà de 1 500 € (C. civ. art. 1359 ; Décret 80-533)",
+          "non": "Non exigé en deçà de 1 500 € (C. civ. art. 1359)"
+        },
+        "presomption": {
+          "authentique": "Authenticité par la signature de l’officier public (art. 1367, al. 1 ; 1369)",
+          "avocat": "Foi de l’écrit et de la signature jusqu’à inscription de faux (art. 1374)",
+          "qualifiee": "Oui — fiabilité présumée jusqu’à preuve contraire (art. 1367, al. 2 ; Décret 2017-1416)",
+          "aucune": "Non — la présomption est réservée à la signature qualifiée"
+        },
+        "charge": {
+          "authentique": "Foi jusqu’à inscription de faux (art. 1371)",
+          "avocat": "À la partie qui conteste, par inscription de faux",
+          "qualifiee": "À la partie qui dénie la signature",
+          "aucune": "À la partie qui invoque l’acte : identification et intégrité (art. 1366 et 1367)"
+        },
+        "mention": {
+          "commercial": "Non exigée — engagement commercial (C. com. art. L 110-3)",
+          "avocat": "Dispensée par le contreseing de l’avocat (art. 1374, al. 3)",
+          "exigee": "Exigée, apposable sous forme électronique (art. 1376 ; art. 1174, al. 2)",
+          "authentique": "Dispensée par la forme authentique (art. 1369, al. 3)",
+          "synallagmatique": "Non exigée pour un acte synallagmatique"
+        },
+        "verdict": {
+          "authentique": "<b>Voie authentique.</b> L’acte peut être dressé sous forme électronique et reçu à distance, sans comparution des parties (art. 1369 ; Décret 2020-1422). La plateforme de signature ne remplace pas l’officier public.",
+          "favorable": "<b>Position favorable.</b> Vous n’avez pas à démontrer la fiabilité du procédé : c’est à l’adversaire de la renverser.",
+          "tenable": "<b>Position tenable.</b> La preuve est libre contre un commerçant, mais si la signature est déniée, le juge vérifiera l’identification et l’intégrité : le dossier de preuve reste votre seul argument.",
+          "renforcer": "<b>Position à renforcer.</b> Aucune présomption, un écrit exigé : c’est vous qui devrez établir l’identification du signataire et l’intégrité du document."
+        }
+      }
     },
     "ladder": {
       "simple": {
@@ -1729,7 +1796,8 @@
           "summary": "Seuil de 1 500 € et liberté de la preuve commerciale."
         }
       },
-      "more": "+9 Voir la liste complète"
+      "more": "+9 Voir la liste complète",
+      "less": "Réduire la liste"
     },
     "jurList": {
       "bail": {
@@ -1770,21 +1838,44 @@
       },
       "rows": {
         "diligence": {
-          "label": "Première diligence",
-          "value": "Constitution du dossier de preuve, puis réponse à la dénégation"
+          "label": "Première diligence"
         },
         "delai": {
-          "label": "Délai applicable",
-          "value": "Sans attendre l’audience"
+          "label": "Délai applicable"
         },
         "honoraires": {
-          "label": "Mode d’honoraires",
-          "value": "Mission par phases, budget plafonné"
+          "label": "Mode d’honoraires"
         }
       },
-      "note": "Réunissez le contrat, l’annexe correspondante et la pièce révélant le passif : le juge vérifie les conditions des articles 1366 et 1367.",
+      "results": {
+        "processus": {
+          "diligence": "Cartographie des actes et choix du niveau par famille",
+          "delai": "Avant la première signature",
+          "honoraires": "Forfait ferme, périmètre écrit",
+          "note": "La question n’est pas de choisir un outil mais de décider, acte par acte, où la présomption de fiabilité vaut son coût et où un dossier de preuve bien tenu suffit."
+        },
+        "unilateral": {
+          "diligence": "Rédaction de la mention et vérification du procédé",
+          "delai": "Avant la signature de l’engagement",
+          "honoraires": "Forfait ferme",
+          "note": "L’engagement unilatéral de payer suppose une mention en toutes lettres et en chiffres, apposable sous forme électronique si le procédé garantit qu’elle émane du signataire (art. 1376 ; art. 1174, al. 2)."
+        },
+        "denie": {
+          "diligence": "Constitution du dossier de preuve, puis réponse à la dénégation",
+          "delai": "Sans attendre l’audience",
+          "honoraires": "Mission par phases, budget plafonné",
+          "note": "Réunissez le contrat, l’annexe correspondante et la pièce révélant le passif : le juge vérifie les conditions des articles 1366 et 1367."
+        },
+        "officier": {
+          "diligence": "Orientation vers la forme authentique électronique",
+          "delai": "Selon le calendrier de l’officier public",
+          "honoraires": "Honoraires annoncés avant intervention",
+          "note": "L’acte authentique peut être dressé sous forme électronique et reçu à distance, sans comparution des parties (art. 1369 ; Décret 2020-1422)."
+        }
+      },
       "cta": "Consulter un avocat — 15 minutes gratuites",
-      "selectedLabel": "Situation retenue"
+      "selectedLabel": "Situation retenue",
+      "groupLabel": "Situer votre dossier"
     },
     "faq": {
       "plateforme": {
@@ -1941,6 +2032,13 @@
           "description": "Reproduction à l’identique, intégrité dans le temps, et le jour où l’original est réclamé.",
           "meta": "Fiche · 6 min ·",
           "photoAlt": "Une réunion autour d’une table vue à travers une paroi vitrée"
+        },
+        "demo": {
+          "title": "Quatrième contenu — carte de démonstration",
+          "type": "Guide",
+          "description": "Carte de démonstration : elle existe pour que le carrousel ait une page de plus à faire défiler. À remplacer par un contenu réel.",
+          "meta": "Guide · 8 min ·",
+          "photoAlt": ""
         }
       },
       "model": {
@@ -1966,7 +2064,8 @@
           "title": "Engagement unilatéral de payer : la mention obligatoire",
           "meta": "Modèle · 8 clauses"
         }
-      }
+      },
+      "carouselLabel": "À lire ensuite"
     },
     "ctaFinal": {
       "title": "Votre situation ne rentre pas dans la fiche ?"
@@ -2545,8 +2644,17 @@
           "description": "Le critère de l’impression d’ensemble, et l’amende jusqu’à 10 % du chiffre d’affaires.",
           "meta": "Fiche · 7 min ·",
           "photoAlt": "Une carte bancaire tendue au-dessus d’un ordinateur portable ouvert sur un bureau."
+        },
+        "demo": {
+          "domain": "Vendre, contracter & commercer",
+          "type": "Fiche & FAQ",
+          "title": "Quatrième contenu — carte de démonstration",
+          "description": "Carte de démonstration : elle existe pour que le carrousel ait une page de plus à faire défiler. À remplacer par un contenu réel.",
+          "meta": "Fiche · 8 min ·",
+          "photoAlt": ""
         }
-      }
+      },
+      "carouselLabel": "À lire ensuite"
     },
     "ctaFinal": {
       "title": "Votre situation ne rentre pas dans nos services ?"
@@ -3021,8 +3129,15 @@
           "title": "Article 1843-4 : qui fixe le prix de vos parts ?",
           "description": "Désignation de l’expert, méthode, portée de l’évaluation, voies de recours limitées.",
           "meta": "Fiche · 7 min ·"
+        },
+        "demo": {
+          "type": "Guide",
+          "title": "Quatrième contenu — carte de démonstration",
+          "description": "Carte de démonstration : elle existe pour que le carrousel ait une page de plus à faire défiler. À remplacer par un contenu réel.",
+          "meta": "Guide · 8 min ·"
         }
-      }
+      },
+      "carouselLabel": "À lire ensuite"
     },
     "ctaFinal": {
       "title": "Votre situation ne rentre pas dans nos services ?"
@@ -3161,29 +3276,640 @@
           "answer": "L’action en nullité d’une décision sociale se prescrit par trois ans (art. L. 235-9 C. com.). Certaines mesures — suspension d’une résolution, séquestre, administrateur provisoire — ne s’obtiennent utilement qu’avant que le fait accompli ne s’installe : le délai court dès le premier fait."
         }
       }
+    }
+  },
+  "ConfidentialitePage": {
+    "hero": {
+      "overline": "Informations légales",
+      "title": "Politique de confidentialité",
+      "meta": "<s>Responsable du traitement :</s> Petroff Avocats (SELARL LEGASTRAT)   ·   <s>Dernière mise à jour</s> : 27 août 2026",
+      "lead": "Petroff Avocats attache la plus grande importance à la protection de vos données personnelles. La présente politique explique quelles données nous traitons lorsque vous utilisez le site petroff.law et nos services, à quelles fins, sur quelles bases légales, pendant combien de temps, et comment exercer vos droits au titre du Règlement général sur la protection des données (RGPD)."
     },
-    "contact": {
-      "overline": "Contact",
-      "title": "Parlez à Mariela Petrova, avocat au Barreau de Paris.",
-      "lead": "Décrivez votre situation en quelques lignes. Le périmètre et le coût vous sont confirmés avant toute mise en œuvre — en français comme en anglais.",
-      "photoAlt": "Portrait de Mᵉ Mariela Petrova",
-      "name": "Mᵉ Mariela Petrova",
-      "address": "Avocate au Barreau de Paris<br></br>182 rue de Rivoli, 75001 Paris<br></br>FR · EN · BG",
-      "marks": {
-        "reponse": "<s>Réponse sous 24 heures</s>, par un avocat du cabinet",
-        "evaluation": "<s>15 minutes</s> d’évaluation gratuite en visio",
-        "prix": "<s>Prix ferme</s> annoncé avant toute intervention"
+    "toc": {
+      "title": "Sommaire",
+      "items": {
+        "responsable": "Responsable du traitement",
+        "donnees": "Données personnelles & périmètre",
+        "demandes": "Demandes de contact & d’assistance",
+        "comptes": "Comptes & e-mails applicatifs",
+        "societes": "Informations sur les sociétés & marques",
+        "legislation": "Législation & décisions de justice",
+        "navigation": "Navigation sur le site",
+        "cookies": "Cookies & traceurs",
+        "hebergement": "Sous-traitants & transferts",
+        "destinataires": "Destinataires des données",
+        "securite": "Sécurité",
+        "droits": "Vos droits",
+        "autorite": "Autorité de contrôle",
+        "liens": "Liens vers des sites tiers",
+        "modifications": "Modifications",
+        "contact": "Contact"
+      }
+    },
+    "sections": {
+      "responsable": {
+        "num": "01",
+        "title": "Responsable du traitement",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le responsable du traitement des données personnelles collectées via le site petroff.law et dans le cadre de nos services est :"
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Cabinet",
+                "value": "Petroff Avocats — SELARL LEGASTRAT, société d’exercice libéral inscrite au Barreau de Paris (Toque C2396).",
+                "rule": true
+              },
+              {
+                "label": "Siège",
+                "value": "182 rue de Rivoli, 75001 Paris, France · RCS Paris 814 433 470.",
+                "rule": true
+              },
+              {
+                "label": "Contact « données »",
+                "value": "Mᵉ Mariela Petrova · <s>m.petrova@petroff.law</s> · + 33 (0) 1 78 90 46 46.",
+                "rule": true
+              }
+            ],
+            "ruleAfter": true
+          },
+          {
+            "type": "note",
+            "text": "Compte tenu de la nature de nos activités, la désignation d’un délégué à la protection des données (DPO) n’est pas obligatoire ; aucun DPO n’a été désigné. Vous pouvez néanmoins adresser toute question relative à vos données au contact ci-dessus."
+          }
+        ]
       },
-      "fields": {
-        "situation": "Votre situation",
-        "nom": "Nom et prénom",
-        "email": "E-mail",
-        "telephone": "Téléphone",
-        "societe": "Société"
+      "donnees": {
+        "num": "02",
+        "title": "Données personnelles & périmètre",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "On entend par « données personnelles » toute information se rapportant à une personne physique identifiée ou identifiable. Un traitement est mis en œuvre, notamment, lorsque :"
+          },
+          {
+            "type": "list",
+            "items": [
+              "vous nous adressez une demande de contact ou d’assistance ;",
+              "un compte utilisateur est créé ou un e-mail applicatif vous est envoyé ;",
+              "des informations publiques relatives aux sociétés et aux marques sont publiées ;",
+              "la législation et les décisions de justice sont mises à disposition ;",
+              "des contenus juridiques sont traduits ;",
+              "une relation client est nouée ;",
+              "vous naviguez sur le site."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "Chaque traitement est détaillé ci-dessous, avec ses finalités, sa base légale et sa durée de conservation."
+          }
+        ]
       },
-      "cta": "Demander à être rappelé",
-      "phone": "<s>Vous préférez appeler ? </s><n>+ 33 (0) 1 78 90 46 46</n> · Paris",
-      "secret": "Échanges couverts par le secret professionnel de l’avocat — art. 66-5 de la loi du 31 décembre 1971."
+      "demandes": {
+        "num": "03",
+        "title": "Demandes de contact & d’assistance",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Lorsque vous utilisez un formulaire de contact, le panneau de consultation ou nous écrivez par e-mail, nous traitons les données suivantes :"
+          },
+          {
+            "type": "list",
+            "items": [
+              "<s>Obligatoire</s> — civilité, nom, prénom(s), adresse e-mail ;",
+              "<s>Facultatif</s> — téléphone, société, fonction, pays ;",
+              "objet et contenu de votre demande, ainsi que toute donnée que vous choisissez de communiquer."
+            ]
+          },
+          {
+            "type": "sub",
+            "text": "Finalités"
+          },
+          {
+            "type": "list",
+            "items": [
+              "traiter votre demande et y répondre ;",
+              "vous adresser une proposition d’honoraires ou une lettre de mission ;",
+              "procéder aux vérifications de conflit d’intérêts ;",
+              "coordonner le traitement du dossier et, le cas échéant, vous orienter vers un partenaire ;",
+              "améliorer la qualité de nos services."
+            ]
+          },
+          {
+            "type": "sub",
+            "text": "Base légale"
+          },
+          {
+            "type": "p",
+            "text": "Exécution de mesures précontractuelles prises à votre demande (art. 6, §1, b, RGPD) et intérêt légitime du cabinet à répondre aux sollicitations (art. 6, §1, f, RGPD)."
+          },
+          {
+            "type": "callout",
+            "tone": "red",
+            "title": "Le formulaire et l’e-mail ne sont pas des canaux sécurisés",
+            "body": "Merci de ne pas transmettre de données sensibles ni d’informations confidentielles avant la formalisation de notre intervention."
+          },
+          {
+            "type": "sub",
+            "text": "Durée de conservation"
+          },
+          {
+            "type": "p",
+            "text": "Vos données sont conservées pendant la durée de la relation, puis pendant 5 ans à des fins de preuve, avant suppression."
+          },
+          {
+            "type": "sub",
+            "text": "Orientation vers un partenaire"
+          },
+          {
+            "type": "p",
+            "text": "Si votre dossier appelle une compétence complémentaire, nous pouvons vous orienter vers un membre de notre réseau, dans les conditions suivantes : aucune donnée n’est transmise sans votre accord préalable exprès ; seules les informations strictement nécessaires sont partagées ; les avocats partenaires sont tenus au secret professionnel et les partenaires non-avocats à une obligation contractuelle de confidentialité. Chaque partenaire agit en qualité de responsable de traitement indépendant."
+          },
+          {
+            "type": "note",
+            "text": "Partenaires actuels : Mᵉ Nevena Mehandzhiyska (notaire), Mᵉ Tony Bazin (droit social, Barreau d’Angers), Mᵉ Mathieu Cochet (droit financier), M. Jérôme Willard (expert-comptable)."
+          }
+        ]
+      },
+      "comptes": {
+        "num": "04",
+        "title": "Comptes & e-mails applicatifs",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Lorsque vous créez un espace client, nous traitons : votre adresse e-mail, votre mot de passe (stocké sous forme d’empreinte irréversible), les informations de profil et les données techniques de session."
+          },
+          {
+            "type": "sub",
+            "text": "Finalités"
+          },
+          {
+            "type": "list",
+            "items": [
+              "créer et gérer votre compte ;",
+              "vous authentifier et sécuriser l’accès ;",
+              "envoyer les e-mails applicatifs (notifications, réinitialisation du mot de passe) ;",
+              "prévenir les abus et assurer la sécurité."
+            ]
+          },
+          {
+            "type": "sub",
+            "text": "Base légale"
+          },
+          {
+            "type": "p",
+            "text": "Exécution du contrat (art. 6, §1, b, RGPD) et intérêt légitime à sécuriser le service (art. 6, §1, f, RGPD). Les e-mails applicatifs sont acheminés par notre sous-traitant Resend (art. 28 RGPD)."
+          },
+          {
+            "type": "sub",
+            "text": "Durée de conservation"
+          },
+          {
+            "type": "p",
+            "text": "Données du compte : durée de vie du compte, majorée d’un an après sa clôture. Journaux de distribution des e-mails : 6 mois."
+          }
+        ]
+      },
+      "societes": {
+        "num": "05",
+        "title": "Publication d’informations sur les sociétés & les marques",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le site met à disposition des informations publiques relatives aux entreprises et aux marques, issues des registres officiels français (RNE, registres du commerce) au titre des articles L. 123-1 et suivants du Code de commerce. Leur réutilisation est autorisée par la loi n° 2015-990 et le Code des relations entre le public et l’administration (art. L. 321-1 et suivants)."
+          },
+          {
+            "type": "sub",
+            "text": "Sources"
+          },
+          {
+            "type": "list",
+            "items": [
+              "<s>INPI</s> — registre national des entreprises, actes déposés, comptes annuels ;",
+              "<s>INSEE SIRENE</s> — identifiants SIREN/SIRET, données d’établissement ;",
+              "<s>BODACC</s> — annonces légales ;",
+              "<s>INPI</s> — bases de données des marques."
+            ]
+          },
+          {
+            "type": "sub",
+            "text": "Données traitées"
+          },
+          {
+            "type": "p",
+            "text": "Nom, nom d’usage, prénom(s), civilité, date de naissance (mois et année uniquement), commune et pays de résidence, nationalité, mandats et qualité d’associé, événements affectant la société, identité du déposant ou titulaire d’une marque."
+          },
+          {
+            "type": "note",
+            "text": "Sont exclus de la republication les adresses personnelles et les actes dont l’accès est restreint."
+          },
+          {
+            "type": "sub",
+            "text": "Finalités & base légale"
+          },
+          {
+            "type": "p",
+            "text": "Stocker, indexer, rechercher et afficher ces informations ; permettre de vérifier l’existence, l’identité et la solidité financière d’une société ; lutter contre la fraude. Base légale : intérêt légitime du cabinet et du public à la protection contre la fraude (art. 6, §1, f, RGPD)."
+          },
+          {
+            "type": "note",
+            "text": "Ces données ne sont ni vendues, ni louées, ni utilisées à des fins de prospection, et ne font l’objet d’aucune décision automatisée (art. 22 RGPD)."
+          },
+          {
+            "type": "sub",
+            "text": "Durée & droits"
+          },
+          {
+            "type": "p",
+            "text": "Les données sont conservées pendant la durée d’implication de la personne dans la société, majorée des délais de prescription applicables, et rafraîchies à intervalles réguliers. Les demandes de rectification doivent d’abord être adressées aux organismes sources (INPI, INSEE, greffes). Le droit à l’effacement et le droit d’opposition s’exercent sur justification de motifs tenant à votre situation particulière (art. 21 RGPD) ; nous examinons chaque demande motivée individuellement."
+          }
+        ]
+      },
+      "legislation": {
+        "num": "06",
+        "title": "Publication de la législation & des décisions de justice",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le site donne accès à la législation et à la jurisprudence françaises, issues des sources officielles :"
+          },
+          {
+            "type": "list",
+            "items": [
+              "<s>Légifrance / DILA</s> — codes, textes législatifs et réglementaires, jurisprudence ;",
+              "<s>Judilibre</s>(Cour de cassation) — décisions judiciaires en open data ;",
+              "<s>ArianeWeb</s> et la plateforme open data du Conseil d’État — décisions administratives."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "L’authentification aux flux s’effectue via la plateforme PISTE (API de l’État) ; PISTE n’est pas la source des contenus. Avant publication, les nom et prénoms des personnes physiques sont occultés par l’autorité de publication ; d’autres éléments identifiants le sont lorsque leur divulgation porterait atteinte à la sécurité ou à la vie privée."
+          },
+          {
+            "type": "sub",
+            "text": "Finalités & base légale"
+          },
+          {
+            "type": "p",
+            "text": "Permettre l’accès libre du public au droit et à la jurisprudence, y compris pour un public international. Base légale : réutilisation d’informations du secteur public expressément autorisée (art. L. 321-1 et suivants ; art. 6, §1, f, RGPD)."
+          },
+          {
+            "type": "sub",
+            "text": "Garanties"
+          },
+          {
+            "type": "p",
+            "text": "Nous ne procédons à aucune tentative de ré-identification des personnes occultées ni à aucun recoupement ayant cet objet ou cet effet. La réutilisation des données d’identité des professionnels de justice à des fins d’évaluation, d’analyse, de comparaison ou de prédiction de leurs pratiques est prohibée (art. L. 111-13 du Code de l’organisation judiciaire). Aucune décision automatisée produisant des effets juridiques n’est mise en œuvre (art. 22 RGPD)."
+          },
+          {
+            "type": "note",
+            "text": "Ces données n’étant pas collectées auprès de vous mais auprès de sources publiques (art. 14 RGPD), les demandes d’occultation complémentaire doivent d’abord être adressées aux autorités de publication (Cour de cassation, Conseil d’État). Nous examinons les demandes motivées au titre de l’article 21 RGPD."
+          }
+        ]
+      },
+      "traduction": {
+        "num": "07",
+        "title": "Traduction des contenus juridiques",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Certains contenus sont traduits selon deux voies :"
+          },
+          {
+            "type": "list",
+            "items": [
+              "<s>Voie externe</s>— le contenu sélectionné est transmis à DeepL SE (Allemagne), agissant comme sous-traitant. Le traitement a lieu sur une infrastructure située dans l’Espace économique européen ; le contenu est supprimé après la prestation et n’est pas utilisé pour entraîner des modèles.",
+              "<s>Voie interne</s>— un agent de traduction interne opère au sein de notre environnement serveur (Francfort), sans transmission à un tiers."
+            ]
+          },
+          {
+            "type": "note",
+            "text": "Malgré l’occultation ou la pseudonymisation préalables, un contenu peut comporter des éléments relatifs à des personnes physiques."
+          }
+        ]
+      },
+      "relation": {
+        "num": "08",
+        "title": "Relation client",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Dans le cadre d’une mission, nous traitons : données d’identification et coordonnées, copies de pièces d’identité, justificatifs de vigilance client, données relatives au dossier, données de facturation et de paiement."
+          },
+          {
+            "type": "sub",
+            "text": "Finalités & bases légales"
+          },
+          {
+            "type": "list",
+            "items": [
+              "exécuter la mission — exécution du contrat (art. 6, §1, b, RGPD) ;",
+              "respecter nos obligations de lutte contre le blanchiment (art. L. 561-1 et suivants du Code monétaire et financier) ainsi que nos obligations comptables et fiscales — obligation légale (art. 6, §1, c, RGPD) ;",
+              "gérer et recouvrer nos honoraires et défendre nos droits — intérêt légitime (art. 6, §1, f, RGPD)."
+            ]
+          },
+          {
+            "type": "callout",
+            "tone": "gold",
+            "title": "Secret professionnel de l’avocat",
+            "body": "Les informations relatives à votre dossier sont couvertes par le secret professionnel, général, absolu et illimité dans le temps (art. 66-5 de la loi n° 71-1130)."
+          },
+          {
+            "type": "sub",
+            "text": "Durée de conservation"
+          },
+          {
+            "type": "p",
+            "text": "Données du dossier : durée de la mission, majorée de 5 ans. Justificatifs de vigilance : 5 ans après la fin de la relation. Pièces comptables : 10 ans (art. L. 123-22 du Code de commerce)."
+          }
+        ]
+      },
+      "navigation": {
+        "num": "09",
+        "title": "Navigation sur le site",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Lors de votre visite, certaines données sont collectées automatiquement : adresse IP, date et heure d’accès, nom et URL des pages consultées, URL de provenance, navigateur, système d’exploitation et fournisseur d’accès."
+          },
+          {
+            "type": "sub",
+            "text": "Finalités & base légale"
+          },
+          {
+            "type": "p",
+            "text": "Établir la connexion, permettre une utilisation confortable du site, détecter et garantir la sécurité et la stabilité, faciliter l’administration du site. Base légale : intérêt légitime du cabinet (art. 6, §1, f, RGPD). Ce traitement n’a pas pour objet de vous connaître personnellement."
+          },
+          {
+            "type": "sub",
+            "text": "Durée de conservation"
+          },
+          {
+            "type": "p",
+            "text": "12 mois, sans préjudice des autres durées légales applicables ; les hébergeurs conservent par ailleurs leurs propres journaux selon leurs durées."
+          }
+        ]
+      },
+      "cookies": {
+        "num": "10",
+        "title": "Cookies & traceurs",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Les cookies sont de petits fichiers échangés entre le serveur du site et votre navigateur, stockés par votre appareil ; ils ne peuvent causer aucun dommage ni contenir de logiciel malveillant."
+          },
+          {
+            "type": "sub",
+            "text": "Cookies exemptés de consentement"
+          },
+          {
+            "type": "list",
+            "items": [
+              "<s>Cookie de session</s> — maintien de la session technique et de l’authentification (durée de la session) ;",
+              "<s>Jeton de sécurité</s>— sécurité des formulaires et prévention de la falsification de requête (session) ;",
+              "<s>Cookie de consentement</s> — enregistrement de vos préférences (6 mois)."
+            ]
+          },
+          {
+            "type": "note",
+            "text": "Base de l’exemption : art. 82 de la loi n° 78-17 du 6 janvier 1978, lignes directrices de la CNIL, intérêt légitime (art. 6, §1, f, RGPD)."
+          },
+          {
+            "type": "sub",
+            "text": "Cookies soumis à consentement"
+          },
+          {
+            "type": "list",
+            "items": [
+              "<s>_ga</s>(Google Analytics) — distingue les visiteurs uniques (13 mois) ;",
+              "<s>_ga_*</s>(Google Analytics) — maintien de l’état de session de mesure (13 mois)."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "La mesure d’audience est assurée par Google Analytics (Google Ireland Limited, Dublin). La durée de vie de ces cookies n’excède pas 13 mois et les données ne sont pas conservées au-delà de 25 mois. Vous pouvez refuser ces cookies via le bandeau de consentement ou le module d’exclusion de Google (<s>tools.google.com/dlpage/gaoptout</s>)."
+          }
+        ]
+      },
+      "hebergement": {
+        "num": "11",
+        "title": "Hébergement, sous-traitants & transferts internationaux",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le site est déployé chez Vercel Inc. (région d’exécution Francfort, Allemagne) et l’infrastructure applicative est hébergée chez DigitalOcean LLC (centre de données de Francfort, UE). La configuration de production est située en Allemagne."
+          },
+          {
+            "type": "sub",
+            "text": "Sous-traitants (art. 28 RGPD)"
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Sous-traitant",
+                "value": "Rôle",
+                "header": true,
+                "rule": true
+              },
+              {
+                "label": "Vercel Inc.",
+                "value": "déploiement du site et exécution serveur"
+              },
+              {
+                "label": "DigitalOcean LLC",
+                "value": "hébergement de l’application, de la base de données, du cache, du moteur de recherche et de l’agent de traduction",
+                "rule": true
+              },
+              {
+                "label": "DeepL SE",
+                "value": "traduction de contenus juridiques",
+                "rule": true
+              },
+              {
+                "label": "Resend",
+                "value": "acheminement des e-mails applicatifs"
+              },
+              {
+                "label": "Google Ireland Limited",
+                "value": "mesure d’audience"
+              }
+            ],
+            "ruleAfter": true
+          },
+          {
+            "type": "note",
+            "text": "Les organismes sources d’open data (INPI, INSEE, DILA, Cour de cassation, Conseil d’État, PISTE) ne sont pas des sous-traitants."
+          },
+          {
+            "type": "sub",
+            "text": "Transferts hors Union européenne"
+          },
+          {
+            "type": "p",
+            "text": "DeepL SE traite les données au sein de l’EEE, sans transfert hors UE. Pour Vercel, DigitalOcean et Resend, l’accès à distance par des équipes situées aux États-Unis constitue un transfert au sens du chapitre V du RGPD, encadré par des garanties appropriées : certification au Data Privacy Framework UE–États-Unis et/ou clauses contractuelles types, complétées d’accords de traitement. Google bénéficie de la décision d’adéquation de la Commission (10 juillet 2023), complétée de clauses contractuelles types."
+          }
+        ]
+      },
+      "destinataires": {
+        "num": "12",
+        "title": "Destinataires des données",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Vos données peuvent être communiquées : aux membres et collaborateurs du cabinet qui en ont besoin ; aux partenaires du réseau, avec votre accord préalable ; aux sous-traitants listés à l’article 11 ; à notre expert-comptable, commissaire aux comptes, assureur de responsabilité civile professionnelle et conseils ; aux autorités administratives et judiciaires, à l’Ordre des avocats et aux officiers ministériels lorsque la loi l’exige ou que cela est nécessaire à la défense de nos droits."
+          },
+          {
+            "type": "note",
+            "text": "Vos données ne sont jamais vendues, louées ou échangées."
+          }
+        ]
+      },
+      "securite": {
+        "num": "13",
+        "title": "Sécurité",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Nous mettons en œuvre des mesures de protection physiques, électroniques, organisationnelles et techniques conformes à l’état de l’art, afin de prévenir la perte, l’usage abusif, l’altération, la destruction ou l’accès non autorisé aux données : chiffrement des communications, stockage des mots de passe sous forme d’empreintes irréversibles, restriction des accès aux personnes autorisées, journalisation des accès, sauvegardes régulières."
+          },
+          {
+            "type": "note",
+            "text": "Les systèmes d’information dédiés aux dossiers sont distincts du site et soumis à des mesures de sécurité propres, adaptées aux exigences du secret professionnel."
+          }
+        ]
+      },
+      "droits": {
+        "num": "14",
+        "title": "Vos droits",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Conformément au RGPD, vous disposez des droits suivants :"
+          },
+          {
+            "type": "list",
+            "items": [
+              "droit d’accès ;",
+              "droit de rectification ;",
+              "droit à l’effacement ;",
+              "droit à la limitation du traitement ;",
+              "droit à la portabilité ;",
+              "droit d’opposition ;",
+              "droit de retirer votre consentement, le cas échéant ;",
+              "droit de définir des directives relatives au sort de vos données après votre décès."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "Ces droits s’exercent dans les limites prévues par le RGPD (notamment celles tenant au secret professionnel et aux informations issues de sources publiques). Pour les exercer : Mᵉ Mariela Petrova — confidentialite@petroff.law ou 182 rue de Rivoli, 75001 Paris. Un justificatif d’identité peut être demandé. Nous répondons dans un délai d’un mois, prorogeable de deux mois en cas de complexité."
+          },
+          {
+            "type": "note",
+            "text": "Vous pouvez également introduire une réclamation auprès d’une autorité de contrôle (art. 77 RGPD)."
+          }
+        ]
+      },
+      "autorite": {
+        "num": "15",
+        "title": "Autorité de contrôle",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "L’autorité de contrôle compétente est la Commission nationale de l’informatique et des libertés (CNIL) :"
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Adresse",
+                "value": "Service des plaintes — 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.",
+                "rule": true
+              },
+              {
+                "label": "Téléphone",
+                "value": "+ 33 1 53 73 22 22.",
+                "rule": true
+              },
+              {
+                "label": "Site",
+                "value": "www.cnil.fr",
+                "rule": true,
+                "strong": true
+              }
+            ],
+            "ruleAfter": true
+          }
+        ]
+      },
+      "liens": {
+        "num": "16",
+        "title": "Liens vers des sites tiers",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le site peut renvoyer vers des sites tiers sur lesquels nous n’exerçons aucun contrôle. Nous déclinons toute responsabilité quant à leurs contenus et à leurs pratiques en matière de données. Nous vous invitons à consulter leurs propres politiques de protection des données."
+          }
+        ]
+      },
+      "modifications": {
+        "num": "17",
+        "title": "Modifications de la présente politique",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "La présente politique peut être modifiée pour tenir compte des évolutions légales, réglementaires, jurisprudentielles, des recommandations de l’autorité de contrôle ou des évolutions de nos services et sources de données. Toute nouvelle version est portée à votre connaissance par e-mail ou par publication sur le site."
+          },
+          {
+            "type": "note",
+            "text": "La présente politique est rédigée en français ; toute traduction est fournie à titre de commodité. En cas de divergence, la version française prévaut."
+          }
+        ]
+      },
+      "contact": {
+        "num": "18",
+        "title": "Contact",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Pour toute question relative à la protection de vos données :"
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Contact",
+                "value": "Mᵉ Mariela Petrova · Petroff Avocats (SELARL LEGASTRAT)",
+                "rule": true
+              },
+              {
+                "label": "Adresse",
+                "value": "182 rue de Rivoli, 75001 Paris, France",
+                "rule": true
+              },
+              {
+                "label": "E-mail",
+                "value": "m.petrova@petroff.law",
+                "rule": true,
+                "strong": true
+              },
+              {
+                "label": "Téléphone",
+                "value": "+ 33 (0) 1 78 90 46 46",
+                "rule": true
+              }
+            ],
+            "ruleAfter": true
+          },
+          {
+            "type": "p",
+            "text": "Revenir en haut ↑"
+          }
+        ]
+      }
     }
   }
 }

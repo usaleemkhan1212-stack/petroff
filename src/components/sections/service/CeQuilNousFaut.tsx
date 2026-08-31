@@ -6,7 +6,7 @@ import DocumentIcon from "@/assets/icons/document.svg";
 import FileLinesIcon from "@/assets/icons/file-lines.svg";
 import TrendingUpIcon from "@/assets/icons/trending-up.svg";
 import photo from "@/assets/images/associe-laptop-columns.jpg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
@@ -70,9 +70,7 @@ export function CeQuilNousFaut() {
                     <Icon className="text-encre" />
                   </span>
                   <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
-                  <p className="text-body text-encre/62">
-                    {t(`items.${key}.body`)}
-                  </p>
+                  <p className="text-body text-encre/62">{t(`items.${key}.body`)}</p>
                 </li>
               </Fragment>
             ))}
@@ -94,9 +92,9 @@ export function CeQuilNousFaut() {
                 <h2 className="text-h2 text-encre">{t("closing.title")}</h2>
                 <p className="text-body text-encre/62">{t("closing.lead")}</p>
               </div>
-              <Button size="lg" className="self-start">
+              <ConsultButton size="lg" className="self-start">
                 {t("closing.cta")}
-              </Button>
+              </ConsultButton>
             </div>
           </div>
         </div>

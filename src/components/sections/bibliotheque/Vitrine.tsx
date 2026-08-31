@@ -5,11 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import ChevronRight from "@/assets/icons/chevron-right.svg";
 import { Container } from "@/components/ui/Container";
-import {
-  type ContentType,
-  contentByKey,
-  vitrineItems,
-} from "@/lib/bibliotheque";
+import { type ContentType, contentByKey, vitrineItems } from "@/lib/bibliotheque";
 import { cn } from "@/lib/utils";
 
 /**
@@ -95,7 +91,9 @@ export function Vitrine() {
         */}
         <div className="flex items-end gap-8">
           <div className="min-w-0 flex-1">
-            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins text-brique uppercase">
+              {t("overline")}
+            </p>
             <h2 className="text-h2 text-encre mt-2">{t("title")}</h2>
             <p className="text-small text-encre/62 mt-3">{t("lead")}</p>
           </div>
@@ -148,54 +146,54 @@ export function Vitrine() {
           tabIndex={0}
           role="region"
           aria-label={t("carouselLabel")}
-          className="no-scrollbar mt-12 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto focus-visible:outline-gold focus-visible:outline-2 focus-visible:outline-offset-4"
+          className="no-scrollbar focus-visible:outline-gold mt-12 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-4"
         >
           {vitrineItems.map(({ key, photo }) => {
             const { domain, type } = contentByKey.get(key)!;
             return (
-            <li
-              key={key}
-              className="flex shrink-0 basis-full snap-start lg:basis-[calc((100%-3rem)/3)]"
-            >
-              <article className="rounded-note-lg border-encre/8 flex min-w-0 flex-1 flex-col overflow-hidden border bg-white">
-                <Image
-                  src={photo}
-                  alt=""
-                  sizes="(min-width: 1024px) 399px, 100vw"
-                  className="h-56 w-full object-cover"
-                />
+              <li
+                key={key}
+                className="flex shrink-0 basis-full snap-start lg:basis-[calc((100%-3rem)/3)]"
+              >
+                <article className="rounded-note-lg border-encre/8 flex min-w-0 flex-1 flex-col overflow-hidden border bg-white transition-shadow hover:shadow-[0px_14px_34px_rgba(0,0,0,0.1)]">
+                  <Image
+                    src={photo}
+                    alt=""
+                    sizes="(min-width: 1024px) 399px, 100vw"
+                    className="h-56 w-full object-cover"
+                  />
 
-                <div className="flex flex-1 flex-col gap-2.5 px-7 pt-6 pb-7">
-                  <div className="flex flex-wrap gap-2">
-                    <span className={cn(pill, "bg-pale-periwinkle")}>
-                      {shared(`domains.${domain}`)}
-                    </span>
-                    <span className={cn(pill, typeTones[type])}>
-                      {shared(`types.${type}`)}
-                    </span>
-                  </div>
+                  <div className="flex flex-1 flex-col gap-2.5 px-7 pt-6 pb-7">
+                    <div className="flex flex-wrap gap-2">
+                      <span className={cn(pill, "bg-pale-periwinkle")}>
+                        {shared(`domains.${domain}`)}
+                      </span>
+                      <span className={cn(pill, typeTones[type])}>
+                        {shared(`types.${type}`)}
+                      </span>
+                    </div>
 
-                  <h3 className="text-h3 text-encre">
-                    {shared(`contents.${key}.title`)}
-                  </h3>
-                  <p className="text-small text-encre/62">
-                    {shared(`contents.${key}.description`)}
-                  </p>
+                    <h3 className="text-h3 text-encre">
+                      {shared(`contents.${key}.title`)}
+                    </h3>
+                    <p className="text-small text-encre/62">
+                      {shared(`contents.${key}.description`)}
+                    </p>
 
-                  {/* mt-auto holds the meta row on the card's bottom edge;
+                    {/* mt-auto holds the meta row on the card's bottom edge;
                       the flex gap already guarantees the 10px above it. */}
-                  <p className="text-small-strong text-encre/62 mt-auto">
-                    {t.rich(`meta.${key}`, {
-                      cta: (chunks) => (
-                        <span className="text-button font-poppins text-periwinkle">
-                          {chunks}
-                        </span>
-                      ),
-                    })}
-                  </p>
-                </div>
-              </article>
-            </li>
+                    <p className="text-small-strong text-encre/62 mt-auto">
+                      {t.rich(`meta.${key}`, {
+                        cta: (chunks) => (
+                          <span className="text-button font-poppins text-periwinkle">
+                            {chunks}
+                          </span>
+                        ),
+                      })}
+                    </p>
+                  </div>
+                </article>
+              </li>
             );
           })}
         </ul>
@@ -211,7 +209,9 @@ export function Vitrine() {
               className={cn(
                 "h-2.25 cursor-pointer rounded-full transition-all",
                 "focus-visible:outline-gold focus-visible:outline-2 focus-visible:outline-offset-2",
-                i === page ? "bg-periwinkle w-7.5" : "bg-encre/20 hover:bg-encre/35 w-2.25",
+                i === page
+                  ? "bg-periwinkle w-7.5"
+                  : "bg-encre/20 hover:bg-encre/35 w-2.25",
               )}
             />
           ))}

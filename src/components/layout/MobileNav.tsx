@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { MaybeLink } from "@/components/ui/MaybeLink";
 import type { NavItem } from "@/lib/nav";
@@ -82,7 +82,7 @@ export function MobileNav({ items }: { items: readonly NavItem[] }) {
             </ul>
             <div className="mt-4 flex flex-wrap items-center gap-4">
               <LanguageSwitcher />
-              <Button>{t("appointment")}</Button>
+              <ConsultButton>{t("appointment")}</ConsultButton>
             </div>
           </nav>
         </div>

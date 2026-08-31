@@ -21,14 +21,14 @@ export function Transparence() {
             title. The two paragraphs below run the full 1100.
           */}
           <div className="flex max-w-196 flex-col gap-1.75">
-            <p className="text-overline font-poppins uppercase text-gold">{t("overline")}</p>
+            <p className="text-overline font-poppins text-gold uppercase">
+              {t("overline")}
+            </p>
             <h2 className="text-h2 text-white">{t("title")}</h2>
             <p className="text-body text-white/70">{t("sources")}</p>
           </div>
 
-          <p className="text-body max-w-275 text-white/70">
-            {t("disclaimer")}
-          </p>
+          <p className="text-body max-w-275 text-white/70">{t("disclaimer")}</p>
           <p className="text-small text-rose max-w-275">
             {/* This frame draws the whole line rose, so the shared string's
                 <link> chunk is rendered plainly here. */}

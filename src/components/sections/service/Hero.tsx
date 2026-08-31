@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import CalendarDotsBold from "@/assets/icons/calendar-dots-bold.svg";
 import RosetteRibbon from "@/assets/icons/seal-ribbon.svg";
 import heroPhoto from "@/assets/images/litige-associes-hero.jpg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /** The three reassurance lines under the lead, in Figma's order. */
@@ -87,12 +87,12 @@ export function Hero() {
 
             {/* 9px, not the usual 16 — Figma wraps this pair in its own row. */}
             <div className="flex flex-wrap items-center gap-2.25">
-              <Button size="lg" variant="gold">
+              <ConsultButton size="lg" variant="gold">
                 {t("ctaPrimary")}
-              </Button>
-              <Button size="lg" variant="outline">
+              </ConsultButton>
+              <ConsultButton size="lg" variant="outline">
                 {t("ctaSecondary")}
-              </Button>
+              </ConsultButton>
             </div>
 
             <div className="flex items-center gap-4">
@@ -135,9 +135,7 @@ export function Hero() {
                 className="shrink-0"
               />
               <figcaption className="min-w-0 flex-1">
-                <span className="text-small text-encre block">
-                  {t("card.line1")}
-                </span>
+                <span className="text-small text-encre block">{t("card.line1")}</span>
                 <span className="text-small-strong text-periwinkle block">
                   {t("card.line2")}
                 </span>

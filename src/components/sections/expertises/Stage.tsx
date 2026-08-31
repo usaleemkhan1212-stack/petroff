@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { StageOrnaments } from "@/components/sections/expertises/StageOrnaments";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { MaybeLink } from "@/components/ui/MaybeLink";
@@ -45,7 +46,9 @@ export function Stage() {
             {/* No spacer under the overline, so the title lands on the same
                 y as the home hero's. This frame draws a 10px one; dropping it
                 is part of the same cross-page alignment as the 26 above. */}
-            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins text-brique uppercase">
+              {t("overline")}
+            </p>
 
             <h1 className="text-display text-encre">
               {t.rich("title", {
@@ -68,9 +71,9 @@ export function Stage() {
 
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg">{t("ctaPrimary")}</Button>
-              <Button size="lg" variant="outline">
+              <ConsultButton size="lg" variant="outline">
                 {t("ctaSecondary")}
-              </Button>
+              </ConsultButton>
             </div>
           </div>
 

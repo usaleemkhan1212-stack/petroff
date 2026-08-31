@@ -47,9 +47,7 @@ export function Parcours() {
                     {t(`items.${key}.year`)}
                   </p>
                   <div className="flex min-w-0 flex-1 flex-col gap-2">
-                    <h3 className="text-h3 text-encre">
-                      {t(`items.${key}.title`)}
-                    </h3>
+                    <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
                     <p className="text-body text-encre/62">
                       {t(`items.${key}.detail`)}
                     </p>

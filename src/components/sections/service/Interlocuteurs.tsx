@@ -4,6 +4,7 @@ import bazinPhoto from "@/assets/images/bazin-portrait-wide.jpg";
 import cochetPhoto from "@/assets/images/cochet-portrait.jpg";
 import mehandzhiyskaPhoto from "@/assets/images/mehandzhiyska-portrait.jpg";
 import petrovaPhoto from "@/assets/images/lawyer-portrait-card.jpg";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
@@ -51,7 +52,7 @@ export function Interlocuteurs() {
               cards below have none — so it is the hover state, the fifth time
               on this build. */}
           <article
-            className={`${cardShape} flex flex-col gap-7 p-6 transition-shadow sm:flex-row sm:items-start sm:p-7 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.1)]`}
+            className={`${cardShape} flex flex-col gap-7 p-6 transition-shadow hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.1)] sm:flex-row sm:items-start sm:p-7`}
           >
             <Image
               src={petrovaPhoto}
@@ -63,9 +64,7 @@ export function Interlocuteurs() {
             <div className="flex min-w-0 flex-1 flex-col gap-4">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-h3 text-encre">
-                    {shared("items.petrova.name")}
-                  </h3>
+                  <h3 className="text-h3 text-encre">{shared("items.petrova.name")}</h3>
                   <p className="text-small text-encre/62">
                     {shared("items.petrova.role")}
                   </p>
@@ -102,12 +101,12 @@ export function Interlocuteurs() {
                   against a 230px card box at 320, so the labels wrap below sm.
                   `Button` sets whitespace-nowrap in its base class. */}
               <div className="flex flex-wrap gap-4">
-                <Button
+                <ConsultButton
                   size="sm"
                   className="px-5 py-2.75 whitespace-normal sm:whitespace-nowrap"
                 >
                   {shared("items.petrova.cta")}
-                </Button>
+                </ConsultButton>
                 <Button
                   variant="outline"
                   size="sm"
@@ -133,9 +132,7 @@ export function Interlocuteurs() {
                   />
 
                   <div className="flex w-full flex-col gap-2 text-center">
-                    <h3 className="text-h3 text-encre">
-                      {t(`partners.${key}.name`)}
-                    </h3>
+                    <h3 className="text-h3 text-encre">{t(`partners.${key}.name`)}</h3>
                     <p className="text-encre/62">
                       <span className="text-small block">
                         {t(`partners.${key}.speciality`)}
@@ -152,12 +149,12 @@ export function Interlocuteurs() {
                   <div className="flex w-full flex-col items-center gap-4">
                     {/* "Consulter Mᵉ Mehandziyska" cannot hold one line in a
                         264px card at lg, so these wrap until xl. */}
-                    <Button
+                    <ConsultButton
                       size="sm"
                       className="px-5 py-2.75 text-center whitespace-normal xl:whitespace-nowrap"
                     >
                       {t(`partners.${key}.cta`)}
-                    </Button>
+                    </ConsultButton>
                     <Button variant="outline" size="sm" className="px-5 py-2.75">
                       {t("profileCta")}
                     </Button>

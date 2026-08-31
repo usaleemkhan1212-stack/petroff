@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import ParisSkyline from "@/assets/icons/paris-skyline-ecommerce.svg";
 import polaroidPhoto from "@/assets/images/smiling-lawyer-square.jpg";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
@@ -66,7 +67,7 @@ export function PrincipeIntro() {
 
             <div className="flex w-full flex-col items-start gap-9">
               <div className="flex flex-col gap-4">
-                <p className="text-overline font-poppins uppercase text-brique">
+                <p className="text-overline font-poppins text-brique uppercase">
                   {t("overline")}
                 </p>
                 <h2 className="text-h2 text-encre">{t("title")}</h2>
@@ -81,7 +82,7 @@ export function PrincipeIntro() {
               </div>
 
               {/* Inert, like every CTA on the site until its route exists. */}
-              <Button size="lg">{t("cta")}</Button>
+              <ConsultButton size="lg">{t("cta")}</ConsultButton>
             </div>
           </div>
 
@@ -98,7 +99,7 @@ export function PrincipeIntro() {
           <div className="bg-encre flex flex-col items-start gap-6 rounded-[22px] p-6 sm:p-8 lg:p-12 xl:sticky xl:top-6 xl:h-103.5 xl:min-w-px xl:flex-1 xl:self-start">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-4">
-                <p className="text-overline font-poppins uppercase text-gold">
+                <p className="text-overline font-poppins text-gold uppercase">
                   {t("card.overline")}
                 </p>
                 <h3 className="text-price text-white">{t("card.title")}</h3>

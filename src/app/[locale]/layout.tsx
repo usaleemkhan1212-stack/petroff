@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ConsultationProvider } from "@/components/consultation/ConsultationProvider";
 import { Footer } from "@/components/sections/Footer";
 import { Header } from "@/components/sections/Header";
 import { localeHtmlLang, routing } from "@/i18n/routing";
@@ -68,9 +69,16 @@ export default async function LocaleLayout({
     >
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          {/*
+            The drawer's state lives here so that every contact button on the
+            site can open it, not just the side tabs and the article's sticky
+            bar. The panel itself is rendered once by the provider.
+          */}
+          <ConsultationProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ConsultationProvider>
         </NextIntlClientProvider>
       </body>
     </html>

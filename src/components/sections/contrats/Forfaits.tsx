@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
@@ -86,13 +87,13 @@ export function Forfaits() {
                   {/* No grow: Figma lets the shorter plans' CTAs ride up. */}
                   <span aria-hidden="true" className="h-2.5" />
 
-                  <Button
+                  <ConsultButton
                     size="md"
                     variant={featured ? "gold" : "outline"}
                     className="self-start"
                   >
                     {t(`items.${key}.cta`)}
-                  </Button>
+                  </ConsultButton>
                 </Card>
               </li>
             ))}

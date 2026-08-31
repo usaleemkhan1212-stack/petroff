@@ -12,7 +12,7 @@ import type { ReactNode } from "react";
  *   encre against 2 in brique and 2 still at 16/1.45 — so this is the rule and
  *   the rest are leftovers. It is a weight change mid-sentence, not a size one.
  *
- * **A `<ref>` goes gold on hover**, because these citations are destined to be
+ * **A `<ref>` goes brique on hover**, because these citations are destined to be
  * links out to the text they name. Figma draws no hover state for them; this
  * is a deliberate addition, asked for. They stay `<span>`s until there is
  * somewhere to point them — the site's rule is that nothing navigates to a
@@ -22,7 +22,7 @@ import type { ReactNode } from "react";
 export const proseTags = {
   b: (chunks: ReactNode) => <span className="text-h4 font-poppins">{chunks}</span>,
   ref: (chunks: ReactNode) => (
-    <span className="text-body-strong hover:text-gold cursor-pointer transition-colors">
+    <span className="text-body-strong hover:text-brique cursor-pointer transition-colors">
       {chunks}
     </span>
   ),

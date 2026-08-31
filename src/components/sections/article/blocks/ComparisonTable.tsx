@@ -16,13 +16,22 @@ export function ComparisonTable() {
       <table className="w-full min-w-[680px] border-collapse text-left">
         <thead className="bg-encre">
           <tr>
-            <th scope="col" className="text-h4 font-poppins w-57.5 px-5 py-4 text-white">
+            <th
+              scope="col"
+              className="text-h4 font-poppins w-57.5 px-5 py-4 text-white"
+            >
               {t("head.level")}
             </th>
-            <th scope="col" className="text-h4 font-poppins w-81.25 px-5 py-4 text-white">
+            <th
+              scope="col"
+              className="text-h4 font-poppins w-81.25 px-5 py-4 text-white"
+            >
               {t("head.gives")}
             </th>
-            <th scope="col" className="text-h4 font-poppins w-81.25 px-5 py-4 text-white">
+            <th
+              scope="col"
+              className="text-h4 font-poppins w-81.25 px-5 py-4 text-white"
+            >
               {t("head.shows")}
             </th>
           </tr>

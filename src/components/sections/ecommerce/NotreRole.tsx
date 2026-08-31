@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import rolePhoto from "@/assets/images/card-payment-laptop.jpg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 
@@ -62,9 +62,9 @@ export function NotreRole() {
               </ul>
 
               {/* Inert, like every CTA on the site until its route exists. */}
-              <Button variant="gold" size="lg">
+              <ConsultButton variant="gold" size="lg">
                 {t("cta")}
-              </Button>
+              </ConsultButton>
             </div>
 
             {/* The hero photo's exact box and radii, at 470x548. */}
@@ -84,9 +84,7 @@ export function NotreRole() {
               <li key={key} className="flex">
                 <Card className="flex min-w-0 flex-1 flex-col gap-3 p-7">
                   <h3 className="text-h3 text-encre">{t(`cards.${key}.title`)}</h3>
-                  <p className="text-body text-encre/62">
-                    {t(`cards.${key}.body`)}
-                  </p>
+                  <p className="text-body text-encre/62">{t(`cards.${key}.body`)}</p>
                 </Card>
               </li>
             ))}

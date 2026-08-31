@@ -35,7 +35,7 @@ export function Methode() {
                     style the section overline uses. It is a <p>, so it needs
                     font-poppins explicitly — only h1-h4 inherit it.
                   */}
-                  <p className="text-overline font-poppins uppercase text-brique">
+                  <p className="text-overline font-poppins text-brique uppercase">
                     {t(`items.${key}.kicker`)}
                   </p>
                   <span aria-hidden="true" className="h-1" />

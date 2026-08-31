@@ -12,14 +12,10 @@ import ShieldBadge from "@/assets/icons/shield-badge.svg";
 import WarningCircle from "@/assets/icons/warning-circle.svg";
 import { AnswerBox } from "@/components/sections/article/blocks/AnswerBox";
 import { ArticleFaq } from "@/components/sections/article/blocks/ArticleFaq";
-import { Consult } from "@/components/sections/article/blocks/Consult";
 import { ComparisonTable } from "@/components/sections/article/blocks/ComparisonTable";
 import { Ladder } from "@/components/sections/article/blocks/Ladder";
 import { Seam } from "@/components/sections/article/blocks/Seam";
-import {
-  Timeline,
-  TimelineItem,
-} from "@/components/sections/article/blocks/Timeline";
+import { Timeline, TimelineItem } from "@/components/sections/article/blocks/Timeline";
 import { JurCard, JurList } from "@/components/sections/article/blocks/JurList";
 import { RefList, RefRow } from "@/components/sections/article/blocks/RefList";
 import { Vigil, VigilRow } from "@/components/sections/article/blocks/Vigil";
@@ -41,8 +37,19 @@ import { Container } from "@/components/ui/Container";
  * Built in passes — see the section table in CLAUDE.md for what has landed.
  */
 const refKeys = [
-  "a1365", "a1366", "a1367", "eidas", "a1368", "a1369", "a1373",
-  "a1374", "a1375", "a1376", "a1379", "a1356", "a1359",
+  "a1365",
+  "a1366",
+  "a1367",
+  "eidas",
+  "a1368",
+  "a1369",
+  "a1373",
+  "a1374",
+  "a1375",
+  "a1376",
+  "a1379",
+  "a1356",
+  "a1359",
 ] as const;
 
 const jurKeys = ["bail", "scannee", "verification", "cjue", "mention"] as const;
@@ -62,7 +69,8 @@ export function Corps() {
       <Container className="py-16 lg:py-24">
         <div className="flex items-start gap-16">
           <div className="min-w-0 flex-1">
-            <SectionTitle id="answer" Icon={DocStack} iconWidth={52} iconHeight={45.5}>{t("answerTitle")}
+            <SectionTitle id="answer" Icon={DocStack} iconWidth={52} iconHeight={45.5}>
+              {t("answerTitle")}
             </SectionTitle>
 
             <div className="mt-4.5">
@@ -88,11 +96,7 @@ export function Corps() {
             </div>
 
             <div className="mt-7.5">
-              <Callout
-                tag={t("rule1Tag")}
-                title={t("rule1Title")}
-                Icon={ScalesTiny}
-              >
+              <Callout tag={t("rule1Tag")} title={t("rule1Title")} Icon={ScalesTiny}>
                 {t("rule1Body")}
               </Callout>
             </div>
@@ -102,7 +106,8 @@ export function Corps() {
             </div>
 
             <div className="mt-14">
-              <SectionTitle id="niveaux" Icon={Key} iconWidth={52} iconHeight={31.778}>{t("niveauxTitle")}
+              <SectionTitle id="niveaux" Icon={Key} iconWidth={52} iconHeight={31.778}>
+                {t("niveauxTitle")}
               </SectionTitle>
             </div>
 
@@ -132,11 +137,7 @@ export function Corps() {
             </div>
 
             <div className="mt-7.5">
-              <Seam
-                title={seam("title")}
-                body={seam("body")}
-                cta={seam("cta")}
-              />
+              <Seam title={seam("title")} body={seam("body")} cta={seam("cta")} />
             </div>
 
             <div className="mt-14">
@@ -200,23 +201,25 @@ export function Corps() {
             </div>
 
             <div className="mt-7.5">
-              <Seam
-                title={seam2("title")}
-                body={seam2("body")}
-                cta={seam2("cta")}
-              />
+              <Seam title={seam2("title")} body={seam2("body")} cta={seam2("cta")} />
             </div>
 
             <div className="mt-14">
               <SectionTitle id="organiser">{t("organiserTitle")}</SectionTitle>
             </div>
-            {(["organiser1", "organiser2", "organiser3", "organiser4", "organiser5"] as const).map(
-              (key, index) => (
-                <div key={key} className={index === 0 ? "mt-4.5" : "mt-4"}>
-                  <Prose>{t.rich(key, proseTags)}</Prose>
-                </div>
-              ),
-            )}
+            {(
+              [
+                "organiser1",
+                "organiser2",
+                "organiser3",
+                "organiser4",
+                "organiser5",
+              ] as const
+            ).map((key, index) => (
+              <div key={key} className={index === 0 ? "mt-4.5" : "mt-4"}>
+                <Prose>{t.rich(key, proseTags)}</Prose>
+              </div>
+            ))}
 
             <div className="mt-14">
               <SectionTitle Icon={ShieldBadge} iconWidth={50} iconHeight={53.571}>
@@ -228,25 +231,25 @@ export function Corps() {
             <div className="mt-3">
               <Vigil>
                 <VigilRow Icon={Inbox}>{vigil.rich("boite", proseTags)}</VigilRow>
-                <VigilRow Icon={PageCorner}>
-                  {vigil.rich("export", proseTags)}
-                </VigilRow>
-                <VigilRow Icon={Monument}>
-                  {vigil.rich("doubler", proseTags)}
-                </VigilRow>
-                <VigilRow Icon={Clock}>
-                  {vigil.rich("niveau", proseTags)}
-                </VigilRow>
+                <VigilRow Icon={PageCorner}>{vigil.rich("export", proseTags)}</VigilRow>
+                <VigilRow Icon={Monument}>{vigil.rich("doubler", proseTags)}</VigilRow>
+                <VigilRow Icon={Clock}>{vigil.rich("niveau", proseTags)}</VigilRow>
               </Vigil>
             </div>
 
             <div className="mt-14">
-              <SectionTitle id="textes" Icon={OpenCode} iconWidth={50} iconHeight={37.5}>{t("refTitle")}
+              <SectionTitle
+                id="textes"
+                Icon={OpenCode}
+                iconWidth={50}
+                iconHeight={37.5}
+              >
+                {t("refTitle")}
               </SectionTitle>
             </div>
             <div className="mt-2.5">
-              <RefList more={ref("more")}>
-                {refKeys.slice(0, 4).map((key) => (
+              <RefList id="reflist-article" more={ref("more")} less={ref("less")}>
+                {refKeys.map((key) => (
                   <RefRow
                     key={key}
                     reference={ref(`items.${key}.ref`)}
@@ -262,7 +265,9 @@ export function Corps() {
                 {t("jurTitle")}
               </SectionTitle>
             </div>
-            <div className="mt-4.5">
+            {/* 24 to the list, which is the wrapper gap `13424:15804` gives
+                this block; it had 18 from the older frame's spacer. */}
+            <div className="mt-6">
               <JurList>
                 {jurKeys.map((key) => (
                   <JurCard
@@ -270,7 +275,17 @@ export function Corps() {
                     citation={jur(`${key}.citation`)}
                     title={jur(`${key}.title`)}
                   >
-                    {jur.rich(`${key}.body`, proseTags)}
+                    {/* Figma weights the lead-in at full encre inside an encre/62
+                        line; `proseTags`' own `b` carries no colour, so here it
+                        would inherit the 62%. */}
+                    {jur.rich(`${key}.body`, {
+                      ...proseTags,
+                      b: (chunks) => (
+                        <span className="text-h4 font-poppins text-encre">
+                          {chunks}
+                        </span>
+                      ),
+                    })}
                   </JurCard>
                 ))}
               </JurList>
@@ -285,10 +300,6 @@ export function Corps() {
             </div>
             <div className="mt-4.5">
               <ArticleFaq />
-            </div>
-
-            <div className="mt-9">
-              <Consult />
             </div>
 
             <div className="mt-14">

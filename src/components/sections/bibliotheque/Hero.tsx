@@ -21,7 +21,7 @@ export function Hero() {
           <div className="flex items-center justify-between">
             <div className="flex min-w-0 flex-1 flex-col gap-8.75">
               <div className="flex flex-col gap-4.25">
-                <p className="text-overline font-poppins uppercase text-brique">
+                <p className="text-overline font-poppins text-brique uppercase">
                   {t("overline")}
                 </p>
 

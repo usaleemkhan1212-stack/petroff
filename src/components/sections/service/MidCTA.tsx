@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import FlagFr from "@/assets/icons/flag-fr.svg";
 import ShieldCheck from "@/assets/icons/shield-check.svg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /**
@@ -35,7 +35,12 @@ export function MidCTA() {
             */}
             <div className="border-encre/10 flex flex-col gap-2 rounded-[24px] border bg-white p-2 sm:flex-row sm:items-center sm:gap-3 sm:rounded-[36px] sm:py-2 sm:pr-2 sm:pl-6">
               <div className="flex min-w-0 flex-1 items-center gap-3 max-sm:px-4 max-sm:pt-2">
-                <FlagFr aria-hidden="true" width={21} height={16} className="shrink-0" />
+                <FlagFr
+                  aria-hidden="true"
+                  width={21}
+                  height={16}
+                  className="shrink-0"
+                />
                 <label htmlFor="midcta-phone" className="sr-only">
                   {t("fieldLabel")}
                 </label>
@@ -46,13 +51,13 @@ export function MidCTA() {
                   className="text-small text-encre placeholder:text-encre/62 min-w-0 flex-1 bg-transparent text-ellipsis outline-none"
                 />
               </div>
-              <Button
+              <ConsultButton
                 variant="gold"
                 size="sm"
                 className="shrink-0 px-6 max-sm:w-full"
               >
                 {t("cta")}
-              </Button>
+              </ConsultButton>
             </div>
 
             <p className="text-small text-encre/62 flex items-center gap-2">

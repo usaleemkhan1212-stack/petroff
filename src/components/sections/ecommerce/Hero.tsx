@@ -1,3 +1,4 @@
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import heroPhoto from "@/assets/images/ecommerce-lawyer.jpg";
@@ -37,7 +38,7 @@ export function Hero() {
       <Container className="pt-8 pb-8 lg:pt-14 lg:pb-12">
         <div className="flex items-center gap-9">
           <div className="flex min-w-0 flex-1 flex-col gap-5.5">
-            <p className="text-overline font-poppins uppercase text-brique">
+            <p className="text-overline font-poppins text-brique uppercase">
               {t("overline")}
             </p>
 
@@ -62,9 +63,9 @@ export function Hero() {
 
             <div className="flex flex-wrap items-center gap-2.25">
               {/* Inert, like every CTA on the site until a route exists. */}
-              <span className="text-button font-poppins bg-gold rounded-full px-7 py-3 text-white">
+              <ConsultTrigger className="text-button font-poppins bg-gold rounded-full px-7 py-3 text-white">
                 {t("cta")}
-              </span>
+              </ConsultTrigger>
               <p className="text-small text-encre/62">{t("ctaNote")}</p>
             </div>
           </div>
@@ -141,9 +142,7 @@ export function Hero() {
               <dt className="text-stat font-poppins text-encre">
                 {t(`stats.${key}.value`)}
               </dt>
-              <dd className="text-small text-encre/62">
-                {t(`stats.${key}.label`)}
-              </dd>
+              <dd className="text-small text-encre/62">{t(`stats.${key}.label`)}</dd>
               <dd className="text-overline font-poppins text-periwinkle">
                 {t(`stats.${key}.ref`)}
               </dd>

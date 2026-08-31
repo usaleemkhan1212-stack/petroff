@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Lawcard } from "@/components/contact/Lawcard";
 import { ALireEnsuite } from "@/components/sections/article/ALireEnsuite";
 import { Cabinet } from "@/components/sections/article/Cabinet";
 import { Interlocuteurs } from "@/components/sections/article/Interlocuteurs";
@@ -26,6 +27,12 @@ export default async function ArticleDesignPage({
     <>
       <Hero />
       <Corps />
+
+      {/* `13544:34907` — the contact lawcard, a new top-level section
+          between Corps and Cabinet. It replaces the `consult` form that
+          used to sit inside the article column, and is the personal
+          page's card on a lilas-2 band rather than lilas. */}
+      <Lawcard tone="lilas-2" />
       <Cabinet />
       <Interlocuteurs />
       <ALireEnsuite />

@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import PackageBox from "@/assets/icons/package-box.svg";
 import Storefront from "@/assets/icons/storefront.svg";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
@@ -51,9 +52,7 @@ export function CommentCaMarche() {
                       {index + 1}
                     </span>
                     <div className="flex min-w-0 flex-1 flex-col gap-1">
-                      <h3 className="text-h3 text-encre">
-                        {t(`steps.${key}.title`)}
-                      </h3>
+                      <h3 className="text-h3 text-encre">{t(`steps.${key}.title`)}</h3>
                       <p className="text-body text-encre/62">
                         {t(`steps.${key}.body`)}
                       </p>
@@ -90,8 +89,7 @@ export function CommentCaMarche() {
                   aria-current={chosen ? "true" : undefined}
                   className={cn(
                     "rounded-note flex min-w-0 flex-1 flex-col gap-2 p-4",
-                    chosen &&
-                      "bg-white shadow-[0px_8px_22px_0px_rgba(18,41,77,0.1)]",
+                    chosen && "bg-white shadow-[0px_8px_22px_0px_rgba(18,41,77,0.1)]",
                   )}
                 >
                   <Icon
@@ -108,9 +106,7 @@ export function CommentCaMarche() {
                   >
                     {t(`doors.${key}.label`)}
                   </p>
-                  <p className="text-small text-encre/62">
-                    {t(`doors.${key}.note`)}
-                  </p>
+                  <p className="text-small text-encre/62">{t(`doors.${key}.note`)}</p>
                 </li>
               ))}
             </ul>
@@ -121,9 +117,7 @@ export function CommentCaMarche() {
               <p className="text-overline font-poppins text-brique uppercase">
                 {t("entry.overline")}
               </p>
-              <p className="text-h4 font-poppins text-encre">
-                {t("entry.title")}
-              </p>
+              <p className="text-h4 font-poppins text-encre">{t("entry.title")}</p>
 
               <dl className="flex flex-col gap-2">
                 {rows.map((key, index) => (
@@ -148,9 +142,9 @@ export function CommentCaMarche() {
               </dl>
 
               {/* Full width, unlike every other CTA on this page. */}
-              <Button variant="gold" size="lg" className="w-full px-0">
+              <ConsultButton variant="gold" size="lg" className="w-full px-0">
                 {t("entry.cta")}
-              </Button>
+              </ConsultButton>
             </div>
           </Card>
         </div>

@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import ParisSkyline from "@/assets/icons/paris-skyline.svg";
 import PenNib from "@/assets/icons/pen-nib.svg";
 import portrait from "@/assets/images/lawyer-portrait-polaroid.jpg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /**
@@ -41,26 +41,17 @@ export function DeLAnalyse() {
             <div className="flex items-center gap-4">
               {/* pen-nib at its fourth box on the site — 24x36 here against
                   110x153 native. Exact because the glyph carries no strokes. */}
-              <PenNib
-                aria-hidden="true"
-                width={24}
-                height={36}
-                className="shrink-0"
-              />
+              <PenNib aria-hidden="true" width={24} height={36} className="shrink-0" />
               <p className="max-w-137.5">
-                <span className="text-small-strong text-encre">
-                  {t("quote")}
-                </span>
+                <span className="text-small-strong text-encre">{t("quote")}</span>
                 <br />
-                <span className="text-small text-encre/62">
-                  {t("attribution")}
-                </span>
+                <span className="text-small text-encre/62">{t("attribution")}</span>
               </p>
             </div>
 
-            <Button size="lg" className="self-start">
+            <ConsultButton size="lg" className="self-start">
               {t("cta")}
-            </Button>
+            </ConsultButton>
           </div>
 
           <div

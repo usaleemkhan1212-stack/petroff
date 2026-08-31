@@ -1,20 +1,50 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { Children, useState, type ReactNode } from "react";
+
+/** Figma lists four rows and puts the rest behind the button. */
+const COLLAPSED = 4;
 
 /**
- * Figma's `reflist` (`13318:2847`): the source texts as ruled rows on a 24px
- * gap, closing with an outline button that counts the ones not shown.
+ * Figma's `reflist` (`13318:2847`): the source texts as ruled rows, closing
+ * with an outline button that counts the ones not shown.
  *
- * The frame lists **four** rows and puts the rest behind that button; all
- * thirteen references stay in the data, which is what the "+9" counts.
+ * **The button works.** It takes every reference as a child and shows the
+ * first four until it is pressed — all thirteen are in the data, which is what
+ * the "+9" counts, and the template shows all thirteen with no button at all.
+ * So the collapse is Figma's idea and the expansion is the only reading of it
+ * that is not a dead control.
  */
-export function RefList({ more, children }: { more: string; children: ReactNode }) {
+export function RefList({
+  id,
+  more,
+  less,
+  children,
+}: {
+  id: string;
+  more: string;
+  less: string;
+  children: ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const rows = Children.toArray(children);
+
   return (
     <div className="flex flex-col gap-6">
-      <ul className="flex flex-col gap-6">{children}</ul>
-      {/* Inert until the library routes exist. */}
-      <span className="text-button font-poppins text-encre border-encre w-fit rounded-full border-[1.5px] px-12 py-2.75 text-center">
-        {more}
-      </span>
+      <ul id={id} className="flex flex-col gap-6">
+        {open ? rows : rows.slice(0, COLLAPSED)}
+      </ul>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={id}
+        onClick={() => setOpen((o) => !o)}
+        className={
+          "text-button font-poppins text-encre border-encre hover:bg-encre/5 focus-visible:outline-gold w-fit cursor-pointer rounded-full border-[1.5px] px-12 py-2.75 text-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+        }
+      >
+        {open ? less : more}
+      </button>
     </div>
   );
 }

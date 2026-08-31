@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { HeroOrnaments } from "@/components/sections/contentieux/HeroOrnaments";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { MaybeLink } from "@/components/ui/MaybeLink";
@@ -46,7 +47,9 @@ export function Hero() {
         */}
         <div className="flex flex-col items-center gap-3 pt-16 pb-16 lg:min-h-180 lg:pt-11.5 lg:pb-10">
           <div className="mx-auto flex max-w-215 flex-col items-center gap-3 text-center">
-            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins text-brique uppercase">
+              {t("overline")}
+            </p>
             <span aria-hidden="true" className="h-3" />
 
             {/* `relative z-0` makes the h1 its own stacking context so the
@@ -66,7 +69,7 @@ export function Hero() {
                   <span className="relative inline-block">
                     <span
                       aria-hidden="true"
-                      className="bg-pale-gold absolute -z-10 bottom-[0.117em] left-[calc(50%+0.778em)] h-[0.3235em] w-[3em] -translate-x-1/2 rounded-[4px]"
+                      className="bg-pale-gold absolute bottom-[0.117em] left-[calc(50%+0.778em)] -z-10 h-[0.3235em] w-[3em] -translate-x-1/2 rounded-[4px]"
                     />
                     <span>{chunks}</span>
                   </span>
@@ -79,7 +82,7 @@ export function Hero() {
             <span aria-hidden="true" className="h-7.5" />
 
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg">{t("ctaPrimary")}</Button>
+              <ConsultButton size="lg">{t("ctaPrimary")}</ConsultButton>
               <Button size="lg" variant="outline">
                 {t("ctaSecondary")}
               </Button>

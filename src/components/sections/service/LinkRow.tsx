@@ -1,3 +1,4 @@
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 import { MaybeLink } from "@/components/ui/MaybeLink";
 
 /**
@@ -15,13 +16,20 @@ export function LinkRow({
   cta,
   secondary,
   href,
+  consult = false,
 }: {
   title: string;
   body: string;
   cta: string;
   secondary: string;
   href: string;
+  /** "Thèmes liés" rows read "Parler à un avocat", so their CTA opens the
+      consultation drawer; "Aller plus loin" rows read "En savoir plus" and
+      stay a link to a page that does not exist yet. */
+  consult?: boolean;
 }) {
+  const ctaClass =
+    "text-body-strong text-periwinkle hover:text-encre inline-flex items-center gap-2 transition-colors";
   return (
     <li className="border-encre/10 flex flex-col gap-4.5 border-b py-4.5">
       <div className="flex flex-col gap-2">
@@ -30,15 +38,19 @@ export function LinkRow({
       </div>
 
       <div className="flex flex-wrap items-center gap-4">
-        {/* Inert until these pages exist — MaybeLink renders a span for a
-            route that is not live. */}
-        <MaybeLink
-          href={href}
-          className="text-body-strong text-periwinkle hover:text-encre inline-flex items-center gap-2 transition-colors"
-        >
-          {cta}
-          <span aria-hidden="true">&rarr;</span>
-        </MaybeLink>
+        {consult ? (
+          <ConsultTrigger className={ctaClass}>
+            {cta}
+            <span aria-hidden="true">&rarr;</span>
+          </ConsultTrigger>
+        ) : (
+          /* Inert until these pages exist — MaybeLink renders a span for a
+             route that is not live. */
+          <MaybeLink href={href} className={ctaClass}>
+            {cta}
+            <span aria-hidden="true">&rarr;</span>
+          </MaybeLink>
+        )}
         <span className="text-body text-brique">{secondary}</span>
       </div>
     </li>

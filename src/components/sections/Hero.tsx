@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { HeroOrnaments } from "@/components/sections/HeroOrnaments";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
@@ -12,7 +13,9 @@ export function Hero() {
 
       <Container className="relative">
         <div className="mx-auto flex max-w-225 flex-col items-center py-16 text-center lg:min-h-165 lg:pt-22.5 lg:pb-24">
-          <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
+          <p className="text-overline font-poppins text-brique uppercase">
+            {t("overline")}
+          </p>
 
           <h1 className="text-display text-encre">
             {t.rich("title", {
@@ -34,7 +37,7 @@ export function Hero() {
           <p className="text-body text-encre/62 mt-5.5 max-w-140">{t("lead")}</p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Button size="lg">{t("ctaPrimary")}</Button>
+            <ConsultButton size="lg">{t("ctaPrimary")}</ConsultButton>
             <Button size="lg" variant="outline">
               {t("ctaSecondary")}
             </Button>

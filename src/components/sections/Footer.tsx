@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
+import { MaybeLink } from "@/components/ui/MaybeLink";
 import { footerColumns } from "@/lib/footer";
 import { cn } from "@/lib/utils";
 
@@ -67,7 +68,19 @@ export function Footer() {
 
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-6">
             <p className="text-small text-white/70">{t("copyright")}</p>
-            <p className="text-small text-white/70">{t("legalLinks")}</p>
+            <p className="text-small text-white/70">
+              {t.rich("legalLinks", {
+                /* Confidentialité is a real page now; the other two are not. */
+                c: (chunks) => (
+                  <MaybeLink
+                    href="/confidentialite"
+                    className="transition-colors hover:text-white"
+                  >
+                    {chunks}
+                  </MaybeLink>
+                ),
+              })}
+            </p>
           </div>
         </div>
       </Container>

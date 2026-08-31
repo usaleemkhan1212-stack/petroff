@@ -2,7 +2,7 @@ import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Consultation } from "@/components/consultation/Consultation";
-import { Contact } from "@/components/sections/personal/Contact";
+import { Lawcard } from "@/components/contact/Lawcard";
 import { EnBref } from "@/components/sections/personal/EnBref";
 import { Faq } from "@/components/sections/personal/Faq";
 import { Hero } from "@/components/sections/personal/Hero";
@@ -37,7 +37,7 @@ export default async function PersonalPage({
       <EnBref />
       <Parcours />
       <Faq />
-      <Contact />
+      <Lawcard />
 
       {/* `13495:29913` — the shared red tab and drawer. */}
       <Consultation />

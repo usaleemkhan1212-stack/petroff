@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Shopfront from "@/assets/icons/shopfront.svg";
@@ -81,14 +82,13 @@ export function CommentNousAidons() {
       <ul className="flex flex-col gap-2">
         {(t.raw(`services.${itemKey}.bullets`) as string[]).map((line) => (
           <li key={line} className="flex items-center gap-2">
-            {/* A 10px rose circle — a span, not a file, as elsewhere. */}
+            {/* A 10px circle — a span, not a file. Gold under the site-wide bullet
+                rule; Figma draws it rose on this frame. Its 10px is kept. */}
             <span
               aria-hidden="true"
-              className="bg-rose size-2.5 shrink-0 rounded-full"
+              className="bg-gold size-2.5 shrink-0 rounded-full"
             />
-            <span className="text-small text-encre/62 min-w-0 flex-1">
-              {line}
-            </span>
+            <span className="text-small text-encre/62 min-w-0 flex-1">{line}</span>
           </li>
         ))}
       </ul>
@@ -99,22 +99,18 @@ export function CommentNousAidons() {
       <div className="flex w-full flex-col gap-4">
         <span aria-hidden="true" className="bg-encre/10 h-px w-full" />
         {/* Inert, like every CTA on the site until its route exists. */}
-        <span className="text-button font-poppins border-gold text-brique w-fit rounded-full border-[1.5px] px-7 py-4">
+        <ConsultTrigger className="text-button font-poppins border-gold text-brique w-fit rounded-full border-[1.5px] px-7 py-4">
           {t(`services.${itemKey}.cta`)}
-        </span>
+        </ConsultTrigger>
       </div>
     </Card>
   );
 
   /** A 610x280 photograph in the tiles' corner set. */
-  const Photo = ({
-    src,
-    itemKey,
-  }: {
-    src: StaticImageData;
-    itemKey: PhotoKey;
-  }) => (
-    <div className={cn("relative aspect-[610/280] w-full overflow-hidden", tileCorners)}>
+  const Photo = ({ src, itemKey }: { src: StaticImageData; itemKey: PhotoKey }) => (
+    <div
+      className={cn("relative aspect-[610/280] w-full overflow-hidden", tileCorners)}
+    >
       <Image
         src={src}
         alt={t(`photoAlt.${itemKey}`)}
@@ -168,9 +164,9 @@ export function CommentNousAidons() {
       </p>
       <h3 className="text-price text-encre">{t(`seams.${itemKey}.title`)}</h3>
       <p className="text-body text-encre/62">{t(`seams.${itemKey}.body`)}</p>
-      <span className="text-button font-poppins bg-gold rounded-full px-7 py-4 text-white">
+      <ConsultTrigger className="text-button font-poppins bg-gold rounded-full px-7 py-4 text-white">
         {t(`seams.${itemKey}.cta`)}
-      </span>
+      </ConsultTrigger>
     </div>
   );
 

@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
@@ -55,16 +55,12 @@ export function Forfaits() {
                       </span>
                     )}
 
-                    <h3 className="text-h3 text-encre">
-                      {t(`items.${key}.title`)}
-                    </h3>
+                    <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
 
                     <p className="text-body text-encre/62">
                       {t.rich(`items.${key}.description`, {
                         b: (chunks) => (
-                          <span className="text-body-strong text-encre">
-                            {chunks}
-                          </span>
+                          <span className="text-body-strong text-encre">{chunks}</span>
                         ),
                       })}
                     </p>
@@ -74,24 +70,22 @@ export function Forfaits() {
                         {t(`items.${key}.featuresLabel`)}
                       </p>
                       <ul className="flex flex-col gap-3">
-                        {(t.raw(`items.${key}.features`) as string[]).map(
-                          (feature) => (
-                            <li key={feature} className="flex items-start gap-2">
-                              {/* The Inter subset carries no U+2713, so this
+                        {(t.raw(`items.${key}.features`) as string[]).map((feature) => (
+                          <li key={feature} className="flex items-start gap-2">
+                            {/* The Inter subset carries no U+2713, so this
                                   resolves to a system font — the documented
                                   fallback every other ✓ on the site takes. */}
-                              <span
-                                aria-hidden="true"
-                                className="text-small-strong text-result-green shrink-0"
-                              >
-                                ✓
-                              </span>
-                              <span className="text-small text-encre/62 min-w-0 flex-1">
-                                {feature}
-                              </span>
-                            </li>
-                          ),
-                        )}
+                            <span
+                              aria-hidden="true"
+                              className="text-small-strong text-result-green shrink-0"
+                            >
+                              ✓
+                            </span>
+                            <span className="text-small text-encre/62 min-w-0 flex-1">
+                              {feature}
+                            </span>
+                          </li>
+                        ))}
                       </ul>
                     </div>
 
@@ -100,13 +94,13 @@ export function Forfaits() {
                         own feature list, so the shortest plan's button is the
                         highest. Same behaviour as Facons, Bib and the two
                         domain Forfaits — an `mt-auto` here would level them. */}
-                    <Button
+                    <ConsultButton
                       size="lg"
                       variant={featured ? "gold" : "outline"}
                       className="w-full whitespace-normal sm:w-auto sm:self-start sm:whitespace-nowrap"
                     >
                       {t("cta")}
-                    </Button>
+                    </ConsultButton>
                   </Card>
                 </li>
               );

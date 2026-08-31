@@ -15,8 +15,12 @@ const items = [
   "international",
 ] as const;
 
-/** Figma draws the first one open. */
-const EXPANDED = "plateforme";
+/**
+ * **Every row starts closed.** Figma draws the first one open and the template
+ * ships it `<details open>`; closing them all was asked for, in the same pass
+ * as the triage tool's panel. A deliberate departure from the comp.
+ */
+const EXPANDED: (typeof items)[number] | null = null;
 
 /**
  * Figma's `faq`. Native <details> sharing a `name`, so the group is exclusive

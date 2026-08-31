@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import mariela from "@/assets/images/lawyer-portrait-card.jpg";
@@ -103,9 +104,9 @@ export function Interlocuteurs() {
 
                 {/* Both inert — neither lawyer has a page yet. */}
                 <div className="flex flex-wrap gap-4">
-                  <span className="text-button font-poppins bg-encre rounded-full px-5 py-2.75 text-white">
+                  <ConsultTrigger className="text-button font-poppins bg-encre rounded-full px-5 py-2.75 text-white">
                     {t(`items.${key}.cta`)}
-                  </span>
+                  </ConsultTrigger>
                   <span className="text-button font-poppins text-encre border-encre rounded-full border-[1.5px] px-5 py-2.75">
                     {t(`items.${key}.cta2`)}
                   </span>

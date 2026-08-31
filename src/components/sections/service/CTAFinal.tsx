@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import GlobePaperPlane from "@/assets/icons/globe-paper-plane.svg";
 import ParcelBox from "@/assets/icons/parcel-box.svg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /**
@@ -63,16 +63,19 @@ export function CTAFinal() {
             </div>
             <span aria-hidden="true" className="h-3.5" />
             <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
-              <Button size="lg" className="whitespace-normal sm:whitespace-nowrap">
+              <ConsultButton
+                size="lg"
+                className="whitespace-normal sm:whitespace-nowrap"
+              >
                 {shared("ask.ctaPrimary")}
-              </Button>
-              <Button
+              </ConsultButton>
+              <ConsultButton
                 size="lg"
                 variant="gold"
                 className="whitespace-normal sm:whitespace-nowrap"
               >
                 {shared("ask.ctaSecondary")}
-              </Button>
+              </ConsultButton>
             </div>
           </div>
         </div>

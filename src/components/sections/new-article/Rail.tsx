@@ -1,5 +1,7 @@
 "use client";
 
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -95,9 +97,9 @@ export function Rail() {
           <p className="text-h4 font-poppins text-encre">{t("ctaTitle")}</p>
           <p className="text-small text-encre/62">{t("ctaBody")}</p>
           {/* Inert, like every CTA on the site until its route exists. */}
-          <span className="text-button font-poppins bg-gold w-full rounded-full py-3 text-center text-white">
+          <ConsultTrigger className="text-button font-poppins bg-gold w-full rounded-full py-3 text-center text-white">
             {t("ctaButton")}
-          </span>
+          </ConsultTrigger>
           <p className="text-small text-encre/62">{t("ctaNote")}</p>
         </div>
 
@@ -117,9 +119,9 @@ export function Rail() {
           </p>
           <p className="text-small text-encre/62 text-center">{t("authorRole")}</p>
           <span aria-hidden="true" className="h-2.5" />
-          <span className="text-button font-poppins text-encre border-encre w-full rounded-full border-[1.5px] px-4.5 py-2.75 text-center">
+          <ConsultTrigger className="text-button font-poppins text-encre border-encre w-full rounded-full border-[1.5px] px-4.5 py-2.75 text-center">
             {t("authorCta")}
-          </span>
+          </ConsultTrigger>
         </div>
 
         {/* Figma drops the old "Signaler une inexactitude" link, and writes the

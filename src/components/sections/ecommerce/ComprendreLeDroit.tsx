@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
@@ -108,10 +109,10 @@ export function ComprendreLeDroit() {
                         {/* Inert, like every CTA on the site until its route
                             exists. The arrow sits in a gap-2 span, as every
                             other "→" does. */}
-                        <span className="text-button font-poppins text-periwinkle flex items-center gap-2">
+                        <ConsultTrigger className="text-button font-poppins text-periwinkle flex items-center gap-2">
                           {t("cta")}
-                          <span aria-hidden="true">→</span>
-                        </span>
+                          <span aria-hidden="true">&rarr;</span>
+                        </ConsultTrigger>
                       </Card>
                     </li>
                   ))}

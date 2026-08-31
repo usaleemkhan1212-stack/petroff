@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import MagnifierCheck from "@/assets/icons/magnifier-check.svg";
 import PenNib from "@/assets/icons/pen-nib.svg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /**
@@ -65,19 +65,19 @@ export function CTAFinal() {
             </div>
             <span aria-hidden="true" className="h-3.5" />
             <div className="flex w-full flex-wrap justify-center gap-4 sm:w-auto">
-              <Button
+              <ConsultButton
                 size="lg"
                 className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap"
               >
                 {shared("ask.ctaPrimary")}
-              </Button>
-              <Button
+              </ConsultButton>
+              <ConsultButton
                 size="lg"
                 variant="gold"
                 className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap"
               >
                 {shared("ask.ctaSecondary")}
-              </Button>
+              </ConsultButton>
             </div>
           </div>
         </div>

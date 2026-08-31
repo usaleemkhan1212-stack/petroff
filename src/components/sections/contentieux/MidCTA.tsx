@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 export function MidCTA() {
@@ -28,9 +28,9 @@ export function MidCTA() {
           </p>
 
           {/* px-6 for Figma's 24px; Button's sm is 20 and md is 28. */}
-          <Button variant="gold" size="sm" className="px-6">
+          <ConsultButton variant="gold" size="sm" className="px-6">
             {t("cta")}
-          </Button>
+          </ConsultButton>
         </div>
       </Container>
     </section>

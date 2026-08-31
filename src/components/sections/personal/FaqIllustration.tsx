@@ -29,11 +29,7 @@ export function FaqIllustration() {
         <ParisRooftops width={313} height={400.64} />
       </div>
 
-      <Sparkle
-        width={46}
-        height={46}
-        className="absolute top-[17px] left-[331.5px]"
-      />
+      <Sparkle width={46} height={46} className="absolute top-[17px] left-[331.5px]" />
 
       {/* Bleeds off the left and below, which is why the section is
           overflow-hidden. Mirrored — Tailwind v4 flips via the standalone

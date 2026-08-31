@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import ColumnedBuildingPaleBlue from "@/assets/icons/columned-building-pale-blue.svg";
 import LawyerRobeColour from "@/assets/icons/lawyer-robe-colour.svg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 export function CTAFinal() {
@@ -41,7 +41,9 @@ export function CTAFinal() {
           </div>
 
           <div className="relative flex flex-col items-center gap-4 text-center">
-            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins text-brique uppercase">
+              {t("overline")}
+            </p>
             <h2 className="text-h2 text-encre">{t("title")}</h2>
             <p className="text-body text-encre/62">{t("lead")}</p>
             <span aria-hidden="true" className="h-3.5" />
@@ -52,12 +54,19 @@ export function CTAFinal() {
               whitespace-nowrap clipped it. Figma specifies desktop only.
             */}
             <div className="flex w-full flex-wrap justify-center gap-4">
-              <Button size="lg" className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap">
+              <ConsultButton
+                size="lg"
+                className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap"
+              >
                 {t("ctaPrimary")}
-              </Button>
-              <Button size="lg" variant="gold" className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap">
+              </ConsultButton>
+              <ConsultButton
+                size="lg"
+                variant="gold"
+                className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap"
+              >
                 {t("ctaSecondary")}
-              </Button>
+              </ConsultButton>
             </div>
           </div>
         </div>

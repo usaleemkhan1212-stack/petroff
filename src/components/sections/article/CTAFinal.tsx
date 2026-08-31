@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import MagnifierCheck from "@/assets/icons/magnifier-check.svg";
 import PenNib from "@/assets/icons/pen-nib.svg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /**
@@ -49,7 +49,7 @@ export function CTAFinal() {
           </div>
 
           <div className="relative flex flex-col items-center gap-3 text-center">
-            <p className="text-overline font-poppins uppercase text-brique">
+            <p className="text-overline font-poppins text-brique uppercase">
               {shared("overline")}
             </p>
             <h2 className="text-h2 text-encre">{t("title")}</h2>
@@ -60,10 +60,10 @@ export function CTAFinal() {
             </div>
             <span aria-hidden="true" className="h-3.5" />
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg">{shared("ask.ctaPrimary")}</Button>
-              <Button size="lg" variant="gold">
+              <ConsultButton size="lg">{shared("ask.ctaPrimary")}</ConsultButton>
+              <ConsultButton size="lg" variant="gold">
                 {shared("ask.ctaSecondary")}
-              </Button>
+              </ConsultButton>
             </div>
           </div>
         </div>

@@ -21,9 +21,23 @@ export function Cabinet() {
               lead={t("lead")}
             />
 
-            <dl className="flex flex-wrap gap-9">
+            {/*
+              Figma marks this row `flex-nowrap` with `whitespace-nowrap` and
+              `shrink-0` on all three, so the counters are never meant to break
+              onto a second line — and they only just fit, needing 565.8 of the
+              column's 590.5 (576 at xl). That 4% of slack is inside the
+              difference between Inter and the metric-adjusted fallback shown
+              while the webfont loads, which is why the row wrapped on some
+              machines and not others.
+
+              It is `flex-nowrap` from `sm` so the three always share one row,
+              with `min-w-0` on each so a label wraps inside its own column
+              rather than pushing the page wide. Below `sm` the column is 335
+              against the row's 566, so there it still wraps.
+            */}
+            <dl className="flex flex-wrap gap-9 sm:flex-nowrap">
               {cabinetStats.map((key) => (
-                <div key={key} className="flex flex-col gap-1">
+                <div key={key} className="flex min-w-0 flex-col gap-1">
                   {/* Poppins Bold 40 — text-h2, not text-stat's 28. Both this
                       frame and the one it replaces specify 40 here. */}
                   <dt className="text-h2 font-poppins text-encre">

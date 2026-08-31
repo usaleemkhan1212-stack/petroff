@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 import { LinkRow } from "@/components/sections/service/LinkRow";
 
@@ -51,12 +51,12 @@ export function AllerPlusLoin() {
             ))}
           </div>
 
-          <Button
+          <ConsultButton
             size="lg"
             className="w-full whitespace-normal sm:w-auto sm:self-start sm:whitespace-nowrap"
           >
             {t("bookCta")}
-          </Button>
+          </ConsultButton>
         </div>
       </Container>
     </section>

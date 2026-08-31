@@ -1,5 +1,7 @@
 "use client";
 
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -102,9 +104,9 @@ export function Rail() {
         <div className="rounded-card bg-lilas-2 flex flex-col gap-2 p-5">
           <p className="text-h4 font-poppins text-encre">{t("ctaTitle")}</p>
           <p className="text-small text-encre/62">{t("ctaBody")}</p>
-          <span className="text-button font-poppins bg-gold rounded-full py-3 text-center text-white">
+          <ConsultTrigger className="text-button font-poppins bg-gold rounded-full py-3 text-center text-white">
             {t("ctaButton")}
-          </span>
+          </ConsultTrigger>
           <p className="text-small text-encre/62">{t("ctaNote")}</p>
         </div>
 
@@ -119,13 +121,18 @@ export function Rail() {
             {t("authorName")}
           </p>
           <p className="text-small text-encre/62 text-center">{t("authorRole")}</p>
-          <span className="text-button font-poppins text-encre border-encre mt-2.5 w-full rounded-full border-[1.5px] px-4.5 py-2.75 text-center">
+          <ConsultTrigger className="text-button font-poppins text-encre border-encre mt-2.5 w-full rounded-full border-[1.5px] px-4.5 py-2.75 text-center">
             {t("authorCta")}
-          </span>
+          </ConsultTrigger>
         </div>
 
         <p className="text-small text-encre/62 flex items-center gap-2.5">
-          <SealRibbon aria-hidden="true" width={19.13} height={30} className="shrink-0" />
+          <SealRibbon
+            aria-hidden="true"
+            width={19.13}
+            height={30}
+            className="shrink-0"
+          />
           <span className="min-w-0 flex-1">
             {t.rich("verified", {
               b: (chunks) => (

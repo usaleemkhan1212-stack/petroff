@@ -1,12 +1,19 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import BulletMarkGold from "@/assets/icons/bullet-mark-gold.svg";
+import BulletMark from "@/assets/icons/bullet-mark.svg";
 import photo from "@/assets/images/associes-grass-laptop.jpg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /** The six points, in Figma's order. */
-const points = ["nullite", "minorites", "escalade", "revocation", "pacte", "prix"] as const;
+const points = [
+  "nullite",
+  "minorites",
+  "escalade",
+  "revocation",
+  "pacte",
+  "prix",
+] as const;
 
 /**
  * Figma `13445:23789` — "L'essentiel en six points".
@@ -50,10 +57,10 @@ export function Essentiel() {
               <ul className="flex flex-col">
                 {points.map((key) => (
                   <li key={key} className="flex items-start gap-4.25 py-2.5">
-                    <BulletMarkGold
+                    <BulletMark
                       aria-hidden="true"
                       width={9}
-                      height={27}
+                      height={20}
                       className="shrink-0"
                     />
                     <p className="text-body text-encre min-w-0 flex-1">
@@ -68,9 +75,9 @@ export function Essentiel() {
               </ul>
             </div>
 
-            <Button size="lg" className="self-start">
+            <ConsultButton size="lg" className="self-start">
               {t("cta")}
-            </Button>
+            </ConsultButton>
           </div>
         </div>
       </Container>

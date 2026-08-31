@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import photo from "@/assets/images/associee-tablet.jpg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /** The six steps, in Figma's order. */
@@ -74,17 +74,15 @@ export function CommentNousProcedons() {
                     <h3 className="text-h4 font-poppins text-encre">
                       {t(`items.${key}.title`)}
                     </h3>
-                    <p className="text-body text-encre/62">
-                      {t(`items.${key}.body`)}
-                    </p>
+                    <p className="text-body text-encre/62">{t(`items.${key}.body`)}</p>
                   </div>
                 </li>
               ))}
             </ul>
 
-            <Button size="lg" variant="gold" className="self-start">
+            <ConsultButton size="lg" variant="gold" className="self-start">
               {t("cta")}
-            </Button>
+            </ConsultButton>
           </div>
         </div>
       </Container>

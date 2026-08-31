@@ -10,7 +10,7 @@ import PersonIcon from "@/assets/icons/person.svg";
 import ShieldCheckIcon from "@/assets/icons/shield-check.svg";
 import TrendingUpIcon from "@/assets/icons/trending-up.svg";
 import photo from "@/assets/images/associes-walking.jpg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /**
@@ -105,7 +105,7 @@ export function QuandFaireAppel() {
                 })}
               </p>
 
-              <Button size="lg">{t("cta")}</Button>
+              <ConsultButton size="lg">{t("cta")}</ConsultButton>
             </div>
 
             <ul className="flex flex-col gap-4 lg:w-169.75">

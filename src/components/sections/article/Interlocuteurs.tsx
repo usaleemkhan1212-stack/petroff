@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import mariela from "@/assets/images/lawyer-portrait-card.jpg";
@@ -46,7 +47,9 @@ export function Interlocuteurs() {
       {/* Bottom padding only: Figma puts the overline at y=0 of this section,
           the same shape the home CTAFinal has. */}
       <Container className="pb-16 lg:pb-24">
-        <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
+        <p className="text-overline font-poppins text-brique uppercase">
+          {t("overline")}
+        </p>
         <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
         <p className="text-small text-encre/62 mt-3.5">{t("lead")}</p>
 
@@ -54,7 +57,7 @@ export function Interlocuteurs() {
           {lawyers.map(({ key, photo }) => (
             <li
               key={key}
-              className="border-encre/8 flex flex-col gap-7 rounded-tl-[80px] rounded-tr-[18px] rounded-br-[60px] rounded-bl-[18px] border bg-white p-5 sm:p-7 transition-shadow hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.1)] sm:flex-row sm:items-start"
+              className="border-encre/8 flex flex-col gap-7 rounded-tl-[80px] rounded-tr-[18px] rounded-br-[60px] rounded-bl-[18px] border bg-white p-5 transition-shadow hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.1)] sm:flex-row sm:items-start sm:p-7"
             >
               <div className="relative h-60 w-50 shrink-0 self-start overflow-hidden rounded-tl-[80px] rounded-tr-[4px] rounded-br-[20px] rounded-bl-[20px]">
                 <Image
@@ -71,9 +74,7 @@ export function Interlocuteurs() {
                   <p className="text-h3 font-poppins text-encre">
                     {t(`items.${key}.name`)}
                   </p>
-                  <p className="text-small text-encre/62">
-                    {t(`items.${key}.role`)}
-                  </p>
+                  <p className="text-small text-encre/62">{t(`items.${key}.role`)}</p>
                 </div>
 
                 {/* Sixth pill on the site: lilas ground, encre/62 label. */}
@@ -107,9 +108,9 @@ export function Interlocuteurs() {
 
                 {/* Both inert, like every control on this page. */}
                 <div className="flex flex-wrap gap-4">
-                  <span className="text-button font-poppins bg-encre rounded-full px-5 py-2.75 text-white">
+                  <ConsultTrigger className="text-button font-poppins bg-encre rounded-full px-5 py-2.75 text-white">
                     {t(`items.${key}.cta`)}
-                  </span>
+                  </ConsultTrigger>
                   <span className="text-button font-poppins text-encre border-encre rounded-full border-[1.5px] px-5 py-2.75">
                     {t(`items.${key}.cta2`)}
                   </span>

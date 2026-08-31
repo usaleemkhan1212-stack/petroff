@@ -35,11 +35,7 @@ export function FaqIllustration() {
         <ParisRooftops width={313} height={400.64} />
       </div>
 
-      <Sparkle
-        width={46}
-        height={46}
-        className="absolute top-[-4px] left-[49px]"
-      />
+      <Sparkle width={46} height={46} className="absolute top-[-4px] left-[49px]" />
 
       {/* Bleeds past the 383 box, which is why the section is overflow-hidden. */}
       <LaurelBranch

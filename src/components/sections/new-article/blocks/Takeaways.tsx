@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import BulletMark from "@/assets/icons/bullet-mark-gold.svg";
+import BulletMark from "@/assets/icons/bullet-mark.svg";
 import { proseTags } from "@/components/sections/new-article/blocks/Prose";
 
 /** The seven points, in Figma's order. */
@@ -25,22 +25,33 @@ const points = [
  * than adding a fourth near-identical colour. The name is not a stable key in
  * this file; the hex has to be compared each time.
  *
- * **Its bullet is gold**, where the original page's is periwinkle. That file is
- * shared, so it is forked rather than recoloured — `bullet-mark-gold.svg`.
+ * **Its bullet is the shared gold dot.** Both takeaways blocks draw the same
+ * one now, in Figma's 9x20 box, so the brique/periwinkle fork this note used
+ * to describe is gone — see "One gold bullet, site-wide".
  */
 export function Takeaways() {
   const t = useTranslations("ArticlePage");
 
   return (
-    <div className="rounded-note-lg bg-pink-soft/40 overflow-hidden p-7">
+    <div className="rounded-note-lg bg-pink-soft/40 overflow-hidden p-5 sm:p-7">
       <p className="text-h3 font-poppins text-encre">{t("corps.takeawaysTitle")}</p>
       <span aria-hidden="true" className="block h-4" />
       <ul>
         {points.map((key) => (
           <li key={key} className="flex items-start gap-4.25 py-2.5">
-            <BulletMark aria-hidden="true" width={9} height={27} className="shrink-0" />
+            <BulletMark aria-hidden="true" width={9} height={20} className="shrink-0" />
+            {/* Figma weights the lead-in at FULL encre inside an encre/62
+                line. The shared `proseTags` cannot express that — its `b`
+                carries no colour, so inside this paragraph it inherited the
+                62% and the whole point read flat. Overridden here, exactly as
+                the sibling page's block does. */}
             <p className="text-body text-encre/62 min-w-0 flex-1">
-              {t.rich(`takeaways.${key}`, proseTags)}
+              {t.rich(`takeaways.${key}`, {
+                ...proseTags,
+                b: (chunks) => (
+                  <span className="text-h4 font-poppins text-encre">{chunks}</span>
+                ),
+              })}
             </p>
           </li>
         ))}

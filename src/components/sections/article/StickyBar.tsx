@@ -69,7 +69,7 @@ export function StickyBar({
       */
       aria-hidden={!barOpen}
       inert={!barOpen}
-      className={`bg-pale-rose/60 border-red fixed inset-x-0 bottom-0 z-20 hidden border-t-2 transition-[translate,opacity] duration-300 motion-reduce:transition-none lg:block ${
+      className={`bg-lilas/60 border-encre/30 fixed inset-x-0 bottom-0 z-20 hidden border-t backdrop-blur-lg transition-[translate,opacity] duration-300 motion-reduce:transition-none lg:block ${
         barOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       }`}
     >
@@ -82,9 +82,9 @@ export function StickyBar({
       */}
       <Container className="py-6">
         <div className="flex items-center gap-4.5">
-          <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-            <p className="text-h4 font-poppins text-encre">{t("title")}</p>
-            <p className="text-small text-periwinkle">{t("detail")}</p>
+          <div className="text-encre flex min-w-0 flex-1 flex-col gap-0.5">
+            <p className="text-h4 font-poppins">{t("title")}</p>
+            <p className="text-small">{t("detail")}</p>
           </div>
 
           {/* Written out rather than using `Button`: white ground with red
@@ -92,9 +92,14 @@ export function StickyBar({
           <button
             type="button"
             onClick={onConsult}
-            className="text-button font-poppins text-red focus-visible:outline-gold flex h-10.75 shrink-0 cursor-pointer items-center gap-3 rounded-full bg-white px-5 transition-colors hover:bg-white/85 focus-visible:outline-2 focus-visible:outline-offset-2"
+            className="text-button font-poppins bg-red focus-visible:outline-gold hover:bg-red/90 flex h-10.75 shrink-0 cursor-pointer items-center gap-3 rounded-full px-5 text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
           >
-            <SpeechBubble aria-hidden="true" width={18} height={18} className="-rotate-90" />
+            <SpeechBubble
+              aria-hidden="true"
+              width={18}
+              height={18}
+              className="-rotate-90"
+            />
             {t("cta")}
           </button>
 
@@ -102,7 +107,7 @@ export function StickyBar({
             type="button"
             onClick={() => setDismissed(true)}
             aria-label={t("dismiss")}
-            className="text-lead font-inter text-encre/62 hover:text-encre w-5.5 shrink-0 cursor-pointer text-center leading-none transition-colors focus-visible:outline-gold focus-visible:outline-2 focus-visible:outline-offset-2"
+            className="text-lead font-inter text-encre/62 hover:text-encre focus-visible:outline-gold w-5.5 shrink-0 cursor-pointer text-center leading-none transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <span aria-hidden="true">✕</span>
           </button>

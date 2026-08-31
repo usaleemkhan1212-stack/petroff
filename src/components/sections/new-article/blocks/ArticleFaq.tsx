@@ -15,8 +15,12 @@ const items = [
   "international",
 ] as const;
 
-/** Figma leaves the first one open. */
-const expandedKey = "plateforme";
+/**
+ * **Every row starts closed.** Figma leaves the first one open and the
+ * template ships it `<details open>`; closing them all was asked for, in the
+ * same pass as the triage tool's panel. A deliberate departure from the comp.
+ */
+const expandedKey: (typeof items)[number] | null = null;
 
 /**
  * Figma's `faq` (`13318:2985`): eleven questions on a 12px gap — white, a

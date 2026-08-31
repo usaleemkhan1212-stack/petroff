@@ -5,6 +5,7 @@ import ModelFolder from "@/assets/icons/model-folder.svg";
 import glassMeetingRoom from "@/assets/images/glass-meeting-room.jpg";
 import loungeConversation from "@/assets/images/lounge-conversation.jpg";
 import standingHuddle from "@/assets/images/standing-huddle.jpg";
+import { CardCarousel } from "@/components/ui/CardCarousel";
 import { Container } from "@/components/ui/Container";
 
 /*
@@ -16,6 +17,9 @@ const cards = [
   { key: "formation", photo: loungeConversation, type: "bg-pale-gold" },
   { key: "preuve", photo: standingHuddle, type: "bg-pale-blue" },
   { key: "copie", photo: glassMeetingRoom, type: "bg-pale-blue" },
+  /* A stand-in so the carousel has a fourth page to scroll to — remove it
+     when a real fourth item exists. */
+  { key: "demo", photo: loungeConversation, type: "bg-pale-gold" },
 ] as const satisfies readonly {
   key: string;
   photo: StaticImageData;
@@ -94,11 +98,19 @@ export function ALireEnsuite() {
             </div>
           </nav>
 
-          <ul className="flex flex-col gap-6 lg:flex-row lg:items-start">
+          {/* A carousel at every width — one card per view, two from `sm`,
+              the comp's three from `lg`. This frame draws no dot row; the
+              carousel's is kept because it now pages. */}
+          <CardCarousel
+            label={t("carouselLabel")}
+            count={cards.length}
+            trackClassName="gap-6 items-start"
+            dotsClassName="mt-8.5"
+          >
             {cards.map(({ key, photo, type }, index) => (
               <li
                 key={key}
-                className={`rounded-note-lg border-encre/8 flex min-w-0 flex-col overflow-hidden border bg-white lg:flex-1 ${
+                className={`rounded-note-lg border-encre/8 flex min-w-0 shrink-0 basis-full snap-start flex-col overflow-hidden border bg-white transition-shadow hover:shadow-[0px_14px_34px_rgba(0,0,0,0.1)] sm:basis-[calc((100%-24px)/2)] lg:basis-[calc((100%-48px)/3)] ${
                   index > 0 ? "lg:self-stretch" : ""
                 }`}
               >
@@ -135,7 +147,7 @@ export function ALireEnsuite() {
                 </div>
               </li>
             ))}
-          </ul>
+          </CardCarousel>
 
           {/* The commented model, on its own pale-gold band. */}
           <div className="rounded-note-lg bg-pale-gold flex flex-col items-start gap-6.5 p-5 sm:p-7 lg:flex-row lg:items-center">

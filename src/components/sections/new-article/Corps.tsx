@@ -15,7 +15,6 @@ import { Rail } from "@/components/sections/new-article/Rail";
 import { AnswerBox } from "@/components/sections/new-article/blocks/AnswerBox";
 import { ArticleFaq } from "@/components/sections/new-article/blocks/ArticleFaq";
 import { Callout } from "@/components/sections/new-article/blocks/Callout";
-import { Consult } from "@/components/sections/new-article/blocks/Consult";
 import { ComparisonTable } from "@/components/sections/new-article/blocks/ComparisonTable";
 import { Ladder } from "@/components/sections/new-article/blocks/Ladder";
 import { Seam } from "@/components/sections/new-article/blocks/Seam";
@@ -245,8 +244,8 @@ export function Corps() {
               >
                 {t("refTitle")}
               </SectionTitle>
-              <RefList more={ref("more")}>
-                {refKeys.slice(0, 4).map((key) => (
+              <RefList id="reflist-new-article" more={ref("more")} less={ref("less")}>
+                {refKeys.map((key) => (
                   <RefRow
                     key={key}
                     reference={ref(`items.${key}.ref`)}
@@ -269,7 +268,17 @@ export function Corps() {
                     citation={jur(`${key}.citation`)}
                     title={jur(`${key}.title`)}
                   >
-                    {jur.rich(`${key}.body`, proseTags)}
+                    {/* Figma weights the lead-in at full encre inside an encre/62
+                        line; `proseTags`' own `b` carries no colour, so here it
+                        would inherit the 62%. */}
+                    {jur.rich(`${key}.body`, {
+                      ...proseTags,
+                      b: (chunks) => (
+                        <span className="text-h4 font-poppins text-encre">
+                          {chunks}
+                        </span>
+                      ),
+                    })}
                   </JurCard>
                 ))}
               </JurList>
@@ -283,9 +292,6 @@ export function Corps() {
               <SectionTitle id="faq">{t("faqTitle")}</SectionTitle>
               <ArticleFaq />
             </div>
-
-            {/* 19 — the consultation form and its three marks, one card. */}
-            <Consult />
 
             {/* 20 — the closing summary, under a heading of its own. */}
             <div className="flex flex-col gap-6">

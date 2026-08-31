@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 /** The five situations that bring a client in, in Figma's order. */
@@ -56,12 +56,8 @@ export function QuandConsulter() {
                     className="bg-gold size-3.5 shrink-0 rounded-full"
                   />
                   <div className="flex min-w-0 flex-1 flex-col gap-1">
-                    <h3 className="text-h3 text-encre">
-                      {t(`items.${key}.title`)}
-                    </h3>
-                    <p className="text-body text-encre/62">
-                      {t(`items.${key}.body`)}
-                    </p>
+                    <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
+                    <p className="text-body text-encre/62">{t(`items.${key}.body`)}</p>
                   </div>
                 </li>
               ))}
@@ -84,9 +80,9 @@ export function QuandConsulter() {
             <p className="text-body text-encre/62">{t("card.lead")}</p>
 
             {/* Inert, like every CTA on the site until its route exists. */}
-            <Button variant="gold" size="lg">
+            <ConsultButton variant="gold" size="lg">
               {t("card.cta")}
-            </Button>
+            </ConsultButton>
 
             <p className="text-small text-encre/62">{t("card.footnote")}</p>
           </div>

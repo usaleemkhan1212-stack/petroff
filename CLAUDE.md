@@ -179,6 +179,29 @@ the same order; the user reports the changes are mostly colours.
   it is real and sets the section height. Without `xl:h-150` the section
   measured 784 against the frame's 792; with it, **792 exactly**, and the left
   column's centring improves to within 1.3px.
+- **Its three counters must never break onto a second line, and they were one
+  bad font-load away from it.** Figma marks the `stats` row (`13323:4686`)
+  `flex-nowrap` with `whitespace-nowrap` and `shrink-0` on all three, so the
+  comp cannot wrap at all — the build had `flex-wrap`. Measured, the row needs
+  **565.8 of the column's 590.5** (576 at `xl`), which is 4% of slack at 1920
+  and under 2% at 1280 — well inside the difference between Inter and the
+  metric-adjusted fallback shown while the webfont loads, which is why it
+  wrapped on some machines and not on this one. Reported from a Mac.
+  It is **`flex-nowrap` from `sm`** with **`min-w-0`** on each counter, so the
+  three always share a row and a label wraps inside its own column rather than
+  pushing the page wide. Below `sm` the column is 335 against the row's 566, so
+  there it still wraps — correctly.
+  Verified by exaggerating the failure: with **+1px and +3px of tracking on
+  every label** — far more than any fallback costs — the row still measures
+  **one row at 1920, 1536, 1280, 1024, 768 and 640**, the `dl` simply growing
+  74 -> 98 as one label takes a second line, and no horizontal overflow at any
+  width. Desktop at rest is untouched: counters at x 337.5 / 519.1 / 688.3 (a
+  36 gap, Figma's own 0 / 181.6 / 350.8), section still **792**, page still
+  **5748**.
+  **A wrap that only some machines see is a font-metrics problem, not a layout
+  one** — measure the row's slack against its column before looking anywhere
+  else. A sweep of every other flex row of 2-5 items across six pages found
+  nothing else under 10% slack, so this row was the only one at risk.
 - Its stats are Poppins Bold **40** — `text-h2`, not `text-stat`'s 28. **Both**
   frames say 40, so this was a long-standing deviation rather than a redesign
   change. `text-stat` is still used by the Expertises stage and both domain
@@ -3409,10 +3432,12 @@ now and stacks below it. Desktop is untouched — Corps still 14487.4 and the
 page still 19832. **`documentElement.scrollWidth` is what catches this; an
 element scan does not**, because every rect stays inside the page.
 
-**`<ref>` citations go gold on hover.** The article body's legal citations —
-`(C. civ., art. 1366)`, `(Cass. com., 13 mars 2024, n° 22-16.487)` and 41 more
+**`<ref>` citations go brique on hover.** The article body's legal citations —
+`(C. civ., art. 1366)`, `(Cass. com., 13 mars 2024, n° 22-16.487)` and 44 more
 on this page — are destined to link out to the text they name, so they take
-`hover:text-gold` with a colour transition and a pointer cursor. **Figma draws
+`hover:text-brique` with a colour transition and a pointer cursor. They were
+briefly gold; **brique is the link colour for the article body**, asked for,
+and it is now the only text-colour hover in that column. **Figma draws
 no hover state for them; this is a deliberate addition, asked for.** They stay
 `<span>`s until there is somewhere to point them, under the rule that nothing
 navigates to a route that does not exist, so the cursor is an affordance for
@@ -3422,8 +3447,13 @@ the link they are about to become.
   where every `<ref>` in the column resolves — the five blocks that pass their
   own rich-text handlers (`Consult`, `Simulator`, `Triage`, `Interlocuteurs`,
   `Transparence`) carry `b`/`s`/`link`, never `ref`.
-- Verified with a real `Input.dispatchMouseEvent` over `(C. civ., art. 1366)`:
-  `rgb(18,42,76)` at rest, **`rgb(217,164,65)`** on hover, back to encre off.
+- Verified with a real `Input.dispatchMouseEvent`, against all **46** of them:
+  `rgb(18,42,76)` at rest, **`rgb(166,124,27)`** on hover, back to encre off.
+- **No `hover:text-gold` is left anywhere on the site.** The article column's
+  other hovers are not text colours — the reflist button's `hover:bg-encre/5`,
+  the simulator's and triage's `hover:border-*` — and the Rail's table of
+  contents and the sticky bar's ✕ go encre/62 -> encre, which is a different
+  pattern and was left alone.
 - The original page's `<ref>` is a different style anyway
   (`text-small-strong text-brique`, the pre-redesign 16/1.45 run) and was left
   alone with the rest of that page.
@@ -4855,6 +4885,167 @@ block — title included, "Litiges entre associés : questions & réponses" — 
 the service page's verbatim on a profile page; and its seven questions are that
 page's too. Stored per page so either can be rewritten alone.
 
+## Page 11 — Politique de confidentialité (`/confidentialite`), frame `13547:1042`
+
+1920x**11836** — the site's first pure legal document, and the first page
+reached from the **footer** rather than the header. Its route takes the
+footer's own label, `Confidentialité`.
+
+Its sections live in `src/components/sections/confidentialite/` and its copy
+under the **`ConfidentialitePage`** namespace.
+
+| # | Node | Figma h | Status |
+|---|---|---|---|
+| 1 | Hero `13549:1042` | 423 | done |
+| + | rule `13549:1048` | 1920x1 | done |
+| 2 | Body `13550:1042` | 10981 | done |
+| | ├ Content `13550:1064` | 765x10837 | done — 18 sections, S01-S18 |
+| | └ TOC `13550:1044` | 384x609 | done |
+
+- **The body is a two-column legal document**: a 765 content column beside a
+  384 table of contents. 765 + 384 is 1149 inside the 1245 container, which
+  `justify-between` spaces by exactly **96** — the arithmetic four other
+  sections on this build already use.
+- **Its eighteen sections sit on a uniform 48px gap**, with a uniform **20**
+  inside each, and each carries its own 1px `stone` rule at the top (S01 has
+  none — the page rule above it serves).
+- Each section head is a 12px baseline row: the **number in `text-rose`**
+  (Poppins SemiBold 18 — Figma's own "Petroff/Rose", #7FA6E0, which is already
+  a token) beside a Poppins Bold 30 title, i.e. `text-price`.
+- Its `dl` blocks are ruled rows — a 240px `text-body-strong` label beside a
+  flexed encre/62 value on 12px of vertical padding, with a rule above every
+  row and one closing the list.
+- **The whole 765 column is saved.** One `get_design_context` with `forceCode`
+  returned 94,810 characters, extracted to `priv-code.tsx` in the scratchpad
+  and indexed by section, so **the remaining passes need no further Figma
+  calls** for it.
+- **Only two assets in the entire column, and neither needs a file.** The
+  bullet is a 9x27 box holding a 9px `#C7D6EF` circle — geometry identical to
+  `bullet-mark.svg` but pale periwinkle where that one is periwinkle, so it is
+  a span like every other bullet dot on the site rather than a third fork.
+
+#### Hero (`13549:1042`) — built, **423.9 against 424**
+
+One 1245 column on a uniform 16px gap, `pt-64 pb-36` — not a symmetric pad —
+closed by the full-width `stone` rule, which is `border-b` on the section.
+Measured: overline at **64**, title 100.8, meta 188.9, lead 231.9 at **920**
+wide, the border resolving to `1px rgb(233,228,216)`.
+
+- Its rule is **`#e9e4d8`, an exact `--color-stone` match** — no new token.
+- Its meta line takes **`whitespace-pre-wrap`**: Figma types three spaces
+  either side of the middle dot, which HTML would otherwise collapse to one.
+- **The footer's legal line now links.** `Footer.legalLinks` carries a `<c>`
+  tag around *Confidentialité*, so one string still holds all three labels and
+  only the live one is an anchor — the other two stay plain text. It is in the
+  layout, so the link is on every page.
+
+#### Body (`13550:1042`) — built, 11003.5 against 10981
+
+The document: a 765 content column at **x=337.5** beside the **384** TOC at
+**x=1198.5**, so the gap is exactly **96** and the TOC's right edge closes the
+container. Eighteen sections on a **uniform 48px gap** — all seventeen gaps
+measure 48 — with a uniform 20 inside each, and every section but the first
+opening on its own 1px `stone` rule. The band takes **48 above and 96 below**.
+
+| S | Figma | built | | S | Figma | built |
+|---|---|---|---|---|---|---|
+| 01 | 446 | 449.4 | | 10 | 682 | 685.4 |
+| 02 | 452 | 453.3 | | 11 | 918 | 899.4 * |
+| 03 | 1207 | 1211.1 | | 12 | 270 | 271.8 |
+| 04 | 605 | 607.0 | | 13 | 295 | 297.0 |
+| 05 | 1095 | 1100.1 | | 14 | 607 | 609.0 |
+| 06 | 873 | 877.6 | | 15 | 325 | 326.3 |
+| 07 | 350 | 353.8 | | 16 | 175 | 176.3 |
+| 08 | 668 | 670.6 | | 17 | 245 | 246.6 |
+| 09 | 432 | 434.2 | | 18 | 376 | 374.9 |
+
+Every section lands within **+5**, except S11.
+
+- \* **S11 is 18.6 short and all of it is one table row.** Figma renders the
+  DigitalOcean value on **three** lines in a 501px cell where the browser fits
+  it on two — its `dl` measures 357 against the built 335.2, and its own
+  metadata gives that row `h=99` against 51 for its neighbours. That is the
+  half-percent Inter wrap drift this file already records for the article
+  prose; nothing is misconfigured.
+- **The document's copy is stored as blocks, not as loose strings.** For a
+  legal text the block sequence *is* the content, so `ConfidentialitePage.
+  sections.<key>` holds `{ num, title, blocks[] }` and one generic renderer
+  walks it. `src/lib/confidentialite.ts` carries only the eighteen keys, the
+  sixteen TOC keys and the `Block` union.
+  - **`t.raw` needs a leaf.** next-intl's typed catalogue exposes only leaf
+    paths, and an *array* is a leaf where an object is not — so
+    `t.raw(\`sections.${key}\`)` fails to typecheck while
+    `t.raw(\`sections.${key}.blocks\`)` passes, with `num` and `title` read as
+    ordinary strings beside it.
+  - Its one inline run, `<s>…</s>` (Inter SemiBold 18 encre), is split in the
+    renderer rather than routed through `t.rich`: with well over a hundred
+    strings, `t.rich` would need a literal message path for every one and would
+    drag the whole document structure into a lib file to get them.
+- **Six block types cover the whole document**: `p` (encre), `note`
+  (encre/62), `sub` (a `text-h3` sub-heading), `list`, `dl` and `callout`.
+- Its **bullet is a span**, a 9px pale-periwinkle dot — geometry identical to
+  `bullet-mark.svg` but in another colour, so no third fork. Figma lays the row
+  out **`items-end` against a 27px puce box**, which drops the dot to the *last*
+  line the moment an item wraps; it is `items-start` with `mt-2.25` here, and
+  the row takes **`min-h-6.75`** so a one-line item still measures Figma's 27.
+  That `min-h` is worth 1.8px a bullet — **12.6 on S02 and 14.4 on S14**, which
+  is the whole of what those two sections were missing.
+- Its **`callout` has two tones**: `pink-soft/40` under a 3px **red** left edge
+  (S03), and solid `pale-gold` under a 3px **brique** one (S08). Both are padded
+  **24 at the sides and 20 top and bottom**, with an Inter SemiBold 18 title
+  over an Inter 16 body, both in encre.
+  Note this is a different anatomy from the article's `Callout`, whose `rule`
+  variant is white with a 5px periwinkle edge.
+- Its `dl` rows are **not uniformly ruled**. S01, S15 and S18 carry a rule above
+  every row and one closing the list; **S11 leaves three of its six without
+  one** (Vercel, Resend, Google Ireland). Their node ids sit outside the
+  section's range, so they were added later without their rules — reproduced
+  per row and almost certainly a slip. **Flag it.**
+- **S11's table header row asks for a font the project does not have.** Figma
+  styles it `Outfit Bold 14 / 18px / 1.04px tracking`, uppercase on lilas-2 —
+  and Outfit appears nowhere else on this site, which is Poppins + Inter. It is
+  built with `text-overline` (Poppins SemiBold 16 / 0.18em), the nearest style,
+  the same call the SF Symbols placeholders got. **Needs the designer.**
+- Two dl rows are strong on **both** sides — `Site: www.cnil.fr` and
+  `E-mail: m.petrova@petroff.law` — because Figma puts the SemiBold on the row
+  rather than the label. Carried as a `strong` flag per row.
+- **`break-words` on the section is load-bearing.** Figma marks every section
+  frame `word-break: break-word`; without it S10's bare
+  `tools.google.com/dlpage/gaoptout` pushed the page to 342 at a 320 viewport.
+  The property inherits, so one class on the section covers the document.
+- **The row splits at `xl`, not `lg`.** 765 + 96 + 384 is the container's whole
+  1245, which needs 1309 of viewport; at `lg` the content column was squeezed to
+  576 and the page ran to 13506. Stacking there instead brings it to 11511.
+- **The `xl:` widths did not reach the stylesheet on first compile** — the TOC
+  measured its content width (341.3) rather than 384, and `xl:top-6` was absent
+  so the sticky never pinned. A content change to `globals.css` fixed both.
+  Exactly the Turbopack/Tailwind rescan trap this file records; it is worth
+  re-measuring after *any* pass that introduces a new breakpoint variant.
+
+#### The TOC (`13550:1044`) — built, 613.5 against 609
+
+384 wide of which **36 is left padding**, so its content is 348. A brique
+overline at y=0 (20.8 against 21) over a 12px list at **44.8** (Figma 45);
+sixteen rows of 24.3 against 24, each a 16px gap between the number in
+`text-rose` and an Inter 16 label in encre/62.
+
+- **Its labels are shorter than the sections' own titles** — "Informations sur
+  les sociétés & marques" against "Publication d'informations sur les sociétés
+  & les marques" — so they are their own strings under `ConfidentialitePage.toc`.
+- **Figma's list jumps 06 -> 09**, so `traduction` (07) and `relation` (08) are
+  missing from it. Reproduced rather than filled in. **Flag it.**
+- **Sticky, which Figma does not draw** — a 609px table of contents beside a
+  10,837px column stops being one after the first screenful. `xl:sticky
+  xl:top-6 xl:self-start`, verified pinning at **exactly 24** at scrollY 4000.
+  Its entries are real anchors and the sections take `scroll-mt-6`; the
+  site-wide `scroll-behavior: smooth` added for the article TOC applies here
+  too, so **a CDP `window.scrollTo(0, n)` animates** — pass
+  `behavior: "instant"` or the measurement reads mid-animation.
+
+**Page 11 so far: 11859 at 1920 against the frame's 11836 (+23)** — the
+per-section line-box rounding, less S11's one wrapped row. No horizontal
+overflow at any of nine widths from 1920 down to 320.
+
 ## FAQ answers are capped at a reading measure
 
 Asked for: the accordion "goes long away" when a row opens. Measured — the
@@ -4922,6 +5113,555 @@ Verified after the change on all seven pages: no eyebrow left in mixed case
 except those five, every page height unchanged (home 5748, Expertises 4238,
 Contentieux 8446, Contrats 8354, Bibliotheque 6271, article 19114, e-commerce
 17577), and no horizontal overflow at 1920, 375 or 320.
+
+## The trap callout's glyph is brique
+
+Asked for, and it is a build fault rather than a preference — checked before
+changing it. `13318:2729` exports its 24px warning triangle with
+`stroke="#A67C1B"`, Petroff/Brique, the same colour as the "Piège fréquent"
+tag beside it; the build rendered it encre.
+
+- The stored `warning-circle.svg` is **path-identical** to that export and
+  already strokes `currentColor`, so this is one class. `Callout`'s variant map
+  carries an `icon` colour now — `trap` brique, `rule` encre — rather than the
+  colour being hard-coded on the element.
+- Everything else in the callout already matched and was re-checked: lilas
+  ground, 18px corner, **28** padding, an **8** column gap, the head row on
+  **12** with 4 of bottom padding, and the stone tag at **4/14** with brique
+  Poppins SemiBold 16 at 0.18em.
+- **The original page keeps its encre glyph**, and deliberately: its trap is
+  still the older pale-rose box with a red tag, so a brique triangle would
+  clash with its own tag. It follows when that block is re-derived.
+
+## The reflist's "+9" button opens the rest
+
+Asked for. It was an inert span: the component was handed only the first four
+references and the button counted the nine it was hiding without a way to show
+them. **The template shows all thirteen with no button at all**, so the
+collapse is Figma's own idea and the expansion is the only reading of it that
+is not a dead control.
+
+- `RefList` takes **every** reference as a child now and shows the first four
+  until pressed — `Children.toArray(...).slice(0, 4)` — so the "+9" stays true
+  to the data rather than being a number in a string that could drift.
+- It is a real `<button>` with `aria-expanded` and `aria-controls` pointing at
+  the list, so it announces its state and works from the keyboard for free.
+  The two pages pass their own list ids, since both render one.
+- One new string, **`reflist.less` = "Réduire la liste"** — Figma draws only
+  the collapsed label, so the expanded one is ours, like the Resultats empty
+  state.
+- Driven on both pages: **4 rows / "+9 Voir la liste complète" / block 438.3**,
+  then **13 rows / "Réduire la liste" / 1270.7**, then back to 4 and 438.3.
+  Thirteen minus four is nine, so the comp's own count is right.
+
+## Jurisprudence liée re-derived — `13424:15804`
+
+Asked for. Its spacing was wrong in three places, and the wrapper node is the
+one to read: it gives the whole block a **24px column gap** between the `hdico`
+heading and the list, which neither page had.
+
+| | was | Figma |
+|---|---|---|
+| the card's three fields | **flush** on new-article, `mt-1` / `mt-2` (4 / 8) on article-design | a **12px gap**, uniform |
+| head -> list | 24 on new-article, **18** on article-design (the older frame's spacer) | **24** |
+| the card's bold lead-in | inherited the body's **encre/62** | **full encre** |
+
+- **The card gap was a deliberate mistake.** This file recorded the three
+  fields stacking "flush — the card carries no gap of its own", which is what
+  brought the block to +13 against a ported version's +73. The wrapper node
+  says 12, and at 0 the citation, holding and facts read as one run of text
+  rather than three fields.
+- **The bold run is the same `proseTags` trap the takeaways had.** Its `b`
+  carries no colour, so inside an `encre/62` paragraph the weighted half
+  silently inherits the 62%. Any block that sets its own body colour has to
+  re-declare `b`.
+- Measured after, and every value is Figma's: head gap **16** with a **48x48**
+  glyph, head -> list **24**, list gap **24**, card **28** padding at an **18**
+  corner with a 1px `encre/8` border and a **12** gap, and the card's three
+  fields at **29 / 64.2 / 102.2** — 28 padding plus the border, then 12 between
+  each. Citation Inter 16/23.2 brique, holding Poppins 20/26 encre, body Inter
+  18/25.2 encre/62, the lead-in Poppins 18/24.3 in **full encre**.
+- Block **1176.7 against the node's 1164** — the five cards' borders.
+- Both article pages are identical here now; only the heading's own wrapper
+  still differs, since article-design keeps the older frame's per-block spacers.
+
+## The simulator is a real tool now — `13318:2543`
+
+Asked for, and built the same way as the triage: against
+`public/PETROFF-GABARIT-ARTICLE-v6.html`, whose `calcSig()` is **the only place
+these rules are specified**. Figma draws one completed run and gives each field
+a single chosen value with no option list.
+
+- **The template's defaults are exactly Figma's chosen values** — synallagmatique
+  / non-commerçant / 45 000 € / signature simple — and its output for them is
+  exactly the result Figma draws. So the form opens on the comp's own state and
+  the comp's own answer, with nothing invented.
+- The rules live in **`src/lib/simulator.ts`**, shared by both article pages,
+  and `analyse()` returns **message keys rather than strings** so every word
+  stays in the catalogue under `simulator.results`.
+- Its four controls are three `<select>` and a number `<input>`, in the same box
+  the read-only rows used, with the caret absolutely positioned over the select
+  (a native select cannot keep an inline sibling). **Not inside a `<form>`** —
+  with no submit handler Enter would reload the page.
+- **The result panel starts closed** and "Analyser ma situation" reveals it,
+  matching the template (`#s-res` ships `hidden`) and the triage tool. Changing
+  a field afterwards **re-runs the analysis in place**, so a stale verdict can
+  never sit under a changed form. Block **508.7 closed against 1388.3 open**.
+- **`charge` tracks `presomption` one for one** in the template, so one key
+  drives both rows.
+- Figma's shortened result strings are replaced by the template's full ones,
+  which carry the citations — the same call the triage's three extra branches
+  got.
+
+**The layout stays Figma's 2x2** — 391px fields, two per row on the column's
+881, exactly as the comp draws them. Only the control changed.
+
+**Its dropdown is a listbox, not a `<select>`, and that is the whole reason.**
+A native select's popup is drawn by the browser and sized to its **longest
+option**, so it spills well past a 391px field and no CSS reaches it.
+`components/ui/Select.tsx` is a button plus a `role="listbox"` panel pinned
+`left-0 right-0` on the control, so the open list is **exactly 391 — measured,
+control 391 and panel 391 sharing a left edge** — and a long label wraps inside
+it instead of widening it.
+
+- It keeps the native keyboard contract: Enter, Space or either arrow opens it,
+  the arrows and Home/End move the highlight, Enter or Space commits, Escape
+  and Tab close, and a click outside closes. **Focus stays on the button** with
+  `aria-activedescendant` pointing at the highlighted option — the combobox
+  pattern, not a roving tabindex. Driven: arrow-arrow-Enter selects the third
+  option and closes the panel, an arrow reopens it, and Escape closes it with
+  focus still on the control.
+- Its caret is the site's own `caret-down.svg` at 12x8 in full encre — the
+  Bibliotheque filters' treatment — and it **flips on open**.
+- The closed control still truncates a long label, which is Figma's field width
+  rather than a fault: a half column gives 341px of room and seven of the nine
+  option labels overrun it. The open panel is where the full text is read.
+- **The Bibliotheque's two Resultats filters are still native `<select>`s** and
+  have the same overflowing popup. They can take this component whenever it is
+  wanted.
+
+Driven on **both** pages, every branch of the rule set:
+
+| input | Écrit exigé | verdict |
+|---|---|---|
+| the default run | Oui, au-delà de 1 500 € | Position à renforcer |
+| montant 900 | Non exigé en deçà de 1 500 € | Position à renforcer |
+| cocontractant commerçant | Non exigé — preuve libre | Position tenable |
+| signature qualifiée | — | Position favorable |
+| acte authentique | — | Voie authentique |
+
+and the mention branch separately: an engagement unilatéral gives **"Exigée,
+apposable sous forme électronique"**, which becomes **"Dispensée par le
+contreseing de l'avocat"** once the level is the avocat contreseing.
+
+- **The typed catalogue forced the shape of two lookups.** A template over the
+  row key crosses into `results.ecrit.commercial`, and a `${string}` option key
+  is not a literal at all — so the option labels are resolved per field into a
+  `{v, label}` list, and the four values into a small record, before either
+  reaches a generic helper. Both are one call per field rather than a loop.
+- No horizontal overflow at any of nine widths on either page.
+
+## The triage tool is a real control now — `13318:2948`
+
+Asked for, against **`public/PETROFF-GABARIT-ARTICLE-v6.html`**, which the user
+placed in the repo. That template carries the behaviour Figma cannot draw: its
+`triage(i, btn)` marks the clicked option `.on` and rewrites the three result
+rows and the note beneath from a four-entry `TRI` array.
+
+- **It opens closed, and it toggles.** No option pressed and **no panel in the
+  DOM at all** until one is clicked, and **clicking the chosen option again
+  clears it and closes the panel**. The template does neither — `#tri-res`
+  ships `hidden` but never hides again, and its `triage()` only ever sets — and
+  Figma draws the third option already open. Both are deliberate departures,
+  asked for. The block measures **434.3 closed against 828.9 open** on the new
+  article page, so it returns to exactly its closed height each time.
+  `aria-pressed` carries the state either way, which is the whole reason the
+  buttons are not a radiogroup: a radio cannot be unchecked by clicking it.
+- **The unselected rows hover to encre, not the template's red.** Asked for;
+  `.opt:hover{border-color:var(--corail)}` is the only place this build departs
+  from the template's own styling. Verified with a real pointer: `encre/12` at
+  rest, **`rgb(18,42,76)`** on hover, back to `encre/12` off.
+- **It has all four branches' copy, so nothing was invented.** The instruction
+  was to use dummy text for the three Figma does not draw; the template supplies
+  real copy for every one, so `results.processus`, `.unilateral` and `.officier`
+  are its own `TRI[0]`, `[1]` and `[3]`, with apostrophes normalised to `’` as
+  everywhere else. **`results.denie` keeps Figma's wording**, which differs from
+  the template's in its note ("le contrat, l'annexe correspondante et la pièce
+  révélant le passif" against "le certificat de signature, les éléments
+  d'identification du signataire et la preuve de conservation").
+- The copy moved from `rows.<row>.value` + a single `note` to
+  **`results.<option>.{diligence, delai, honoraires, note}`**, with
+  `rows.<row>.label` left where it was. **The typed catalogue caught the second
+  page immediately** — the article-design block was still reading
+  `rows.delai.value` and failed to compile, which is exactly what it is for.
+- **Buttons with `aria-pressed`, not a radiogroup**: there is one result panel
+  rather than one per option, so a radiogroup would promise a widget this is
+  not — the same call the Bibliotheque's filter tabs make. The panel is
+  `aria-live="polite"`, and the unselected rows take the template's own
+  `.opt:hover` red edge.
+- Both blocks become client components; `Corps` stays a server one.
+- Driven on **both** pages from the closed state: no option pressed and no
+  panel at first, then a click opens a branch and **a second click on the same
+  row closes it again** — verified open/close/open/switch/close/open across all
+  four. All four options select, the three rows and the note
+  rewrite each time, the chosen row resolves to `2px rgb(46,91,184)`, and Enter
+  activates from the keyboard. The new-article row also goes to Inter SemiBold
+  on selection, which is its frame's own difference — article-design's stays
+  Regular.
+- Open, the block is still **828.9 against Figma's 813** on the new article
+  page — the comp's own number — so nothing about the panel moved; only its
+  default state did. No horizontal overflow at any of nine widths on either
+  page.
+- **The simulator above it is still static**, and the template has a `simule()`
+  for it too. Same treatment when asked.
+
+## The article FAQ opens closed too
+
+Asked for, in the same pass as the triage panel. Both article pages' eleven
+`<details>` now ship with **no `open` attribute at all** — Figma draws the first
+one expanded and `PETROFF-GABARIT-ARTICLE-v6.html` ships it `<details open>`, so
+this is a deliberate departure from both.
+
+- It is one constant per file: `EXPANDED` / `expandedKey` is `null` now rather
+  than `"plateforme"`, typed as `(typeof items)[number] | null` so a real key
+  still typechecks if it comes back.
+- **The group is still exclusive and still needs no JavaScript** — the
+  `<details>` share a `name`, so the sections stay server components. Driven on
+  both pages: 11 rows, **0 open and 0 answers passing `checkVisibility()` at
+  load**, clicking row 4 opens only row 4, clicking row 1 closes it and opens
+  row 1, and clicking row 1 again closes everything.
+- Pages at rest: **19648** and **19076**, the first answer's height lighter.
+- **The site's five other FAQs still open their first row**, which is what their
+  own comps draw — Contentieux, Contrats, e-commerce, the service page and the
+  personal page. Each is the same one-line change (`faqExpandedKey` for the two
+  domain pages, an `EXPANDED` constant for the rest) if that should be
+  site-wide.
+
+## Every contact button opens the drawer
+
+Asked for, site-wide. The drawer's state used to live in each page's own
+`Consultation` wrapper, so only the side tab and the article's sticky bar could
+reach it — every other "Prendre rendez-vous", "Parler à un avocat" or "Obtenir
+un devis" on the site was an inert button.
+
+- **`ConsultationProvider` now owns that state, in the layout**, and renders the
+  panel once for the whole site. `Consultation` is reduced to the side tab (plus
+  the sticky bar on the two article pages), reading the same context.
+- Two triggers: **`ConsultButton`** wraps `Button` for the ordinary CTAs, and
+  **`ConsultTrigger`** is a bare styled `<button>` for the CTAs written out with
+  their own pill classes — the article tools, the e-commerce cards, the rail,
+  the header's phone control. Both are client components taking children from
+  server sections, so no section had to become a client component.
+- **The drawer is now reachable below `lg`.** It is mounted on every page, so a
+  contact button opens it at any width — measured **510 wide at 1920 and 768,
+  and the full viewport at 375 and 320**, with the scroll lock working and no
+  overflow. Previously the tab was `lg:flex` and there was simply no way in on a
+  phone, which this file recorded as a real gap.
+- It also works on **`/confidentialite`**, which draws no side tab at all.
+
+**What counts as a contact button** — verified by clicking *every* visible
+button on every page and reading whether the dialog left `inert`:
+
+| Opens the drawer | Does not |
+|---|---|
+| Prendre rendez-vous (header, hero, CTAFinal), Nous appeler, the phone pill on the personal hero | the three nav dropdowns, the language switcher |
+| every CTAFinal pair — Réserver un créneau visio / Obtenir un devis en ligne, Parler à un avocat / Poser votre question | Rechercher, Vérifier, the search chips |
+| both MidCTAs, Décrire mon besoin, Faire évaluer mon dossier | the legal-tech tool cards' Évaluer / Calculer / Estimer / Auditer / Analyser / Préparer |
+| every Forfaits plan CTA — Démarrer, Être rappelé, S'abonner, Commander l'audit, Commander le pack, Demander un devis | Voir les forfaits, Explorer la bibliothèque, Choisir un domaine |
+| all twelve e-commerce service cards and both its seams | Voir le service, Voir le profil, En savoir plus sur Mᵉ X |
+| every service-page CTA, and all four Consulter Mᵉ X | Rencontrer l'équipe, Voir la prestation |
+| the article rail's two, Soumettre à un avocat, the triage CTA, the sticky bar | Copier le lien, Imprimer / PDF, Analyser ma situation, the triage options |
+| Demander à être rappelé (the lawcard) | the Bibliotheque carousel, pagination and filter controls |
+
+Counts after the sweep: **5 on the home page, 6 on the Expertises hub, 9 on each
+domain page, 4 on the Bibliotheque, 11 on the new article page, 38 on the
+e-commerce page, 36 on the service page, 2 on the privacy page.**
+
+- Behaviour re-verified from a mid-page CTA rather than the tab: focus lands on
+  the Nom field, `body` overflow locks and restores, Escape closes, the panel
+  goes `inert`, and **focus returns to the button that opened it** — the trigger
+  is taken from the click's `currentTarget`, which is what makes that work from
+  any of them.
+- Every page height is unchanged: 5748, 4314, 8591, 8590, 6243, 17602, 17511,
+  4547, 11859, and 19076 / 19648 for the two article pages. No horizontal
+  overflow at 1920, 375 or 320.
+
+### Two traps this pass hit
+
+1. **An import prepended above `"use client"` silently breaks the directive.**
+   Prettier then rewrites the orphaned string as `("use client");`, the file
+   becomes a server component, and *every route* 500s with an error naming a
+   file the change barely touched. Four files hit it. **The directive must stay
+   the first statement.**
+2. **The Tailwind Prettier plugin trims class strings, so a trailing space used
+   for concatenation disappears.** A row class built as
+   `` `${cond ? "border-stone border-t " : ""}flex flex-col …` `` lost that
+   space and produced `border-tflex` — two dead classes. It cost the privacy
+   page **227px**: every `dl` row stacked instead of sitting side by side, and
+   only the four sections with tables moved, which is what made it findable.
+   **Never build a class string by concatenation — use `cn`.**
+
+## The consultation form left the article body — `13544:34907`
+
+Asked for. The frame `13318:2398` gained a **new top-level section** between
+Corps and Cabinet — `13544:34907`, 1918x1021 at y=14766.6 — and Corps shrank
+from 14362.6 to **13804.6**, which is exactly the `consult` block and its marks
+strip coming out of the column.
+
+- **It is the personal page's contact lawcard, duplicated.** `13544:34907` and
+  `13544:34906` have the same node names, the same child offsets and
+  character-identical copy, so it is **one component** at
+  `components/contact/Lawcard.tsx`, with its strings in a shared top-level
+  **`Lawcard`** namespace — the fifth, after `ContactCta`, `Transparence`,
+  `Consultation` and `Interlocuteurs`. `sections/personal/Contact.tsx` and
+  `PersonalPage.contact` are gone.
+- **The two frames differ in exactly one thing: the band.** `13495:31490` is
+  lilas on the personal page, `13544:34908` is **lilas-2** on the articles —
+  checked on both rather than assumed, since the rest is a verbatim copy. It is
+  a `tone` prop, the same shape `SideTab` uses.
+- Measured, identically on all three pages: band at the right colour, card top
+  at **120 exactly**, card **1245** wide, photo **221x265 at (65, 65)**,
+  overline at (350, 65), title at 97.8, textarea **830x155 at (350, 288.2)** —
+  every one Figma's own number plus the card's 1px border. Section **1027.5
+  against 1021**.
+- The two `blocks/Consult.tsx` files are deleted. `ArticlePage.consult` and
+  `NewArticlePage.consult` are now **unused copy** — left in the catalogue
+  rather than deleted, since only the form moved. `lawyer-portrait-inline.jpg`
+  is **not** an orphan: both `Seam` blocks still use it.
+
+### Walking the whole frame
+
+Section by section at 1920, both article pages against `13318:2398`:
+
+| Section | Figma | article-design | new-article |
+|---|---|---|---|
+| Hero | 890 | 890.5 | 890.5 |
+| Corps | 13804.6 | **13146** | 13762 |
+| Lawcard | 1021 | 1027.5 | 1027.5 |
+| Cabinet | 774 | 776.9 | 776.9 |
+| Interlocuteurs | 900 | 906.4 | 906.4 |
+| ALireEnsuite | 1411 | 1403.3 | 1419.3 |
+| Transparence | 370 | 370.5 | 369.5 |
+| CTAFinal | 550 | 550.4 | 550.4 |
+| **Page** | | **19503** | **20134** |
+
+- **`/bibliotheque/new-article-page` is the faithful build of this frame** —
+  every section within 8.3, and Corps within 42.6 over more than thirteen
+  thousand pixels.
+- **`/bibliotheque/article-design`'s Corps is 658.6 short of the frame**, and
+  that is the legacy column, not a regression: page 8 exists precisely because
+  that page was derived before the frame changed and porting it was rejected.
+  Its blocks genuinely differ — thirteen reflist rows against four, different
+  seams, a different simulator. **Re-deriving that column is the outstanding
+  item on this frame**; everything outside Corps now matches.
+- **The sticky bar was still the older design on `article-design`** and is
+  aligned now: `13318:3406` is a **lilas band at 60% under a 1px `encre/30`
+  rule** with an encre title, an encre detail line and a **red button carrying
+  white copy** — where that page had a pale-rose band under a 2px red rule with
+  a periwinkle detail line and a white button. This node has now been
+  redesigned twice; read it, never port it.
+- Behaviour re-driven on both pages after the change: red tab **45x236**, the
+  drawer opening at **510** with focus landing on the Nom field, `body`
+  overflow locking and restoring, Escape closing and the panel going `inert`,
+  and the bar resolving to `lilas/0.6` with a `1px encre/0.3` rule and a
+  **16px** backdrop blur. No horizontal overflow at any of nine widths from
+  1920 down to 320, on either article page or the personal page.
+
+## One gold bullet, site-wide
+
+Asked for, from `13680:21328`. That node is a **9x20 box holding a 9px circle
+in `#D9A441`** — Figma's own "Petroff/Gold", so an exact `--color-gold` match —
+and it is byte-identical to the puce the takeaways block draws.
+
+`bullet-mark.svg` now **is** that glyph: 9x20, gold, where it was 9x27
+periwinkle. All three of its call sites take it at `height={20}` — the article
+takeaways, the new-article takeaways and the service page's
+"L'essentiel en six points". **`bullet-mark-gold.svg` is now an orphan**: the
+brique/periwinkle split that forced the fork is gone, so one file serves
+everything. Left in the tree under the usual orphan policy.
+
+- **The 9x20 box is a fix, not just a resize.** Its circle sits at cy 12.5,
+  level with the 25.2px first line of `text-body`; the old 27 box put it at
+  15.5, three pixels low, and — being taller than the line — it set the row
+  height. Figma's own arithmetic is `25.2 + 20 = 45.2` for a one-line item and
+  `50.4 + 20 = 70.4` for two, which is exactly what the rows now measure.
+- **This is a site-wide instruction that overrides individual frames**, on the
+  same footing as the uppercase eyebrows. Two list bullets that Figma draws in
+  another colour were recoloured gold and **keep their own geometry**, since
+  their frames size them differently and their rows depend on it: the privacy
+  page's 9px dot (drawn pale periwinkle, 44 of them) and the e-commerce
+  "Comment nous aidons" 10px dot (drawn rose). Do not "fix" either back on the
+  strength of its frame.
+- Already gold and therefore untouched: the two trust strips' 10px dots,
+  e-commerce Notre rôle's 12px checks, its Quand consulter 14px triggers and
+  the service page's Comment nous procédons 12px dots. Each keeps the size its
+  own frame gives it.
+- **Not bullets, and deliberately left periwinkle**: the two Timeline rails'
+  14px nodes (a dot on a rail, with a white ring) and the Actus / ALireEnsuite
+  pagination rows. Check what a dot *is* before recolouring it.
+
+### Takeaways re-derived — `13318:3062`, 566.2 against 565
+
+**Its ground has moved again**: `#EFCFD9` at 40% where this build had lilas-2.
+That is the third hex under the library name "Petroff/Pink" — composited it
+lands under 3/255 from `--color-pink-soft`, so that token is reused rather than
+a fourth pink added. **The name is not a stable key; compare the hex.**
+
+Everything else confirmed against the export: 18px radius, 28 padding, a
+Poppins SemiBold 20 title, a 16px spacer, then rows on a **17px** gap with
+**10px** of vertical padding, each a full-encre Poppins SemiBold lead-in
+followed by encre/62 Inter 18. Measured rows: six at 70.5 and one at 45.3,
+exactly Figma's two-line and one-line arithmetic.
+
+- **The new article page's lead-ins were rendering at 62%, and only a colour
+  read caught it.** Figma weights each point's lead-in at **full encre**
+  (`#122a4c`) inside an encre/62 line. That block passed the shared `proseTags`
+  straight through, and its `b` carries **no colour** — so inside a
+  `text-encre/62` paragraph the bold half simply inherited the 62% and every
+  point read flat. The sibling page already overrode it; this one does now too.
+  Verified by reading the computed colour of the run on both pages:
+  `rgb(18,42,76)` against the body's 62%.
+  **`proseTags` is only safe inside a full-encre `Prose` paragraph.** Any block
+  that sets its own body colour has to re-declare `b`, or the weighting
+  silently disappears — nothing about the markup looks wrong.
+- Its padding also gained the site's mobile step, `p-5 sm:p-7`, which it was
+  missing against every other article block.
+- Confirmed against the node's own render afterwards: ground `#f9eef1` against
+  Figma's `#f8ecf0` (the one-unit oklab-against-sRGB compositing difference
+  this build always shows on a 40% fill), bullets `#d9a443` against `#d9a645`,
+  and the same seven line breaks. Both pages now measure 566.2 with identical
+  rows; the pages are unchanged at 19112 and 19830.
+- **Both article pages read the *same* Figma node.** `/bibliotheque/article-design`
+  and `/bibliotheque/new-article-page` were derived from one frame
+  (`13318:2398`) and one column (`13318:2505`), so `13318:3062` is the takeaways
+  block for both — a change here lands on both pages at once, and there is no
+  second node to update. Its seven bullets are **instances** of the new gold
+  component, ids `13680:21307`-`21325` against the section's own `13318:` range,
+  which is the tell that the designer swapped just those.
+- **The four timeline `pastille` nodes stay periwinkle.** `13318:2757` and its
+  siblings are `#2e5bb8` with a 4px white ring, unchanged — a marker on a rail,
+  not a bullet, and the only round periwinkle elements left on either article
+  page. Checked rather than assumed.
+- **Both article pages now draw the identical block** — same ground, same
+  bullet, same 566.2 — where the original page had been carrying lilas-2 and a
+  periwinkle dot. It had read 568 before; the correction takes it to +1.2.
+- Every other page is unchanged to the pixel: home 5748, Bibliotheque 6243,
+  e-commerce 17602, service 17511, confidentialite 11859. The two article
+  pages drop 2px, which is that one single-line row finally measuring 45.2.
+
+## The article-card rows are real carousels
+
+Asked for, in two passes: first "on tablet and mobile it does not look like a
+carousel", then "make sure it works — add a dummy card so it can".
+
+**Figma draws a pagination row under these grids, and a pagination row only
+means anything if there is more than a viewful.** With exactly three cards in a
+three-up grid there never was, so the dots had been built decorative. The track
+is a carousel at **every** width now — one card per view on a phone, two from
+`sm`, the comp's three from `lg` — and each row carries a **fourth card** so
+the dots have somewhere to go.
+
+`components/ui/CardCarousel.tsx` is shared by all five rows: the home **Actus**
+grid and the four **ALireEnsuite** blocks (e-commerce, service, and both
+article pages).
+
+- **A scroll container, not a transform** — the call the Bibliotheque's Vitrine
+  already makes — so it works with a swipe, a trackpad, the keyboard (a
+  focusable `role="region"`) or no JavaScript, and the page count follows
+  whatever fits at the current width with no breakpoint arithmetic.
+- Its `perView` comes from the **card step**, never `scrollWidth /
+  clientWidth`: the gaps inflate that ratio and produce a dot that scrolls
+  nowhere, which is the bug the Vitrine already hit.
+- **The active dot comes from the scroll *fraction*, not `scrollLeft /
+  pageWidth`.** The last page is usually partial — four cards three per view
+  leaves it a third of a page wide — so dividing by a full page rounds the end
+  of the track back to page one and the marker never moves. It read `current: 0`
+  at the end of the track until this was fixed; `goTo` uses the same arithmetic
+  in reverse so the last dot lands on the track's end rather than short of it.
+- **`overflow-x: auto` clips vertically too**, which would cut the cards' hover
+  shadow. The track takes `py-6 -my-6`: the padding gives the shadow room and
+  the negative margin takes the space back, so nothing moves.
+- The dots are real `<button>`s while paging and plain spans when not, so a row
+  that fits keeps exactly the markup the comp draws.
+
+Driven at five widths on all five rows — 1920, 1280, 1024, 768, 375 — every one
+scrollable, dots interactive, the last dot reaching the track's exact maximum
+scroll and marking itself `aria-current`, the first returning to 0.
+
+| | 1920 | 1280 | 1024 | 768 | 375 |
+|---|---|---|---|---|---|
+| card | 399 * | 389 | 304 | 340 | 335 |
+| pages | 2 | 2 | 2 | 2 | 4 |
+
+\* 401.7 on the home page, whose gap is 20 rather than 24. **Both are the
+comp's own numbers, so desktop is unchanged** — the fourth card simply sits off
+the container's right edge.
+
+### Two things to know about the fourth card
+
+1. **It is a placeholder.** Each row's data gained a `demo` entry reusing one of
+   that section's own photographs, and its copy says so — "carte de
+   démonstration … à remplacer par un contenu réel". Four message namespaces
+   carry it. **Remove it the moment a real fourth item exists**; the carousel
+   needs no code change, since `count` is read from the data's length.
+2. **The two article pages' frames draw no dot row**, and they show one now —
+   +43px each at desktop. Without it their fourth card would be unreachable
+   with a mouse. A deliberate addition; `dotsClassName="lg:hidden"` puts it back
+   if the designer prefers the comp.
+
+### `flex-1` and a mobile basis fight over the shorthand
+
+Hit while wiring this. The new article page's row was the only *flex* row
+rather than a grid, and its `lg:flex-1` lost to the carousel's `basis-full
+shrink-0`: the three cards measured **504** against 399. `flex-1` sets
+`flex-basis: 0` through the shorthand, and whichever of it and `basis-*` the
+stylesheet emits last wins — which Prettier's class sorter can quietly change.
+Giving every card an explicit per-breakpoint `basis` and no `flex-1` at all is
+what settled it. **Never let `flex-1` and a `basis-*` utility land on the same
+element.**
+
+## Article cards lift on hover, everywhere
+
+Asked for. Only the home Actus grid had a hover shadow at all — it is the one
+article grid built on `Card` — while the other six were hand-built `<article>`
+elements with no shadow in any state. They all carry one now.
+
+**The blur is Figma's own 34, not `Card`'s 17.** This file has recorded the
+`0px 14px 34px rgba(0,0,0,0.1)` shadow on the *first* card of the Actus grid,
+the home Domaines grid, the Contrats Domaines, the e-commerce masonry and both
+Interlocuteurs — six times, always on one card of a grid, which is the comp
+showing a hover state. So 34 is what the designer draws for a content card, and
+the standing "worth confirming which blur is intended" note on the Actus grid is
+now answered in favour of the comp. **`Card`'s own 17 is left alone**, since the
+domain and hub grids specify it.
+
+The seven grids, all verified by driving a real pointer over **every card** and
+reading the computed shadow at rest, on hover and after leaving:
+
+| Page | Grid | cards |
+|---|---|---|
+| `/` | Actus | 3 |
+| `/bibliotheque` | Vitrine | 8 |
+| `/bibliotheque` | Resultats | 6 |
+| `/bibliotheque` | Vivante | 3 |
+| `/bibliotheque/article-design` | ALireEnsuite | 3 |
+| `/bibliotheque/new-article-page` | ALireEnsuite | 3 |
+| `/bibliotheque/avocat-e-commerce` | ALireEnsuite | 3 |
+| `.../service-page` | ALireEnsuite | 3 |
+
+Every one reads `none` at rest, `rgba(0,0,0,0.1) 0px 14px 34px` on hover and
+`none` again on leaving. On the home page the other eleven `Card` grids still
+resolve to 17, unchanged.
+
+- **What counts as an article card**: a piece of content with a title, a meta
+  or date line and a read link. `Vivante`'s three dated updates are in;
+  `ParCategorie`'s nine category tiles and `Parcours`' three reading paths are
+  **not** — they are navigation, not content. Nor are the article body's
+  `JurList`, `Ladder`, `Cabinet` or `Rail` cards, or the ALireEnsuite prev/next
+  pair, which Figma draws flat.
+- A shadow costs no layout, and that was checked rather than assumed: all six
+  affected pages measure exactly what this file records — 5748, 6243, 19114,
+  19832, 17602 and 17511.
 
 ## Hard rules
 

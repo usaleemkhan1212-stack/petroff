@@ -11,9 +11,7 @@ import type { ReactNode } from "react";
  *   real size change mid-sentence, not just a colour.
  */
 export const proseTags = {
-  b: (chunks: ReactNode) => (
-    <span className="text-h4 font-poppins">{chunks}</span>
-  ),
+  b: (chunks: ReactNode) => <span className="text-h4 font-poppins">{chunks}</span>,
   ref: (chunks: ReactNode) => (
     <span className="text-small-strong text-brique">{chunks}</span>
   ),

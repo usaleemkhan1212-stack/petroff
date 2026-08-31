@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import Courthouse from "@/assets/icons/courthouse.svg";
 import SealRibbon from "@/assets/icons/seal-ribbon.svg";
 import photo from "@/assets/images/mariela-portrait-hero.jpg";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
@@ -44,12 +45,8 @@ export function Hero() {
                 </p>
                 {/* Poppins Bold 68 on a 1.06 line box at -0.01em — Figma's own
                     Display H1, so `text-display` matches exactly. */}
-                <h1 className="text-display text-encre font-poppins">
-                  {t("name")}
-                </h1>
-                <p className="text-h3 font-poppins text-periwinkle">
-                  {t("role")}
-                </p>
+                <h1 className="text-display text-encre font-poppins">{t("name")}</h1>
+                <p className="text-h3 font-poppins text-periwinkle">{t("role")}</p>
                 <p className="text-body text-encre/62">{t("lead")}</p>
               </div>
 
@@ -57,20 +54,23 @@ export function Hero() {
                 {/* 9px, not the usual 16 — Figma wraps the pair in its own row,
                     as the service page hero does. */}
                 <div className="flex flex-wrap items-center gap-2.25">
-                  <Button
+                  <ConsultButton
                     size="lg"
                     variant="gold"
                     className="whitespace-normal sm:whitespace-nowrap"
                   >
                     {t("ctaPrimary")}
-                  </Button>
-                  <Button
+                  </ConsultButton>
+                  {/* The number is a contact control, and there is no tel:
+                      link on the site yet — it opens the drawer, which carries
+                      it. */}
+                  <ConsultButton
                     size="lg"
                     variant="outline"
                     className="whitespace-normal sm:whitespace-nowrap"
                   >
                     {t("phone")}
-                  </Button>
+                  </ConsultButton>
                 </div>
 
                 <div className="flex items-center gap-4">
@@ -81,9 +81,7 @@ export function Hero() {
                     className="shrink-0"
                   />
                   <p className="text-small text-encre/62 max-w-137.5">
-                    <span className="text-small-strong text-encre">
-                      {t("firm")}
-                    </span>
+                    <span className="text-small-strong text-encre">{t("firm")}</span>
                     {t("firmDetails")}
                   </p>
                 </div>
@@ -115,9 +113,7 @@ export function Hero() {
                   className="shrink-0"
                 />
                 <figcaption className="min-w-0 flex-1">
-                  <span className="text-small text-encre block">
-                    {t("card.line1")}
-                  </span>
+                  <span className="text-small text-encre block">{t("card.line1")}</span>
                   <span className="text-small-strong text-periwinkle block">
                     {t("card.line2")}
                   </span>

@@ -14,10 +14,15 @@ const variants = {
   rule: {
     box: "border-periwinkle border border-l-5 bg-white",
     tag: "text-button bg-pale-periwinkle text-encre",
+    icon: "text-encre",
   },
   trap: {
     box: "bg-pale-rose/30",
     tag: "text-overline bg-pale-rose/30 text-red",
+    /* Left encre: this page's trap is still the older pale-rose/red design,
+       so the brique glyph `13318:2729` now specifies would clash with its own
+       red tag. It follows when this block is re-derived. */
+    icon: "text-encre",
   },
 } as const;
 
@@ -44,7 +49,7 @@ export function Callout({
             aria-hidden="true"
             width={24}
             height={24}
-            className="text-encre shrink-0"
+            className={`shrink-0 ${variants[variant].icon}`}
           />
         ) : null}
         <span

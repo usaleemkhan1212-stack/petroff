@@ -3,7 +3,7 @@ import PhoneIcon from "@/assets/icons/phone.svg";
 import { NavMenu } from "@/components/layout/NavMenu";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { MobileNav } from "@/components/layout/MobileNav";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton, ConsultTrigger } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import { MaybeLink } from "@/components/ui/MaybeLink";
@@ -65,12 +65,16 @@ export function Header() {
             <div className="flex items-center gap-2 xl:gap-1.5 2xl:gap-2">
               <LanguageSwitcher className="hidden xl:flex" />
 
-              <Button className="hidden sm:inline-flex">{t("appointment")}</Button>
+              <ConsultButton className="hidden sm:inline-flex">
+                {t("appointment")}
+              </ConsultButton>
 
-              <span className="border-encre/10 text-encre flex size-9.5 shrink-0 items-center justify-center rounded-full border bg-white">
+              {/* Opens the drawer, which carries the number — there is no
+                  tel: link anywhere on the site yet. */}
+              <ConsultTrigger className="border-encre/10 text-encre hover:bg-encre/5 flex size-9.5 shrink-0 items-center justify-center rounded-full border bg-white transition-colors">
                 <PhoneIcon aria-hidden="true" />
                 <span className="sr-only">{t("phoneLabel")}</span>
-              </span>
+              </ConsultTrigger>
 
               <MobileNav items={navItems} />
             </div>

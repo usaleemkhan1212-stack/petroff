@@ -1,21 +1,50 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { Children, useState, type ReactNode } from "react";
+
+/** Figma lists four rows and puts the rest behind the button. */
+const COLLAPSED = 4;
 
 /**
- * Figma's `reflist`: the texts this article rests on, one ruled row each.
- * Same ruled anatomy as `vigil`, but every row ends in its own link.
+ * Figma's `reflist` (`13318:2847`): the source texts as ruled rows, closing
+ * with an outline button that counts the ones not shown.
  *
- * **Since the redesign it shows only the first four**, closed by an outline
- * button offering the other nine — the block went from 1124px to 430. All
- * thirteen references stay in the data, which is what the "+9" counts.
+ * **The button works.** It takes every reference as a child and shows the
+ * first four until it is pressed — all thirteen are in the data, which is what
+ * the "+9" counts, and the template shows all thirteen with no button at all.
+ * So the collapse is Figma's idea and the expansion is the only reading of it
+ * that is not a dead control.
  */
-export function RefList({ children, more }: { children: ReactNode; more: string }) {
+export function RefList({
+  id,
+  more,
+  less,
+  children,
+}: {
+  id: string;
+  more: string;
+  less: string;
+  children: ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const rows = Children.toArray(children);
+
   return (
     <div className="border-encre/10 flex flex-col items-start gap-2 border-t">
-      <ul className="w-full">{children}</ul>
-      {/* Inert like every other control on this page. */}
-      <span className="text-button font-poppins text-encre border-encre rounded-full border-[1.5px] px-12 py-2.75">
-        {more}
-      </span>
+      <ul id={id} className="w-full">
+        {open ? rows : rows.slice(0, COLLAPSED)}
+      </ul>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={id}
+        onClick={() => setOpen((o) => !o)}
+        className={
+          "text-button font-poppins text-encre border-encre hover:bg-encre/5 focus-visible:outline-gold cursor-pointer rounded-full border-[1.5px] px-12 py-2.75 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+        }
+      >
+        {open ? less : more}
+      </button>
     </div>
   );
 }
@@ -35,9 +64,7 @@ export function RefRow({
         <p className="text-h4 font-poppins text-encre">{reference}</p>
         <p className="text-body text-encre/62">{summary}</p>
       </div>
-      <span className="text-button font-poppins text-periwinkle shrink-0">
-        {cta}
-      </span>
+      <span className="text-button font-poppins text-periwinkle shrink-0">{cta}</span>
     </li>
   );
 }

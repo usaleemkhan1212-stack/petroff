@@ -3,7 +3,7 @@ import glassMeetingRoomWide from "@/assets/images/glass-meeting-room-wide.jpg";
 import plantFilledLounge from "@/assets/images/plant-filled-lounge.jpg";
 
 /** Keys inside the `Actus.items` message namespace. */
-export type ArticleKey = "signature" | "formeSociale" | "implantation";
+export type ArticleKey = "signature" | "formeSociale" | "implantation" | "demo";
 
 export type Article = {
   key: ArticleKey;
@@ -19,4 +19,7 @@ export const articles: readonly Article[] = [
   { key: "signature", photo: benchLaptop },
   { key: "formeSociale", photo: plantFilledLounge },
   { key: "implantation", photo: glassMeetingRoomWide },
+  /* A stand-in so the carousel has a fourth page to scroll to — remove it
+     when a real fourth item exists. */
+  { key: "demo", photo: benchLaptop },
 ] as const;

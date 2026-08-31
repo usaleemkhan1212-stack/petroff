@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import cardCoffee from "@/assets/images/card-and-coffee-laptop.jpg";
 import cardPayment from "@/assets/images/card-payment-laptop-wide.jpg";
 import laptopColumn from "@/assets/images/laptop-by-column.jpg";
+import { CardCarousel } from "@/components/ui/CardCarousel";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +16,9 @@ const items = [
   { key: "abus", photo: laptopColumn, type: "bg-pale-gold" },
   { key: "blocage", photo: cardCoffee, type: "bg-pale-blue" },
   { key: "prix", photo: cardPayment, type: "bg-pale-blue" },
+  /* A stand-in so the carousel has a fourth page to scroll to — remove it
+     when a real fourth item exists. */
+  { key: "demo", photo: laptopColumn, type: "bg-pale-gold" },
 ] as const satisfies readonly {
   key: string;
   photo: StaticImageData;
@@ -51,10 +55,19 @@ export function ALireEnsuite() {
           reads as an artefact rather than a design — every other card grid on
           the site levels — so all three stretch here.
         */}
-        <ul className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3 lg:mt-11">
+        <CardCarousel
+          label={t("carouselLabel")}
+          count={items.length}
+          className="mt-8 lg:mt-11"
+          trackClassName="gap-6"
+          dotsClassName="mt-8.5"
+        >
           {items.map(({ key, photo, type }) => (
-            <li key={key} className="flex">
-              <article className="rounded-note-lg border-encre/8 flex min-w-0 flex-1 flex-col overflow-hidden border bg-white">
+            <li
+              key={key}
+              className="flex min-w-0 shrink-0 basis-full snap-start sm:basis-[calc((100%-24px)/2)] lg:basis-[calc((100%-48px)/3)]"
+            >
+              <article className="rounded-note-lg border-encre/8 flex min-w-0 flex-1 flex-col overflow-hidden border bg-white transition-shadow hover:shadow-[0px_14px_34px_rgba(0,0,0,0.1)]">
                 <Image
                   src={photo}
                   alt=""
@@ -67,14 +80,10 @@ export function ALireEnsuite() {
                     <span className={cn(pill, "bg-pale-periwinkle")}>
                       {t("domain")}
                     </span>
-                    <span className={cn(pill, type)}>
-                      {t(`items.${key}.type`)}
-                    </span>
+                    <span className={cn(pill, type)}>{t(`items.${key}.type`)}</span>
                   </div>
 
-                  <h3 className="text-h3 text-encre">
-                    {t(`items.${key}.title`)}
-                  </h3>
+                  <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
                   <p className="text-small text-encre/62">
                     {t(`items.${key}.description`)}
                   </p>
@@ -93,17 +102,9 @@ export function ALireEnsuite() {
               </article>
             </li>
           ))}
-        </ul>
+        </CardCarousel>
 
         {/* Three cards are all on screen at once, so the dots are decorative. */}
-        <div
-          aria-hidden="true"
-          className="mt-8.5 flex justify-center gap-3"
-        >
-          <span className="bg-periwinkle h-2.25 w-7.5 rounded-full" />
-          <span className="bg-encre/20 size-2.25 rounded-full" />
-          <span className="bg-encre/20 size-2.25 rounded-full" />
-        </div>
       </Container>
     </section>
   );

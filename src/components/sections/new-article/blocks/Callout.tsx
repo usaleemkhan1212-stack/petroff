@@ -16,10 +16,13 @@ const variants = {
   rule: {
     box: "border-periwinkle border border-l-5 bg-white",
     tag: "text-button bg-pale-periwinkle text-encre",
+    icon: "text-encre",
   },
   trap: {
     box: "bg-lilas",
     tag: "text-overline uppercase bg-stone text-brique",
+    /* `13318:2729` strokes the glyph #A67C1B, matching its tag — it was encre. */
+    icon: "text-brique",
   },
 } as const;
 
@@ -46,7 +49,7 @@ export function Callout({
             aria-hidden="true"
             width={24}
             height={24}
-            className="text-encre shrink-0"
+            className={`shrink-0 ${variants[variant].icon}`}
           />
         ) : null}
         <span

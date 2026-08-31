@@ -1,5 +1,6 @@
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
@@ -55,21 +56,17 @@ export function ComprendreLeDroit() {
                     <p className="text-body-strong text-brique">
                       {t(`items.${key}.kicker`)}
                     </p>
-                    <h3 className="text-h3 text-encre">
-                      {t(`items.${key}.title`)}
-                    </h3>
+                    <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
                   </div>
-                  <p className="text-small text-encre/62">
-                    {t(`items.${key}.body`)}
-                  </p>
-                  <span
+                  <p className="text-small text-encre/62">{t(`items.${key}.body`)}</p>
+                  <ConsultTrigger
                     className={cn(
                       "text-button font-poppins text-encre inline-flex items-center rounded-full px-7 py-4",
                       tone,
                     )}
                   >
                     {t("cta")}
-                  </span>
+                  </ConsultTrigger>
                 </li>
               ))}
             </ul>
@@ -87,9 +84,9 @@ export function ComprendreLeDroit() {
               </h3>
             </div>
             <p className="text-body text-white/70">{t("card.body")}</p>
-            <Button size="lg" variant="gold">
+            <ConsultButton size="lg" variant="gold">
               {t("card.cta")}
-            </Button>
+            </ConsultButton>
           </div>
         </div>
       </Container>

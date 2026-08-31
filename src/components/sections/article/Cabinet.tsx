@@ -60,7 +60,9 @@ export function Cabinet() {
   return (
     <section className="bg-lilas">
       <Container className="py-16 lg:py-24">
-        <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
+        <p className="text-overline font-poppins text-brique uppercase">
+          {t("overline")}
+        </p>
         <h2 className="text-h2 text-encre mt-2.5">{t("title")}</h2>
         <p className="text-small text-encre/62 mt-3.5">{t("lead")}</p>
 
@@ -95,9 +97,7 @@ export function Cabinet() {
                 >
                   {t(`items.${key}.terms`)}
                 </p>
-                <p className="text-body text-encre/62">
-                  {t(`items.${key}.note`)}
-                </p>
+                <p className="text-body text-encre/62">{t(`items.${key}.note`)}</p>
 
                 <MaybeLink
                   href={href}

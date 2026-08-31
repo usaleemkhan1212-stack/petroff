@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
+import { CardCarousel } from "@/components/ui/CardCarousel";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { articles } from "@/lib/actus";
@@ -24,10 +25,20 @@ export function Actus() {
             </span>
           </div>
 
-          <ul className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+          {/* The row's own 32/48 column gap moves onto the dots, since the
+              track and the dot row are one child now. */}
+          <CardCarousel
+            label={t("carouselLabel")}
+            count={articles.length}
+            trackClassName="gap-5"
+            dotsClassName="mt-8 lg:mt-12"
+          >
             {articles.map(({ key, photo }) => (
-              <li key={key} className="flex">
-                <Card className="flex flex-1 flex-col overflow-hidden">
+              <li
+                key={key}
+                className="flex min-w-0 shrink-0 basis-full snap-start sm:basis-[calc((100%-20px)/2)] lg:basis-[calc((100%-40px)/3)]"
+              >
+                <Card className="flex flex-1 flex-col overflow-hidden hover:shadow-[0px_14px_34px_rgba(0,0,0,0.1)]">
                   <Image
                     src={photo}
                     alt=""
@@ -39,7 +50,7 @@ export function Actus() {
                   <div className="flex flex-col gap-2 px-6 pt-6 pb-7">
                     {/* Poppins SemiBold 16 at 0.18em — the overline style,
                         not Inter. Both frames specify the tracking. */}
-                    <p className="text-overline font-poppins uppercase text-brique">
+                    <p className="text-overline font-poppins text-brique uppercase">
                       {t(`items.${key}.kicker`)}
                     </p>
                     <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
@@ -48,20 +59,7 @@ export function Actus() {
                 </Card>
               </li>
             ))}
-          </ul>
-
-          {/*
-            Figma's pagination dots. Decorative for now: the frame supplies
-            exactly three articles and all three are on screen at once, so
-            there is nothing to page through. Kept because the comp draws it,
-            and aria-hidden because it is not a control the reader can use.
-            Make it real when there are more than three articles.
-          */}
-          <div aria-hidden="true" className="flex justify-center gap-3">
-            <span className="bg-periwinkle h-2.25 w-7.5 rounded-full" />
-            <span className="bg-encre/20 size-2.25 rounded-full" />
-            <span className="bg-encre/20 size-2.25 rounded-full" />
-          </div>
+          </CardCarousel>
         </div>
       </Container>
     </section>

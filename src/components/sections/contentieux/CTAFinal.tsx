@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import ColumnedBuilding from "@/assets/icons/columned-building.svg";
 import ScalesOfJusticeSm from "@/assets/icons/scales-of-justice-sm.svg";
-import { Button } from "@/components/ui/Button";
+import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
 export function CTAFinal() {
@@ -42,7 +42,9 @@ export function CTAFinal() {
           {/* gap-3 here, not the Expertises CTAFinal's gap-4: Figma specifies 12px
               on this panel and 16px on that one. */}
           <div className="relative flex flex-col items-center gap-3 text-center">
-            <p className="text-overline font-poppins uppercase text-brique">{t("overline")}</p>
+            <p className="text-overline font-poppins text-brique uppercase">
+              {t("overline")}
+            </p>
             <h2 className="text-h2 text-encre">{t("title")}</h2>
             {/* Two lines, no gap between them — the 16px stack gap wraps the pair. */}
             <div className="text-body text-encre/62">
@@ -54,16 +56,19 @@ export function CTAFinal() {
                 overflow-hidden and these labels overrun its content box on a
                 phone. Same treatment as the other CTA panels. */}
             <div className="flex w-full flex-wrap justify-center gap-4">
-              <Button size="lg" className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap">
+              <ConsultButton
+                size="lg"
+                className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap"
+              >
                 {t("ctaPrimary")}
-              </Button>
-              <Button
+              </ConsultButton>
+              <ConsultButton
                 size="lg"
                 variant="gold"
                 className="w-full whitespace-normal sm:w-auto sm:whitespace-nowrap"
               >
                 {t("ctaSecondary")}
-              </Button>
+              </ConsultButton>
             </div>
           </div>
         </div>
