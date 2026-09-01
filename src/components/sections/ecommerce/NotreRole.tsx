@@ -1,3 +1,4 @@
+import { Bullet } from "@/components/ui/Bullet";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import rolePhoto from "@/assets/images/card-payment-laptop.jpg";
@@ -51,10 +52,7 @@ export function NotreRole() {
                   <li key={key} className="flex items-start gap-3">
                     {/* Figma exports this as a 12px SVG circle, which is not
                         worth a file — the same call the hero's trust dot makes. */}
-                    <span
-                      aria-hidden="true"
-                      className="bg-gold size-3 shrink-0 rounded-full"
-                    />
+                    <Bullet />
                     {/* One flat run — Figma gives the lead-in no emphasis. */}
                     <p className="text-body text-encre/62">{t(`checks.${key}`)}</p>
                   </li>

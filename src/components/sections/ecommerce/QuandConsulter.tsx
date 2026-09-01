@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Bullet } from "@/components/ui/Bullet";
 import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
@@ -18,7 +19,8 @@ const triggers = ["lancement", "dgccrf", "marketplace", "retours", "cgv"] as con
  * invisible, and it was built that way verbatim. The updated node keeps the
  * pale ground and darkens the copy: **encre title, encre/62 lead and
  * footnote**, and a **gold** button where it had been red. The trigger bullets
- * went periwinkle to gold in the same pass.
+ * went periwinkle to gold in the same pass, and are now the site's shared
+ * 9x20 puce rather than a 14px circle of their own.
  */
 export function QuandConsulter() {
   const t = useTranslations("EcommercePage.quand");
@@ -49,12 +51,11 @@ export function QuandConsulter() {
             <ul className="flex flex-col gap-6">
               {triggers.map((key) => (
                 <li key={key} className="flex items-start gap-4">
-                  {/* A 14px gold circle — exported as an SVG, not worth a
-                      file, the same call the hero's trust dot makes. */}
-                  <span
-                    aria-hidden="true"
-                    className="bg-gold size-3.5 shrink-0 rounded-full"
-                  />
+                  {/* The site's shared 9x20 gold puce (`13680:21226`), which
+                      this frame now uses too — it was a 14px circle. Its own
+                      20px box lands the dot on the title's first line, so the
+                      row needs no margin of its own. */}
+                  <Bullet />
                   <div className="flex min-w-0 flex-1 flex-col gap-1">
                     <h3 className="text-h3 text-encre">{t(`items.${key}.title`)}</h3>
                     <p className="text-body text-encre/62">{t(`items.${key}.body`)}</p>

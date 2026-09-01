@@ -1,5 +1,6 @@
 import Image from "next/image";
 import lawyerPortrait from "@/assets/images/lawyer-portrait-inline.jpg";
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 
 /**
  * Figma's `seam` (`13318:2715`, `13318:3562`): the strip that breaks up the
@@ -38,7 +39,9 @@ export function Seam({
             <span className="text-body-strong">{title}</span>{" "}
             <span className="text-body">{body}</span>
           </p>
-          <span className="text-button font-poppins text-periwinkle">{cta}</span>
+          <ConsultTrigger className="text-button font-poppins text-periwinkle w-fit">
+            {cta}
+          </ConsultTrigger>
         </div>
       </div>
     </div>

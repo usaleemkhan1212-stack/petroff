@@ -90,16 +90,23 @@ export function Hero() {
                 />
               </div>
 
-              {/* Two thirds of a 320px component, hence the 14.667/9.333px
-                  type and 16.667 padding — none of them on the spacing scale. */}
-              <figure className="absolute top-[428px] left-0 flex h-[98px] w-[213.333px] flex-col gap-[5.333px] rounded-[16px] bg-white p-[16.667px] shadow-[0px_14.667px_36.667px_0px_rgba(18,42,76,0.12)]">
-                <figcaption className="text-encre font-poppins text-[14.667px] leading-[17.333px] font-semibold">
-                  {t("card.title")}
-                </figcaption>
-                <p className="text-encre/62 font-inter text-[9.333px] leading-[14px]">
-                  {t("card.body")}
-                </p>
-              </figure>
+            {/*
+              `13680:21182` — the designer replaced the old two-thirds-scaled
+              instance with a real one: 260 wide with Figma's own
+              "Petroff/Body 18 strong" title over Inter 14/18, where it had 213.3
+              and 14.667/9.333px type well under the design system's 16px floor.
+              Only its 16.667 padding, 5.333 gap and shadow still carry the old
+              scale, and it sits at 401, not 428. It takes no height of its own:
+              16.667 + 27 + 5.333 + 54 + 16.667 is Figma's 119.667 exactly.
+            */}
+            <figure className="absolute top-[401px] left-0 flex w-[260px] flex-col gap-[5.333px] rounded-[16px] bg-white p-[16.667px] shadow-[0px_14.667px_36.667px_0px_rgba(18,42,76,0.12)]">
+              <figcaption className="text-body-strong text-encre">
+                {t("card.title")}
+              </figcaption>
+              <p className="text-encre/62 font-inter text-[14px] leading-[18px]">
+                {t("card.body")}
+              </p>
+            </figure>
 
               <div
                 aria-hidden="true"

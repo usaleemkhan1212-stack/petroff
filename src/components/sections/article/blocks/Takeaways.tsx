@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import BulletMark from "@/assets/icons/bullet-mark.svg";
+import { Bullet } from "@/components/ui/Bullet";
 import { proseTags } from "@/components/sections/article/blocks/Prose";
 
 const points = [
@@ -36,7 +36,7 @@ export function Takeaways({ title }: { title: string }) {
       <ul className="mt-4">
         {points.map((key) => (
           <li key={key} className="flex items-start gap-4.25 py-2.5">
-            <BulletMark aria-hidden="true" width={9} height={20} className="shrink-0" />
+            <Bullet />
             {/* Figma weights the lead-in at full encre inside an encre/62 line, which
                 the shared proseTags cannot express — it leaves <b> to inherit. */}
             <p className="text-body text-encre/62 min-w-0 flex-1">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import lawyerPortrait from "@/assets/images/lawyer-portrait-inline.jpg";
+import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 
 /**
  * Figma's `seam` (`13318:2715`, `13318:3562`): the strip that breaks up the
@@ -9,6 +10,11 @@ import lawyerPortrait from "@/assets/images/lawyer-portrait-inline.jpg";
  *
  * The portrait is the stored `lawyer-portrait-inline.jpg`, which is already
  * 422x492 — exactly 3x this box.
+ *
+ * Its CTA opens the consultation drawer: "faire cadrer le processus" and
+ * "vérifier la forme applicable" are asks for the firm, not navigation, so they
+ * belong with every other contact button on the site. It had been an inert
+ * span — the site-wide pass that wired the rest missed both seams.
  */
 export function Seam({
   title,
@@ -37,9 +43,9 @@ export function Seam({
             <span className="text-body-strong">{title}</span>{" "}
             <span className="text-body">{body}</span>
           </p>
-          <span className="text-button font-poppins bg-gold w-fit rounded-full px-7 py-4 text-white">
+          <ConsultTrigger className="text-button font-poppins bg-gold w-fit rounded-full px-7 py-4 text-white">
             {cta}
-          </span>
+          </ConsultTrigger>
         </div>
       </div>
     </div>

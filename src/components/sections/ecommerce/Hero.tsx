@@ -63,16 +63,16 @@ export function Hero() {
 
             <div className="flex flex-wrap items-center gap-2.25">
               {/* Inert, like every CTA on the site until a route exists. */}
-              <ConsultTrigger className="text-button font-poppins bg-gold rounded-full px-7 py-3 text-white">
+              <ConsultTrigger className="text-button font-poppins bg-gold rounded-full px-7 py-4 text-white">
                 {t("cta")}
               </ConsultTrigger>
               <p className="text-small text-encre/62">{t("ctaNote")}</p>
             </div>
           </div>
 
-          {/* Shown from xl: 656 of copy plus 553 of stage needs the full 1245. */}
-          <div className="relative hidden h-137 w-[553px] shrink-0 xl:block">
-            <div className="absolute top-0 left-[42.53px] h-137 w-117.5 overflow-hidden rounded-tl-[200px] rounded-tr-[10px] rounded-br-[100px] rounded-bl-[60px]">
+          {/* Shown from xl: 658 of copy plus 551 of stage needs the full 1245. */}
+          <div className="relative hidden h-137 w-[551px] shrink-0 xl:block">
+            <div className="absolute top-0 left-[40.53px] h-137 w-117.5 overflow-hidden rounded-tl-[200px] rounded-tr-[10px] rounded-br-[100px] rounded-bl-[60px]">
               <Image
                 src={heroPhoto}
                 alt={t("imageAlt")}
@@ -81,23 +81,28 @@ export function Hero() {
               />
             </div>
 
-            {/* Two thirds of a 320px component, which is where the 14.667 and
-                9.333px type comes from — the same card as the article hero. */}
-            <figure className="absolute top-[428px] left-0 flex w-[213.333px] flex-col gap-[5.333px] rounded-[16px] bg-white p-[16.667px] shadow-[0px_14.667px_36.667px_0px_rgba(18,42,76,0.12)]">
-              <figcaption className="text-encre font-poppins text-[14.667px] leading-[17.333px] font-semibold">
+            {/*
+              **Its type is full size now.** It used to be two thirds of a 320px
+              component — 213.3 wide, with 14.667 and 9.333px type — and the
+              frame has grown it to 260 with a real `text-body-strong` title
+              (Inter SemiBold 18/1.5) over Inter 14/18. Only its 16.667px
+              padding, 5.333 gap and 36.667 shadow still carry the old scale.
+            */}
+            <figure className="absolute top-[399px] left-0 flex w-[260px] flex-col gap-[5.333px] rounded-[16px] bg-white p-[16.667px] shadow-[0px_14.667px_36.667px_0px_rgba(18,42,76,0.12)]">
+              <figcaption className="text-body-strong text-encre">
                 {t("card.title")}
               </figcaption>
-              <p className="text-encre/62 font-inter text-[9.333px] leading-[14px]">
+              <p className="text-encre/62 font-inter text-[14px] leading-[18px]">
                 {t("card.body")}
               </p>
             </figure>
 
             {/* Figma's 108.47 box is the rotated bounding box of a 97.333
                 circle; CSS rotates about the centre, so the untransformed box
-                sits at 450.1/64.57. */}
+                sits at 448.1/64.57 — the box itself is at 442.53. */}
             <div
               aria-hidden="true"
-              className="border-lilas bg-encre absolute top-[64.57px] left-[450.1px] flex size-[97.333px] rotate-7 flex-col items-center justify-center rounded-full border-2 text-center"
+              className="border-lilas bg-encre absolute top-[64.57px] left-[448.1px] flex size-[97.333px] rotate-7 flex-col items-center justify-center rounded-full border-2 text-center"
             >
               <span className="text-gold font-poppins text-[18px] leading-[1.35] font-bold">
                 {t("badge.years")}
@@ -143,7 +148,10 @@ export function Hero() {
                 {t(`stats.${key}.value`)}
               </dt>
               <dd className="text-small text-encre/62">{t(`stats.${key}.label`)}</dd>
-              <dd className="text-overline font-poppins text-periwinkle">
+              {/* Inter SemiBold 16/1.45 in periwinkle — it was the tracked
+                  Poppins overline, which wrapped the longest citation onto a
+                  second line and made the band 19px tall. */}
+              <dd className="text-small-strong text-periwinkle">
                 {t(`stats.${key}.ref`)}
               </dd>
             </div>

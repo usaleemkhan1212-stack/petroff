@@ -2444,28 +2444,6 @@
       "overline": "Comment ça marche",
       "title": "Un processus clair pour votre dossier e-commerce",
       "lead": "Choisissez votre point d’entrée — le processus s’adapte à votre situation.",
-      "steps": {
-        "dossier": {
-          "title": "Envoyez le dossier",
-          "body": "Le site, les CGV, le courrier du régulateur, ou quelques lignes sur la situation."
-        },
-        "analyse": {
-          "title": "Analyse claire",
-          "body": "Ce que le Code exige, les délais qui courent, et les options réellement ouvertes."
-        },
-        "devis": {
-          "title": "Devis forfaitaire",
-          "body": "Le périmètre, les livrables et le coût, annoncés avant que le travail ne commence."
-        },
-        "execution": {
-          "title": "Exécution",
-          "body": "Rédaction, négociation, correspondance régulateur et procédures, restituées clairement."
-        },
-        "suivi": {
-          "title": "Suivi dans la durée",
-          "body": "Vos CGV et votre interface tenues à jour au fil des réformes, avec un interlocuteur unique."
-        }
-      },
       "doors": {
         "overline": "Deux portes",
         "title": "Boutique en création, ou déjà en ligne ?",
@@ -2480,22 +2458,81 @@
       },
       "entry": {
         "overline": "Votre point d’entrée",
-        "title": "Pack CGV e-commerce",
         "rows": {
           "etape": {
-            "label": "Première étape",
-            "value": "Cadrage du parcours"
+            "label": "Première étape"
           },
           "delai": {
-            "label": "Délai",
-            "value": "avant la mise en ligne"
+            "label": "Délai"
           },
           "forfait": {
-            "label": "Forfait",
-            "value": "1 490 €"
+            "label": "Forfait"
+          }
+        }
+      },
+      "paths": {
+        "creation": {
+          "title": "Pack CGV e-commerce",
+          "cta": "Commander le pack",
+          "values": {
+            "etape": "Cadrage du parcours",
+            "delai": "avant la mise en ligne",
+            "forfait": "1 490 €"
+          },
+          "steps": {
+            "s1": {
+              "title": "Envoyez vos maquettes",
+              "body": "Le design du site, les specs du parcours, ou quelques lignes sur le projet."
+            },
+            "s2": {
+              "title": "Cadrage du parcours avant build",
+              "body": "Ce que le Code exige, page par page, spécifié avant que l’interface ne soit construite."
+            },
+            "s3": {
+              "title": "Devis forfaitaire",
+              "body": "Pack CGV e-commerce : périmètre, livrables et prix, annoncés d’avance."
+            },
+            "s4": {
+              "title": "Rédaction & mise en ligne",
+              "body": "CGV, mentions, rétractation « un clic » et médiation — rédigées pour la France, prêtes au lancement."
+            },
+            "s5": {
+              "title": "Suivi dans la durée",
+              "body": "Vos conditions tenues à jour au fil des réformes et du catalogue."
+            }
           }
         },
-        "cta": "Commander le pack"
+        "enLigne": {
+          "title": "Audit du tunnel de commande",
+          "cta": "Commander l’audit",
+          "values": {
+            "etape": "Audit du tunnel",
+            "delai": "score /100 sous 5 jours",
+            "forfait": "990 €"
+          },
+          "steps": {
+            "s1": {
+              "title": "Envoyez l’URL",
+              "body": "La boutique en ligne, les CGV actuelles, le courrier du régulateur s’il y en a un."
+            },
+            "s2": {
+              "title": "Audit du tunnel",
+              "body": "Fiche produit, panier, paiement, confirmation passés au Code : score de conformité /100."
+            },
+            "s3": {
+              "title": "Plan de remise à niveau chiffré",
+              "body": "Les corrections classées par exposition, à budget fermé."
+            },
+            "s4": {
+              "title": "Corrections par phases",
+              "body": "Mise en conformité étape par étape, sans casser la boutique."
+            },
+            "s5": {
+              "title": "Suivi dans la durée",
+              "body": "Interface et conditions maintenues à jour, avec un interlocuteur unique."
+            }
+          }
+        }
       }
     },
     "comprendre": {

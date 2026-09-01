@@ -44,6 +44,66 @@ type Tone = "mint" | "rose";
 type PhotoKey = "balcony" | "shopping";
 
 /**
+ * One entry in a column. Everything that is not a `service` is a **colourful
+ * card** — a photograph, an illustrated tile or a CTA seam — and that is the
+ * only distinction the corner rule needs.
+ */
+type Item =
+  | { kind: "service"; key: ServiceKey }
+  | { kind: "art"; ground: "lilas-2" | "pale-gold"; art: "shopfront" | "cart" }
+  | { kind: "photo"; key: PhotoKey }
+  | { kind: "seam"; key: SeamKey; tone: Tone };
+
+/**
+ * The two columns, in Figma's order (`13331:14270` and `13331:12312`). They
+ * are independent sequences — the rows do not line up — so below `lg` they
+ * follow one another rather than interleaving.
+ */
+const columns: readonly (readonly Item[])[] = [
+  [
+    { kind: "service", key: "cgv" },
+    { kind: "art", ground: "lilas-2", art: "shopfront" },
+    { kind: "service", key: "retractation" },
+    { kind: "service", key: "prix" },
+    { kind: "seam", key: "fiches", tone: "mint" },
+    { kind: "service", key: "avis" },
+    { kind: "photo", key: "balcony" },
+    { kind: "service", key: "abonnements" },
+    { kind: "service", key: "securite" },
+  ],
+  [
+    { kind: "service", key: "precontractuel" },
+    { kind: "service", key: "garanties" },
+    { kind: "service", key: "publicite" },
+    { kind: "photo", key: "shopping" },
+    { kind: "service", key: "marketplace" },
+    { kind: "service", key: "donnees" },
+    { kind: "seam", key: "prix", tone: "rose" },
+    { kind: "service", key: "transfrontalier" },
+    { kind: "art", ground: "pale-gold", art: "cart" },
+  ],
+];
+
+/**
+ * **The big bottom-left corner is derived, not declared.** A service card
+ * mirrors the tiles' 120px flourish when the card **underneath it in its own
+ * column is a colourful one** — a photograph, an illustrated tile or a seam —
+ * and takes the ordinary corner when a white text card follows or it closes
+ * the column. Rearranging `columns` is all it takes; the corners follow.
+ *
+ * Reading it off the arrangement rather than flagging six cards by hand is
+ * also what caught `donnees`, which sits above the rose seam and had been
+ * built square: its own node renders white only 120px above its bottom edge.
+ */
+const isColourful = (item: Item | undefined) =>
+  item !== undefined && item.kind !== "service";
+
+const photos: Record<PhotoKey, StaticImageData> = {
+  balcony: balconyPhoto,
+  shopping: shoppingPhoto,
+};
+
+/**
  * Figma's `13331:11970`: twelve service cards in two independent columns,
  * broken up by two photographs, two illustrated tiles and two CTA seams.
  *
@@ -82,11 +142,12 @@ export function CommentNousAidons() {
       <ul className="flex flex-col gap-2">
         {(t.raw(`services.${itemKey}.bullets`) as string[]).map((line) => (
           <li key={line} className="flex items-center gap-2">
-            {/* A 10px circle — a span, not a file. Gold under the site-wide bullet
-                rule; Figma draws it rose on this frame. Its 10px is kept. */}
+            {/* This frame draws its own bullet: a **10px rose** circle
+                (`#7FA6E0`, sampled from `13331:14276`), not the site's 9px
+                gold puce. Following the frame, as asked. */}
             <span
               aria-hidden="true"
-              className="bg-gold size-2.5 shrink-0 rounded-full"
+              className="bg-rose size-2.5 shrink-0 rounded-full"
             />
             <span className="text-small text-encre/62 min-w-0 flex-1">{line}</span>
           </li>
@@ -107,12 +168,12 @@ export function CommentNousAidons() {
   );
 
   /** A 610x280 photograph in the tiles' corner set. */
-  const Photo = ({ src, itemKey }: { src: StaticImageData; itemKey: PhotoKey }) => (
+  const Photo = ({ itemKey }: { itemKey: PhotoKey }) => (
     <div
       className={cn("relative aspect-[610/280] w-full overflow-hidden", tileCorners)}
     >
       <Image
-        src={src}
+        src={photos[itemKey]}
         alt={t(`photoAlt.${itemKey}`)}
         fill
         sizes="(min-width: 1280px) 599px, 100vw"
@@ -124,10 +185,10 @@ export function CommentNousAidons() {
   /** A 610x280 tile carrying one centred illustration. */
   const Art = ({
     ground,
-    children,
+    art,
   }: {
     ground: "lilas-2" | "pale-gold";
-    children: React.ReactNode;
+    art: "shopfront" | "cart";
   }) => (
     <div
       aria-hidden="true"
@@ -137,7 +198,11 @@ export function CommentNousAidons() {
         ground === "lilas-2" ? "bg-lilas-2" : "bg-pale-gold",
       )}
     >
-      {children}
+      {art === "shopfront" ? (
+        <Shopfront width={142} height={160} />
+      ) : (
+        <ShoppingCart width={137} height={160} />
+      )}
     </div>
   );
 
@@ -184,33 +249,31 @@ export function CommentNousAidons() {
           </div>
 
           <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-12">
-            <div className="flex flex-col gap-6">
-              <Service itemKey="cgv" flourish />
-              <Art ground="lilas-2">
-                <Shopfront width={142} height={160} />
-              </Art>
-              <Service itemKey="retractation" />
-              <Service itemKey="prix" flourish />
-              <Seam itemKey="fiches" tone="mint" />
-              <Service itemKey="avis" flourish />
-              <Photo src={balconyPhoto} itemKey="balcony" />
-              <Service itemKey="abonnements" />
-              <Service itemKey="securite" />
-            </div>
-
-            <div className="flex flex-col gap-6">
-              <Service itemKey="precontractuel" />
-              <Service itemKey="garanties" />
-              <Service itemKey="publicite" flourish />
-              <Photo src={shoppingPhoto} itemKey="shopping" />
-              <Service itemKey="marketplace" />
-              <Service itemKey="donnees" />
-              <Seam itemKey="prix" tone="rose" />
-              <Service itemKey="transfrontalier" flourish />
-              <Art ground="pale-gold">
-                <ShoppingCart width={137} height={160} />
-              </Art>
-            </div>
+            {columns.map((column, c) => (
+              <div key={c} className="flex flex-col gap-6">
+                {column.map((item, i) => {
+                  switch (item.kind) {
+                    case "service":
+                      return (
+                        <Service
+                          key={item.key}
+                          itemKey={item.key}
+                          /* The corner reads what comes next in this column. */
+                          flourish={isColourful(column[i + 1])}
+                        />
+                      );
+                    case "art":
+                      return <Art key={item.art} ground={item.ground} art={item.art} />;
+                    case "photo":
+                      return <Photo key={item.key} itemKey={item.key} />;
+                    case "seam":
+                      return (
+                        <Seam key={item.key} itemKey={item.key} tone={item.tone} />
+                      );
+                  }
+                })}
+              </div>
+            ))}
           </div>
         </div>
       </Container>

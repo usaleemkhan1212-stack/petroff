@@ -30,15 +30,24 @@ export function Toc() {
       <ul className="flex flex-col gap-3">
         {tocKeys.map((key) => (
           <li key={key} className="flex items-start gap-4">
+            {/* Figma gives the numeral a fixed **30px** column, so every
+                label starts on the same left edge; it had sized to content. */}
             <span
               aria-hidden="true"
-              className="text-h4 font-poppins text-rose shrink-0"
+              className="text-h4 font-poppins text-rose w-7.5 shrink-0"
             >
               {String(sectionKeys.indexOf(key) + 1).padStart(2, "0")}
             </span>
+            {/* Figma renders all sixteen on one line, and the widest label
+                needs **exactly** the 302 the row gives it — 348 less the
+                numeral's 30 and the 16 gap — so sub-pixel rounding is all that
+                separates fitting from wrapping. `xl:whitespace-nowrap` settles
+                it at the width the comp specifies and leaves the stacked
+                layout below `xl` free to wrap. Watch that headroom if a label
+                is ever lengthened. */}
             <a
               href={`#${key}`}
-              className="text-small text-encre/62 hover:text-brique min-w-0 flex-1 transition-colors"
+              className="text-small text-encre/62 hover:text-brique min-w-0 flex-1 transition-colors xl:whitespace-nowrap"
             >
               {t(`items.${key}`)}
             </a>

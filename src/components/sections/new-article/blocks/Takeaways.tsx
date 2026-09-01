@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import BulletMark from "@/assets/icons/bullet-mark.svg";
+import { Bullet } from "@/components/ui/Bullet";
 import { proseTags } from "@/components/sections/new-article/blocks/Prose";
 
 /** The seven points, in Figma's order. */
@@ -39,7 +39,7 @@ export function Takeaways() {
       <ul>
         {points.map((key) => (
           <li key={key} className="flex items-start gap-4.25 py-2.5">
-            <BulletMark aria-hidden="true" width={9} height={20} className="shrink-0" />
+            <Bullet />
             {/* Figma weights the lead-in at FULL encre inside an encre/62
                 line. The shared `proseTags` cannot express that — its `b`
                 carries no colour, so inside this paragraph it inherited the

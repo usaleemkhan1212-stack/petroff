@@ -43,7 +43,10 @@ export function Parcours() {
                   key={key}
                   className="border-encre/10 flex flex-col gap-4 border-b py-4.5 sm:flex-row sm:items-start sm:gap-9"
                 >
-                  <p className="text-price font-poppins text-pale-periwinkle shrink-0">
+                  {/* Figma gives the year a fixed **100px** column, so every
+                      title starts on the same left edge; it had sized to
+                      content, which stepped them in and out. */}
+                  <p className="text-price font-poppins text-pale-periwinkle shrink-0 sm:w-25">
                     {t(`items.${key}.year`)}
                   </p>
                   <div className="flex min-w-0 flex-1 flex-col gap-2">
@@ -67,7 +70,12 @@ export function Parcours() {
                       <p className="text-small-strong text-encre">
                         {t(`barreaux.${key}.name`)}
                       </p>
-                      <p className="text-small text-encre/62">
+                      {/* Figma fits these on one line, and the longer one
+                          needs **exactly** the 233 the column gives it — so
+                          sub-pixel rounding is all that separates fitting from
+                          wrapping, as on the privacy page's TOC. Pinned at the
+                          width the comp specifies; free to wrap once stacked. */}
+                      <p className="text-small text-encre/62 xl:whitespace-nowrap">
                         {t(`barreaux.${key}.detail`)}
                       </p>
                     </div>

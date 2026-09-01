@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import PackageBox from "@/assets/icons/package-box.svg";
 import Storefront from "@/assets/icons/storefront.svg";
@@ -7,9 +10,17 @@ import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
-/** The five steps and the three entry rows, in Figma's order. */
-const steps = ["dossier", "analyse", "devis", "execution", "suivi"] as const;
+/** Five steps per door, and the three entry rows. */
+const steps = ["s1", "s2", "s3", "s4", "s5"] as const;
 const rows = ["etape", "delai", "forfait"] as const;
+
+/** The two doors, in Figma's order; the first is the one it draws chosen. */
+const doors = [
+  { key: "creation", Icon: Storefront },
+  { key: "enLigne", Icon: PackageBox },
+] as const;
+
+type Door = (typeof doors)[number]["key"];
 
 /**
  * Figma's `13331:12970`: the five-step process beside the "Deux portes" card.
@@ -20,12 +31,21 @@ const rows = ["etape", "delai", "forfait"] as const;
  * own 28px twice over and take the same from the steps. Same fix as Quand
  * consulter.
  *
- * The two doors are a **picture of a chosen state**, not controls: Figma marks
- * the first one selected and gives the second no target, exactly as the two
- * article tools do. Reproduced with `aria-current` on a list row.
+ * **The two doors are a real control.** Figma marks the first one selected and
+ * gives the second no target, so it was built as a picture of that state;
+ * `public/petroff-deux-portes-demo.html` supplies the behaviour it could not
+ * draw — choosing a door rewrites **both** columns, the five steps on the left
+ * and the entry block on the right. Figma's own copy is exactly that demo's
+ * first door, so the section opens on the comp's own state.
+ *
+ * Buttons with `aria-pressed`, not a `role="tablist"`: two separate regions
+ * are driven rather than one panel per tab, so a tablist would promise a
+ * widget this is not — the same call the Bibliotheque's filters make. The demo
+ * uses `role="tab"`; this is the one place it is not followed.
  */
 export function CommentCaMarche() {
   const t = useTranslations("EcommercePage.process");
+  const [door, setDoor] = useState<Door>("creation");
 
   return (
     <section className="bg-lilas">
@@ -40,7 +60,7 @@ export function CommentCaMarche() {
               <p className="text-body text-encre/62">{t("lead")}</p>
             </div>
 
-            <ol className="flex flex-col gap-7">
+            <ol aria-live="polite" className="flex flex-col gap-7">
               {steps.map((key, index) => (
                 <li key={key}>
                   <Card className="rounded-note-lg flex items-start gap-4 p-6">
@@ -52,9 +72,11 @@ export function CommentCaMarche() {
                       {index + 1}
                     </span>
                     <div className="flex min-w-0 flex-1 flex-col gap-1">
-                      <h3 className="text-h3 text-encre">{t(`steps.${key}.title`)}</h3>
+                      <h3 className="text-h3 text-encre">
+                        {t(`paths.${door}.steps.${key}.title`)}
+                      </h3>
                       <p className="text-body text-encre/62">
-                        {t(`steps.${key}.body`)}
+                        {t(`paths.${door}.steps.${key}.body`)}
                       </p>
                     </div>
                   </Card>
@@ -76,48 +98,52 @@ export function CommentCaMarche() {
             </p>
             <h3 className="text-h3 text-encre">{t("doors.title")}</h3>
 
-            {/* A lilas trough holding the two doors; the first is chosen. */}
-            <ul className="rounded-tile bg-lilas flex flex-col gap-2 p-2 sm:flex-row">
-              {(
-                [
-                  { key: "creation", Icon: Storefront, chosen: true },
-                  { key: "enLigne", Icon: PackageBox, chosen: false },
-                ] as const
-              ).map(({ key, Icon, chosen }) => (
-                <li
-                  key={key}
-                  aria-current={chosen ? "true" : undefined}
-                  className={cn(
-                    "rounded-note flex min-w-0 flex-1 flex-col gap-2 p-4",
-                    chosen && "bg-white shadow-[0px_8px_22px_0px_rgba(18,41,77,0.1)]",
-                  )}
-                >
-                  <Icon
-                    aria-hidden="true"
-                    width={26}
-                    height={26}
-                    className={chosen ? "text-gold" : "text-encre/62"}
-                  />
-                  <p
+            {/* A lilas trough holding the two doors. */}
+            <div className="rounded-tile bg-lilas flex flex-col gap-2 p-2 sm:flex-row">
+              {doors.map(({ key, Icon }) => {
+                const chosen = key === door;
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    aria-pressed={chosen}
+                    onClick={() => setDoor(key)}
                     className={cn(
-                      "text-small-strong",
-                      chosen ? "text-encre" : "text-encre/62",
+                      "rounded-note focus-visible:outline-gold flex min-w-0 flex-1 cursor-pointer flex-col gap-2 p-4 text-left transition-all focus-visible:outline-2 focus-visible:outline-offset-2",
+                      chosen
+                        ? "bg-white shadow-[0px_8px_22px_0px_rgba(18,41,77,0.1)]"
+                        : "hover:bg-white/60",
                     )}
                   >
-                    {t(`doors.${key}.label`)}
-                  </p>
-                  <p className="text-small text-encre/62">{t(`doors.${key}.note`)}</p>
-                </li>
-              ))}
-            </ul>
+                    <Icon
+                      aria-hidden="true"
+                      width={26}
+                      height={26}
+                      className={chosen ? "text-gold" : "text-encre/62"}
+                    />
+                    <p
+                      className={cn(
+                        "text-small-strong",
+                        chosen ? "text-encre" : "text-encre/62",
+                      )}
+                    >
+                      {t(`doors.${key}.label`)}
+                    </p>
+                    <p className="text-small text-encre/62">{t(`doors.${key}.note`)}</p>
+                  </button>
+                );
+              })}
+            </div>
 
             <span aria-hidden="true" className="bg-encre/10 h-px w-full" />
 
-            <div className="flex flex-col gap-3">
+            <div aria-live="polite" className="flex flex-col gap-3">
               <p className="text-overline font-poppins text-brique uppercase">
                 {t("entry.overline")}
               </p>
-              <p className="text-h4 font-poppins text-encre">{t("entry.title")}</p>
+              <p className="text-h4 font-poppins text-encre">
+                {t(`paths.${door}.title`)}
+              </p>
 
               <dl className="flex flex-col gap-2">
                 {rows.map((key, index) => (
@@ -134,7 +160,7 @@ export function CommentCaMarche() {
                         {t(`entry.rows.${key}.label`)}
                       </dt>
                       <dd className="text-small-strong text-encre">
-                        {t(`entry.rows.${key}.value`)}
+                        {t(`paths.${door}.values.${key}`)}
                       </dd>
                     </div>
                   </div>
@@ -143,7 +169,7 @@ export function CommentCaMarche() {
 
               {/* Full width, unlike every other CTA on this page. */}
               <ConsultButton variant="gold" size="lg" className="w-full px-0">
-                {t("entry.cta")}
+                {t(`paths.${door}.cta`)}
               </ConsultButton>
             </div>
           </Card>

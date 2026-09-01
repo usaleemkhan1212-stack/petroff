@@ -88,10 +88,13 @@ export function Mission() {
                   key={key}
                   className="border-encre/10 flex items-start gap-4.5 border-b py-4.5"
                 >
-                  {/* aria-hidden: the <ol> already conveys the sequence. */}
+                  {/* aria-hidden: the <ol> already conveys the sequence.
+                      Figma gives it a fixed **60px** column (`13445:27591`),
+                      so every title starts on the same left edge — it had
+                      sized to content. */}
                   <span
                     aria-hidden="true"
-                    className="text-h2 font-poppins text-pale-periwinkle shrink-0"
+                    className="text-h2 font-poppins text-pale-periwinkle w-15 shrink-0"
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>

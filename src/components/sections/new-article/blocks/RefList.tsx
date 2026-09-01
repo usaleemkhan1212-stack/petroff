@@ -14,6 +14,12 @@ const COLLAPSED = 4;
  * the "+9" counts, and the template shows all thirteen with no button at all.
  * So the collapse is Figma's idea and the expansion is the only reading of it
  * that is not a dead control.
+ *
+ * Its row was re-derived with the jurisprudence cards, in the pass that
+ * flattened both to a **uniform 12px** between a row's own fields — this one had
+ * been 2, which was the whole of the node growing 500 to 540. Figma also leaves
+ * the **last** row unruled, so the rule is `last:border-b-0` rather than one on
+ * every row: collapsed it drops on row four, expanded on row thirteen.
  */
 export function RefList({
   id,
@@ -59,8 +65,8 @@ export function RefRow({
   cta: string;
 }) {
   return (
-    <li className="border-encre/10 flex flex-wrap items-center gap-5 border-b pb-4">
-      <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+    <li className="border-encre/10 flex flex-wrap items-center gap-9 border-b pb-4 last:border-b-0">
+      <div className="flex min-w-0 flex-1 flex-col gap-3">
         <p className="text-h4 font-poppins text-encre">{reference}</p>
         <p className="text-body text-encre/62">{summary}</p>
       </div>

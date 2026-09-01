@@ -1,3 +1,4 @@
+import { Bullet } from "@/components/ui/Bullet";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import photo from "@/assets/images/associee-tablet.jpg";
@@ -63,13 +64,7 @@ export function CommentNousProcedons() {
                   key={key}
                   className="border-encre/10 flex items-start gap-4.5 border-b py-4.5"
                 >
-                  {/* Figma draws a 12px gold circle at cy=12 in a 12.5x18 box,
-                      so it sits 6px down — level with the title's first line.
-                      A span, not a file, as the e-commerce bullets are. */}
-                  <span
-                    aria-hidden="true"
-                    className="bg-gold mt-1.5 size-3 shrink-0 rounded-full"
-                  />
+                  <Bullet />
                   <div className="flex min-w-0 flex-1 flex-col gap-2">
                     <h3 className="text-h4 font-poppins text-encre">
                       {t(`items.${key}.title`)}

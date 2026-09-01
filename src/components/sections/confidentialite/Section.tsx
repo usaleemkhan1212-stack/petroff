@@ -1,3 +1,4 @@
+import { Bullet } from "@/components/ui/Bullet";
 import { cn } from "@/lib/utils";
 import type { Block } from "@/lib/confidentialite";
 
@@ -28,14 +29,6 @@ function inline(text: string) {
     frame's, and it sets the row height. `mt-2.25` puts it on the first line
     where Figma's `items-end` would drop it to the last one as soon as an item
     wraps. */
-function Bullet() {
-  return (
-    <span
-      aria-hidden="true"
-      className="bg-gold mt-2.25 size-2.25 shrink-0 rounded-full"
-    />
-  );
-}
 
 function BlockView({ block }: { block: Block }) {
   switch (block.type) {
@@ -52,9 +45,9 @@ function BlockView({ block }: { block: Block }) {
       return (
         <ul className="flex flex-col gap-2">
           {block.items.map((item, i) => (
-            /* min-h 27 is Figma's puce box, which sets the row height for a
-               one-line item; a wrapped item is taller than that anyway, so
-               this matches the comp without the `items-end` misbehaviour. */
+            /* Figma's puce here sits in a **9x27** box, and that box sets the
+               row height for a one-line item — a wrapped one is taller anyway.
+               The shared glyph is 20, so the 27 is restored as a `min-h`. */
             <li key={i} className="flex min-h-6.75 items-start gap-4">
               <Bullet />
               <p className="text-body text-encre min-w-0 flex-1">{inline(item)}</p>

@@ -38,7 +38,9 @@ const paragraphs = ["p1", "p2", "p3"] as const;
 /**
  * Figma's `13331:13264`: ten explainer cards on a lilas-2 ground.
  *
- * **The comp calls the block `masonry` but does not behave like one** — its
+ * **Figma now builds it as two real masonry columns** (`13427:16448`), five
+ * cards each, balanced to the same 1806 height. It used to call the block
+ * `masonry` and not behave like one — its
  * rows are aligned, so every row is as tall as its taller card and a short one
  * leaves a hole beneath it. Built as real masonry on the user's instruction:
  * two independent columns, each packing upward on the same 24px gap, with the
@@ -77,7 +79,10 @@ export function ComprendreLeDroit() {
             order there is the odd cards then the even ones — DOM order and
             visual order still agree.
           */}
-          <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+          {/* Figma's two `masonry` columns are **604.5 on a 36px gutter**
+              (`13427:16448`), not 610.5 on 24 — the block was restructured.
+              The 24 stays as the vertical gap between cards. */}
+          <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-x-9">
             {([0, 1] as const).map((column) => (
               <ul key={column} className="flex flex-col gap-6">
                 {notes

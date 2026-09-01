@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import BulletMark from "@/assets/icons/bullet-mark.svg";
+import { Bullet } from "@/components/ui/Bullet";
 import photo from "@/assets/images/associes-grass-laptop.jpg";
 import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
@@ -57,12 +57,7 @@ export function Essentiel() {
               <ul className="flex flex-col">
                 {points.map((key) => (
                   <li key={key} className="flex items-start gap-4.25 py-2.5">
-                    <BulletMark
-                      aria-hidden="true"
-                      width={9}
-                      height={20}
-                      className="shrink-0"
-                    />
+                    <Bullet />
                     <p className="text-body text-encre min-w-0 flex-1">
                       {t.rich(`items.${key}`, {
                         b: (chunks) => (
