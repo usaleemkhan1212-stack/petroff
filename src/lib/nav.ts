@@ -11,7 +11,8 @@ type MessagePath =
   | "Nav.personalPage"
   | "Nav.articleDesign"
   | "Nav.ecommerce"
-  | "Nav.newArticle";
+  | "Nav.newArticle"
+  | "Nav.resultats";
 import { isLive } from "@/lib/routes";
 
 /** A sub-item under a primary nav entry. Plain data so it can cross into client components. */
@@ -83,6 +84,7 @@ const bibliothequeChildren: readonly NavChild[] = (
     { key: "articleDesign", href: "/bibliotheque/article-design" },
     { key: "ecommerce", href: "/bibliotheque/avocat-e-commerce" },
     { key: "newArticle", href: "/bibliotheque/new-article-page" },
+    { key: "resultats", href: "/bibliotheque/resultats" },
   ] as const
 )
   .filter(({ href }) => isLive(href))

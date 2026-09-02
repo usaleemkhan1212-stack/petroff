@@ -1,0 +1,15 @@
+<!--
+     A THIRD louvre pyramid, at 230x177. Figma keeps stroke-width 4 and 7 at all
+     three boxes, so neither the 140x109 file (which would draw 6.5 and 11.4
+     here) nor the 170x132.222 one (5.4 and 9.5) reproduces it.
+-->
+<svg width="230" height="177" viewBox="0 0 230 177" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<path id="Vector" d="M115 10.1143L214.667 161.829H15.3333L115 10.1143Z" stroke="var(--color-periwinkle)" stroke-width="7"/>
+<g id="Vector_2">
+<path d="M115 10.1143V161.829ZM65.1667 85.9714H164.833ZM39.6111 123.9H190.389Z" fill="black"/>
+<path d="M115 10.1143V161.829M65.1667 85.9714H164.833M39.6111 123.9H190.389" stroke="var(--color-periwinkle)" stroke-width="4"/>
+</g>
+<path id="Vector_3" d="M223.611 161.829H6.38889C2.8604 161.829 0 164.659 0 168.15C0 171.641 2.8604 174.471 6.38889 174.471H223.611C227.14 174.471 230 171.641 230 168.15C230 164.659 227.14 161.829 223.611 161.829Z" fill="var(--color-encre)"/>
+</g>
+</svg>

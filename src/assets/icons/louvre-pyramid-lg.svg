@@ -1,0 +1,15 @@
+<!--
+     `louvre-pyramid.svg` at a second box (140x109 -> 170x132.222), forked for the
+     same reason: Figma keeps stroke-width 4 and 7 at both boxes, where scaling
+     the small file would draw 4.86 and 8.5 — 21% over.
+-->
+<svg width="170" height="132.222" viewBox="0 0 170 132.222" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<path id="Vector" d="M85 7.55556L158.667 120.889H11.3333L85 7.55556Z" stroke="var(--color-periwinkle)" stroke-width="7"/>
+<g id="Vector_2">
+<path d="M85 7.55556V120.889ZM48.1667 64.2222H121.833ZM29.2778 92.5556H140.722Z" fill="black"/>
+<path d="M85 7.55556V120.889M48.1667 64.2222H121.833M29.2778 92.5556H140.722" stroke="var(--color-periwinkle)" stroke-width="4"/>
+</g>
+<path id="Vector_3" d="M165.278 120.889H4.72222C2.11421 120.889 0 123.003 0 125.611C0 128.219 2.11421 130.333 4.72222 130.333H165.278C167.886 130.333 170 128.219 170 125.611C170 123.003 167.886 120.889 165.278 120.889Z" fill="var(--color-encre)"/>
+</g>
+</svg>

@@ -69,16 +69,21 @@ export function Espace() {
           </div>
 
           {/*
-            Static preview of the portal, not a live view. Figma draws this one
-            358px tall against a 453px column, leaving it floating short of the
-            copy — a deliberate deviation: it fills the row like the
-            Contentieux mock, with its rows packed to the top. Its border and
-            shadow are a shade heavier than the sibling's (8% and 12% against
-            7% and 10%), which Figma does specify.
+            Static preview of the portal, not a live view. It fills the row
+            like the Contentieux mock, with its rows packed to the top. Its
+            border and shadow are a shade heavier than that sibling's (8% and
+            12% against 7% and 10%), which Figma does specify.
+
+            **Its shadow is hover only.** Figma draws the card lifted on a
+            permanent `0px 24px 60px`, but a Figma-drawn card shadow is the
+            hover state everywhere else on this build — the sixth time — and a
+            panel that sits raised at rest reads as detached from the copy
+            beside it. Asked for. It costs no layout, so the section height is
+            unchanged.
           */}
           <figure
             aria-label={t("mock.label")}
-            className="rounded-card border-encre/8 flex h-full flex-col gap-3 border bg-white p-6 shadow-[0px_24px_60px_0px_rgba(0,0,0,0.12)]"
+            className="rounded-card border-encre/8 flex h-full flex-col gap-3 border bg-white p-6 transition-shadow hover:shadow-[0px_24px_60px_0px_rgba(0,0,0,0.12)]"
           >
             <div className="flex flex-wrap items-center gap-3">
               <p className="text-button font-poppins text-encre">{t("mock.title")}</p>

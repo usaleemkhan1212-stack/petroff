@@ -1,0 +1,17 @@
+<!--
+     Two standing figures on a bar, 170x127.5 — the Droit social hero.
+-->
+<svg width="170" height="127.5" viewBox="0 0 170 127.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame" clip-path="url(#clip0_0_35)">
+<path id="Vector" d="M53.125 46.75C63.6874 46.75 72.25 38.1874 72.25 27.625C72.25 17.0626 63.6874 8.5 53.125 8.5C42.5626 8.5 34 17.0626 34 27.625C34 38.1874 42.5626 46.75 53.125 46.75Z" fill="var(--color-encre)"/>
+<path id="Vector_2" d="M40.375 48.875H65.875L74.375 121.125H31.875L40.375 48.875Z" fill="var(--color-gold)"/>
+<path id="Vector_3" d="M119 49.9375C128.389 49.9375 136 42.3263 136 32.9375C136 23.5487 128.389 15.9375 119 15.9375C109.611 15.9375 102 23.5487 102 32.9375C102 42.3263 109.611 49.9375 119 49.9375Z" fill="var(--color-encre)"/>
+<path id="Vector_4" d="M107.312 52.0625H130.688L138.125 121.125H99.875L107.312 52.0625Z" fill="var(--color-rose)"/>
+<path id="Vector_5" d="M157.25 121.125H12.75V130.688H157.25V121.125Z" fill="var(--color-encre)"/>
+</g>
+<defs>
+<clipPath id="clip0_0_35">
+<rect width="170" height="127.5" fill="white"/>
+</clipPath>
+</defs>
+</svg>

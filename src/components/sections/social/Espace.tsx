@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { espaceFeatures, espaceProgress, espaceRows } from "@/lib/contentieux";
+import { espaceFeatures, espaceProgress, espaceRows } from "@/lib/social";
 import { cn } from "@/lib/utils";
 
 /* Four tints since the redesign — blue, gold, pink, mint down the list. */
@@ -20,18 +20,20 @@ const statusTones = {
 } as const;
 
 export function Espace() {
-  const t = useTranslations("ContentieuxPage.espace");
+  const t = useTranslations("SocialPage.espace");
 
   return (
     <section className="bg-white">
       <Container className="py-16 lg:py-24">
         {/*
-          Copy and mock sit side by side, stacking below lg. Figma marks the
-          row items-center but gives both cells self-stretch, which overrides
-          it — so the columns are equal height and the mock fills its cell with
-          its content packed to the top. Grid stretches by default.
+          The two columns are NOT equal here, unlike the Contentieux page:
+          Figma draws 590.5 + 12 + 642.5 inside the 1245 band, so the ratio is
+          carried as the grid template. The 12px column gap would be far too
+          tight once the columns stack, and Figma only specifies desktop, so
+          the row gap keeps the sibling page's 64px rhythm. The cells stretch
+          to equal height, as on the Contentieux page.
         */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="grid grid-cols-1 gap-x-3 gap-y-10 lg:grid-cols-[590.5fr_642.5fr] lg:gap-y-16">
           <div className="flex flex-col gap-5">
             {/* The lead sits 20px under the H2 here, not the usual 12. */}
             <SectionHeading
@@ -67,7 +69,10 @@ export function Espace() {
           </div>
 
           {/*
-            Static preview of the portal, not a live view.
+            Static preview of the portal, not a live view. It fills the row
+            like the Contentieux mock, with its rows packed to the top. Its
+            border and shadow are a shade heavier than that sibling's (8% and
+            12% against 7% and 10%), which Figma does specify.
 
             **Its shadow is hover only.** Figma draws the card lifted on a
             permanent `0px 24px 60px`, but a Figma-drawn card shadow is the
@@ -78,7 +83,7 @@ export function Espace() {
           */}
           <figure
             aria-label={t("mock.label")}
-            className="rounded-card border-encre/7 flex h-full flex-col gap-3 border bg-white p-6 transition-shadow hover:shadow-[0px_24px_60px_0px_rgba(0,0,0,0.1)]"
+            className="rounded-card border-encre/8 flex h-full flex-col gap-3 border bg-white p-6 transition-shadow hover:shadow-[0px_24px_60px_0px_rgba(0,0,0,0.12)]"
           >
             <div className="flex flex-wrap items-center gap-3">
               <p className="text-button font-poppins text-encre">{t("mock.title")}</p>
@@ -87,6 +92,11 @@ export function Espace() {
               </span>
             </div>
 
+            {/*
+              Figma paints the track white on a white card, which leaves the
+              bar with no visible groove; it runs on lilas here, as on the
+              Contentieux page. Second deliberate deviation in this card.
+            */}
             <div
               role="progressbar"
               aria-label={t("mock.progressLabel")}

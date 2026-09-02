@@ -1,0 +1,18 @@
+<!--
+     `growth-chart.svg` at a second box, and a fork rather than a reuse: the
+     geometry matches to 0.0008 but Figma sets stroke-width 7 at BOTH boxes, so
+     rendering the 166.357x137 file at 238x196 would draw 10 against the 7 the
+     comp wants. Same case as `open-book-lg`.
+-->
+<svg width="238" height="196" viewBox="0 0 238 196" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="m-croissance">
+<path id="Vector" d="M50.4 123.2H30.8C26.1608 123.2 22.4 126.961 22.4 131.6V173.6C22.4 178.239 26.1608 182 30.8 182H50.4C55.0392 182 58.8 178.239 58.8 173.6V131.6C58.8 126.961 55.0392 123.2 50.4 123.2Z" fill="var(--color-mint)"/>
+<path id="Vector_2" d="M109.2 89.6H89.6C84.9608 89.6 81.2 93.3608 81.2 98V173.6C81.2 178.239 84.9608 182 89.6 182H109.2C113.839 182 117.6 178.239 117.6 173.6V98C117.6 93.3608 113.839 89.6 109.2 89.6Z" fill="var(--color-mint)"/>
+<path id="Vector_3" d="M168 56H148.4C143.761 56 140 59.7608 140 64.4V173.6C140 178.239 143.761 182 148.4 182H168C172.639 182 176.4 178.239 176.4 173.6V64.4C176.4 59.7608 172.639 56 168 56Z" fill="var(--color-result-green)"/>
+<path id="Vector_4" d="M28 123.2L92.4 86.8L162.4 35" stroke="var(--color-gold)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M179.2 21L169.4 44.8L152.6 26.6L179.2 21Z" fill="var(--color-gold)"/>
+<path id="Vector_6" d="M28 130.2C31.866 130.2 35 127.066 35 123.2C35 119.334 31.866 116.2 28 116.2C24.134 116.2 21 119.334 21 123.2C21 127.066 24.134 130.2 28 130.2Z" fill="var(--color-gold)"/>
+<path id="Vector_7" d="M92.4 93.8C96.266 93.8 99.4 90.666 99.4 86.8C99.4 82.934 96.266 79.8 92.4 79.8C88.534 79.8 85.4 82.934 85.4 86.8C85.4 90.666 88.534 93.8 92.4 93.8Z" fill="var(--color-gold)"/>
+<path id="Vector_8" d="M224 182H14C10.9072 182 8.4 184.507 8.4 187.6C8.4 190.693 10.9072 193.2 14 193.2H224C227.093 193.2 229.6 190.693 229.6 187.6C229.6 184.507 227.093 182 224 182Z" fill="var(--color-encre)"/>
+</g>
+</svg>

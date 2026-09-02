@@ -1,0 +1,135 @@
+<!--
+     The Immobilier d'entreprise FAQ arch. A SEVENTH composed arch scene,
+     beside paris-scene, la-defense-scene, paris-rooftops-scene, gare-scene,
+     rue-scene and haussmann-scene.
+
+     Exported with download_assets and stripped of the canvas, page-frame and
+     section rects it bakes in, plus the arch clip and drop shadow — the
+     component makes the arch with rounded-t-full on its own container. The
+     viewBox is re-based rather than the paths translated.
+
+     Every tokened fill is mapped; one slate tone (#94A3C4) has no token and
+     stays raw hex, the call paris-scene.svg already makes.
+-->
+<svg width="312.5" height="400" viewBox="27.5 12.5 312.5 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame" clip-path="url(#clip-place-scene)">
+<path id="Vector" d="M340 12.5H27.5V412.5H340V12.5Z" fill="var(--color-lilas-2)"/>
+<path id="Vector_2" d="M290 85C301.046 85 310 76.0457 310 65C310 53.9543 301.046 45 290 45C278.954 45 270 53.9543 270 65C270 76.0457 278.954 85 290 85Z" fill="var(--color-pale-gold)"/>
+<g id="Group">
+<path id="Vector_3" d="M67.5 132.5H35V252.5H67.5V132.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_4" d="M30 132.5L51.25 85L72.5 132.5H30Z" fill="#94A3C4"/>
+<path id="Vector_5" d="M51.25 91.25C53.3211 91.25 55 89.5711 55 87.5C55 85.4289 53.3211 83.75 51.25 83.75C49.1789 83.75 47.5 85.4289 47.5 87.5C47.5 89.5711 49.1789 91.25 51.25 91.25Z" fill="var(--color-gold)"/>
+<g id="Group_2" opacity="0.5">
+<path id="Vector_6" d="M43.75 150C43.75 148.84 44.2109 147.727 45.0314 146.906C45.8519 146.086 46.9647 145.625 48.125 145.625C49.2853 145.625 50.3981 146.086 51.2186 146.906C52.0391 147.727 52.5 148.84 52.5 150V161.25H43.75V150Z" fill="var(--color-encre)"/>
+<path id="Vector_7" d="M43.75 185C43.75 183.84 44.2109 182.727 45.0314 181.906C45.8519 181.086 46.9647 180.625 48.125 180.625C49.2853 180.625 50.3981 181.086 51.2186 181.906C52.0391 182.727 52.5 183.84 52.5 185V196.25H43.75V185Z" fill="var(--color-encre)"/>
+<path id="Vector_8" d="M43.75 220C43.75 218.84 44.2109 217.727 45.0314 216.906C45.8519 216.086 46.9647 215.625 48.125 215.625C49.2853 215.625 50.3981 216.086 51.2186 216.906C52.0391 217.727 52.5 218.84 52.5 220V231.25H43.75V220Z" fill="var(--color-encre)"/>
+</g>
+</g>
+<path id="Vector_9" d="M332.5 160H77.5V300H332.5V160Z" fill="var(--color-stone)"/>
+<g id="Vector_10">
+<path d="M77.5 160H332.5H77.5Z" fill="black"/>
+<path d="M77.5 160H332.5" stroke="var(--color-sand)" stroke-width="2.5"/>
+</g>
+<path id="Vector_11" d="M92.5 160L205 107.5L317.5 160H92.5Z" fill="var(--color-lilas)"/>
+<path id="Vector_12" d="M92.5 160L205 107.5L317.5 160" stroke="#94A3C4" stroke-width="5"/>
+<path id="Vector_13" d="M105 155L205 117.5L305 155" stroke="var(--color-sand)" stroke-width="2.5"/>
+<g id="Group_3">
+<path id="Vector_14" d="M205 127.5V147.5M190 132.5H220" stroke="var(--color-gold)" stroke-width="3.125"/>
+<path id="Vector_15" d="M185 132.5C185 139.167 188.333 142.5 195 142.5M220 132.5C220 139.167 216.667 142.5 210 142.5" stroke="var(--color-gold)" stroke-width="3.125"/>
+</g>
+<path id="Vector_16" d="M205 128.125C206.726 128.125 208.125 126.726 208.125 125C208.125 123.274 206.726 121.875 205 121.875C203.274 121.875 201.875 123.274 201.875 125C201.875 126.726 203.274 128.125 205 128.125Z" fill="var(--color-gold)"/>
+<path id="Vector_17" d="M205 107.5C207.761 107.5 210 105.261 210 102.5C210 99.7386 207.761 97.5 205 97.5C202.239 97.5 200 99.7386 200 102.5C200 105.261 202.239 107.5 205 107.5Z" fill="var(--color-gold)"/>
+<path id="Vector_18" d="M325 160H85V172.5H325V160Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_19" d="M325 172.5H85V187.5H325V172.5Z" fill="var(--color-encre)"/>
+<g id="Vector_20">
+<path d="M100 180H310H100Z" fill="black"/>
+<path d="M100 180H310" stroke="var(--color-gold)" stroke-width="3.75" stroke-linecap="round"/>
+</g>
+<g id="Group_4">
+<g id="Group_5">
+<path id="Vector_21" d="M117.5 187.5H97.5V280H117.5V187.5Z" fill="var(--color-lilas)"/>
+<path id="Vector_22" d="M157.5 187.5H137.5V280H157.5V187.5Z" fill="var(--color-lilas)"/>
+<path id="Vector_23" d="M197.5 187.5H177.5V280H197.5V187.5Z" fill="var(--color-lilas)"/>
+<path id="Vector_24" d="M237.5 187.5H217.5V280H237.5V187.5Z" fill="var(--color-lilas)"/>
+<path id="Vector_25" d="M277.5 187.5H257.5V280H277.5V187.5Z" fill="var(--color-lilas)"/>
+<path id="Vector_26" d="M317.5 187.5H297.5V280H317.5V187.5Z" fill="var(--color-lilas)"/>
+</g>
+<g id="Group_6">
+<g id="Vector_27">
+<path d="M103.75 190V277.5V190ZM111.25 190V277.5V190ZM143.75 190V277.5V190ZM151.25 190V277.5V190ZM183.75 190V277.5V190ZM191.25 190V277.5V190ZM223.75 190V277.5V190ZM231.25 190V277.5V190ZM263.75 190V277.5V190ZM271.25 190V277.5V190ZM303.75 190V277.5V190ZM311.25 190V277.5V190Z" fill="black"/>
+<path d="M103.75 190V277.5M111.25 190V277.5M143.75 190V277.5M151.25 190V277.5M183.75 190V277.5M191.25 190V277.5M223.75 190V277.5M231.25 190V277.5M263.75 190V277.5M271.25 190V277.5M303.75 190V277.5M311.25 190V277.5" stroke="var(--color-sand)" stroke-width="2"/>
+</g>
+</g>
+<g id="Group_7">
+<path id="Vector_28" d="M117.5 187.5H97.5C96.1193 187.5 95 188.619 95 190V192.5C95 193.881 96.1193 195 97.5 195H117.5C118.881 195 120 193.881 120 192.5V190C120 188.619 118.881 187.5 117.5 187.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_29" d="M157.5 187.5H137.5C136.119 187.5 135 188.619 135 190V192.5C135 193.881 136.119 195 137.5 195H157.5C158.881 195 160 193.881 160 192.5V190C160 188.619 158.881 187.5 157.5 187.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_30" d="M197.5 187.5H177.5C176.119 187.5 175 188.619 175 190V192.5C175 193.881 176.119 195 177.5 195H197.5C198.881 195 200 193.881 200 192.5V190C200 188.619 198.881 187.5 197.5 187.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_31" d="M237.5 187.5H217.5C216.119 187.5 215 188.619 215 190V192.5C215 193.881 216.119 195 217.5 195H237.5C238.881 195 240 193.881 240 192.5V190C240 188.619 238.881 187.5 237.5 187.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_32" d="M277.5 187.5H257.5C256.119 187.5 255 188.619 255 190V192.5C255 193.881 256.119 195 257.5 195H277.5C278.881 195 280 193.881 280 192.5V190C280 188.619 278.881 187.5 277.5 187.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_33" d="M317.5 187.5H297.5C296.119 187.5 295 188.619 295 190V192.5C295 193.881 296.119 195 297.5 195H317.5C318.881 195 320 193.881 320 192.5V190C320 188.619 318.881 187.5 317.5 187.5Z" fill="var(--color-pale-blue)"/>
+</g>
+<g id="Group_8">
+<path id="Vector_34" d="M118.125 272.5H96.875C95.8395 272.5 95 273.339 95 274.375V278.125C95 279.161 95.8395 280 96.875 280H118.125C119.161 280 120 279.161 120 278.125V274.375C120 273.339 119.161 272.5 118.125 272.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_35" d="M158.125 272.5H136.875C135.839 272.5 135 273.339 135 274.375V278.125C135 279.161 135.839 280 136.875 280H158.125C159.161 280 160 279.161 160 278.125V274.375C160 273.339 159.161 272.5 158.125 272.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_36" d="M198.125 272.5H176.875C175.839 272.5 175 273.339 175 274.375V278.125C175 279.161 175.839 280 176.875 280H198.125C199.161 280 200 279.161 200 278.125V274.375C200 273.339 199.161 272.5 198.125 272.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_37" d="M238.125 272.5H216.875C215.839 272.5 215 273.339 215 274.375V278.125C215 279.161 215.839 280 216.875 280H238.125C239.161 280 240 279.161 240 278.125V274.375C240 273.339 239.161 272.5 238.125 272.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_38" d="M278.125 272.5H256.875C255.839 272.5 255 273.339 255 274.375V278.125C255 279.161 255.839 280 256.875 280H278.125C279.161 280 280 279.161 280 278.125V274.375C280 273.339 279.161 272.5 278.125 272.5Z" fill="var(--color-pale-blue)"/>
+<path id="Vector_39" d="M318.125 272.5H296.875C295.839 272.5 295 273.339 295 274.375V278.125C295 279.161 295.839 280 296.875 280H318.125C319.161 280 320 279.161 320 278.125V274.375C320 273.339 319.161 272.5 318.125 272.5Z" fill="var(--color-pale-blue)"/>
+</g>
+</g>
+<g id="Group_9" opacity="0.8">
+<path id="Vector_40" d="M120 280V222.5C120 220.179 120.922 217.954 122.563 216.313C124.204 214.672 126.429 213.75 128.75 213.75C131.071 213.75 133.296 214.672 134.937 216.313C136.578 217.954 137.5 220.179 137.5 222.5V280H120Z" fill="var(--color-encre)"/>
+<path id="Vector_41" d="M200 280V217.5C200 215.179 200.922 212.954 202.563 211.313C204.204 209.672 206.429 208.75 208.75 208.75C211.071 208.75 213.296 209.672 214.937 211.313C216.578 212.954 217.5 215.179 217.5 217.5V280H200Z" fill="var(--color-encre)"/>
+<path id="Vector_42" d="M280 280V222.5C280 220.179 280.922 217.954 282.563 216.313C284.204 214.672 286.429 213.75 288.75 213.75C291.071 213.75 293.296 214.672 294.937 216.313C296.578 217.954 297.5 220.179 297.5 222.5V280H280Z" fill="var(--color-encre)"/>
+</g>
+<g id="Vector_43">
+<path d="M208.75 227.5V275V227.5Z" fill="black"/>
+<path d="M208.75 227.5V275" stroke="var(--color-lilas)" stroke-width="2"/>
+</g>
+<path id="Vector_44" d="M325 280H85V290H325V280Z" fill="var(--color-pale-blue)"/>
+<g id="Group_10">
+<path id="Vector_45" d="M325 297.5H92.5V307.5H325V297.5Z" fill="var(--color-stone)"/>
+<path id="Vector_46" opacity="0.4" d="M325 307.5H92.5V311.25H325V307.5Z" fill="#94A3C4"/>
+<path id="Vector_47" d="M335 313.75H80V323.75H335V313.75Z" fill="var(--color-stone)"/>
+<path id="Vector_48" opacity="0.4" d="M335 323.75H80V327.5H335V323.75Z" fill="#94A3C4"/>
+<path id="Vector_49" d="M340 330H67.5V340H340V330Z" fill="var(--color-stone)"/>
+<path id="Vector_50" opacity="0.4" d="M340 340H67.5V343.75H340V340Z" fill="#94A3C4"/>
+</g>
+<g id="Group_11">
+<g id="Vector_51">
+<path d="M90 395V355V395ZM107.5 395V355V395ZM125 395V355V395ZM142.5 395V355V395ZM225 395V355V395ZM242.5 395V355V395ZM260 395V355V395ZM277.5 395V355V395Z" fill="black"/>
+<path d="M90 395V355M107.5 395V355M125 395V355M142.5 395V355M225 395V355M242.5 395V355M260 395V355M277.5 395V355" stroke="var(--color-gold)" stroke-width="3.75"/>
+</g>
+</g>
+<g id="Group_12">
+<path id="Vector_52" d="M87.5 355L90 346.25L92.5 355H87.5ZM105 355L107.5 346.25L110 355H105ZM122.5 355L125 346.25L127.5 355H122.5ZM140 355L142.5 346.25L145 355H140ZM222.5 355L225 346.25L227.5 355H222.5ZM240 355L242.5 346.25L245 355H240ZM257.5 355L260 346.25L262.5 355H257.5ZM275 355L277.5 346.25L280 355H275Z" fill="var(--color-gold)"/>
+</g>
+<g id="Vector_53">
+<path d="M82.5 395H287.5H82.5Z" fill="black"/>
+<path d="M82.5 395H287.5" stroke="var(--color-gold)" stroke-width="4.375"/>
+</g>
+<g id="Vector_54">
+<path d="M82.5 362.5H152.5H82.5ZM217.5 362.5H287.5H217.5Z" fill="black"/>
+<path d="M82.5 362.5H152.5M217.5 362.5H287.5" stroke="var(--color-gold)" stroke-width="2.5"/>
+</g>
+<g id="Group_13">
+<path id="Vector_55" d="M157.5 395V350C157.5 343.333 160.833 340 167.5 340H175M212.5 395V350C212.5 343.333 209.167 340 202.5 340H195" stroke="var(--color-gold)" stroke-width="3.75"/>
+<path id="Vector_56" d="M167.5 373.75C170.952 373.75 173.75 370.952 173.75 367.5C173.75 364.048 170.952 361.25 167.5 361.25C164.048 361.25 161.25 364.048 161.25 367.5C161.25 370.952 164.048 373.75 167.5 373.75Z" stroke="var(--color-gold)" stroke-width="3.75"/>
+<path id="Vector_57" d="M202.5 373.75C205.952 373.75 208.75 370.952 208.75 367.5C208.75 364.048 205.952 361.25 202.5 361.25C199.048 361.25 196.25 364.048 196.25 367.5C196.25 370.952 199.048 373.75 202.5 373.75Z" stroke="var(--color-gold)" stroke-width="3.75"/>
+</g>
+<path id="Vector_58" d="M340 395H27.5V412.5H340V395Z" fill="var(--color-stone)"/>
+<g id="Vector_59">
+<path d="M27.5 403.75H340H27.5Z" fill="black"/>
+<path d="M27.5 403.75H340" stroke="var(--color-sand)" stroke-width="2.5"/>
+</g>
+<path id="Vector_60" d="M72.5 310H67.5V347.5H72.5V310Z" fill="var(--color-encre)"/>
+<path id="Vector_61" d="M70 311.25C74.1421 311.25 77.5 307.892 77.5 303.75C77.5 299.608 74.1421 296.25 70 296.25C65.8579 296.25 62.5 299.608 62.5 303.75C62.5 307.892 65.8579 311.25 70 311.25Z" fill="var(--color-gold)"/>
+<path id="Vector_62" d="M300 310H295V347.5H300V310Z" fill="var(--color-encre)"/>
+<path id="Vector_63" d="M297.5 311.25C301.642 311.25 305 307.892 305 303.75C305 299.608 301.642 296.25 297.5 296.25C293.358 296.25 290 299.608 290 303.75C290 307.892 293.358 311.25 297.5 311.25Z" fill="var(--color-gold)"/>
+</g>
+<defs>
+<clipPath id="clip-place-scene">
+<rect width="312.5" height="400" fill="white" transform="translate(27.5 12.5)"/>
+</clipPath>
+</defs>
+</svg>

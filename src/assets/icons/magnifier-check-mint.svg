@@ -1,0 +1,16 @@
+<!--
+     `magnifier-check.svg` recoloured: a MINT ring over a pale-mint disc, where
+     the stored file is encre over pale periwinkle. Forked rather than
+     recoloured in place — that file is used by two CTA panels.
+-->
+<svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<path id="Vector" d="M62 102C84.0914 102 102 84.0914 102 62C102 39.9086 84.0914 22 62 22C39.9086 22 22 39.9086 22 62C22 84.0914 39.9086 102 62 102Z" stroke="var(--color-mint)" stroke-width="10"/>
+<path id="Vector_2" d="M62 86C75.2548 86 86 75.2548 86 62C86 48.7452 75.2548 38 62 38C48.7452 38 38 48.7452 38 62C38 75.2548 48.7452 86 62 86Z" fill="var(--color-pale-mint)"/>
+<g id="Vector_3">
+<path d="M92 92L126 126Z" fill="black"/>
+<path d="M92 92L126 126" stroke="var(--color-mint)" stroke-width="12" stroke-linecap="round"/>
+</g>
+<path id="Vector_4" d="M52 62L58 68L72 54" stroke="var(--color-encre)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

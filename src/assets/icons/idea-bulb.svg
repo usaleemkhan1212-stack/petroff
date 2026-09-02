@@ -1,0 +1,14 @@
+<!--
+     A gold bulb with rays, 150x150 — the Propriete intellectuelle hero.
+     Unrelated to `lightbulb.svg`, which is a 26px line icon.
+-->
+<svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<path id="Vector" d="M75 104C93.7777 104 109 88.7777 109 70C109 51.2223 93.7777 36 75 36C56.2223 36 41 51.2223 41 70C41 88.7777 56.2223 104 75 104Z" fill="var(--color-gold)"/>
+<g id="Vector_2">
+<path d="M75 12V26ZM75 114V128ZM17 70H31ZM119 70H133ZM34 29L44 39ZM106 101L116 111ZM116 29L106 39ZM44 101L34 111Z" fill="black"/>
+<path d="M75 12V26M75 114V128M17 70H31M119 70H133M34 29L44 39M106 101L116 111M116 29L106 39M44 101L34 111" stroke="var(--color-gold)" stroke-width="8" stroke-linecap="round"/>
+</g>
+<path id="Vector_3" d="M81 104H69C65.6863 104 63 106.686 63 110V120C63 123.314 65.6863 126 69 126H81C84.3137 126 87 123.314 87 120V110C87 106.686 84.3137 104 81 104Z" fill="var(--color-encre)"/>
+</g>
+</svg>
