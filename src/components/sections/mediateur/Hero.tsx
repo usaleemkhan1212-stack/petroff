@@ -2,25 +2,22 @@ import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 
 /**
- * Figma `13872:934` — the cookie policy's head.
+ * Figma `13833:432` — the mediation notice's head, over the full-width rule
+ * `13833:438` (1920x1 in `stone`, an exact `--color-stone` match).
  *
- * The privacy hero's anatomy exactly: one 1245 column on a uniform 16px gap —
- * overline, the Display H1, a meta line with two Inter SemiBold runs, and a
- * 920-wide lead — banded **64 above and 36 below**, not a symmetric pad.
+ * The same column the two other legal documents carry: overline, Display H1, a
+ * meta line with two Inter SemiBold runs, and a 920-wide lead, on a uniform
+ * 16px gap and banded 64 above and 36 below.
  *
- * **It closes on nothing, where the privacy hero closes on a full-width
- * `stone` rule.** That frame draws the rule as its own 1920x1 node; this one
- * has no such node, and 64 + 261 + 36 is exactly its 361, so there is no room
- * for one. Confirmed against the node's own render: lilas to the last row.
- *
- * Its meta needs no `whitespace-pre-wrap` either — the privacy frame types
- * three spaces either side of its middle dot and this one types one.
+ * **It closes on the rule, where the cookie policy closes on nothing** — that
+ * frame has no such node and no room for one. Two frames, two answers; read
+ * each rather than carrying one across.
  */
 export function Hero() {
-  const t = useTranslations("CookiesPage.hero");
+  const t = useTranslations("MediateurPage.hero");
 
   return (
-    <section className="bg-lilas">
+    <section className="border-stone bg-lilas border-b">
       <Container className="pt-12 pb-9 lg:pt-16">
         {/* Figma marks this column `word-break: break-word` on all three
             legal frames. It is load-bearing here: at 320 the fluid

@@ -6060,6 +6060,118 @@ Verified: the two anchors resolve on the home page, the Bibliothèque and
 its anchors land their heading at **24.3**, the `scroll-mt-6` those sections
 carry, with the site-wide smooth scroll honoured.
 
+## Page 20 — Médiateur de la consommation (`/mediateur-consommation`), frame `13833:379`
+
+1920x3739 — the site's **third pure legal document** and the third page reached
+from the footer's legal line, which now carries three real links.
+
+**Do not go by the frame's name.** It reads "Petroff.law — Politique de
+confidentialité" because the designer duplicated that frame; its own hero says
+*Médiateur de la consommation*. That is the fourth duplicated-frame leftover
+this file records, after the e-commerce frame's title, the Immobilier
+Prestations copy and the personal page's FAQ.
+
+Its sections live in `src/components/sections/mediateur/`, its keys in
+`src/lib/mediateur.ts` and its copy under the **`MediateurPage`** namespace.
+
+| # | Node | Figma | Rendered | delta |
+|---|---|---|---|---|
+| 1 | Hero `13833:432` + rule `13833:438` | 362 | 361.9 | **−0.1** |
+| 2 | Body `13833:439` | 2946 | 2946.7 | +0.7 |
+| | ├ doc `13833:973` | 2802 | 2802.7 | +0.7 |
+| | └ TOC `13833:863` | 273 | 274.3 | +1.3 |
+| 3 | Footer | 359 | 358.2 | −0.8 |
+| **Page** | | **3739** | **3740** | **+1** |
+
+| S | Figma | built | | S | Figma | built |
+|---|---|---|---|---|---|---|
+| 01 | 293 | 269.6 * | | 05 | 230 | 232.3 |
+| 02 | 420 | 427.9 | | 06 | 405 | 409.8 |
+| 03 | 378 | 379.2 | | 07 | 347 | 353.7 |
+| 04 | 561 | 562.2 | | | | |
+
+**That +1 on the page is a coincidence, not a triumph** — S01's −23.4 happens
+to cancel the +24.1 the other six sections accumulate from their rules. Judge
+this page section by section.
+
+\* **S01's paragraph runs three lines where Figma runs four**, and the check
+worth copying is the ink-band profile with each line's right edge. Its first
+paragraph matches the comp **line for line to the pixel** (right edges 717 /
+701 / 362 in both), and so does the note's first line (727) — so the fonts and
+the measure agree exactly. The note's second line is where they part: we fill
+to **763 of the 765 box** and Figma stops at **734**, i.e. Figma refuses a word
+that fits here by two pixels. Over the paragraph that costs one line. Nothing
+is misconfigured; it is the sub-pixel boundary the personal page's
+"Avocat européen · depuis 2012" note already records, and forcing the fourth
+line would mean narrowing the paragraph at every width.
+
+#### A third spelling of the same section rule
+
+All three legal documents put a `stone` rule above every section but the first.
+They disagree about where the space around it lives, and the difference is
+real — check each frame rather than carrying one across:
+
+| | rule sits in | section padding |
+|---|---|---|
+| `/confidentialite` | the column's own 20px gap | none; a 48px gap between sections |
+| `/cookies` | a `pt-7` on the head row | none; a 28px gap between sections |
+| `/mediateur-consommation` | the **section's own top edge** | **28 above and below** (16 above on the first), on a 28px gap |
+
+Its arithmetic closes exactly: the seven sections sum to 2634 and six 28px gaps
+to 168, which is the doc's 2802 to the pixel.
+
+#### What else differs from the two other documents
+
+- **Its `dl` is a 210 label on a 16px gap, in Inter 16 on both sides** — the
+  cookie policy's is 240 on 24 with an 18px label. Rows are `py-3` and ruled
+  above the first and below every one.
+- **Its callout is 20/16 with a 16px title**, where the cookie policy's is
+  24/20 with 18. Same pale gold under a 3px gold edge, same 12px right corners.
+  Its body carries an **Inter** SemiBold run, so `<b>` cannot share `<s>`'s
+  Poppins — that box is 16px throughout.
+- **It adds `proc`**, a ruled procedure list: 20 of padding either side of each
+  row, a 20px gap to the puce, and a rule above every row but the first. Its
+  puce is the privacy page's **9x27** box, which is what sets a one-line row's
+  height (27, not the text's 25) — so `min-h-6.75` is restored there too. Two
+  tones: S04's rows are full encre, S06's encre/62.
+- **S03's title is Poppins SemiBold 20 where the other six are Bold 30.**
+  Reproduced (`smallTitle`) and almost certainly a slip — **flag it**.
+- Its table of contents lists **six** of the seven sections; Figma stops at 06
+  and leaves `contact` out, the same shape as the privacy page's own list
+  skipping 07 and 08. Its labels are character-identical to the section titles,
+  so unlike that page's they are read from `sections.<key>.title` rather than
+  stored twice. Entry 05 runs to two lines at the row's 302 in both.
+- Its hero **closes on the full-width rule**, where the cookie policy's closes
+  on nothing.
+
+#### Every address on this page is a real link
+
+Figma draws six strings in periwinkle — the mediator's domain, its e-mail, its
+saisine URL, the firm's e-mail twice and the EU ODR platform — and cannot
+express an href. **Here the link text *is* the target**, so `linkFor` derives
+it from the string itself: `mailto:` when it contains an `@`, otherwise
+`https://` plus the text. Nothing is invented.
+
+That is the opposite call to the cookie policy's four browser names, which are
+also periwinkle and name no address, so they stay spans. **The test is whether
+the comp already prints the destination.**
+
+#### `break-words` on the hero column, on all three legal pages
+
+Figma marks every legal hero's `wrap` frame `word-break: break-word` and the
+build had omitted it. It is load-bearing: at 320 the fluid `text-display` still
+draws 40px, and "consommation" alone is wider than the 280px content box — this
+page ran to **332** there, with no element's box outside the viewport, which is
+the signature of text painting past its own box. Applied to all three heroes,
+since all three frames specify it; the other two are unchanged visually and
+still measure 3984 and 11859 at 1920.
+
+Verified: all seven sections and every band on the comp, the three footer links
+resolving on `/`, `/bibliotheque` and `/expertises` with the footer still
+**358.2**, the sticky table of contents pinning at exactly **24**, its anchors
+landing a heading at **23.8**, and no horizontal overflow at any of ten widths
+from 1920 down to 320.
+
 ## FAQ answers are capped at a reading measure
 
 Asked for: the accordion "goes long away" when a row opens. Measured — the
@@ -6944,7 +7056,8 @@ resolve to 17, unchanged.
   `/expertises/immobilier-entreprise`, `/expertises/propriete-intellectuelle`,
   `/expertises/recouvrement`, `/bibliotheque/resultats`,
   `/expertises/contentieux-arbitrage/service-page`, `/le-cabinet/personal-page`,
-  `/cookies`, `/bibliotheque`, `/bibliotheque/article-design`,
+  `/cookies`, `/mediateur-consommation`, `/bibliotheque`,
+  `/bibliotheque/article-design`,
   `/bibliotheque/avocat-e-commerce`, `/bibliotheque/new-article-page` and
   `/confidentialite`.
 - `Button` still has no `href` prop by design — wrap the call site in `Link`

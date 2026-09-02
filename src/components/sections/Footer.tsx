@@ -70,10 +70,10 @@ export function Footer() {
             <p className="text-small text-white/70">{t("copyright")}</p>
             <p className="text-small text-white/70">
               {t.rich("legalLinks", {
-                /* Confidentialité and Cookies are real pages; Mentions légales
-                   and Médiateur de la consommation are not, and « Gérer les
+                /* Confidentialité, Cookies and Médiateur de la consommation
+                   are real pages. Mentions légales is not, and « Gérer les
                    cookies » is the consent panel the cookie policy promises,
-                   which does not exist yet — all three stay plain text. */
+                   which does not exist yet — both stay plain text. */
                 c: (chunks) => (
                   <MaybeLink
                     href="/confidentialite"
@@ -85,6 +85,14 @@ export function Footer() {
                 k: (chunks) => (
                   <MaybeLink
                     href="/cookies"
+                    className="transition-colors hover:text-white"
+                  >
+                    {chunks}
+                  </MaybeLink>
+                ),
+                m: (chunks) => (
+                  <MaybeLink
+                    href="/mediateur-consommation"
                     className="transition-colors hover:text-white"
                   >
                     {chunks}

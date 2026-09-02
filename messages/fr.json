@@ -324,7 +324,7 @@
       }
     },
     "copyright": "© 2026 Petroff.law — Tous droits réservés",
-    "legalLinks": "Mentions légales · <c>Confidentialité</c> · <k>Cookies</k> · Médiateur de la consommation · Gérer les cookies"
+    "legalLinks": "Mentions légales · <c>Confidentialité</c> · <k>Cookies</k> · <m>Médiateur de la consommation</m> · Gérer les cookies"
   },
   "ExpertisesPage": {
     "stage": {
@@ -6264,6 +6264,171 @@
                 "label": "E-mail",
                 "value": "contact@petroff.law",
                 "strong": true
+              },
+              {
+                "label": "Téléphone",
+                "value": "+ 33 (0) 1 78 90 46 46"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "MediateurPage": {
+    "hero": {
+      "overline": "Informations légales",
+      "title": "Médiateur de la consommation",
+      "meta": "<s>Petroff Avocats </s>(SELARL LEGASTRAT) · Barreau de Paris · <s>Dernière mise à jour</s> : 2 septembre 2026",
+      "lead": "Conformément aux articles L. 611-1 et suivants du Code de la consommation, tout client ayant la qualité de consommateur a le droit de recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d’un litige qui l’opposerait à notre cabinet."
+    },
+    "toc": {
+      "title": "Sommaire"
+    },
+    "sections": {
+      "droit": {
+        "num": "01",
+        "title": "Votre droit à la médiation",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "En sa qualité d’avocat, le cabinet informe ses clients consommateurs de leur droit de recourir à la médiation de la consommation pour tout litige né de l’exécution de nos prestations ou de nos conditions générales."
+          },
+          {
+            "type": "note",
+            "text": "Le recours à la médiation est <s>gratuit</s> pour le consommateur et <s>facultatif</s> : vous restez libre de l’accepter ou de la refuser, et de saisir à tout moment la juridiction compétente. La médiation est ouverte aux seuls consommateurs, à l’exclusion des clients professionnels."
+          }
+        ]
+      },
+      "mediateur": {
+        "num": "02",
+        "title": "Le médiateur compétent",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le médiateur de la consommation compétent pour notre cabinet est le <s>Médiateur de la consommation de la profession d’avocat</s> :"
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Entité",
+                "value": "Médiateur de la consommation de la profession d’avocat"
+              },
+              {
+                "label": "Adresse",
+                "value": "180 boulevard Haussmann, 75008 Paris, France"
+              },
+              {
+                "label": "Site",
+                "value": "mediateur-consommation-avocat.fr",
+                "link": true
+              },
+              {
+                "label": "E-mail",
+                "value": "mediateur@mediateur-consommation-avocat.fr",
+                "link": true
+              },
+              {
+                "label": "Saisine en ligne",
+                "value": "mediateur-consommation-avocat.fr/contacter-le-mediateur",
+                "link": true
+              }
+            ]
+          }
+        ]
+      },
+      "reclamation": {
+        "num": "03",
+        "title": "Une réclamation écrite préalable",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "La saisine du médiateur n’est possible qu’après une tentative de résolution directe du litige auprès du cabinet, par une <s>réclamation écrite</s>."
+          },
+          {
+            "type": "callout",
+            "title": "Deux conditions à respecter",
+            "body": "Vous devez d’abord adresser une réclamation écrite au cabinet et lui laisser le temps d’y répondre. La demande de médiation doit ensuite être introduite dans un délai <b>d’un an</b> à compter de cette réclamation écrite."
+          },
+          {
+            "type": "note",
+            "text": "Adressez votre réclamation à Petroff Avocats — 182 rue de Rivoli, 75001 Paris, ou par e-mail à <l>contact@petroff.law</l>."
+          }
+        ]
+      },
+      "exclusions": {
+        "num": "04",
+        "title": "Cas où la médiation ne peut aboutir",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Conformément à l’article L. 612-2 du Code de la consommation, le médiateur ne peut être saisi lorsque :"
+          },
+          {
+            "type": "proc",
+            "items": [
+              "vous ne justifiez pas avoir tenté, au préalable, de résoudre le litige par une réclamation écrite auprès du cabinet ;",
+              "votre demande est manifestement infondée ou abusive ;",
+              "le litige a déjà été examiné, ou est en cours d’examen, par un autre médiateur ou par un tribunal ;",
+              "vous avez saisi le médiateur plus d’un an après votre réclamation écrite ;",
+              "le litige n’entre pas dans le champ de compétence du médiateur."
+            ]
+          }
+        ]
+      },
+      "plateforme": {
+        "num": "05",
+        "title": "Plateforme européenne de règlement en ligne",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Pour un litige lié à un contrat conclu en ligne, la Commission européenne met à disposition une plateforme de règlement en ligne des litiges (RLL), accessible à l’adresse suivante :"
+          },
+          {
+            "type": "p",
+            "text": "<l>https://ec.europa.eu/consumers/odr/</l>"
+          }
+        ]
+      },
+      "saisir": {
+        "num": "06",
+        "title": "Comment saisir le médiateur",
+        "blocks": [
+          {
+            "type": "proc",
+            "tone": "note",
+            "items": [
+              "Adressez d’abord une <s>réclamation écrite</s> au cabinet et laissez-lui le temps d’y répondre.",
+              "En l’absence de solution satisfaisante, saisissez le médiateur <s>dans un délai d’un an</s>, par courrier, par e-mail ou via le formulaire en ligne.",
+              "Le médiateur examine la recevabilité de la demande, puis propose une <s>solution amiable</s>. La procédure est gratuite et confidentielle ; vous restez libre d’accepter ou de refuser la solution proposée."
+            ]
+          }
+        ]
+      },
+      "contact": {
+        "num": "07",
+        "title": "Contact",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Pour toute question relative à une réclamation ou à la médiation :"
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Cabinet",
+                "value": "Petroff Avocats — SELARL LEGASTRAT"
+              },
+              {
+                "label": "Adresse",
+                "value": "182 rue de Rivoli, 75001 Paris, France"
+              },
+              {
+                "label": "E-mail",
+                "value": "contact@petroff.law",
+                "link": true
               },
               {
                 "label": "Téléphone",

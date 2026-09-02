@@ -19,7 +19,12 @@ export function Hero() {
   return (
     <section className="border-stone bg-lilas border-b">
       <Container className="pt-12 pb-9 lg:pt-16">
-        <div className="flex flex-col gap-4">
+        {/* Figma marks this column `word-break: break-word` on all three
+            legal frames. It is load-bearing here: at 320 the fluid
+            `text-display` still draws 40px, and a single long word in the
+            title ("consommation", "confidentialité") is wider than the
+            280px content box. */}
+        <div className="flex flex-col gap-4 break-words">
           <p className="text-overline font-poppins text-brique uppercase">
             {t("overline")}
           </p>
