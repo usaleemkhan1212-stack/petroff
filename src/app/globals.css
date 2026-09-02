@@ -207,6 +207,16 @@
   --text-badge--letter-spacing: 0.08em;
   --text-badge--font-weight: 700;
 
+  /* Poppins SemiBold 12, +4% tracking — the cookie table's category pill.
+     NOT a named Figma library style, unlike --text-badge and --text-price:
+     the cookie policy's own style list names every other run on that node and
+     not this one, so it is the --color-pale-rose case. Flagged to the
+     designer; it is the only 12px type on the site. */
+  --text-tag: 0.75rem;
+  --text-tag--line-height: normal;
+  --text-tag--letter-spacing: 0.04em;
+  --text-tag--font-weight: 600;
+
   /* Poppins Bold 30 — Figma's "Petroff/Price", the forfait amounts. */
   --text-price: 1.875rem;
   --text-price--line-height: 1.15;
@@ -283,7 +293,6 @@
     display: none;
   }
 
-
   .details-panel::details-content {
     block-size: 0;
     overflow: hidden;
@@ -302,7 +311,3 @@
     }
   }
 }
-
-
-
-

@@ -5922,6 +5922,144 @@ and a 16px gap to an Inter 16 label in encre/62.
 per-section line-box rounding, less S11's one wrapped row. No horizontal
 overflow at any of nine widths from 1920 down to 320.
 
+## Page 19 — Politique cookies (`/cookies`), frame `13872:881`
+
+1920x3954 — the site's **second pure legal document**, and the second page
+reached from the footer rather than the header. Its route takes the footer's
+own label, `Cookies`, exactly as `/confidentialite` took `Confidentialité`.
+
+Its sections live in `src/components/sections/cookies/`, its keys in
+`src/lib/cookies.ts` and its copy under the **`CookiesPage`** namespace.
+
+| # | Node | Figma | Rendered | delta |
+|---|---|---|---|---|
+| 1 | Hero `13872:934` | 361 | 360.9 | **−0.1** |
+| 2 | Body `13872:940` | 3162 | 3191.6 | +29.6 |
+| | ├ Content `13872:942` | 3018 | 3047.6 | +29.6 |
+| | └ TOC `13872:1113` | 321 | 323.2 | +2.2 |
+| 3 | Footer | 359 | 358.2 | −0.8 |
+| **Page** | | **3954** | **3984** | **+30 (0.76%)** |
+
+Every section within +8.3, and no horizontal overflow at any of **ten** widths
+from 1920 down to 320.
+
+| S | Figma h | built h | | S | Figma h | built h |
+|---|---|---|---|---|---|---|
+| 01 | 224 | 225.6 | | 05 | 269 | 270.6 |
+| 02 | 695 | 703.3 | | 06 | 380 | 383.5 |
+| 03 | 227 | 229.4 | | 07 | 252 | 254.6 |
+| 04 | 394 | 396.4 | | 08 | 381 | 388.1 |
+
+S02's +8.3 is the cookie table's four row borders plus the section rule; S08's
++7.1 is the contact list's five. The rest is one rule plus line rounding.
+
+**One `get_design_context` on the 765 content column was the whole
+derivation** — at 3018px it comes back in full where the privacy page's 10,837
+had to be saved to a file and indexed. Reach for the whole column whenever a
+document is this size.
+
+#### It is the privacy policy's shape, and it differs in six places
+
+Both are a hero over a 765 content column beside a 384 table of contents, with
+`justify-between` giving the familiar 96 inside the 1245 container, and both
+split at `xl`. **Do not port one onto the other** — the components are separate
+copies for these:
+
+| | `/confidentialite` | `/cookies` |
+|---|---|---|
+| under the hero | a full-width 1px `stone` rule (its own 1920x1 node) | **nothing** — 64 + 261 + 36 is exactly this frame's 361, and the node render is lilas to its last row |
+| section gap | 48 | **28** |
+| under each section rule | 20, the column's own gap | **28**, a `pt-7` on the head row |
+| the weighted inline run | Inter SemiBold 18/1.5 | **Poppins SemiBold at the paragraph's own 18/1.4** |
+| its callout | red or brique edge, no radius | **gold edge, right corners rounded to 12**, always pale gold |
+| its table of contents | skips 07 and 08 | lists **all eight** |
+
+Its `<s>` run re-declares `text-encre` for the reason CLAUDE.md already
+records: half its occurrences sit inside an `encre/62` note, where a run
+carrying no colour of its own silently inherits the 62% and the weighting
+disappears.
+
+#### The cookie table (`13873:903`) — the block this document adds
+
+Four named columns — Cookie / Finalité / Catégorie / Durée — so it is a real
+`<table>` with `scope` on both axes, and it scrolls inside its own
+`overflow-x-auto` container below 768 rather than crushing three columns of
+legal text. Verified: full width down to 768, `scrollWidth` 666 against a 343
+client at 375, and no page overflow at either.
+
+- **Figma's 170 / flex / 150 / 90 are the cells, not the tracks.** The row is
+  four cells on a 16px gap, so each fixed track carries that gap as its own
+  left padding and is 16 wider than the cell it holds: 170 + 323 + 166 + 106 is
+  the column's 765, leaving the Finalité cell Figma's own 307.
+  **Getting this wrong is invisible until you measure a cell.** At 150 and 90
+  the tracks looked right and the section height was only 12 short — but the
+  Finalité cell was 339 instead of 307, which let row 1's purpose fit on one
+  line where the comp wraps it, and squeezed the category cell to 134. Fixing
+  the tracks put all three rows on Figma's own 72 / 72 / 93.
+- **Its third category pill fills its whole 150 cell where the other two hug at
+  83**, and its label needs only 114 — so 36px of that pill is empty. Settled
+  by counting pale-gold pixels in the node's own render rather than trusting
+  the metadata: 509→658 for the gold one against 509→591 for both blue ones.
+  It is almost certainly a slip, and it is reproduced (`fill` on that row)
+  rather than tidied away, like the Contentieux card 8 white tag. **Flag it.**
+  Note the two hugging pills measure **82.7 against Figma's 83**, so the font
+  metrics agree exactly — which is what proves the 150 is a stretch and not a
+  measurement difference.
+- Its category pill is **Poppins SemiBold 12 at 0.04em**, which is the one
+  value on this page with no token — see below.
+
+#### `--text-tag` — a token that needs confirming
+
+Poppins SemiBold 12 / normal / +4% tracking, uppercase, on the category pill.
+**It is the only 12px type on the site**, and unlike `--text-badge` and
+`--text-price` it is **not a named Figma library style** — this node's own
+style list names every other run on it and not this one. So it is the
+`--color-pale-rose` case rather than the `--text-badge` case, and it is added
+here on that footing. **Put it to the designer**: either it earns a name in the
+library or the pill should take an existing style.
+
+#### Two runs Figma styles as links and gives no target
+
+- S06's **four browser names are periwinkle** — Chrome, Firefox, Safari, Edge,
+  under "les modalités varient selon le navigateur". Figma supplies no URLs, so
+  they stay spans, the same rule the article's `<ref>` citations follow.
+  **They need the firm's own links before launch.**
+- S08's **"Politique de confidentialité" is a real link**, since that page
+  exists — the document's only one, carried as a `<c>` tag in the copy.
+
+#### The bullet, and what it does not need
+
+Figma's puce here is the shared **9x20** box — not the privacy page's 9x27 —
+with the dot at cy 15.5 in pale periwinkle. It renders the shared gold
+`Bullet` under the site-wide rule, and because a one-line row is 25 tall (set
+by the text, not the box) this list needs **none of the `min-h-6.75`** the
+privacy page's rows carry. No new asset.
+
+### The footer's legal line now carries five items
+
+Figma's `13872:1215` reads *Mentions légales · Confidentialité · Cookies ·
+Médiateur de la consommation · Gérer les cookies*, where the build had three.
+**Everything else in the footer is unchanged** — checked value by value against
+`13872:1158` rather than assumed: brand 327.09 against `max-w-82`, columns
+233.636 / 233.636 / 176 on a 36 gap against `xl:w-58` + `gap-x-9`, the 8px
+title-to-item and item-to-item gaps, the 48 to the bottom row and its 24 of top
+padding, and the band's 64/36. Footer still **358.2** and the home page still
+**5748** at 1920.
+
+- `<c>` links *Confidentialité* and the new `<k>` links *Cookies*; the other
+  three stay plain text. **« Gérer les cookies » is the consent panel this very
+  policy promises is "présent en bas de chaque page", and there is no cookie
+  banner on the site** — so it cannot be a real control yet. Flag it with the
+  route list.
+- The line grows 530 -> 718 and still fits beside the 323 copyright inside the
+  1245 band, so desktop does not move; at 768 it wraps to two lines and at
+  375/320 to three. No overflow at any of six widths.
+
+Verified: the two anchors resolve on the home page, the Bibliothèque and
+`/confidentialite`; the sticky table of contents pins at exactly **24**; and
+its anchors land their heading at **24.3**, the `scroll-mt-6` those sections
+carry, with the site-wide smooth scroll honoured.
+
 ## FAQ answers are capped at a reading measure
 
 Asked for: the accordion "goes long away" when a row opens. Measured — the
@@ -6775,6 +6913,10 @@ resolve to 17, unchanged.
   Expertises card tiles — same precedent again.
   And `--color-pale-rose` (#edc2dc, the article trap callout, always at 30%) —
   **asked about**, because unlike those four it is a raw fill, not a named style.
+  And `--text-tag` (Poppins SemiBold 12 / +4% tracking, the cookie table's
+  category pill) — **asked about**, because it is the only 12px type on the
+  site and, unlike `--text-badge` and `--text-price`, it is *not* a named Figma
+  library style: that node's own style list names every other run on it.
   And `--color-pink-soft` (#f0d5dd, the e-commerce tag chips, always at 40%) —
   **asked about**, because Figma gives it the *same* library name as
   `--color-pink` (#fac5ef) with a different hex, so repointing the existing
@@ -6802,7 +6944,7 @@ resolve to 17, unchanged.
   `/expertises/immobilier-entreprise`, `/expertises/propriete-intellectuelle`,
   `/expertises/recouvrement`, `/bibliotheque/resultats`,
   `/expertises/contentieux-arbitrage/service-page`, `/le-cabinet/personal-page`,
-  `/bibliotheque`, `/bibliotheque/article-design`,
+  `/cookies`, `/bibliotheque`, `/bibliotheque/article-design`,
   `/bibliotheque/avocat-e-commerce`, `/bibliotheque/new-article-page` and
   `/confidentialite`.
 - `Button` still has no `href` prop by design — wrap the call site in `Link`

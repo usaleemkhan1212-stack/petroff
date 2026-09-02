@@ -324,7 +324,7 @@
       }
     },
     "copyright": "© 2026 Petroff.law — Tous droits réservés",
-    "legalLinks": "Mentions légales · <c>Confidentialité</c> · Médiateur de la consommation"
+    "legalLinks": "Mentions légales · <c>Confidentialité</c> · <k>Cookies</k> · Médiateur de la consommation · Gérer les cookies"
   },
   "ExpertisesPage": {
     "stage": {
@@ -6058,6 +6058,218 @@
           {
             "type": "p",
             "text": "Revenir en haut ↑"
+          }
+        ]
+      }
+    }
+  },
+  "CookiesPage": {
+    "hero": {
+      "overline": "Informations légales",
+      "title": "Politique cookies",
+      "meta": "<s>Petroff Avocats </s>(SELARL LEGASTRAT) · Barreau de Paris · <s>Dernière mise à jour</s> : 2 septembre 2026",
+      "lead": "Cette politique explique ce qu’est un cookie, quels cookies sont déposés sur le site petroff.law, dans quel but, pour combien de temps, et comment accepter, refuser ou modifier vos choix à tout moment."
+    },
+    "toc": {
+      "title": "Sommaire",
+      "items": {
+        "cookie": "Qu’est-ce qu’un cookie ?",
+        "utilises": "Les cookies utilisés",
+        "publicitaire": "Aucun cookie publicitaire",
+        "consentement": "Votre consentement",
+        "conservation": "Durée de conservation",
+        "navigateur": "Paramétrer les cookies",
+        "tiers": "Cookies tiers & transferts",
+        "droits": "Vos droits & contact"
+      }
+    },
+    "sections": {
+      "cookie": {
+        "num": "01",
+        "title": "Qu’est-ce qu’un cookie ?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Un <s>cookie</s> est un petit fichier texte déposé sur votre terminal (ordinateur, tablette ou smartphone) lors de la consultation d’un site. Il permet au site de reconnaître votre navigateur, de mémoriser certaines informations et de faciliter votre navigation."
+          },
+          {
+            "type": "note",
+            "text": "Seul l’émetteur d’un cookie peut lire ou modifier les informations qu’il contient. Certains cookies sont indispensables au fonctionnement du site ; d’autres, facultatifs, ne sont déposés qu’avec votre consentement."
+          }
+        ]
+      },
+      "utilises": {
+        "num": "02",
+        "title": "Les cookies que nous utilisons",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le site utilise deux catégories de cookies :"
+          },
+          {
+            "type": "list",
+            "items": [
+              "<s>Cookies strictement nécessaires</s> — indispensables au fonctionnement et à la sécurité du site (mémorisation de vos choix, gestion de session). Ils ne requièrent pas votre consentement.",
+              "<s>Cookies de mesure d’audience</s> — nous aident à comprendre la fréquentation du site afin de l’améliorer. Ils ne sont déposés qu’avec votre consentement, sauf lorsqu’ils sont strictement limités à la mesure d’audience et configurés conformément aux recommandations de la CNIL."
+            ]
+          },
+          {
+            "type": "table",
+            "head": [
+              "Cookie",
+              "Finalité",
+              "Catégorie",
+              "Durée"
+            ],
+            "rows": [
+              {
+                "name": "petroff_consent",
+                "purpose": "Mémorise vos choix en matière de cookies",
+                "category": "Essentiel",
+                "tone": "essential",
+                "duration": "6 mois"
+              },
+              {
+                "name": "petroff_session",
+                "purpose": "Gestion de la session et sécurité de la navigation",
+                "category": "Essentiel",
+                "tone": "essential",
+                "duration": "Session"
+              },
+              {
+                "name": "[outil de mesure d’audience — à confirmer]",
+                "purpose": "Statistiques de fréquentation, en principe anonymisées",
+                "category": "Mesure d’audience",
+                "tone": "audience",
+                "duration": "13 mois max",
+                "fill": true
+              }
+            ]
+          },
+          {
+            "type": "note",
+            "text": "Le nom exact, l’éditeur et la durée du cookie de mesure d’audience seront précisés une fois l’outil retenu (par exemple une solution de mesure d’audience respectueuse de la vie privée)."
+          }
+        ]
+      },
+      "publicitaire": {
+        "num": "03",
+        "title": "Aucun cookie publicitaire",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "En l’état, le site <s>n’utilise pas de cookies publicitaires</s>, de ciblage, de remarketing ni de réseaux sociaux."
+          },
+          {
+            "type": "note",
+            "text": "Si de tels cookies venaient à être mis en place — par exemple dans le cadre de campagnes en ligne — ils ne seraient déposés qu’après recueil de votre consentement préalable, et la présente politique serait mise à jour en conséquence."
+          }
+        ]
+      },
+      "consentement": {
+        "num": "04",
+        "title": "Votre consentement",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Lors de votre première visite, un bandeau vous permet d’<s>accepter</s> ou de <s>refuser</s>, tout aussi simplement, le dépôt des cookies non essentiels. Vous pouvez également personnaliser vos choix, catégorie par catégorie."
+          },
+          {
+            "type": "callout",
+            "title": "Un choix libre et réversible",
+            "body": "Aucun cookie non essentiel n’est déposé avant que vous n’ayez donné votre consentement. Vous pouvez retirer votre consentement ou modifier vos choix à tout moment, sans que cela soit plus difficile que de les accepter."
+          },
+          {
+            "type": "note",
+            "text": "Pour rouvrir le panneau de gestion des cookies, utilisez le lien <s>« Gérer les cookies »</s> présent en bas de chaque page."
+          }
+        ]
+      },
+      "conservation": {
+        "num": "05",
+        "title": "Durée de conservation",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Conformément aux recommandations de la CNIL :"
+          },
+          {
+            "type": "list",
+            "items": [
+              "les cookies déposés ont une durée de vie maximale de <s>treize (13) mois</s> ;",
+              "votre consentement est conservé pendant une durée maximale de <s>six (6) mois</s> ; passé ce délai, votre choix vous est de nouveau demandé ;",
+              "les informations collectées via la mesure d’audience sont conservées pendant une durée maximale de <s>vingt-cinq (25) mois</s>."
+            ]
+          }
+        ]
+      },
+      "navigateur": {
+        "num": "06",
+        "title": "Paramétrer les cookies depuis votre navigateur",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Indépendamment du bandeau, vous pouvez à tout moment configurer votre navigateur pour accepter ou refuser les cookies. Les modalités varient selon le navigateur :"
+          },
+          {
+            "type": "list",
+            "tone": "link",
+            "items": [
+              "Google Chrome",
+              "Mozilla Firefox",
+              "Apple Safari",
+              "Microsoft Edge"
+            ]
+          },
+          {
+            "type": "note",
+            "text": "Le refus de certains cookies peut altérer votre expérience de navigation, mais n’empêche pas l’accès au site."
+          }
+        ]
+      },
+      "tiers": {
+        "num": "07",
+        "title": "Cookies tiers et transferts de données",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Les cookies de mesure d’audience peuvent faire intervenir un prestataire tiers. Lorsque des données sont susceptibles d’être transférées en dehors de l’Union européenne, ces transferts sont encadrés par les garanties appropriées prévues par le RGPD."
+          },
+          {
+            "type": "note",
+            "text": "Ces garanties reposent notamment sur une décision d’adéquation de la Commission européenne — dont le cadre de protection des données UE—États-Unis (EU–US Data Privacy Framework) — ou sur des clauses contractuelles types."
+          }
+        ]
+      },
+      "droits": {
+        "num": "08",
+        "title": "Vos droits et contact",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le traitement de vos données personnelles et les modalités d’exercice de vos droits (accès, rectification, effacement, opposition) sont détaillés dans notre <c>Politique de confidentialité</c>."
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Cabinet",
+                "value": "Petroff Avocats — SELARL LEGASTRAT"
+              },
+              {
+                "label": "Adresse",
+                "value": "182 rue de Rivoli, 75001 Paris, France"
+              },
+              {
+                "label": "E-mail",
+                "value": "contact@petroff.law",
+                "strong": true
+              },
+              {
+                "label": "Téléphone",
+                "value": "+ 33 (0) 1 78 90 46 46"
+              }
+            ]
           }
         ]
       }

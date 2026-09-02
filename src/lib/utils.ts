@@ -29,6 +29,7 @@ const twMerge = extendTailwindMerge({
             "button",
             "badge",
             "price",
+            "tag",
             "stat",
           ],
         },
