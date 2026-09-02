@@ -5602,7 +5602,7 @@ button on every page and reading whether the dialog left `inert`:
 
 | Opens the drawer | Does not |
 |---|---|
-| Prendre rendez-vous (header, hero, CTAFinal), Nous appeler, the phone pill on the personal hero | the three nav dropdowns, the language switcher |
+| Prendre rendez-vous (header, hero, CTAFinal), Nous appeler | the three nav dropdowns, the language switcher, **the personal hero's phone pill** — a `tel:` link since |
 | every CTAFinal pair — Réserver un créneau visio / Obtenir un devis en ligne, Parler à un avocat / Poser votre question | Rechercher, Vérifier, the search chips |
 | both MidCTAs, Décrire mon besoin, Faire évaluer mon dossier | the legal-tech tool cards' Évaluer / Calculer / Estimer / Auditer / Analyser / Préparer |
 | every Forfaits plan CTA — Démarrer, Être rappelé, S'abonner, Commander l'audit, Commander le pack, Demander un devis | Voir les forfaits, Explorer la bibliothèque, Choisir un domaine |
@@ -6163,10 +6163,23 @@ asset URLs, so `curl` those rather than spending a second call on
   (`contact`, shared through `ContactCta`), the article's sticky bar detail
   line, and the consultation drawer's "Vous préférez appeler ?" line. The
   drawer's is its own string because only the number is periwinkle there,
-  which `ContactCta.contact` cannot express. All are plain text, not `tel:`
-  links, and the header phone control is still inert — wire all of them up
-  together if that number is real. Its spaces are
+  which `ContactCta.contact` cannot express. Three of the four are still plain
+  text and the header phone control is still inert — wire them up together if
+  that number is real. Its spaces are
   ordinary, unlike the U+202F in "24 h".
+- **The personal hero's phone pill is the site's one `tel:` link**, and the one
+  place the number is a control rather than a run of copy. It used to open the
+  consultation drawer, which is the wrong action for a number the reader can
+  simply call. Two things to know about it:
+  - **Its href is a separate string** (`PersonalPage.hero.phoneHref`), not
+    derived from the displayed one. Stripping the punctuation out of
+    `+ 33 (0) 1 78 90 46 46` keeps the trunk `0` and gives `+330178904646`,
+    which is not a dialable international number; the correct form drops it.
+  - `Button` is always a real `<button>`, so an anchor cannot use it. It wears
+    the same pill through **`buttonClasses()`**, exported from `Button.tsx` for
+    exactly this case rather than the class string being copied out. Rendered
+    identical to the `ConsultButton` beside it — 227.3x53.2 on `16px 28px`, a
+    1.5px encre border, no underline — and the hero still measures **740**.
 - SearchBand submit and the OpenData SIREN form are inert placeholders. The
   popular chips prefill the search field instead of navigating.
 - The consultation drawer's "Soumettre votre demande" is inert, like every

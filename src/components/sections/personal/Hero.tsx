@@ -4,7 +4,7 @@ import Courthouse from "@/assets/icons/courthouse.svg";
 import SealRibbon from "@/assets/icons/seal-ribbon.svg";
 import photo from "@/assets/images/mariela-portrait-hero.jpg";
 import { ConsultButton } from "@/components/consultation/ConsultButton";
-import { Button } from "@/components/ui/Button";
+import { buttonClasses } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 /** The three stat columns, in Figma's order. */
@@ -61,16 +61,28 @@ export function Hero() {
                   >
                     {t("ctaPrimary")}
                   </ConsultButton>
-                  {/* The number is a contact control, and there is no tel:
-                      link on the site yet — it opens the drawer, which carries
-                      it. */}
-                  <ConsultButton
-                    size="lg"
-                    variant="outline"
-                    className="whitespace-normal sm:whitespace-nowrap"
+                  {/*
+                    The site's first `tel:` link. This pill shows a phone
+                    number, so clicking it dials — it used to open the
+                    consultation drawer, which is the wrong action for a
+                    number the reader can simply call.
+
+                    Its href is a **separate string**, not derived from the
+                    displayed one: stripping the punctuation out of
+                    "+ 33 (0) 1 78 90 46 46" keeps the trunk `0` and yields
+                    +330178904646, which is not a dialable international
+                    number.
+                  */}
+                  <a
+                    href={t("phoneHref")}
+                    className={buttonClasses({
+                      size: "lg",
+                      variant: "outline",
+                      className: "whitespace-normal sm:whitespace-nowrap",
+                    })}
                   >
                     {t("phone")}
-                  </ConsultButton>
+                  </a>
                 </div>
 
                 <div className="flex items-center gap-4">

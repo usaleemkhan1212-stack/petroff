@@ -31,6 +31,26 @@ type Props = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
+ * The pill's classes on their own, for the rare CTA that has to be an `<a>`
+ * rather than a `<button>` — a `tel:` link is the case that forced this, since
+ * dialling is a real href and nothing else on the site can express it.
+ *
+ * Reach for `Button` everywhere else; this exists so an anchor can wear the
+ * same pill without the class string being copied out of this file.
+ */
+export function buttonClasses({
+  variant = "solid",
+  size = "sm",
+  className,
+}: {
+  variant?: Variant;
+  size?: Size;
+  className?: string;
+} = {}) {
+  return cn(base, sizes[size], variants[variant], className);
+}
+
+/**
  * Pill button. Always a real <button> — nothing on the home page navigates
  * yet, so buttons deliberately carry no href. When the routes exist, wrap the
  * call site in a Link from "@/i18n/navigation" rather than reviving an href
@@ -47,7 +67,7 @@ export function Button({
   return (
     <button
       type={type}
-      className={cn(base, sizes[size], variants[variant], className)}
+      className={buttonClasses({ variant, size, className })}
       {...props}
     >
       {children}
