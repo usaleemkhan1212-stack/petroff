@@ -42,7 +42,7 @@ export function Cas() {
             label={t("carouselLabel")}
             count={caseStudies.length}
             navLabels={{ prev: t("prev"), next: t("next") }}
-            trackClassName="gap-6"
+            trackClassName="items-start gap-6"
             dotsClassName="mt-6"
             header={
               <div className="flex max-w-190 min-w-0 flex-col gap-3">
@@ -59,7 +59,11 @@ export function Cas() {
                 key={key}
                 className="w-full shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
               >
-                <article className="border-stone flex h-full flex-col overflow-hidden rounded-[22px] border bg-white">
+                {/* Figma marks the row `items-start` and stretches none of the three,
+                    so they end at 937 / 889 / 865 — their own heights, not one
+                    levelled row. Hence no `h-full` here and no `mt-auto` on the
+                    author row below. */}
+                <article className="border-stone flex flex-col overflow-hidden rounded-[22px] border bg-white">
                   <Image
                     src={photos[key]}
                     alt={t(`cards.${key}.alt`)}
@@ -69,7 +73,10 @@ export function Cas() {
 
                   <div className="flex flex-col gap-6 p-6">
                     <div>
-                      <span className="text-small-strong text-brique bg-pale-gold rounded-full px-3 py-1">
+                      {/* `inline-flex`, not a bare inline span: an inline box takes its
+                          font's content area rather than its line-height, which drew
+                          the pill 28 tall against the comp's 31.2. */}
+                      <span className="text-small-strong text-brique bg-pale-gold inline-flex items-center rounded-full px-3 py-1">
                         {t(`cards.${key}.chip`)}
                       </span>
                     </div>
@@ -100,7 +107,7 @@ export function Cas() {
                       </p>
                     </div>
 
-                    <div className="border-encre/10 mt-auto flex gap-3 border-t pt-3">
+                    <div className="border-encre/10 flex gap-3 border-t pt-3">
                       <Image
                         src={portrait}
                         alt={t("authorAlt")}
