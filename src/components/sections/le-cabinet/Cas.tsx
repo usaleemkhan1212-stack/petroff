@@ -35,7 +35,14 @@ export function Cas() {
   const t = useTranslations("CabinetPage.cas");
 
   return (
-    <section className="bg-white">
+    /*
+      Figma gives this block no section wrapper at all — it is a top-level
+      1341 frame at x=289.5, flush against the section above and the MidCTA
+      below — so its sides show the page frame's own lilas. Sampling the
+      node render down the left edge reads `#f6f5f1` for the block's whole
+      1243, not white.
+    */
+    <section className="bg-lilas">
       <div className="px-5 sm:px-8 xl:px-15">
         <div className="bg-lilas mx-auto max-w-[1341px] rounded-[24px] p-6 sm:p-9 lg:p-12">
           <CardCarousel

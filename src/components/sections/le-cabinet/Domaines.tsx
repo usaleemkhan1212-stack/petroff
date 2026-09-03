@@ -57,9 +57,18 @@ export function Domaines() {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-10 xl:flex-row xl:items-start xl:justify-between">
             <div className="flex min-w-0 flex-col gap-9 xl:w-169.75 xl:shrink-0 xl:items-end">
-              {/* The illustration: a 450 panel pushed right inside the 679
-                  column, with the polaroid overhanging its lower left. */}
-              <div className="relative hidden h-97.75 w-full xl:block">
+              {/*
+                Figma's illustration is a **585.5x414 group at x=93.5** inside
+                the 679 column — flush with its right edge, which is what
+                `xl:items-end` on the column gives. Note the group's children
+                are reported in COLUMN coordinates, not group ones, because a
+                group establishes no origin of its own: the panel's x=229 is
+                229 in the column, i.e. 135.5 inside the group. Reading those
+                as group-relative put the whole illustration 93.5 left, and
+                sizing the box to the polaroid's reach rather than the panel's
+                414 pulled the head below it 23 up.
+              */}
+              <div className="relative hidden h-[414px] w-[585.5px] shrink-0 xl:block">
                 <div className="bg-lilas-2 absolute top-0 left-[135.5px] h-103.5 w-112.5 overflow-hidden rounded-tl-[200px] rounded-tr-[10px] rounded-br-[100px] rounded-bl-[60px]">
                   <LaDefenseWide
                     aria-hidden="true"
@@ -81,10 +90,17 @@ export function Domaines() {
 
                 {/*
                   Figma's 176.653x220.91 is the *rotated* bounding box of a
-                  150x202 card at -8deg, so the untransformed card sits at
-                  13.33/9.46 for its box to land at (0, 167).
+                  150x202 card at -8deg, and it lands at (93.5, 187.876) in the
+                  column — (0, 187.876) in this group. CSS rotates about the
+                  centre, so the untransformed card sits at 13.33/197.33.
+
+                  Its own children are read from the EXPORT, not from
+                  `get_metadata`: because this frame is rotated, metadata
+                  reports every descendant as a rotated bounding box too, so
+                  the 120 print comes back as 135.53 (120 x (cos8 + sin8)) and
+                  the 126 caption as 130.1.
                 */}
-                <figure className="absolute top-[176.46px] left-[13.33px] h-50.5 w-37.5 -rotate-8 rounded-tl-[60px] rounded-tr-[8px] rounded-br-[30px] rounded-bl-[30px] bg-white drop-shadow-[0px_16px_18px_rgba(18,42,76,0.16)]">
+                <figure className="absolute top-[197.33px] left-[13.33px] h-50.5 w-37.5 -rotate-8 rounded-tl-[60px] rounded-tr-[8px] rounded-br-[30px] rounded-bl-[30px] bg-white drop-shadow-[0px_16px_18px_rgba(18,42,76,0.16)]">
                   <Image
                     src={portrait}
                     alt={t("photoAlt")}
