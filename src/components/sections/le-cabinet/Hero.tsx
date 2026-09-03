@@ -101,7 +101,9 @@ export function Hero() {
                     height={36}
                     className="shrink-0"
                   />
-                  <p className="text-small text-encre/62 min-w-0">
+                  {/* Figma fixes this line at 550, which is what breaks it after
+                      "814433470 ·" rather than a word later. */}
+                  <p className="text-small text-encre/62 max-w-137.5 min-w-0">
                     {t.rich("verif", {
                       s: (chunks) => (
                         <span className="text-small-strong text-encre">{chunks}</span>

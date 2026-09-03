@@ -73,7 +73,13 @@ export function Secteurs() {
                 })}
               </p>
 
-              <ConsultButton size="lg" className="self-start xl:self-end">
+              {/* `Button` sets `whitespace-nowrap` in its base class, so a 340px
+                  label has to be allowed to wrap rather than the class simply
+                  omitted — it overran a 320 viewport by 40. */}
+              <ConsultButton
+                size="lg"
+                className="w-full self-start whitespace-normal sm:w-auto sm:whitespace-nowrap xl:self-end"
+              >
                 {t("cta")}
               </ConsultButton>
             </div>
