@@ -552,6 +552,41 @@
         "bodacc": "BODACC",
         "inpi": "INPI"
       }
+    },
+    "domaines": {
+      "overline": "Domaines couverts",
+      "title": "Tout le droit des affaires, sous un même toit",
+      "lead": "Neuf domaines, une même méthode : le cœur du métier — opérations stratégiques et contentieux complexe — d’abord, l’intendance ensuite. Chaque domaine a sa page dédiée ; retrouvez le détail, les outils et les avocats dans le Hub Expertises.",
+      "polaroid": "Rédigé par<br></br>des avocats",
+      "photoAlt": "Mᵉ Mariela Petrova",
+      "cta": "{count} prestations",
+      "cards": {
+        "societes": "Droit des sociétés",
+        "fusions": "Fusions-acquisitions",
+        "propriete": "Propriété intellectuelle",
+        "contentieux": "Contentieux & arbitrage",
+        "social": "Droit social",
+        "fiscal": "Droit fiscal",
+        "immobilier": "Immobilier d’entreprise",
+        "contrats": "Contrats commerciaux"
+      },
+      "transverse": {
+        "overline": "Besoin transverse",
+        "title": "Un dossier qui touche plusieurs domaines ?",
+        "body": "La plupart des opérations en mêlent plusieurs — une cession touche le droit des sociétés, le fiscal et les contrats. Décrivez votre situation : nous identifions les bons leviers et le bon interlocuteur.",
+        "cta": "Décrire ma situation",
+        "note": "<s>Réponse sous 48 h</s> · premier échange confidentiel"
+      },
+      "network": {
+        "label": "Assurés ou coordonnés via notre réseau :",
+        "chips": {
+          "emploi": "Emploi & RH",
+          "fiscalite": "Fiscalité & comptabilité",
+          "conformite": "Conformité & réglementaire"
+        },
+        "note": "Ces domaines sont pris en charge directement ou coordonnés avec les avocats, le notaire et l’expert-comptable de notre réseau, pour rester votre point d’entrée unique."
+      },
+      "hubCta": "Découvrir le Hub Expertises — détail, outils & avocats par domaine"
     }
   },
   "ContentieuxPage": {
