@@ -6257,6 +6257,104 @@ pixel — home 5748, Bibliothèque 6243, confidentialité 11859, cookies 3984,
 médiateur 3740. The sticky table of contents pins at exactly **24** and its
 anchors land a heading at **23.7**.
 
+## The consultation drawer is now a contact popup — `13894:9964`
+
+Asked for, against a 1000x670 centred card. **It replaces the sliding drawer
+everywhere**: the swap is one line in `ConsultationProvider`, because every
+trigger on the site already went through that one context — the red side tab on
+five pages, both articles' sticky bars, and the hundred-odd `ConsultButton` /
+`ConsultTrigger` call sites. `ConsultationDrawer.tsx` is deleted.
+
+- **It is the Lawcard section re-laid-out as a dialog**, and the copy proves it:
+  the overline, title, lead, name, address, all three marks, all four field
+  labels, the CTA, the phone line and the footnote are **character-identical**
+  to the top-level `Lawcard` namespace, so it reads that rather than
+  duplicating. Its card radii (**80 / 18 / 60 / 18**), its photo radii
+  (**80 / 4 / 20 / 20**) and its `0px 14px 34px` shadow are that section's too —
+  the shadow permanent here, since a dialog floats over the page by definition
+  rather than on hover.
+  **Check the copy against what the site already has before writing a
+  namespace**: one new string was needed on this whole component.
+- What differs is the **scale**: 36 of padding and a 36 column gap against the
+  section's 64, a fixed `text-price` title against its fluid `text-h2`, 16px
+  type through the lead, the fields and the phone line against 18, and a
+  **221x160 landscape** portrait against its 221x265.
+- `useDrawerBehaviour` is now **`useDialogBehaviour`** — focus move, Tab trap,
+  Escape and the scroll lock with its scrollbar gutter are none of them about
+  sliding. Its `firstFieldRef` widened from `HTMLInputElement` to `HTMLElement`,
+  because this dialog's first control is the **textarea**, not an input.
+
+Measured at 1920, and every one of Figma's own numbers lands:
+
+| | Figma | rendered |
+|---|---|---|
+| panel | 1000x670 | 1000x**676.8** |
+| radii | 80 / 18 / 60 / 18 | exact |
+| padding, column gap | 36, 36 | exact |
+| rail / form tracks | 221 + 671 | 221 + **669** |
+| photo | 221x160 at rail 0 | exact, radii exact |
+| name block | rail y=176 | **176** |
+| marks | rail y=294 | **294** |
+| overline / title / lead | tx 0 / 33 / 113 | 0 / **32.8** / 113 |
+| form | tx y=185 | **185.8** |
+| textarea | 155 tall, r12, 16/18 pad | exact |
+| field rows | db y=171 / 243 | **171** / 245 |
+| CTA | 50 tall, 14/36 pad, red, full | **exact** |
+| footnote | Inter 14/24 | exact |
+
+The +6.8 on the panel is the 2px border plus ~1px of line-box rounding per
+field row; the 669 track and the 245 second row are that border again, which
+Figma draws inside.
+
+#### Four departures from the comp, all deliberate
+
+1. **A visible ✕.** Figma draws no close control at all. Escape and a backdrop
+   click work, but a dialog needs one; it sits above the 18px top-right corner,
+   clear of the overline.
+2. **The DOM order is head, form, rail** — not Figma's rail-first. That is the
+   reading order once they stack: the rail is a photograph, a name and three
+   marks, about 490px of it, and putting that above the title buries the form on
+   a phone. A `lg:grid-cols-[221px_1fr]` with the rail on `col-start-1
+   row-span-2` puts it back on the left at desktop, so the comp is unchanged
+   there and DOM order matches visual order on mobile.
+3. **The phone line wraps where Figma clips it.** Its 411px string plus the
+   288 button and a 16 gap needs 715 inside a 671 column, so the comp's own
+   render loses the word "Paris" to `overflow-clip`. Wrapping is the call this
+   build makes everywhere else a frame clips its own content.
+4. **The radii soften below `sm`** — an 80px top-left corner eats a quarter of a
+   320px card, so it is 48 there, on both the card and the photo.
+
+The **`text-[14px]`** on the footnote is the one value with no token; it is the
+same string the Lawcard section sets at 16, which is the scaled-down card
+again. **Flag it** — the only other arbitrary font size on the site is the
+article hero card's, recorded under the same reasoning.
+
+`lawyer-portrait-modal.jpg` is new — 663x480, 3x the 221x160 box, a uniform
+crop of the portrait source (Figma places it at 127.4% / 117.32% with a
+−13.27% / −4.09% offset). Its nearest stored sibling diffs at **35.4**, far
+from JPEG noise, so it is a genuinely different window rather than a reuse; all
+the Mariela crops cluster at 35-45 where the other people's sit at 58-87.
+**`lawyer-portrait-tall.jpg` is now an orphan** — the drawer was its only user.
+
+Behaviour driven at six widths (1920 / 1280 / 1024 / 768 / 375 / 320) and from
+three kinds of trigger — an ordinary page CTA, the side tab on four pages, and
+the ✕ — verified in every case: it opens, focus lands on the textarea, `body`
+overflow locks and restores, Escape / the ✕ / a backdrop click all close, the
+closed panel is `inert` at `opacity-0`, and focus returns to the button that
+opened it. The panel always fits the viewport, scrolling inside itself below
+1024 rather than pushing the page. No horizontal overflow and no text painting
+outside the panel at any width.
+
+- **A synthetic `.click()` on a control that is `inert` still fires**, which
+  made an early test look like a focus-restore bug: it had picked the article
+  sticky bar's "Consulter un avocat" — inert at scroll 0 — rather than the side
+  tab, which shares that label. Filter triggers by `closest("[inert]") === null`
+  and, on a narrow viewport, by `checkVisibility()`; the header CTA is `hidden`
+  below `xl` and focus cannot return to it either.
+- Every page height is unchanged to the pixel after the swap — home 5748,
+  Expertises 4314, Bibliothèque 6243, Contentieux 8591, new-article 18995,
+  personal 4547, mentions-légales 6426 — with exactly one dialog per page.
+
 ## FAQ answers are capped at a reading measure
 
 Asked for: the accordion "goes long away" when a row opens. Measured — the
@@ -7290,9 +7388,10 @@ asset URLs, so `curl` those rather than spending a second call on
     1.5px encre border, no underline — and the hero still measures **740**.
 - SearchBand submit and the OpenData SIREN form are inert placeholders. The
   popular chips prefill the search field instead of navigating.
-- The consultation drawer's "Soumettre votre demande" is inert, like every
-  other form on the site. It is the site's first modal, so it is also the
-  first place a real submit handler would need somewhere to POST to.
+- The contact popup's "Demander à être rappelé" is inert, like every other
+  form on the site — and it is now the one form every contact button on the
+  site leads to, so it is the first place a real submit handler would need
+  somewhere to POST to.
 - **There are six CTAFinal components** — home, Expertises, Contentieux,
   Contrats, Bibliotheque and the article — and all but the home one share
   their copy through the top-level **`ContactCta`** namespace. The three

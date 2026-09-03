@@ -8,14 +8,14 @@ import {
   useRef,
   useState,
 } from "react";
-import { ConsultationDrawer } from "@/components/consultation/ConsultationDrawer";
+import { ContactModal } from "@/components/consultation/ContactModal";
 
 type Open = (event: React.MouseEvent<HTMLElement>) => void;
 
 const ConsultationContext = createContext<{ open: boolean; onOpen: Open } | null>(null);
 
 /**
- * The consultation drawer's one piece of state, lifted to the layout so that
+ * The contact popup's one piece of state, lifted to the layout so that
  * **any contact button anywhere on the site can open it**.
  *
  * It used to live in each page's own `Consultation` wrapper, which meant only
@@ -23,10 +23,15 @@ const ConsultationContext = createContext<{ open: boolean; onOpen: Open } | null
  * "Prendre rendez-vous", "Parler à un avocat" or "Obtenir un devis" on the
  * site was an inert button. They all call `useConsultation().onOpen` now.
  *
- * The drawer itself is rendered here, once, for the whole site: it is a
- * `fixed` panel that is translated off screen and `inert` while closed, so
- * mounting it on every page costs nothing and means the trigger does not have
- * to care whether its page draws a side tab.
+ * It used to render the sliding `ConsultationDrawer`; Figma replaced that with
+ * the centred `ContactModal` (`13894:9964`), and swapping it here is the whole
+ * change — every trigger on the site goes through this one context, so the
+ * side tab, both articles' sticky bars and every `ConsultButton` picked up the
+ * new panel at once.
+ *
+ * The panel is rendered here, once, for the whole site: it is `fixed`, faded
+ * out and `inert` while closed, so mounting it on every page costs nothing and
+ * means a trigger does not have to care whether its page draws a side tab.
  */
 export function ConsultationProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -48,9 +53,9 @@ export function ConsultationProvider({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     /*
-      Restore focus here rather than in the drawer's own cleanup: a side tab is
-      `inert` while the drawer is open, and only this render has already
-      cleared that by the time the effect runs.
+      Restore focus here rather than in the dialog's own cleanup: a side tab is
+      `inert` while it is open, and only this render has already cleared that
+      by the time the effect runs.
     */
     if (wasOpen.current && !open) trigger.current?.focus();
     wasOpen.current = open;
@@ -59,7 +64,7 @@ export function ConsultationProvider({ children }: { children: React.ReactNode }
   return (
     <ConsultationContext.Provider value={{ open, onOpen }}>
       {children}
-      <ConsultationDrawer open={open} onClose={onClose} />
+      <ContactModal open={open} onClose={onClose} />
     </ConsultationContext.Provider>
   );
 }

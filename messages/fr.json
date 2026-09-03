@@ -99,7 +99,8 @@
       "nom": "Nom et prénom",
       "email": "E-mail",
       "telephone": "Téléphone",
-      "societe": "Société"
+      "societe": "Société",
+      "situationPlaceholder": "Votre situation. Par exemple “Stade de l’opération, difficulté rencontrée, échéance à tenir.”"
     },
     "cta": "Demander à être rappelé",
     "phone": "<s>Vous préférez appeler ? </s><n>+ 33 (0) 1 78 90 46 46</n> · Paris",

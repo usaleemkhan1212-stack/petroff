@@ -6,15 +6,17 @@ const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 /**
- * Everything a sliding consultation drawer has to do while it is open, shared
- * by the article's panel and the home page's: move focus to the first field,
- * trap Tab inside the panel, close on Escape, and lock the page behind it.
+ * Everything a modal dialog has to do while it is open: move focus to its
+ * first field, trap Tab inside the panel, close on Escape, and lock the page
+ * behind it.
  *
- * The two drawers differ only in what they draw — this behaviour is identical
- * in both, and getting a focus trap subtly wrong in one copy is exactly the
- * kind of bug duplication causes.
+ * Written for the sliding consultation drawer and shared by the two copies of
+ * it; the drawer has since been replaced by the centred `ContactModal`, which
+ * needs exactly the same four things. Hence the name — none of this is about
+ * sliding, and getting a focus trap subtly wrong in a second copy is exactly
+ * the kind of bug duplication causes.
  */
-export function useDrawerBehaviour({
+export function useDialogBehaviour({
   open,
   onClose,
   panelRef,
@@ -23,7 +25,7 @@ export function useDrawerBehaviour({
   open: boolean;
   onClose: () => void;
   panelRef: RefObject<HTMLDivElement | null>;
-  firstFieldRef: RefObject<HTMLInputElement | null>;
+  firstFieldRef: RefObject<HTMLElement | null>;
 }) {
   useEffect(() => {
     if (!open) return;
@@ -31,7 +33,7 @@ export function useDrawerBehaviour({
     const panel = panelRef.current;
     if (!panel) return;
 
-    /* Figma draws the Nom field focused, which is also where a reader starts. */
+    /* The first control, which is where a reader starts too. */
     firstFieldRef.current?.focus();
 
     const focusable = () =>
