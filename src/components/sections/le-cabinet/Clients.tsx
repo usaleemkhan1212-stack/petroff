@@ -95,7 +95,15 @@ export function Clients() {
                         key={key}
                         className="border-encre/10 flex items-center gap-4.5 border-b py-4.5"
                       >
-                        <Bullet />
+                        {/*
+                          These rows are `items-center`, not the `items-start`
+                          body rows the shared bullet's 2px optical nudge was
+                          made for — and the glyph's own circle sits at cy 12.5
+                          in a 20px box, 2.5 below its centre. Both together put
+                          the dot 4.5px under the label; cancelling them centres
+                          it on the row, which is where the comp reads it.
+                        */}
+                        <Bullet className="-translate-y-[2.5px]" />
                         <p
                           className={cn(
                             "text-h3 font-poppins min-w-0 flex-1",
