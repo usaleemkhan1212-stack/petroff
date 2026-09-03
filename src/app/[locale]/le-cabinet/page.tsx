@@ -5,6 +5,7 @@ import { Consultation } from "@/components/consultation/Consultation";
 import { Domaines } from "@/components/sections/le-cabinet/Domaines";
 import { Hero } from "@/components/sections/le-cabinet/Hero";
 import { Methode } from "@/components/sections/le-cabinet/Methode";
+import { Secteurs } from "@/components/sections/le-cabinet/Secteurs";
 import { Trust } from "@/components/trust/Trust";
 import { routing } from "@/i18n/routing";
 
@@ -46,6 +47,7 @@ export default async function CabinetPage({
       <Trust />
       <Methode />
       <Domaines />
+      <Secteurs />
       <Consultation />
     </>
   );

@@ -82,3 +82,22 @@ export const domaineCards = [
 
 /** The three coordinated areas chipped under the domain list. */
 export const networkChips = ["emploi", "fiscalite", "conformite"] as const;
+
+/**
+ * The eight sectors of "Secteurs", in Figma's order. All eight icons are new —
+ * native 24px line glyphs at `stroke-width` 1.8, which is the library's 1.95 at
+ * the documented 24/26.
+ *
+ * **Its first row's inner gap is 12 where the other seven use 8** — the same
+ * one-row slip the service page's "Quand faire appel" carries. Reproduced.
+ */
+export const secteurRows = [
+  "transport",
+  "commerce",
+  "industrie",
+  "ecommerce",
+  "pharma",
+  "tech",
+  "b2b",
+  "consommation",
+] as const;

@@ -587,6 +587,48 @@
         "note": "Ces domaines sont pris en charge directement ou coordonnés avec les avocats, le notaire et l’expert-comptable de notre réseau, pour rester votre point d’entrée unique."
       },
       "hubCta": "Découvrir le Hub Expertises — détail, outils & avocats par domaine"
+    },
+    "secteurs": {
+      "overline": "Secteurs",
+      "title": "Des entreprises qui opèrent au-delà des frontières",
+      "lead": "Nous accompagnons notamment des entreprises du transport, de la santé, de la distribution internationale, de la technologie, de l’industrie et des services B2B — en France comme à l’international.",
+      "photoAlt": "Trois personnes assises sur les marches d’une place parisienne",
+      "angle": "<s>Le droit, dans le langage de votre secteur.  </s>Chaque activité a ses usages, ses risques et sa réglementation. Nous les articulons avec le droit français des affaires et vos partenaires à l’international.",
+      "cta": "Parler à un avocat de votre secteur",
+      "rows": {
+        "transport": {
+          "title": "Transport & logistique",
+          "body": "Opérateurs, prestataires logistiques, fret, chaînes d’approvisionnement, distributeurs."
+        },
+        "commerce": {
+          "title": "Commerce international & distribution",
+          "body": "Fabricants, importateurs, exportateurs, agents et sociétés de négoce."
+        },
+        "industrie": {
+          "title": "Industrie & manufacturing",
+          "body": "Industriels, fournisseurs, fabricants d’équipements et groupes internationaux."
+        },
+        "ecommerce": {
+          "title": "E-commerce & retail",
+          "body": "Marchands en ligne, marketplaces, enseignes et distributeurs omnicanaux."
+        },
+        "pharma": {
+          "title": "Pharmaceutique & sciences de la vie",
+          "body": "Laboratoires, distributeurs, fournisseurs et partenaires commerciaux du secteur."
+        },
+        "tech": {
+          "title": "Technologie & services numériques",
+          "body": "Sociétés technologiques, éditeurs SaaS, plateformes et services technologiques."
+        },
+        "b2b": {
+          "title": "Services B2B & conseil",
+          "body": "Services professionnels, cabinets de conseil, agences et prestataires B2B."
+        },
+        "consommation": {
+          "title": "Biens de consommation",
+          "body": "Marques et fabricants de produits de grande consommation, du sourcing à la distribution."
+        }
+      }
     }
   },
   "ContentieuxPage": {
