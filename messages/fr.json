@@ -325,7 +325,7 @@
       }
     },
     "copyright": "© 2026 Petroff.law — Tous droits réservés",
-    "legalLinks": "<x>Mentions légales</x> · <c>Confidentialité</c> · <k>Cookies</k> · <m>Médiateur de la consommation</m> · Gérer les cookies"
+    "legalLinks": "<x>Mentions légales</x> · <c>Confidentialité</c> · <k>Cookies</k> · <m>Médiateur de la consommation</m> · <g>Gérer les cookies</g>"
   },
   "ExpertisesPage": {
     "stage": {
@@ -4209,6 +4209,34 @@
     "phone": "<q>Vous préférez appeler ?</q> <tel>+ 33 (0) 1 78 90 46 46</tel> · Paris",
     "tabLabel": "Consulter un avocat",
     "overline": "Consultation — 15 minutes gratuites"
+  },
+  "CookieConsent": {
+    "label": "Consentement aux cookies",
+    "overline": "cookies",
+    "title": "Nous respectons votre vie privée",
+    "body": "Nous utilisons des cookies strictement nécessaires au fonctionnement du site et, avec votre accord, des cookies de mesure d’audience pour en améliorer l’expérience. Aucun cookie publicitaire n’est utilisé. Consultez notre <k>Politique cookies</k> ou notre <c>Politique de confidentialité</c>.",
+    "customise": "Personnaliser",
+    "reject": "Tout refuser",
+    "accept": "Tout accepter",
+    "prefs": {
+      "label": "Préférences cookies",
+      "close": "Fermer les préférences cookies",
+      "overline": "Préférences cookies",
+      "title": "Personnalisez vos choix",
+      "lead": "Activez ou désactivez chaque catégorie. Les cookies strictement nécessaires ne peuvent pas être désactivés car ils sont indispensables au fonctionnement du site.",
+      "always": "Toujours actifs",
+      "save": "Enregistrer mes choix",
+      "rows": {
+        "necessary": {
+          "label": "Cookies strictement nécessaires",
+          "description": "Opérateurs, prestataires logistiques, fret, chaînes d’approvisionnement, distributeurs."
+        },
+        "analytics": {
+          "label": "Cookies de mesure d’audience",
+          "description": "Statistiques de fréquentation, en principe anonymisées, pour comprendre et améliorer l’utilisation du site."
+        }
+      }
+    }
   },
   "EcommercePage": {
     "hero": {

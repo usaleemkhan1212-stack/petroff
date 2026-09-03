@@ -70,10 +70,10 @@ export function Footer() {
             <p className="text-small text-white/70">{t("copyright")}</p>
             <p className="text-small text-white/70">
               {t.rich("legalLinks", {
-                /* Four of the five are real pages now. Only « Gérer les
-                   cookies » stays plain text: it is the consent panel the
-                   cookie policy promises is at the bottom of every page, and
-                   there is no cookie banner on the site yet. */
+                /* Four of the five are pages; « Gérer les cookies » is the
+                   consent panel, which `CookieConsent` opens through the
+                   delegated `data-cookie-preferences` hook — so the footer
+                   stays a server component. */
                 c: (chunks) => (
                   <MaybeLink
                     href="/confidentialite"
@@ -97,6 +97,15 @@ export function Footer() {
                   >
                     {chunks}
                   </MaybeLink>
+                ),
+                g: (chunks) => (
+                  <button
+                    type="button"
+                    data-cookie-preferences
+                    className="cursor-pointer transition-colors hover:text-white"
+                  >
+                    {chunks}
+                  </button>
                 ),
                 m: (chunks) => (
                   <MaybeLink

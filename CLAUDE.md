@@ -6047,10 +6047,10 @@ padding, and the band's 64/36. Footer still **358.2** and the home page still
 **5748** at 1920.
 
 - `<c>` links *Confidentialité* and the new `<k>` links *Cookies*; the other
-  three stay plain text. **« Gérer les cookies » is the consent panel this very
-  policy promises is "présent en bas de chaque page", and there is no cookie
-  banner on the site** — so it cannot be a real control yet. Flag it with the
-  route list.
+  three were plain text at the time. **« Gérer les cookies » is the consent
+  panel this very policy promises is "présent en bas de chaque page"** — it is
+  a real control now, opening the cookie preferences panel through
+  `[data-cookie-preferences]`; see the cookie banner section.
 - The line grows 530 -> 718 and still fits beside the 323 copyright inside the
   1245 band, so desktop does not move; at 768 it wraps to two lines and at
   375/320 to three. No overflow at any of six widths.
@@ -6176,7 +6176,7 @@ from 1920 down to 320.
 
 1920x6364 — the site's **fourth pure legal document**, and the one that
 completes the footer's legal line: every item in it but « Gérer les cookies »
-is now a real page.
+is a page, and that last one opens the cookie preferences panel.
 
 Its sections live in `src/components/sections/mentions/`, its keys in
 `src/lib/mentions.ts` and its copy under the **`MentionsPage`** namespace.
@@ -6411,6 +6411,110 @@ outside the panel at any width.
   Bibliothèque 6243, Contentieux 8591, new-article 18995, personal 4547,
   confidentialité 11859, mentions-légales 6426 — with two dialogs on the pages
   that draw a tab and one on those that do not.
+
+## The cookie banner and its preferences panel — `13853:9064` + `13894:9223`
+
+Asked for, and it closes the standing open item: « Gérer les cookies » in the
+footer was the one thing in that legal line still doing nothing, because the
+consent panel it promises did not exist. It does now.
+
+- **`13853:9064` is the banner**, 1245x237 — exactly the container width, so it
+  sits fixed at the foot of the viewport inside `Container`, 24px clear of the
+  bottom, with **no backdrop**: a consent notice should not block the page it
+  is asking about.
+- **`13894:9223` is the preferences panel**, 600x561, opened by the banner's
+  "Personnaliser" **and** by the footer link at any time afterwards.
+- **The two frames given as context (`13853:8076`, `13853:8542`) draw neither
+  of them** — both are the home page with nothing overlaid. So placement,
+  backdrop and stacking are all judgement, not comp.
+
+Both cards are the contact popup's shell for the third time: white on an
+`encre/8` border, the **80 / 18 / 60 / 18** radii and the `0px 14px 34px`
+shadow. The banner takes Figma's asymmetric `pl-36 pr-24 py-36`; the panel
+takes `px-36 pt-36 pb-28`.
+
+| | Figma | rendered |
+|---|---|---|
+| banner card | 1245x237 | **1245x237.2** at x=337.5 |
+| its head / buttons row | 641 @ 36, 508 @ 713 | 638.5 @ 37, 508.5 @ 711.5 |
+| Personnaliser / refuser / accepter | 120 / 170 / 186, all 50 tall | 119.6 / 171.5 / 185.4 |
+| panel card | 600x561 | **600x567.2** |
+| its head | 528x357 @ 36 | 526x359.2 @ 37 |
+| the two `vrow`s | y 147 / 258, 99 tall | 183.8 / 296 rel. card, 100.2 |
+| its button row | y 381, 116 tall | 420.2, 118 |
+| Tout accepter, wrapped | 186x50 at (378, 66) | **185.4x50 at (377.6, 68)** |
+
+Every delta is the card's 1px border, the outline button's 1.5px (which Figma
+draws inside), or a row rule. **The three buttons wrap exactly as the comp
+draws them** — 170 + 247 on the first line and "Tout accepter" alone on the
+second, right-aligned — because 635 of buttons on a 16px gap does not fit 528
+and the row is `justify-end`. No arithmetic needed; state the gap and let it
+wrap.
+
+#### The toggle, and the one place this departs from the comp
+
+`14000:222` is a 59x36 track with a 27x28 knob inset 4px, drawn **mint** with
+the knob at left 29. Built as a real `role="switch"`, so it announces its state
+and works from the keyboard; Figma draws no off state, so the track takes
+`encre/20` there.
+
+**It starts OFF, where Figma draws it on.** Deliberate: the cookie policy this
+banner links to states that "aucun cookie non essentiel n'est déposé avant que
+vous n'ayez donné votre consentement", so pre-ticking a non-essential category
+would contradict the page it points at — and the CNIL requires the same. The
+comp's on state is still exactly what the toggle looks like once switched.
+
+#### The choice is stored as the policy says it is
+
+`/cookies` names the cookie **`petroff_consent`**, describes it as "Mémorise vos
+choix en matière de cookies" and gives it **6 mois**. So `src/lib/consent.ts`
+writes exactly that — a real cookie under that name with a 183-day `max-age`,
+not a localStorage entry. **The page and the storage have to agree, and the
+page is the one making the promise.** Its value is versioned (`v1:1` / `v1:0`)
+so a later category can invalidate old choices.
+
+The banner renders nothing until that cookie has been read in an effect, so the
+server renders nothing and a returning reader sees no flash.
+
+#### `[data-cookie-preferences]` reopens the panel
+
+The footer's « Gérer les cookies » is a `<button data-cookie-preferences>`, and
+`CookieConsent` listens for it on the document — **the same shape `#contact`
+uses for the contact popup**, so the footer stays a server component and a new
+control needs no import. Reopening seeds the toggle from what is stored rather
+than from whatever the panel was last showing.
+
+Driven end to end at 1920: the banner appears with no stored choice and both
+its links resolve; "Personnaliser" opens the panel and hides the banner; the
+toggle starts off and switches to mint with the knob at 29; Escape closes the
+panel, brings the banner back and writes **nothing**; "Tout accepter" stores
+`v1:1` and dismisses; the footer link reopens the panel seeded on, and "Tout
+refuser" rewrites it to `v1:0` without the banner returning.
+
+Swept at nine widths from 1920 to 320: the banner and the panel both fit the
+viewport at every one, with no horizontal overflow, the panel scrolling inside
+itself below 640. The banner is capped at `100dvh - 2.5rem` and scrolls as a
+safety net — at 320 it already takes 586 of a 640 viewport, so a longer
+translation would otherwise push its buttons off screen. The footer is
+unchanged at **358.2** on every page and every page height is unchanged.
+
+**One new asset**: `cookie-bite.svg` (51.076x50, a bitten chocolate-chip cookie
+with crumbs) — its four fills map to brique, gold, encre and periwinkle, all
+existing tokens. Both nodes export the identical file.
+
+**Two comp slips to flag.**
+
+1. **The "Cookies strictement nécessaires" row describes a supply chain**:
+   "Opérateurs, prestataires logistiques, fret, chaînes d'approvisionnement,
+   distributeurs." That is pasted from another template — the cookie policy's
+   own text for that category is "indispensables au fonctionnement et à la
+   sécurité du site". Built as drawn, like the e-commerce Interlocuteurs angle
+   note, but this one is user-facing consent copy and should be fixed before
+   launch.
+2. **"Politique de confidentialité" in the banner body is styled Outfit
+   SemiBold**, a font this project does not have and which appears nowhere else
+   — the same artefact the cookie policy's own table header carries. Both links
+   take the first one's style, Inter SemiBold 16.
 
 ## FAQ answers are capped at a reading measure
 

@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ConsultationProvider } from "@/components/consultation/ConsultationProvider";
+import { CookieConsent } from "@/components/cookies/CookieConsent";
 import { Footer } from "@/components/sections/Footer";
 import { Header } from "@/components/sections/Header";
 import { localeHtmlLang, routing } from "@/i18n/routing";
@@ -78,6 +79,9 @@ export default async function LocaleLayout({
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            {/* The banner and its preferences panel, once for the whole site.
+                The footer's « Gérer les cookies » reopens the panel. */}
+            <CookieConsent />
           </ConsultationProvider>
         </NextIntlClientProvider>
       </body>
