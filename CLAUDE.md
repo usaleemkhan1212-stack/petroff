@@ -4021,6 +4021,125 @@ prestation and the "Défense contrefaçon" forfait's own steps, the titularité
 mission, and the logiciels and données missions with the antériorité tool.
 **That takes the sign-off list from forty drafted answers to forty-three.**
 
+## Page 22 — Droit des societes & gouvernance (`/expertises/droit-des-societes`), frame `13979:881`
+
+1920x8808 (its own sections sum to 8619, so the frame total is stale), the
+**ninth domain detail page** and the eighth still standing. Same eleven-section
+shape as its siblings, built the recorded way: only the Hero is derived from
+scratch, the rest share the siblings' anatomy with this page's own copy, tints
+and prices, each read off its own node.
+
+Its sections live in `src/components/sections/societes/`, its data in
+`src/lib/societes.ts` and its copy under the **`SocietesPage`** namespace.
+`domaines.ts` already carried `{ key: "societes", href:
+"/expertises/droit-des-societes" }`, so adding the path to `liveRoutes` lit up
+the hub card and the dropdown at once — verified by opening it: the Expertises
+submenu now lists **eight domains**, Droit des societes first, plus the service
+page.
+
+| # | Section | Node | Figma | Rendered | delta |
+|---|---|---|---|---|---|
+| 1 | Hero | `13979:934` | 784 | 784.0 | **0** |
+| 2 | Domaines | `13979:1025` | 1627 | 1642.0 | +15.0 |
+| 3 | Tools | `13979:1174` | 890 | 894.7 | +4.7 |
+| 4 | Prestations | `13979:1230` | 755 | 759.9 | +4.9 |
+| 5 | Forfaits | `13979:1283` | 968 | 992.7 | +24.7 * |
+| 6 | MidCTA | `13979:1367` | 115 | 115.2 | +0.2 |
+| 7 | Methode | `13979:1372` | 550 | 552.3 | +2.3 |
+| 8 | Espace | `13979:1405` | 645 | 645.9 | +0.9 |
+| 9 | Bib | `13979:1475` | 666 | 668.7 | +2.7 |
+| 10 | FAQ | `13979:1498` | 638 | 671.5 | +33.5 ** |
+| 11 | CTAFinal | `13979:1591` | 550 | 550.4 | +0.4 |
+| **Sections** | | **8188** | **8277.3** | **+89.3 (1.1%)** |
+
+Page **8707** at 1920; no horizontal overflow at any of nine widths from 1920
+down to 320.
+
+\* Forfaits is the M&A page's case exactly: the third plan's price frame is
+wider than its content box — `Sur devis` at 40px beside `par phases
+plafonnees` — so the comp clips it while the build wraps the unit under the
+amount. That makes card 3 the tallest and levels the row 24.7 above the comp,
+the identical number that page recorded.
+
+\*\* The deliberate answer cap costing one line (+25.2) plus four row borders.
+
+**`get_metadata` on the page frame gave the whole copy in one call** — every
+string in eleven sections, because text nodes are named by their content. Only
+the hero's ornaments and the icons needed exports. Do that first on a page of
+this shape.
+
+#### Hero (`13979:934`) — 784 exactly, and eight reuses
+
+- **Its inner column is 903 wide, not the siblings' 860**, which is what puts
+  the title on three lines and the marker on line three. The standard 64px
+  crumb, a 720 stage, the 12 / 20 / 30 / 38 spacer chain, and three stats all
+  at `text-h2` (every value node measures 46).
+- Its marker is **396x22 centred on the stage at y=287** — 5.8235em wide and
+  0.3235em tall against the 68px display size. Measured live at **396 wide,
+  x 762-1157, identical to the comp**, with `band_bottom − ink_bottom` 8 in
+  Figma against 9 here.
+  **Note the band's absolute y differs by 24 and that is correct**: Figma
+  renders the glyphs 23px higher inside an identically positioned box (ink
+  bottom 364 against 387), which is the whole finding of the seven-page marker
+  audit. Judge a hero marker by its distance from the ink, never by its y.
+- The chunk closes the title, so it needs **none of the `-z-10` dance** the
+  Contentieux, Contrats, Immobilier and Recouvrement heroes carry.
+- **Eight ornaments, eight reuses — the first domain hero to add no asset.**
+  Two worth recording:
+  - **`morris-column-lg.svg` reuses at 119x206 where the small file could
+    not.** Figma keeps `stroke-width` 4 at this box; the 86.842x150 file would
+    render it 5.49 (37% too thick) and the 127x198 fork renders 3.95 (1.3%).
+    That is the third time the same pair has been a reuse at one box and a fork
+    at another, after `calendar-dots` and `key`.
+  - `columned-building.svg` at 223x161 is the **pale-periwinkle original**, not
+    the `-pale-blue` fork — read from the export's own `#C7D6EF` fills. It
+    carries no strokes, so the non-uniform stretch is exact.
+  - Also: `open-book.svg` (mint, at its native 120x90), `three-figures.svg`
+    **mirrored** (Figma composes a 180° rotation with a vertical flip, which is
+    a horizontal flip), `eiffel-tower-colour` at the usual 140x271, `sparkle`
+    at 36 and 46, and `laurel-branch-mint` at its native 120x150.
+
+#### What differs from the sibling pages
+
+- **Prices 30 / 30 / 40** — the Contrats and M&A pattern, read from the frame's
+  own price node heights (34 = `text-price`, 46 = `text-h2`). The large one is
+  `Sur devis`.
+- Domaines tints **blue / gold / mint / pink, blue / gold / mint, gold / pink**
+  — the Contentieux and Droit fiscal sequence, breaking its cycle at card 8.
+  Each card's CTA pill takes its own card's tint; verified card by card at
+  runtime, tiles and pills together.
+- Prestations tints **blue / gold / mint / pink**, the Contrats order; Espace
+  tiles **blue / gold / pink / mint**, sampled from the node's own render.
+- **Only its CTAFinal title is this page's own** — Figma writes "…une question
+  de gouvernance ?" where the shared `ContactCta` block says "…une question
+  d'associes ?" So it reads `SocietesPage.ctaFinal.title` and takes the
+  overline, lead, phone line and both labels from the shared block.
+- Its Espace progress bar is **358 wide in a 592.5 track** — 60.5%, the
+  Contrats value. Measured off the node render, where Figma paints that bar
+  **periwinkle**; the track it sits in is the documented lilas override.
+
+#### Assets — none. Twenty-one glyphs, twenty-one reuses.
+
+**All nine Domaines icons and all four Prestations icons match existing files
+at 0.0000** — and three of the Domaines icons (`rocket`, `chart-line-up`,
+`branch-split`) are files the just-deleted M&A page had orphaned, so they are
+in use again.
+
+- Its FAQ draws **`place-scene.svg`, the Immobilier page's arch** — and this
+  frame draws it **unflattened**, as ~30 separate vectors rather than one file,
+  which no path compare can match. Identified by rendering the arch node and
+  diffing it against every stored scene: **6.79 against a runner-up of 31.53**.
+  **Render composed scenes; never compare their piece strings.**
+- That makes **ten near-identical `FaqIllustration` components**. The
+  consolidation this file keeps flagging is well overdue.
+
+**Three of its four FAQ answers are drafts** — Figma supplies only the first,
+as on every sibling. Composed strictly from facts already on this page: the
+Pactes card's own clause list, the Secretariat juridique mission, and the
+Groupes & holdings and Contrats intragroupes missions with the four working
+languages. **That takes the sign-off list from forty-three drafted answers to
+forty-six.**
+
 ## The hero markers, checked against every frame
 
 Asked for: the hero headings' gold bar did not look like the design. Checked on
@@ -7325,7 +7444,7 @@ resolve to 17, unchanged.
   `liveRoutes` the moment its page lands and every call site starts linking.
   Live today: `/`, `/expertises`, `/expertises/contentieux-arbitrage`,
   `/expertises/contrats-commerciaux`, `/expertises/droit-fiscal`,
-  `/expertises/droit-social`,
+  `/expertises/droit-social`, `/expertises/droit-des-societes`,
   `/expertises/immobilier-entreprise`, `/expertises/propriete-intellectuelle`,
   `/expertises/recouvrement`, `/bibliotheque/resultats`,
   `/expertises/contentieux-arbitrage/service-page`, `/le-cabinet/personal-page`,
