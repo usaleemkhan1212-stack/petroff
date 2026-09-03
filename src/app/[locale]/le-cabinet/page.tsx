@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Consultation } from "@/components/consultation/Consultation";
 import { Cas } from "@/components/sections/le-cabinet/Cas";
+import { CTAFinal } from "@/components/sections/le-cabinet/CTAFinal";
 import { Clients } from "@/components/sections/le-cabinet/Clients";
 import { Domaines } from "@/components/sections/le-cabinet/Domaines";
 import { Hero } from "@/components/sections/le-cabinet/Hero";
@@ -56,6 +57,7 @@ export default async function CabinetPage({
       <Cas />
       <MidCTA />
       <Interlocuteurs />
+      <CTAFinal />
       <Consultation />
     </>
   );

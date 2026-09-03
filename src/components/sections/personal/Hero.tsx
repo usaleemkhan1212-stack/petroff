@@ -23,6 +23,7 @@ const stats = ["experience", "barreau", "langues"] as const;
  */
 export function Hero() {
   const t = useTranslations("PersonalPage.hero");
+  const shared = useTranslations("ContactCta");
 
   return (
     <section className="bg-lilas">
@@ -74,14 +75,14 @@ export function Hero() {
                     number.
                   */}
                   <a
-                    href={t("phoneHref")}
+                    href={shared("phoneHref")}
                     className={buttonClasses({
                       size: "lg",
                       variant: "outline",
                       className: "whitespace-normal sm:whitespace-nowrap",
                     })}
                   >
-                    {t("phone")}
+                    {shared("phone")}
                   </a>
                 </div>
 

@@ -37,6 +37,8 @@
     "title": "Un projet de société, une question d’associés ?",
     "lead": "15 minutes gratuites en visio, prix ferme sous 24 h.",
     "contact": "+ 33 (0) 1 78 90 46 46 · Paris",
+    "phone": "+ 33 (0) 1 78 90 46 46",
+    "phoneHref": "tel:+33178904646",
     "ctaPrimary": "Réserver un créneau visio",
     "ctaSecondary": "Obtenir un devis en ligne",
     "ask": {
@@ -705,6 +707,11 @@
           "role": "Expert-comptable"
         }
       }
+    },
+    "ctaFinal": {
+      "title": "Un projet, une opération, un litige à trancher ?",
+      "lead": "Exposez votre situation : nous vous répondons sous 48 h, en français comme en anglais, et vous indiquons le périmètre et le coût avant toute intervention.",
+      "ctaPrimary": "Prendre rendez-vous"
     }
   },
   "ContentieuxPage": {
@@ -5333,8 +5340,6 @@
       "role": "Associée · Droit des sociétés, contrats & contentieux des affaires",
       "lead": "Conseil clair, pratique et bilingue pour les entrepreneurs et les sociétés internationales qui s’implantent et se développent en France.",
       "ctaPrimary": "Prendre rendez-vous",
-      "phone": "+ 33 (0) 1 78 90 46 46",
-      "phoneHref": "tel:+33178904646",
       "firm": "Petroff Avocats",
       "firmDetails": " · 182 rue de Rivoli, 75001 Paris · RCS Paris 814433470 · Toque #C2396 — Barreau de Paris.",
       "imageAlt": "Portrait de Mᵉ Mariela Petrova devant un immeuble de bureaux",
