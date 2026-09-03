@@ -148,7 +148,15 @@ export function Domaines() {
               </div>
             </div>
 
-            <div className="bg-encre flex flex-col gap-6 rounded-[20px] p-9 xl:h-103.5 xl:w-117.5 xl:shrink-0">
+            {/*
+              **Sticky from `xl`**, asked for — Figma draws it static.
+              At 414 against a ~1500 column of domain cards it pins at 24
+              and rides the whole list past. `self-start` is the
+              load-bearing class: the row is `items-start`, so the card
+              keeps its own height rather than stretching to the row and
+              leaving nothing to stick.
+            */}
+            <div className="bg-encre flex flex-col gap-6 rounded-[20px] p-9 xl:sticky xl:top-6 xl:h-103.5 xl:w-117.5 xl:shrink-0 xl:self-start">
               <div className="flex flex-col gap-4">
                 <p className="text-overline font-poppins text-brique uppercase">
                   {t("transverse.overline")}
