@@ -19,7 +19,7 @@ import { Mission } from "@/components/sections/service/Mission";
 import { QuandFaireAppel } from "@/components/sections/service/QuandFaireAppel";
 import { ThemesLies } from "@/components/sections/service/ThemesLies";
 import { Transparence } from "@/components/sections/service/Transparence";
-import { Trust } from "@/components/sections/service/Trust";
+import { Trust } from "@/components/trust/Trust";
 import { routing } from "@/i18n/routing";
 
 /**

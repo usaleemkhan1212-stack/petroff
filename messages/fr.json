@@ -491,6 +491,69 @@
       }
     }
   },
+  "CabinetPage": {
+    "hero": {
+      "crumb": "Accueil · ",
+      "crumbCurrent": "Le Cabinet",
+      "overline": "Le Cabinet",
+      "title": "<hl>Le droit</hl> des affaires, augmenté par la donnée et l’IA.",
+      "lead": "Petroff Avocats est un cabinet d’affaires à Paris qui associe un conseil juridique stratégique à des produits numériques connectés aux données publiques officielles. Objectif : des résultats solides, rapides et alignés sur vos enjeux — en France comme à l’international.",
+      "ctaPrimary": "Prendre rendez-vous",
+      "ctaSecondary": "Voir nos expertises",
+      "verif": "<s>Petroff Avocats</s> · 182 rue de Rivoli, 75001 Paris · RCS Paris 814433470 · Toque #C2396 — Barreau de Paris.",
+      "imageAlt": "La place de la Concorde et la tour Eiffel, à Paris",
+      "card": {
+        "line1": "L’IA produit,",
+        "line2": "l’avocat signe."
+      },
+      "badge": {
+        "years": "15 ANS",
+        "line1": "de pratique",
+        "line2": "à Paris"
+      },
+      "stats": {
+        "paris": {
+          "value": "Paris",
+          "note": "Barreau de Paris — droit des affaires"
+        },
+        "sources": {
+          "value": "5 sources",
+          "note": "données publiques officielles connectées"
+        },
+        "langues": {
+          "value": "FR · EN · BG",
+          "note": "conseil et actes en trois langues"
+        }
+      }
+    },
+    "methode": {
+      "overline": "Notre méthode",
+      "title": "Le conseil d’un avocat d’affaires, la vitesse d’un outil",
+      "lead": "Nous plaçons le conseil stratégique au cœur du métier, et nous l’outillons. Nos plateformes s’appuient sur les données publiques officielles et sur l’IA pour produire vite et juste — sans jamais déléguer la décision.",
+      "pillars": {
+        "conseil": {
+          "title": "Le conseil stratégique, pas la formalité",
+          "body": "Nous traitons les opérations à enjeux et le contentieux complexe : pactes d’associés, levées de fonds, fusions-acquisitions, litiges entre associés.\n\nUn conseil orienté résultat, pensé pour sécuriser vos décisions et tenir devant un juge — pas pour empiler des heures."
+        },
+        "donnees": {
+          "title": "Connectés aux données publiques officielles",
+          "body": "Nos outils interrogent en direct les registres officiels français — INSEE, Légifrance, BODACC, INPI, registre du commerce.\n\nDe la vérification d’une société à la veille sur un dossier, chaque décision s’appuie sur des données vérifiées et à jour."
+        },
+        "ia": {
+          "title": "L’IA accélère, l’avocat engage sa signature",
+          "body": "L’intelligence artificielle et les technologies modernes accélèrent la production ; l’avocat arbitre, valide et engage sa responsabilité.\n\nRésultat : des délais courts, des honoraires lisibles au forfait, et la rigueur d’un cabinet du Barreau de Paris."
+        }
+      },
+      "sourcesLabel": "Données publiques connectées :",
+      "sources": {
+        "insee": "INSEE Sirene",
+        "legifrance": "Légifrance",
+        "judilibre": "Judilibre",
+        "bodacc": "BODACC",
+        "inpi": "INPI"
+      }
+    }
+  },
   "ContentieuxPage": {
     "hero": {
       "breadcrumbLabel": "Fil d’Ariane",
@@ -4210,6 +4273,11 @@
     "tabLabel": "Consulter un avocat",
     "overline": "Consultation — 15 minutes gratuites"
   },
+  "Trust": {
+    "reponse": "Réponse sous 48 h",
+    "confidentiel": "Échange confidentiel",
+    "devis": "Devis annoncé avant intervention"
+  },
   "CookieConsent": {
     "label": "Consentement aux cookies",
     "overline": "cookies",
@@ -4887,11 +4955,6 @@
         "line1": "de pratique",
         "line2": "à Paris"
       }
-    },
-    "trust": {
-      "reponse": "Réponse sous 48 h",
-      "confidentiel": "Échange confidentiel",
-      "devis": "Devis annoncé avant intervention"
     },
     "quand": {
       "overline": "Quand faire appel à un avocat",

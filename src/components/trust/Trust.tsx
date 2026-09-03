@@ -5,7 +5,10 @@ import { Container } from "@/components/ui/Container";
 const items = ["reponse", "confidentiel", "devis"] as const;
 
 /**
- * Figma `13445:26850` — a 100px lilas-2 band under the hero.
+ * Figma `13445:26850` on the service page and `13689:21444` on Le Cabinet — a
+ * 100px lilas-2 band under the hero. The two frames are identical and their
+ * three claims are character-identical, so this is one component reading a
+ * shared top-level `Trust` namespace.
  *
  * Its own frame declares `py-24`, but that is a minimum: the frame is a fixed
  * 100 and Figma centres the 26px items in it, so the real padding is **37**.
@@ -15,15 +18,15 @@ const items = ["reponse", "confidentiel", "devis"] as const;
  * inside the 1245 container — so it needs no full-bleed escape, only the band
  * itself painting the full width.
  *
- * **Justified rather than centred**, on the user's instruction: Figma centres
- * the row on a fixed 96px gap, which leaves 125 of slack either side of the
- * 1245 band. `justify-between` spreads the three claims to the container's own
- * edges instead. A deliberate departure from the comp. Below `lg` the row can
- * wrap, where `justify-between` would strand a lone item, so it stays centred
- * on a real gap until then.
+ * **Justified rather than centred.** The service frame centres the row on a
+ * fixed 96px gap, leaving 125 of slack either side of the 1245 band, and it was
+ * changed to `justify-between` on the user's instruction — which the Cabinet
+ * frame then turned out to specify outright, so the departure is now the comp.
+ * Below `lg` the row can wrap, where `justify-between` would strand a lone
+ * item, so it stays centred on a real gap until then.
  */
 export function Trust() {
-  const t = useTranslations("ServicePage.trust");
+  const t = useTranslations("Trust");
 
   return (
     <section className="bg-lilas-2 py-6 lg:py-9.25">
