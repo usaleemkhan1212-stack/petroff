@@ -324,7 +324,7 @@
       }
     },
     "copyright": "© 2026 Petroff.law — Tous droits réservés",
-    "legalLinks": "Mentions légales · <c>Confidentialité</c> · <k>Cookies</k> · <m>Médiateur de la consommation</m> · Gérer les cookies"
+    "legalLinks": "<x>Mentions légales</x> · <c>Confidentialité</c> · <k>Cookies</k> · <m>Médiateur de la consommation</m> · Gérer les cookies"
   },
   "ExpertisesPage": {
     "stage": {
@@ -6429,6 +6429,345 @@
                 "label": "E-mail",
                 "value": "contact@petroff.law",
                 "link": true
+              },
+              {
+                "label": "Téléphone",
+                "value": "+ 33 (0) 1 78 90 46 46"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "MentionsPage": {
+    "hero": {
+      "overline": "Informations légales",
+      "title": "Mentions légales & Conditions d’utilisation",
+      "meta": "<s>Petroff Avocats </s>(SELARL LEGASTRAT) · Barreau de Paris · <s>Dernière mise à jour</s> : 2 septembre 2026",
+      "lead": "Les présentes mentions légales et conditions d’utilisation régissent l’accès et l’utilisation du site petroff.law, édité par le cabinet Petroff Avocats. Elles ne constituent ni un contrat de prestation de services juridiques, ni une offre de tels services."
+    },
+    "toc": {
+      "title": "Sommaire",
+      "items": {
+        "objet": "Objet et acceptation",
+        "editeur": "Éditeur du site",
+        "directeur": "Directeur de la publication",
+        "hebergeur": "Hébergeur",
+        "profession": "Une profession réglementée",
+        "consultation": "Consultation initiale gratuite",
+        "propriete": "Propriété intellectuelle",
+        "liens": "Liens hypertextes",
+        "donnees": "Données personnelles & cookies",
+        "responsabilite": "Responsabilité & informations",
+        "internet": "Usage d’Internet & données",
+        "mediation": "Médiation de la consommation",
+        "droit": "Droit applicable & juridiction",
+        "contact": "Contact"
+      }
+    },
+    "sections": {
+      "objet": {
+        "num": "01",
+        "title": "Objet et acceptation",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Les présentes mentions légales et conditions d’utilisation (ci-après les « Conditions ») ont pour objet de définir les modalités d’accès et d’utilisation du site <s>petroff.law</s> (ci-après le « Site »), édité par le cabinet Petroff Avocats. Tout accès ou utilisation du Site implique l’acceptation pleine et entière des présentes Conditions."
+          },
+          {
+            "type": "note",
+            "text": "Les présentes Conditions ne constituent ni un contrat de prestation de services juridiques, ni une offre de tels services. Toute relation contractuelle entre le cabinet et un client est régie par une convention d’honoraires distincte, conclue le cas échéant."
+          }
+        ]
+      },
+      "editeur": {
+        "num": "02",
+        "title": "Éditeur du site",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le Site est édité par :"
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Dénomination",
+                "value": "Petroff Avocats — SELARL LEGASTRAT"
+              },
+              {
+                "label": "Forme sociale",
+                "value": "Société d’exercice libéral à responsabilité limitée (SELARL) d’avocats"
+              },
+              {
+                "label": "Siège social",
+                "value": "182 rue de Rivoli, 75001 Paris, France"
+              },
+              {
+                "label": "RCS",
+                "value": "Paris 814 433 470"
+              },
+              {
+                "label": "SIREN",
+                "value": "814 433 470"
+              },
+              {
+                "label": "Capital social",
+                "value": "10 000 €"
+              },
+              {
+                "label": "TVA intracommunautaire",
+                "value": "FR 14 81 44 33 47"
+              },
+              {
+                "label": "Barreau",
+                "value": "Barreau de Paris — Toque C2396"
+              },
+              {
+                "label": "Téléphone",
+                "value": "+ 33 (0) 1 78 90 46 46"
+              },
+              {
+                "label": "E-mail",
+                "value": "contact@petroff.law",
+                "strong": true
+              }
+            ]
+          }
+        ]
+      },
+      "directeur": {
+        "num": "03",
+        "title": "Directeur de la publication",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le directeur de la publication du Site est <s>Maître Mariela Petrova</s>, avocate associée, gérante de la SELARL LEGASTRAT, inscrite au Barreau de Paris."
+          },
+          {
+            "type": "note",
+            "text": "Pour toute question relative au contenu éditorial du Site : <l>contact@petroff.law</l>."
+          }
+        ]
+      },
+      "hebergeur": {
+        "num": "04",
+        "title": "Hébergeur",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le Site est hébergé par :"
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Hébergeur",
+                "value": "Vercel Inc."
+              },
+              {
+                "label": "Adresse",
+                "value": "440 N Barranca Avenue, #4133, Covina, CA 91723, États-Unis"
+              },
+              {
+                "label": "Site web",
+                "value": "vercel.com",
+                "strong": true
+              },
+              {
+                "label": "Contact",
+                "value": "privacy@vercel.com (ou via https://vercel.com/contact)",
+                "strong": true
+              }
+            ]
+          },
+          {
+            "type": "note",
+            "text": "L’hébergeur s’appuie sur l’infrastructure cloud d’Amazon Web Services (AWS). Les données sont susceptibles, à ce titre, d’être traitées sur des serveurs situés en dehors de l’Union européenne, dans les conditions et avec les garanties précisées dans notre Politique de confidentialité."
+          }
+        ]
+      },
+      "profession": {
+        "num": "05",
+        "title": "Une profession réglementée",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Maître Mariela Petrova et les avocats intervenant pour le cabinet sont <s>inscrits au Barreau de Paris</s> et exercent la profession d’avocat, profession réglementée régie par le droit français."
+          },
+          {
+            "type": "note",
+            "text": "Ils sont soumis aux règles professionnelles de la profession d’avocat, en particulier au <s>Règlement Intérieur National (RIN)</s> de la profession d’avocat et au Règlement Intérieur du Barreau de Paris (RIBP), consultables sur le site du Conseil National des Barreaux, <l>cnb.avocat.fr</l>."
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Titre professionnel",
+                "value": "Avocat — titre délivré en France, Barreau de Paris"
+              },
+              {
+                "label": "Autorité de contrôle",
+                "value": "Ordre des avocats au Barreau de Paris — 11 place Dauphine, 75001 Paris"
+              },
+              {
+                "label": "Assurances",
+                "value": "Responsabilité civile professionnelle et garantie financière souscrites dans le cadre de la profession d’avocat (Barreau de Paris)"
+              },
+              {
+                "label": "Langues de travail",
+                "value": "Français · English · 中文 · Español"
+              }
+            ]
+          }
+        ]
+      },
+      "consultation": {
+        "num": "06",
+        "title": "Consultation initiale gratuite",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le cabinet peut proposer une première consultation gratuite, réservée aux domaines de compétence qu’il annonce. Cette consultation consiste en un <s>examen préliminaire</s> de la situation et en la communication de premières orientations sur la manière dont l’affaire pourrait être traitée."
+          },
+          {
+            "type": "callout",
+            "tone": "gold",
+            "title": "Portée et limites de la consultation initiale",
+            "body": "La consultation initiale gratuite est limitée à un maximum de <b>quatre (4) heures</b> de travail. Elle ne constitue ni une consultation juridique approfondie, ni un avis ou une opinion juridique, et ne saurait engager la responsabilité du cabinet à ce titre."
+          },
+          {
+            "type": "note",
+            "text": "Le cabinet se réserve le droit de refuser une demande de consultation, sans avoir à en justifier les motifs. La consultation initiale n’emporte pas, à elle seule, la formation d’une relation avocat-client, laquelle suppose la conclusion d’une convention d’honoraires."
+          }
+        ]
+      },
+      "propriete": {
+        "num": "07",
+        "title": "Propriété intellectuelle",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "L’ensemble des éléments composant le Site — notamment les <s>textes, graphismes, images, logos, icônes, sons, vidéos, lettres d’information et brochures</s> — est la propriété exclusive du cabinet ou de ses partenaires, et est protégé par le droit de la propriété intellectuelle."
+          },
+          {
+            "type": "p",
+            "text": "Toute reproduction, représentation, modification, publication, adaptation ou exploitation de tout ou partie de ces éléments, par quelque procédé que ce soit, est interdite sans l’autorisation écrite préalable du cabinet."
+          },
+          {
+            "type": "callout",
+            "tone": "gold",
+            "title": "Marque déposée",
+            "body": "La marque <b>« PETROFF »</b> est une marque déposée et protégée. Toute utilisation non autorisée de cette marque, du logo ou de tout autre signe distinctif du cabinet est susceptible d’engager la responsabilité de son auteur."
+          }
+        ]
+      },
+      "liens": {
+        "num": "08",
+        "title": "Liens hypertextes",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "La création de liens hypertextes vers la page d’accueil du Site est autorisée sans demande préalable. Le cabinet se réserve toutefois le droit d’en demander le retrait à tout moment, sans avoir à justifier sa décision."
+          },
+          {
+            "type": "note",
+            "text": "Le Site peut contenir des liens vers des sites tiers. Le cabinet n’exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu, à leur disponibilité ou à l’usage qui pourrait en être fait."
+          }
+        ]
+      },
+      "donnees": {
+        "num": "09",
+        "title": "Données personnelles et cookies",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Le cabinet traite les données personnelles collectées via le Site dans le respect du Règlement (UE) 2016/679 (RGPD) et de la loi « Informatique et Libertés ». Vous disposez notamment d’un droit d’accès, de rectification, d’effacement, d’opposition et de portabilité de vos données."
+          },
+          {
+            "type": "note",
+            "text": "Les modalités de traitement, les finalités, les durées de conservation et les moyens d’exercer vos droits sont détaillés dans notre <c>Politique de confidentialité</c>. L’usage des traceurs et cookies est décrit dans notre <k>Politique cookies</k>."
+          }
+        ]
+      },
+      "responsabilite": {
+        "num": "10",
+        "title": "Responsabilité et informations à titre indicatif",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Les informations diffusées sur le Site le sont à <s>titre purement informatif</s> et ne constituent pas un conseil juridique ni un avis juridique. Elles ne sauraient se substituer à une consultation personnalisée adaptée à votre situation."
+          },
+          {
+            "type": "note",
+            "text": "Le cabinet s’efforce d’assurer l’exactitude et la mise à jour des informations publiées, sans pouvoir en garantir l’exhaustivité ni l’absence d’erreurs. Il ne saurait être tenu responsable des éventuelles inexactitudes ou omissions, des interruptions, indisponibilités ou dysfonctionnements du Site, ni des dommages, directs ou indirects, résultant de l’utilisation des informations qui y figurent. L’utilisateur demeure seul responsable de l’usage qu’il fait de ces informations."
+          }
+        ]
+      },
+      "internet": {
+        "num": "11",
+        "title": "Usage d’Internet et transmission des données",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "L’utilisateur reconnaît que les données circulant sur Internet ne bénéficient pas d’une protection intrinsèque, notamment contre d’éventuels détournements, et que la transmission de données par ce canal se fait à ses propres risques."
+          },
+          {
+            "type": "callout",
+            "tone": "red",
+            "title": "Informations confidentielles",
+            "body": "La communication d’informations confidentielles ou sensibles par le biais du Site — formulaire de contact ou courrier électronique — s’effectue sous la seule responsabilité de l’utilisateur. Pour tout échange de nature confidentielle, nous vous invitons à privilégier un contact direct et sécurisé avec le cabinet."
+          }
+        ]
+      },
+      "mediation": {
+        "num": "12",
+        "title": "Médiation de la consommation",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Conformément aux articles L. 611-1 et suivants du Code de la consommation, tout client ayant la qualité de consommateur peut recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d’un litige l’opposant au cabinet."
+          },
+          {
+            "type": "note",
+            "text": "Les conditions et modalités de saisine du médiateur sont précisées sur notre page dédiée : <n>Médiateur de la consommation</n>."
+          }
+        ]
+      },
+      "droit": {
+        "num": "13",
+        "title": "Droit applicable et juridiction",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Les présentes Conditions sont régies par le <s>droit français</s>. Tout litige relatif à leur interprétation ou à leur exécution relève de la compétence des juridictions françaises, sous réserve des dispositions légales impératives applicables et, le cas échéant, du recours préalable à la médiation de la consommation."
+          }
+        ]
+      },
+      "contact": {
+        "num": "14",
+        "title": "Contact",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Pour toute question relative au Site ou aux présentes Conditions :"
+          },
+          {
+            "type": "dl",
+            "rows": [
+              {
+                "label": "Cabinet",
+                "value": "Petroff Avocats — SELARL LEGASTRAT"
+              },
+              {
+                "label": "Adresse",
+                "value": "182 rue de Rivoli, 75001 Paris, France"
+              },
+              {
+                "label": "E-mail",
+                "value": "contact@petroff.law",
+                "strong": true
               },
               {
                 "label": "Téléphone",

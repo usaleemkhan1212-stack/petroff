@@ -70,10 +70,10 @@ export function Footer() {
             <p className="text-small text-white/70">{t("copyright")}</p>
             <p className="text-small text-white/70">
               {t.rich("legalLinks", {
-                /* Confidentialité, Cookies and Médiateur de la consommation
-                   are real pages. Mentions légales is not, and « Gérer les
-                   cookies » is the consent panel the cookie policy promises,
-                   which does not exist yet — both stay plain text. */
+                /* Four of the five are real pages now. Only « Gérer les
+                   cookies » stays plain text: it is the consent panel the
+                   cookie policy promises is at the bottom of every page, and
+                   there is no cookie banner on the site yet. */
                 c: (chunks) => (
                   <MaybeLink
                     href="/confidentialite"
@@ -85,6 +85,14 @@ export function Footer() {
                 k: (chunks) => (
                   <MaybeLink
                     href="/cookies"
+                    className="transition-colors hover:text-white"
+                  >
+                    {chunks}
+                  </MaybeLink>
+                ),
+                x: (chunks) => (
+                  <MaybeLink
+                    href="/mentions-legales"
                     className="transition-colors hover:text-white"
                   >
                     {chunks}

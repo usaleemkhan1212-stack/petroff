@@ -6172,6 +6172,91 @@ resolving on `/`, `/bibliotheque` and `/expertises` with the footer still
 landing a heading at **23.8**, and no horizontal overflow at any of ten widths
 from 1920 down to 320.
 
+## Page 21 — Mentions légales & Conditions d’utilisation (`/mentions-legales`), frame `13852:881`
+
+1920x6364 — the site's **fourth pure legal document**, and the one that
+completes the footer's legal line: every item in it but « Gérer les cookies »
+is now a real page.
+
+Its sections live in `src/components/sections/mentions/`, its keys in
+`src/lib/mentions.ts` and its copy under the **`MentionsPage`** namespace.
+
+| # | Node | Figma | Rendered | delta |
+|---|---|---|---|---|
+| 1 | Hero `13852:934` | 433 | 433.0 | **0** |
+| 2 | Body `13852:940` | 5500 | 5562.2 | +62.2 |
+| | ├ Content `13852:942` | 5356 | 5418.2 | +62.2 |
+| | └ TOC `13852:1347` | 537 | 541.0 | +4.0 |
+| 3 | Footer | 359 | 358.2 | −0.8 |
+| **Page** | | **6364** | **6426** | **+62 (0.97%)** |
+
+Every one of its fourteen sections lands within **+13.1**, and the three
+largest deltas are the three that carry a `dl` — the row rules, one per row.
+No horizontal overflow at any of **ten** widths from 1920 down to 320, and no
+text painting outside its own box at any of them either.
+
+| S | Figma | built | | S | Figma | built | | S | Figma | built |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 01 | 277 | 279.8 | | 06 | 444 | 446.8 | | 11 | 348 | 350.1 |
+| 02 | 660 | 673.1 | | 07 | 444 | 446.8 | | 12 | 227 | 229.4 |
+| 03 | 177 | 179.1 | | 08 | 252 | 254.6 | | 13 | 182 | 184.3 |
+| 04 | 474 | 481.8 | | 09 | 277 | 279.8 | | 14 | 331 | 337.7 |
+| 05 | 572 | 580.8 | | 10 | 327 | 330.2 | | | | |
+
+**One `get_design_context` on the 765 content column was the whole
+derivation**, at 5356px — the same call that worked for the cookie policy's
+3018 and would not have for the privacy policy's 10,837.
+
+#### It is the cookie policy's shape, and it differs in three places
+
+Both put each section's `stone` rule at the top of a `pt-7` head row, on a 28px
+section gap with a uniform 20 inside; both share the 240-label `dl` on a 24px
+gap in Inter 18, the Poppins SemiBold `<s>` run, and the pale-gold callout with
+its 12px right corners. What differs:
+
+| | `/cookies` | `/mentions-legales` |
+|---|---|---|
+| hero | 361 | **433** — its title runs to two lines at 68px |
+| the first section | no rule (nothing precedes it) | **ruled like the other thirteen** |
+| callout tones | gold only | **gold and red** — pink at 40% under a red edge |
+| its table of contents | all eight | **all fourteen**, four of them shortened |
+
+That red callout is the privacy policy's own red tone and the article `trap`'s
+shape, so it needed no new token. Note its ground computes as an `oklab(...)`
+string rather than an `rgb()`: Tailwind composites the 40% in oklab where Figma
+blends in sRGB, the one-unit difference this file already records.
+
+#### The most interlinked page on the site
+
+Five inline links, and all five resolve: `contact@petroff.law` as a `mailto:`,
+`cnb.avocat.fr` as an `https://` derived from its own text — the mediation
+notice's `linkFor` rule, since the comp already prints the destination — and
+**all three sibling legal pages by name**, `Politique de confidentialité`,
+`Politique cookies` and `Médiateur de la consommation`.
+
+- Its `dl` rows carry no links at all, unlike the mediation notice's. Four of
+  them are `strong` instead — the whole row in Inter SemiBold encre — which is
+  the cookie policy's flag. **The e-mail addresses in those rows are plain
+  text**, where the same address is a link two sections earlier; that is what
+  the frame draws, and it is worth flagging.
+- Its S04 note names *Politique de confidentialité* in plain encre/62 where S09
+  makes the identical phrase a periwinkle link. Reproduced; another small comp
+  inconsistency to raise.
+
+### The footer's legal line is now four links and one span
+
+`<x>` links *Mentions légales*, joining `<c>`, `<k>` and `<m>`. **Only « Gérer
+les cookies » stays plain text** — it is the consent panel the cookie policy
+promises is at the bottom of every page, and there is no cookie banner on the
+site yet.
+
+Verified after the change: all four anchors resolve on `/`, `/bibliotheque`,
+`/confidentialite`, `/cookies` and `/mediateur-consommation`, the footer still
+measures **358.2** on every one, and every page height is unchanged to the
+pixel — home 5748, Bibliothèque 6243, confidentialité 11859, cookies 3984,
+médiateur 3740. The sticky table of contents pins at exactly **24** and its
+anchors land a heading at **23.7**.
+
 ## FAQ answers are capped at a reading measure
 
 Asked for: the accordion "goes long away" when a row opens. Measured — the
@@ -7056,7 +7141,7 @@ resolve to 17, unchanged.
   `/expertises/immobilier-entreprise`, `/expertises/propriete-intellectuelle`,
   `/expertises/recouvrement`, `/bibliotheque/resultats`,
   `/expertises/contentieux-arbitrage/service-page`, `/le-cabinet/personal-page`,
-  `/cookies`, `/mediateur-consommation`, `/bibliotheque`,
+  `/cookies`, `/mediateur-consommation`, `/mentions-legales`, `/bibliotheque`,
   `/bibliotheque/article-design`,
   `/bibliotheque/avocat-e-commerce`, `/bibliotheque/new-article-page` and
   `/confidentialite`.
