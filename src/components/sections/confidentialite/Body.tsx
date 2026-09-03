@@ -27,7 +27,10 @@ export function Body() {
           {sectionKeys.map((key, i) => (
             <Section
               key={key}
-              id={key}
+              /* Prefixed so the anchor is unique to this document:
+                 `#contact` belongs to the site-wide contact popup, and
+                 three of these four documents have a Contact section. */
+              id={`priv-${key}`}
               rule={i > 0}
               num={t(`sections.${key}.num`)}
               title={t(`sections.${key}.title`)}

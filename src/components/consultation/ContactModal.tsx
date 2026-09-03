@@ -91,6 +91,9 @@ export function ContactModal({
       <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
         <div
           ref={panelRef}
+          /* The site's contact anchor: any `<a href="#contact">` opens this
+             panel — see the delegated handler in `ConsultationProvider`. */
+          id="contact"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-modal-title"

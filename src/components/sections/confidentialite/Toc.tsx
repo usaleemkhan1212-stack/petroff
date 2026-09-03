@@ -46,7 +46,7 @@ export function Toc() {
                 layout below `xl` free to wrap. Watch that headroom if a label
                 is ever lengthened. */}
             <a
-              href={`#${key}`}
+              href={`#priv-${key}`}
               className="text-small text-encre/62 hover:text-brique min-w-0 flex-1 transition-colors xl:whitespace-nowrap"
             >
               {t(`items.${key}`)}

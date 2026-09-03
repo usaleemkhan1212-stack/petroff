@@ -52,6 +52,37 @@ export function ConsultationProvider({ children }: { children: React.ReactNode }
 
   const onClose = useCallback(() => setOpen(false), []);
 
+  /*
+    **`#contact` opens the popup.** The panel carries `id="contact"`, and any
+    anchor pointing at it — `<a href="#contact">`, or `/expertises#contact`
+    from another page — opens the dialog instead of jumping to it. So wiring a
+    new control needs no React at all and no import: give it that href, or
+    `data-contact` if it is a button rather than a link.
+
+    Delegated on the document so it covers markup that does not exist yet,
+    including anchors inside server components and inside rich-text copy.
+    Modified clicks are left alone, and without JavaScript the href is a
+    harmless jump to a panel that is `inert` until it opens.
+  */
+  useEffect(() => {
+    const onClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      const el = (event.target as Element | null)?.closest<HTMLElement>(
+        'a[href$="#contact"], [data-contact]',
+      );
+      if (!el) return;
+
+      event.preventDefault();
+      trigger.current = el;
+      setOpen(true);
+    };
+
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   useEffect(() => {
     /*
       Restore focus here rather than in the dialog's own cleanup: a side tab is

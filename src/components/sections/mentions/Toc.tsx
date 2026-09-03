@@ -38,7 +38,7 @@ export function Toc() {
               {String(sectionKeys.indexOf(key) + 1).padStart(2, "0")}
             </span>
             <a
-              href={`#${key}`}
+              href={`#ml-${key}`}
               className="text-small text-encre/62 hover:text-brique min-w-0 flex-1 transition-colors"
             >
               {t(`items.${key}`)}

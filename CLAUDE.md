@@ -6327,6 +6327,37 @@ The +6.8 on the panel is the 2px border plus ~1px of line-box rounding per
 field row; the 669 track and the 245 second row are that border again, which
 Figma draws inside.
 
+#### `#contact` is the popup's own anchor
+
+Asked for, so a new control can reach the panel without importing anything.
+The card carries **`id="contact"`**, and a delegated click listener in
+`ConsultationProvider` opens it for:
+
+- **`<a href="#contact">`** — including `/expertises#contact` from another
+  page, since the selector is `a[href$="#contact"]`;
+- **`[data-contact]`** on anything that is not a link, for a `<button>`.
+
+It is delegated on the document rather than wired per component, so it covers
+markup that does not exist yet — anchors inside server components, and inside
+rich-text copy. Modified clicks (ctrl / cmd / shift / middle) are left alone,
+and with no JavaScript the href is a harmless jump to a panel that is `inert`
+until it opens. Verified: a brand-new anchor injected after load opens the
+popup, leaves `location.hash` and `scrollY` untouched, and gets focus back on
+close; `data-contact` on a bare `<button>` does the same; and the side tab
+still opens the **drawer**, not the popup.
+
+**That required scoping the legal documents' section anchors.** Three of the
+four — `/confidentialite`, `/mediateur-consommation` and `/mentions-legales` —
+have a `contact` section key, so each rendered a second `id="contact"` and its
+own table of contents linked `#contact`. Clicking it would have opened the
+popup instead of scrolling, and the duplicate id is invalid besides. Every
+legal section id now carries its document's prefix — the one its table of
+contents already uses for `aria-labelledby` — so they read `#priv-contact`,
+`#ck-droits`, `#med-saisir`, `#ml-contact`. Verified on all four: exactly
+**one** `id="contact"` per page and it is the dialog, every table-of-contents
+href resolves, and its last entry scrolls to its section without opening
+anything.
+
 #### Four departures from the comp, all deliberate
 
 1. **A visible ✕.** Figma draws no close control at all. Escape and a backdrop

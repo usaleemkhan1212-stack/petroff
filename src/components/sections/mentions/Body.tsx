@@ -28,7 +28,10 @@ export function Body() {
           {sectionKeys.map((key) => (
             <Section
               key={key}
-              id={key}
+              /* Prefixed so the anchor is unique to this document:
+                 `#contact` belongs to the site-wide contact popup, and
+                 three of these four documents have a Contact section. */
+              id={`ml-${key}`}
               num={t(`sections.${key}.num`)}
               title={t(`sections.${key}.title`)}
               blocks={t.raw(`sections.${key}.blocks`) as Block[]}
