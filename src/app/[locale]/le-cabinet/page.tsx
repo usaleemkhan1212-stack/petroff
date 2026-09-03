@@ -7,6 +7,7 @@ import { Clients } from "@/components/sections/le-cabinet/Clients";
 import { Domaines } from "@/components/sections/le-cabinet/Domaines";
 import { Hero } from "@/components/sections/le-cabinet/Hero";
 import { Methode } from "@/components/sections/le-cabinet/Methode";
+import { MidCTA } from "@/components/sections/le-cabinet/MidCTA";
 import { Secteurs } from "@/components/sections/le-cabinet/Secteurs";
 import { Trust } from "@/components/trust/Trust";
 import { routing } from "@/i18n/routing";
@@ -52,6 +53,7 @@ export default async function CabinetPage({
       <Secteurs />
       <Clients />
       <Cas />
+      <MidCTA />
       <Consultation />
     </>
   );
