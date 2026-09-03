@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import ChevronRight from "@/assets/icons/chevron-right.svg";
 import { cn } from "@/lib/utils";
 
 /**
@@ -27,6 +28,8 @@ export function CardCarousel({
   className,
   trackClassName,
   dotsClassName,
+  header,
+  navLabels,
   children,
 }: {
   /** Names the scrollable region, and the dots that page it. */
@@ -37,6 +40,14 @@ export function CardCarousel({
   /** Track classes — the gap, and anything the row needs of its own. */
   trackClassName?: string;
   dotsClassName?: string;
+  /**
+   * Rendered above the track, in a row with the prev/next arrows — which is
+   * where Figma puts them on Le Cabinet's case-study block. Without it the
+   * carousel is the track and its dots, as on the article-card rows.
+   */
+  header?: React.ReactNode;
+  /** Supplying these draws the two arrow buttons beside `header`. */
+  navLabels?: { prev: string; next: string };
   children: React.ReactNode;
 }) {
   const track = useRef<HTMLUListElement>(null);
@@ -94,6 +105,38 @@ export function CardCarousel({
 
   return (
     <div className={className}>
+      {header || navLabels ? (
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-6">
+          {header}
+          {navLabels ? (
+            <div className="flex shrink-0 gap-3">
+              {/* One glyph, mirrored for the previous arrow — the call the
+                  Bibliotheque's Vitrine already makes. They disable at the
+                  ends, which is the state Figma draws for page 1. */}
+              {(["prev", "next"] as const).map((dir) => (
+                <button
+                  key={dir}
+                  type="button"
+                  disabled={
+                    !paged || (dir === "prev" ? page === 0 : page === pages - 1)
+                  }
+                  aria-label={navLabels[dir]}
+                  onClick={() => goTo(dir === "prev" ? page - 1 : page + 1)}
+                  className="border-stone focus-visible:outline-gold flex size-11.5 cursor-pointer items-center justify-center rounded-full border-[1.5px] bg-white transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-default disabled:opacity-35"
+                >
+                  <ChevronRight
+                    aria-hidden="true"
+                    width={18}
+                    height={18}
+                    className={cn("text-encre", dir === "prev" && "-scale-x-100")}
+                  />
+                </button>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
       <ul
         ref={track}
         onScroll={sync}

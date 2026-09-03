@@ -126,3 +126,6 @@ export const clientCountries = [
   ["emirats", "etatsUnis", "australie", "chine", "inde"],
   ["qatar", "canada", "nouvelleZelande", "hongKong", "international"],
 ] as const;
+
+/** The three case studies, in Figma's order. */
+export const caseStudies = ["blocage", "levee", "marque"] as const;

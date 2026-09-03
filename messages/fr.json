@@ -666,6 +666,46 @@
         "international": "International"
       },
       "note": "Tout se traite à distance, dans votre langue — sans déplacement."
+    },
+    "cas": {
+      "overline": "Études de cas",
+      "title": "Des dossiers résolus, expliqués",
+      "lead": "Le contexte, notre intervention et le résultat — chaque dossier est réel et anonymisé.",
+      "carouselLabel": "Études de cas",
+      "prev": "Étude de cas précédente",
+      "next": "Étude de cas suivante",
+      "contextLabel": "Le contexte",
+      "actionLabel": "Notre intervention",
+      "resultLabel": "Le résultat",
+      "authorAlt": "Portrait de Mᵉ Mariela Petrova",
+      "author": "Mᵉ Mariela Petrova",
+      "authorRole": "Associée · Contentieux des sociétés",
+      "cards": {
+        "blocage": {
+          "chip": "Contentieux des sociétés",
+          "title": "Un blocage 50/50 dénoué en trois mois, sans dissolution",
+          "alt": "Trois personnes marchant devant un immeuble de bureaux",
+          "context": "Deux associés à parts égales dans une PME industrielle. Assemblées systématiquement bloquées, décisions courantes impossibles, trésorerie sous tension et fournisseurs impayés.",
+          "action": "Administrateur provisoire désigné en référé pour rétablir le fonctionnement, sécurisation des preuves, puis négociation d’une sortie et rachat des parts à dire d’expert (art. 1843-4 C. civ.).",
+          "result": "Société préservée, activité maintenue, sortie d’un associé à un prix fixé par expert — en trois mois, sans dissolution."
+        },
+        "levee": {
+          "chip": "M&A · capital-risque",
+          "title": "Une levée de série A sécurisée pour une startup SaaS",
+          "alt": "Une avocate au téléphone dans une rue parisienne, dossier sous le bras",
+          "context": "Startup SaaS en forte croissance, entrée d’un fonds au capital lors d’une levée de série A. Fondateurs soucieux de garder la main sur la gouvernance et la liquidité.",
+          "action": "Négociation du pacte d’associés, de la garantie d’actif-passif et de l’earn-out ; conception des droits attachés aux actions de préférence et des clauses de sortie.",
+          "result": "4,5 M€ levés, fondateurs protégés sur la gouvernance et la liquidité, clôture en six semaines."
+        },
+        "marque": {
+          "chip": "Propriété intellectuelle",
+          "title": "Une marque défendue contre une contrefaçon en ligne",
+          "alt": "Une avocate au téléphone sur un balcon, devant son ordinateur",
+          "context": "Marque française déposée, reproduite et vendue sur une marketplace étrangère. Risque d’image et détournement de clientèle pour une marque de biens de consommation.",
+          "action": "Constat d’huissier, mise en demeure, signalement et retrait des annonces, puis négociation d’une transaction chiffrée, sans procès au fond.",
+          "result": "Contrefaçon stoppée, annonces retirées, indemnisation obtenue."
+        }
+      }
     }
   },
   "ContentieuxPage": {
