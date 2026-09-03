@@ -93,7 +93,7 @@ export function ContactModal({
           ref={panelRef}
           role="dialog"
           aria-modal="true"
-          aria-label={dialog("label")}
+          aria-labelledby="contact-modal-title"
           aria-hidden={!open}
           inert={!open}
           className={`border-encre/8 pointer-events-auto relative max-h-full w-full max-w-250 overflow-y-auto border bg-white p-5 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.1)] transition-[opacity,scale] duration-300 motion-reduce:transition-none sm:p-9 ${
@@ -129,7 +129,12 @@ export function ContactModal({
               <p className="text-overline font-poppins text-brique uppercase">
                 {t("overline")}
               </p>
-              <h2 className="text-price font-poppins text-encre">{t("title")}</h2>
+              <h2
+                id="contact-modal-title"
+                className="text-price font-poppins text-encre"
+              >
+                {t("title")}
+              </h2>
               <p className="text-small text-encre/62">{t("lead")}</p>
             </div>
 

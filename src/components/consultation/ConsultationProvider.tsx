@@ -18,20 +18,21 @@ const ConsultationContext = createContext<{ open: boolean; onOpen: Open } | null
  * The contact popup's one piece of state, lifted to the layout so that
  * **any contact button anywhere on the site can open it**.
  *
- * It used to live in each page's own `Consultation` wrapper, which meant only
- * the side tab and the article's sticky bar could reach it. Every other
- * "Prendre rendez-vous", "Parler à un avocat" or "Obtenir un devis" on the
- * site was an inert button. They all call `useConsultation().onOpen` now.
+ * Before it existed, contact state lived in each page's own `Consultation`
+ * wrapper, which meant only the side tab and the article's sticky bar could
+ * reach a panel at all: every other "Prendre rendez-vous", "Parler à un
+ * avocat" or "Obtenir un devis" on the site was an inert button. They all call
+ * `useConsultation().onOpen` now.
  *
- * It used to render the sliding `ConsultationDrawer`; Figma replaced that with
- * the centred `ContactModal` (`13894:9964`), and swapping it here is the whole
- * change — every trigger on the site goes through this one context, so the
- * side tab, both articles' sticky bars and every `ConsultButton` picked up the
- * new panel at once.
+ * **The site has two contact panels.** This context owns the centred
+ * `ContactModal` (`13894:9964`), which is what every ordinary contact button
+ * opens. The sliding `ConsultationDrawer` is still there and unchanged; it
+ * belongs to the red side tab and the article sticky bar, which own their own
+ * state through `useDrawer` — see the `Consultation` wrappers.
  *
- * The panel is rendered here, once, for the whole site: it is `fixed`, faded
+ * The modal is rendered here, once, for the whole site: it is `fixed`, faded
  * out and `inert` while closed, so mounting it on every page costs nothing and
- * means a trigger does not have to care whether its page draws a side tab.
+ * means a trigger does not have to care what else its page draws.
  */
 export function ConsultationProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);

@@ -6257,13 +6257,33 @@ pixel — home 5748, Bibliothèque 6243, confidentialité 11859, cookies 3984,
 médiateur 3740. The sticky table of contents pins at exactly **24** and its
 anchors land a heading at **23.7**.
 
-## The consultation drawer is now a contact popup — `13894:9964`
+## The contact popup — `13894:9964`, beside the drawer
 
-Asked for, against a 1000x670 centred card. **It replaces the sliding drawer
-everywhere**: the swap is one line in `ConsultationProvider`, because every
-trigger on the site already went through that one context — the red side tab on
-five pages, both articles' sticky bars, and the hundred-odd `ConsultButton` /
-`ConsultTrigger` call sites. `ConsultationDrawer.tsx` is deleted.
+Asked for, against a 1000x670 centred card. **The site now has two contact
+panels, and which one opens depends on what you press:**
+
+| trigger | panel |
+|---|---|
+| the red side tab, on the eight frames that draw one | the sliding **drawer**, unchanged |
+| both articles' sticky bars | the sliding **drawer**, unchanged |
+| every other contact button — the hundred-odd `ConsultButton` / `ConsultTrigger` call sites | the centred **popup** |
+
+**The drawer is untouched.** Its state went back to the per-page `Consultation`
+wrappers, where it lived before contact state was lifted to the layout — the
+tab and the bar are the drawer's own affordances, and the tab in particular
+hugs the edge the panel slides from. `ConsultationProvider` keeps owning the
+popup, which is what `useConsultation` now returns, so nothing that reads that
+context had to change.
+
+- `components/consultation/useDrawer.ts` is the per-page state — open, close,
+  and the focus restore that has to run in the render that clears the tab's
+  `inert`. All three `Consultation` wrappers share it.
+- A page that draws a tab therefore mounts **two** dialogs; a page that does
+  not (the legal documents) mounts only the popup. Both are `fixed` and `inert`
+  while closed, so the second one costs nothing.
+- They no longer share an `aria-label`: the popup names itself by its own
+  heading (`aria-labelledby`), since two dialogs called "Demande de
+  consultation" on one page would be ambiguous.
 
 - **It is the Lawcard section re-laid-out as a dialog**, and the copy proves it:
   the overline, title, lead, name, address, all three marks, all four field
@@ -6279,10 +6299,11 @@ five pages, both articles' sticky bars, and the hundred-odd `ConsultButton` /
   section's 64, a fixed `text-price` title against its fluid `text-h2`, 16px
   type through the lead, the fields and the phone line against 18, and a
   **221x160 landscape** portrait against its 221x265.
-- `useDrawerBehaviour` is now **`useDialogBehaviour`** — focus move, Tab trap,
-  Escape and the scroll lock with its scrollbar gutter are none of them about
-  sliding. Its `firstFieldRef` widened from `HTMLInputElement` to `HTMLElement`,
-  because this dialog's first control is the **textarea**, not an input.
+- `useDrawerBehaviour` is now **`useDialogBehaviour`**, and **both** panels use
+  it — focus move, Tab trap, Escape and the scroll lock with its scrollbar
+  gutter are none of them about sliding. Its `firstFieldRef` widened from
+  `HTMLInputElement` to `HTMLElement`, because the popup's first control is the
+  **textarea** where the drawer's is the Nom input.
 
 Measured at 1920, and every one of Figma's own numbers lands:
 
@@ -6351,9 +6372,14 @@ outside the panel at any width.
   tab, which shares that label. Filter triggers by `closest("[inert]") === null`
   and, on a narrow viewport, by `checkVisibility()`; the header CTA is `hidden`
   below `xl` and focus cannot return to it either.
-- Every page height is unchanged to the pixel after the swap — home 5748,
-  Expertises 4314, Bibliothèque 6243, Contentieux 8591, new-article 18995,
-  personal 4547, mentions-légales 6426 — with exactly one dialog per page.
+- Driven side by side on the home page and the new article page: an ordinary
+  CTA opens **only** the popup (1000x677, centred at x=460) and the side tab and
+  sticky bar open **only** the drawer (510 wide, flush right), each closing on
+  Escape with focus returning to its own trigger.
+- Every page height is unchanged to the pixel — home 5748, Expertises 4314,
+  Bibliothèque 6243, Contentieux 8591, new-article 18995, personal 4547,
+  confidentialité 11859, mentions-légales 6426 — with two dialogs on the pages
+  that draw a tab and one on those that do not.
 
 ## FAQ answers are capped at a reading measure
 
@@ -7388,10 +7414,10 @@ asset URLs, so `curl` those rather than spending a second call on
     1.5px encre border, no underline — and the hero still measures **740**.
 - SearchBand submit and the OpenData SIREN form are inert placeholders. The
   popular chips prefill the search field instead of navigating.
-- The contact popup's "Demander à être rappelé" is inert, like every other
-  form on the site — and it is now the one form every contact button on the
-  site leads to, so it is the first place a real submit handler would need
-  somewhere to POST to.
+- **Two contact forms are now inert rather than one**: the drawer's "Soumettre
+  votre demande" and the popup's "Demander à être rappelé". Between them they
+  are where every contact button on the site leads, so they are the first place
+  a real submit handler would need somewhere to POST to.
 - **There are six CTAFinal components** — home, Expertises, Contentieux,
   Contrats, Bibliotheque and the article — and all but the home one share
   their copy through the top-level **`ContactCta`** namespace. The three
