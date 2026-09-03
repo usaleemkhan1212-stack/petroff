@@ -8,8 +8,16 @@ import { cn } from "@/lib/utils";
 export function Footer() {
   const t = useTranslations("Footer");
 
-  /* Figma writes every string in this footer at white 70%: the legal line,
-     the language list, the column titles, the links and the bottom row. */
+  /*
+    Figma writes every string in this footer at white 70% — the legal line,
+    the language list, the column titles, the links and the bottom row — with
+    one exception: `13701:24385` colours « Gérer les cookies » rose.
+
+    Note the column titles and the language line are Figma's **Button** style,
+    Poppins SemiBold 16/1.2 with NO tracking, not the overline's 0.18em. That
+    node's style list names only Button and Small 16; there is no Overline in
+    this footer at all.
+  */
   return (
     <footer className="bg-encre">
       <Container className="pt-12 pb-9 lg:pt-16">
@@ -21,9 +29,7 @@ export function Footer() {
                 <Logo tone="onDark" />
                 <p className="text-small text-white/70">{t("legal")}</p>
               </div>
-              <p className="text-overline font-poppins text-white/70">
-                {t("languages")}
-              </p>
+              <p className="text-button font-poppins text-white/70">{t("languages")}</p>
             </div>
 
             <nav
@@ -50,7 +56,13 @@ export function Footer() {
                     i < footerColumns.length - 1 && "xl:w-58",
                   )}
                 >
-                  <h2 className="text-overline font-poppins text-white/70">
+                  {/*
+                    Uppercased in CSS, stored mixed case as everywhere else.
+                    The home frame writes these mixed case and this one writes
+                    them `LE CABINET` / `RESSOURCES` / `OUTILS`; the newer
+                    frame wins, and it agrees with the site-wide eyebrow rule.
+                  */}
+                  <h2 className="text-button font-poppins text-white/70 uppercase">
                     {t(`columns.${key}.title`)}
                   </h2>
                   <ul className="flex flex-col gap-2">
@@ -102,7 +114,7 @@ export function Footer() {
                   <button
                     type="button"
                     data-cookie-preferences
-                    className="cursor-pointer transition-colors hover:text-white"
+                    className="text-rose cursor-pointer transition-colors hover:text-white"
                   >
                     {chunks}
                   </button>
