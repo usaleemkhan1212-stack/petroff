@@ -129,3 +129,15 @@ export const clientCountries = [
 
 /** The three case studies, in Figma's order. */
 export const caseStudies = ["blocage", "levee", "marque"] as const;
+
+/**
+ * Figma `13701:24212` — the two people whose cards this page draws, then the
+ * four partners it lists by name and role. Mᵉ Petrova's card links to her
+ * profile page; the rest have none yet, so `MaybeLink` renders them as spans.
+ */
+export const cabinetPeople = [
+  { key: "petrova", href: "/le-cabinet/personal-page" },
+  { key: "hlebarova", href: "/le-cabinet/hlebarova" },
+] as const;
+
+export const cabinetPartners = ["mehandzhiyska", "bazin", "cochet", "willard"] as const;

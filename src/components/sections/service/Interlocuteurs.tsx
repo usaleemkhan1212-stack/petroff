@@ -156,7 +156,7 @@ export function Interlocuteurs() {
                       {t(`partners.${key}.cta`)}
                     </ConsultButton>
                     <Button variant="outline" size="sm" className="px-5 py-2.75">
-                      {t("profileCta")}
+                      {shared("profileCta")}
                     </Button>
                   </div>
                 </article>

@@ -80,7 +80,8 @@
     "photoAlt": {
       "petrova": "Portrait de Mᵉ Mariela Petrova",
       "bazin": "Portrait de Mᵉ Tony Bazin"
-    }
+    },
+    "profileCta": "Voir le profil"
   },
   "Lawcard": {
     "overline": "Contact",
@@ -667,6 +668,43 @@
     "midCta": {
       "title": "Un cas similaire au vôtre ?",
       "lead": "Nous l’avons probablement déjà traité — parlez-en à un avocat, en français comme en anglais."
+    },
+    "interlocuteurs": {
+      "people": {
+        "petrova": {
+          "name": "Mᵉ Mariela Petrova",
+          "role": "Fondatrice · Avocate au Barreau de Paris",
+          "bio": "Droit des sociétés, opérations sur le capital, contrats et contentieux des affaires. 15 ans+ de pratique, en français comme en anglais."
+        },
+        "hlebarova": {
+          "name": "Mᵉ Iva Hlebarova",
+          "role": "Marketing & operations",
+          "bio": "Pilotage du marketing, de la relation client et des opérations — l’organisation qui rend le cabinet rapide et lisible pour ses clients."
+        }
+      },
+      "photoAlt": {
+        "petrova": "Portrait de Mᵉ Mariela Petrova",
+        "hlebarova": "Portrait de Mᵉ Iva Hlebarova"
+      },
+      "partnersLabel": "Notre réseau de partenaires",
+      "partners": {
+        "mehandzhiyska": {
+          "name": "Mᵉ Nevena Mehandzhiyska",
+          "role": "Notaire · transmission & immobilier"
+        },
+        "bazin": {
+          "name": "Mᵉ Tony Bazin",
+          "role": "Droit social · Barreau d’Angers"
+        },
+        "cochet": {
+          "name": "Mᵉ Mathieu Cochet",
+          "role": "Droit financier & contentieux"
+        },
+        "willard": {
+          "name": "M. Jérôme Willard",
+          "role": "Expert-comptable"
+        }
+      }
     }
   },
   "ContentieuxPage": {
@@ -5190,7 +5228,6 @@
     "interlocuteurs": {
       "angle": "<s>Sur cette fiche </s>: le choix du niveau de signature, la convention de preuve et la défense de l’acte contesté.",
       "partnerLabel": "Partenaire du cabinet",
-      "profileCta": "Voir le profil",
       "partners": {
         "cochet": {
           "name": "Mᵉ Mathieu Cochet",
