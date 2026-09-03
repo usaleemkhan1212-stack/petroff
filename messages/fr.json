@@ -629,6 +629,43 @@
           "body": "Marques et fabricants de produits de grande consommation, du sourcing à la distribution."
         }
       }
+    },
+    "clients": {
+      "overline": "Nos clients",
+      "title": "Des dirigeants et des groupes, partout dans le monde",
+      "lead": "Nous conseillons aussi bien de jeunes sociétés et des PME que de grands groupes internationaux. La plupart de nos clients sont établis hors de France : tout se traite à distance et dans votre langue, sans avoir à vous déplacer.",
+      "facts": {
+        "tailles": {
+          "title": "TPE → grands groupes",
+          "note": "toutes tailles d’entreprise"
+        },
+        "bilingue": {
+          "title": "Bilingue de bout en bout",
+          "note": "actes, conseil & contentieux"
+        }
+      },
+      "languagesLabel": "Langues de travail",
+      "languages": {
+        "fr": "Français",
+        "en": "Anglais",
+        "es": "Espagnol",
+        "zh": "中文"
+      },
+      "countriesTitle": "Nous conseillons des clients basés dans :",
+      "countriesSub": "We advise clients based in",
+      "countries": {
+        "emirats": "Émirats arabes unis",
+        "etatsUnis": "États-Unis",
+        "australie": "Australie",
+        "chine": "Chine",
+        "inde": "Inde",
+        "qatar": "Qatar",
+        "canada": "Canada",
+        "nouvelleZelande": "Nouvelle-Zélande",
+        "hongKong": "Hong Kong",
+        "international": "International"
+      },
+      "note": "Tout se traite à distance, dans votre langue — sans déplacement."
     }
   },
   "ContentieuxPage": {

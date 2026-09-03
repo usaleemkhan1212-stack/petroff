@@ -2,6 +2,7 @@ import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Consultation } from "@/components/consultation/Consultation";
+import { Clients } from "@/components/sections/le-cabinet/Clients";
 import { Domaines } from "@/components/sections/le-cabinet/Domaines";
 import { Hero } from "@/components/sections/le-cabinet/Hero";
 import { Methode } from "@/components/sections/le-cabinet/Methode";
@@ -48,6 +49,7 @@ export default async function CabinetPage({
       <Methode />
       <Domaines />
       <Secteurs />
+      <Clients />
       <Consultation />
     </>
   );

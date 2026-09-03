@@ -101,3 +101,28 @@ export const secteurRows = [
   "b2b",
   "consommation",
 ] as const;
+
+/** The two ruled facts in "Nos clients". */
+export const clientFacts = ["tailles", "bilingue"] as const;
+
+/**
+ * The four working languages. Figma fills the first two solid encre and leaves
+ * the other two lilas — so the tint is per chip, not derived from the index.
+ */
+export const clientLanguages = [
+  { key: "fr", solid: true },
+  { key: "en", solid: true },
+  { key: "es", solid: false },
+  { key: "zh", solid: false },
+] as const;
+
+/**
+ * The ten countries, as Figma's **two explicit columns** — so the fill is
+ * column-major by structure rather than by a `grid-flow-col` trick, and each
+ * row keeps its own height for free. "International" closes the second column
+ * in brique rather than encre.
+ */
+export const clientCountries = [
+  ["emirats", "etatsUnis", "australie", "chine", "inde"],
+  ["qatar", "canada", "nouvelleZelande", "hongKong", "international"],
+] as const;

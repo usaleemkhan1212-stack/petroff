@@ -1,0 +1,12 @@
+<svg width="90" height="80" viewBox="0 0 90 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="art">
+<path id="Vector" d="M40 76C57.1208 76 71 62.1208 71 45C71 27.8792 57.1208 14 40 14C22.8792 14 9 27.8792 9 45C9 62.1208 22.8792 76 40 76Z" stroke="#C7D6EF" stroke-width="5"/>
+<path id="Vector_2" d="M40 76C47.1797 76 53 62.1208 53 45C53 27.8792 47.1797 14 40 14C32.8203 14 27 27.8792 27 45C27 62.1208 32.8203 76 40 76Z" stroke="#C7D6EF" stroke-width="5"/>
+<g id="Vector_3">
+<path d="M13.5 30H66.5ZM9 45H71ZM13.5 60H66.5Z" fill="black"/>
+<path d="M13.5 30H66.5M9 45H71M13.5 60H66.5" stroke="#C7D6EF" stroke-width="5"/>
+</g>
+<path id="Vector_4" d="M84 5L62 17L70 20L84 5Z" fill="var(--color-gold)"/>
+<path id="Vector_5" d="M84 5L70 20L73 28L84 5Z" fill="var(--color-brique)"/>
+</g>
+</svg>
