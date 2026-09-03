@@ -3796,114 +3796,43 @@ mission and the obligation de sécurité, and the "Mobilité internationale"
 mission with the four working languages. **That takes the sign-off list from
 thirty-one drafted answers to thirty-four.**
 
-## Page 14 — Fusions-acquisitions & capital-risque (`/expertises/fusions-acquisitions`), frame `12873:881`
+## Page 14 — Fusions-acquisitions & capital-risque — **DELETED**
 
-1920x8644, the **fifth domain detail page** and the last of the run built the
-same way: only the Hero is derived from scratch, the rest share the sibling
-pages' anatomy with this page's own copy, tints and prices, each read off its
-own node.
+Frame `12873:881`. Built as the fifth domain detail page, then **removed on the
+user's instruction**. Gone: the route
+`src/app/[locale]/expertises/fusions-acquisitions/`, its thirteen sections in
+`src/components/sections/ma/`, `src/lib/ma.ts`, the `MaPage` message namespace,
+and its entry in `liveRoutes`. Three drafted FAQ answers went with it, so the
+sign-off list drops from forty-six to **forty-three**.
 
-Its sections live in `src/components/sections/ma/`, its data in `src/lib/ma.ts`
-and its copy under the **`MaPage`** namespace.
+- **`domaines.ts` keeps its `fusions` and `capitalRisque` cards** — the
+  Expertises hub frame draws all nine domains, so the cards stay and simply
+  stop linking. Deregistering the route is all it takes: `MaybeLink` renders
+  them as spans, and `nav.ts` builds the Expertises submenu from the live
+  domains, so the entry disappears from the dropdown by itself. Verified after
+  the deletion: **zero `href=` to that path anywhere on the site**, the hub,
+  personal and Le Cabinet cards all `SPAN`, and the route 404s.
+- The same is true of `personal/EnBref.tsx` and `le-cabinet.ts`, which both
+  carry the href as data.
+- **Seven assets are now orphans and were left in the tree**, per the standing
+  orphan policy: `branch-split.svg`, `chart-line-up.svg`, `growth-chart-lg.svg`,
+  `haussmann-scene.svg`, `key-lg.svg`, `louvre-pyramid-lg.svg` and
+  `rocket.svg`. Nineteen of its twenty-six assets are still used elsewhere —
+  including `domed-building.svg`, which the Immobilier hero reuses.
 
-**The frame covers two hub cards.** `domaines.ts` carries `fusions`
-(`/expertises/fusions-acquisitions`) and `capitalRisque`
-(`/expertises/capital-risque`) as separate entries, and this one page is titled
-for both. It is built at the first of those; the `capitalRisque` card stays a
-span. **Worth asking the designer whether that second card should point here**
-or has a frame of its own coming.
+**Two lessons from that build are still live and referenced elsewhere in this
+file**, so they are kept here rather than deleted with the page:
 
-| # | Section | Node | Figma | Rendered | delta |
-|---|---|---|---|---|---|
-| 1 | Hero | `12873:884` | 784 | 784.0 | **0** |
-| 2 | Domaines | `12986:881` | 1652 | 1667.2 | +15.2 |
-| 3 | Tools | `12986:1002` | 890 | 894.7 | +4.7 |
-| 4 | Prestations | `12986:1058` | 755 | 759.9 | +4.9 |
-| 5 | Forfaits | `12986:1110` | 968 | 992.7 | +24.7 * |
-| 6 | MidCTA | `12986:1194` | 115 | 115.2 | +0.2 |
-| 7 | Methode | `12986:1199` | 550 | 552.3 | +2.3 |
-| 8 | Espace | `12986:1232` | 645 | 645.9 | +0.9 |
-| 9 | Bib | `12986:1302` | 641 | 643.5 | +2.5 |
-| 10 | FAQ | `12986:1325` | 663 | 696.7 | +33.7 ** |
-| 11 | CTAFinal | `12986:1415` | 550 | 550.4 | +0.4 |
-| **Sections** | | **8213** | **8302.5** | **+89.5 (1.1%)** |
-
-Page **8734** at 1920, no horizontal overflow at any of nine widths from 1920
-down to 320, and the Expertises submenu now lists five domains plus the service
-page.
-
-\* **Figma's own price row overflows its card**, and that is the whole +24.7.
-The third plan's price frame is **369 wide inside a 345.67 content box** — "Sur
-devis" at 40px (188) beside "par phases plafonnées" (172) — so the comp clips
-it. The build wraps the unit under the amount instead, which reads correctly
-for a non-numeric price and reflows; that makes card 3 the tallest and levels
-the row 24.7 above the comp. Its feature line counts match Figma exactly
-(50/25/25/25/50, 25/50/25/25/25, 25/25/25/25/50), so nothing else moved.
-
-\*\* The FAQ's +33.7 is the deliberate answer cap costing one line plus its
-four row borders, as on the Droit social page.
-
-#### Hero (`12873:884`) — 784 exactly
-
-- The copy column is pinned at a literal `top: 64` like the Droit social frame;
-  measured 64. **Three stats**, and the first whose values are phrases rather
-  than figures (`LOI → closing`, `Data room`, `4 langues`).
-- **Its title runs to three lines** and the marker sits on line three: Figma
-  draws it **396x22 at y=287**, centred on the stage — 5.824em wide and 0.3235em
-  tall against the 68px display size, its underside 0.4153em above the chunk's
-  box. Measured y=286.8, centred on 960, 383 wide (glyph metrics).
-- **Nine ornaments — the most of any hero on the site.**
-
-#### Assets — four new files, three of them forks
-
-Five ornaments reuse outright: `eiffel-tower-colour` at 140x271,
-`laurel-branch-mint` at its native 120x150, both sparkles, and
-**`three-figures.svg` scaled DOWN to 136x104** — exact because that glyph
-carries no strokes at all.
-
-- **`growth-chart-lg.svg`, `key-lg.svg` and `louvre-pyramid-lg.svg` are forks,
-  and all three for the same reason: Figma keeps the SAME stroke-width at the
-  second box that it uses at the first.** Scaling the stored file would draw the
-  stroke 43% too thick (growth-chart 7 -> 10), 15% (key 3.06 -> 11.5 against 10)
-  and 21% (louvre-pyramid 4/7 -> 4.86/8.5). The reuse threshold this file has
-  settled on is around 10% — the magnifier's 7% and the Cabinet icons' 8% reuse,
-  the arc's 66% and `open-book-lg`'s 39% fork. **Always compare stroke-width at
-  the target box, not just path data**; all four of these matched their stored
-  file's geometry to 0.0008 or better.
-- `domed-building.svg` (198x222.75) is the only genuinely new illustration.
-- Three new 26px line icons — `rocket.svg`, `chart-line-up.svg`,
-  `branch-split.svg` — with six of the nine Domaines icons and **all four**
-  Prestations icons reusing. `rosette-check.svg` reuses at 26 from its native
-  24: its stroke 1.8 x 26/24 is exactly the library's 1.95.
-
-#### `haussmann-scene.svg` — a sixth arch scene
-
-Two Haussmann facades flanking a narrower building, with a street tree and a low
-sun. Exported and stripped exactly as `gare-scene` and `rue-scene` were. Two
-slate tones (`#94A3C4`, `#B8C4DC`) stay raw hex.
-
-**That is seven near-identical `FaqIllustration` components now**, differing by
-a single import. The consolidation this file keeps flagging is well overdue.
-
-#### What differs from the sibling pages
-
-- **Prices 30 / 30 / 40**, the Contrats pattern — the third of the four this
-  build has seen (Contentieux 40/30/40, Droit fiscal 40/30/30, Droit social
-  40/40/40). The large one is `Sur devis`, not an amount.
-- **Its Domaines tints break their cycle at card 8**: blue / gold / mint, pink /
-  blue / gold, mint / **gold** / pink — where Droit social repeats a strict
-  blue/gold/mint/pink. Verified card by card at runtime, pills included.
-- Prestations tints are blue / gold / mint / pink, the Contrats order.
-- Espace tiles blue / gold / pink / mint, sampled from the node's own render.
-- **Its MidCTA fits**: the button's right edge lands exactly on the container's
-  1582.5, so it needs none of the `lg:flex-nowrap` the Droit social row does.
-
-**Three of its four FAQ answers are drafts** — Figma supplies only the first.
-Composed strictly from facts already on this page: the garantie d'actif-passif
-mission's own terms, the split between a banquier d'affaires and an avocat as
-the Domaines cards describe it, and the cross-border JV mission with the four
-working languages. **That takes the sign-off list from thirty-four drafted
-answers to thirty-seven.**
+- **`growth-chart-lg`, `key-lg` and `louvre-pyramid-lg` are forks for one
+  reason: Figma keeps the SAME stroke-width at the second box.** Scaling the
+  stored file would draw the stroke 43%, 15% and 21% too thick. The reuse
+  threshold this build settled on is around 10% — the magnifier's 7% and the
+  Cabinet icons' 8% reuse; the arc's 66% and `open-book-lg`'s 39% fork. Always
+  compare stroke-width at the target box, not just path data.
+- **The same file pair can be a reuse at one box and a fork at another.**
+  `key.svg` reuses at the Immobilier hero's 160x98 (6%) where it had to be
+  forked for this page's 195x120 (15%) — the second time on this build after
+  `calendar-dots`.
 
 ## Page 15 — Immobilier d'entreprise (`/expertises/immobilier-entreprise`), frame `12873:1006`
 
@@ -7396,7 +7325,7 @@ resolve to 17, unchanged.
   `liveRoutes` the moment its page lands and every call site starts linking.
   Live today: `/`, `/expertises`, `/expertises/contentieux-arbitrage`,
   `/expertises/contrats-commerciaux`, `/expertises/droit-fiscal`,
-  `/expertises/droit-social`, `/expertises/fusions-acquisitions`,
+  `/expertises/droit-social`,
   `/expertises/immobilier-entreprise`, `/expertises/propriete-intellectuelle`,
   `/expertises/recouvrement`, `/bibliotheque/resultats`,
   `/expertises/contentieux-arbitrage/service-page`, `/le-cabinet/personal-page`,
