@@ -7931,6 +7931,41 @@ its own frame numbers**, and none of them should be pulled to 679/470:
 | 221 + 64 + 830 | the Lawcard |
 | 656/670 + 36 + 553/539 | the article, service and Le Cabinet hero stages |
 
+## `Signalez-la-nous.` opens the contact form, on all five pages
+
+Asked for. Reporting an inaccuracy is an ask for the firm, so the closing run of
+the shared `Transparence` block is a **button**, not the inert span it was, and
+it opens the contact popup like every other contact CTA on the site.
+
+**Where it is** — one string, `Transparence.translation`, rendered by five
+components: `article/`, `new-article/`, `ecommerce/`, `service/` and
+`bibliotheque/Transparence.tsx`. The first four wrapped the chunk in
+`text-small-strong text-rose`; the hub rendered it plainly inside an
+already-rose paragraph. All five now share **`components/contact/SignalLink.tsx`**,
+so the handler exists once rather than five times.
+
+**The two frames disagree, and the newer one wins.** The redesigned article node
+`13318:3325` styles the chunk **Inter Regular 16/1.5 in `#2e5bb8`** — Petroff's
+own Small 16 and Periwinkle — where the service page's older `13445:17942`
+still draws it Inter **SemiBold** in rose. Applied everywhere on the user's
+instruction, on the same footing as the uppercase eyebrows and the gold bullet.
+Note the change is **two** things: rose to periwinkle, and SemiBold to Regular.
+
+- **The Bibliotheque hub keeps rose, deliberately.** Its block is the site's
+  only dark Transparence (`13062:1078` is still `bg-[#122a4c]`), and periwinkle
+  on encre is **2.2:1** — unreadable. That frame also draws its whole closing
+  line rose rather than marking the chunk at all, so `tone="inherit"` there
+  gives the trigger without the colour. It opens the same dialog.
+- An inline `<button>` costs no line box: measured **24 tall** on a 24px line in
+  all five, with every section still 370.4 / 369.4 / 370.4 / 370.4 / 340.4 and
+  every page height unchanged. No overflow at 1920, 768, 375 or 320.
+- It takes `hover:underline` — a button that reads as a link needs an
+  affordance, and it is what the Resultats reset already uses. Figma draws no
+  hover state for it.
+
+Verified by clicking it on all five pages: the popup opens at **1000px** with
+focus landing on its textarea each time.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.

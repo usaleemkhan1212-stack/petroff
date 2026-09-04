@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { SignalLink } from "@/components/contact/SignalLink";
 import { Container } from "@/components/ui/Container";
 
 /**
@@ -42,9 +43,7 @@ export function Transparence() {
 
           <p className="text-small text-encre/62 max-w-275">
             {t.rich("translation", {
-              link: (chunks) => (
-                <span className="text-small-strong text-rose">{chunks}</span>
-              ),
+              link: (chunks) => <SignalLink>{chunks}</SignalLink>,
             })}
           </p>
         </div>

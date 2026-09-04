@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { SignalLink } from "@/components/contact/SignalLink";
 import { Container } from "@/components/ui/Container";
 
 export function Transparence() {
@@ -32,7 +33,13 @@ export function Transparence() {
           <p className="text-small text-rose max-w-275">
             {/* This frame draws the whole line rose, so the shared string's
                 <link> chunk is rendered plainly here. */}
-            {t.rich("translation", { link: (chunks) => chunks })}
+            {t.rich("translation", {
+              /* The one dark Transparence on the site. It opens the same
+                 dialog as the other four, but keeps this frame's rose:
+                 periwinkle on encre is 2.2:1, and `13062:1083` draws the whole
+                 closing line rose here rather than marking the chunk at all. */
+              link: (chunks) => <SignalLink tone="inherit">{chunks}</SignalLink>,
+            })}
           </p>
         </div>
       </Container>
