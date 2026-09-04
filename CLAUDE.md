@@ -3814,11 +3814,14 @@ sign-off list drops from forty-six to **forty-three**.
   personal and Le Cabinet cards all `SPAN`, and the route 404s.
 - The same is true of `personal/EnBref.tsx` and `le-cabinet.ts`, which both
   carry the href as data.
-- **Seven assets are now orphans and were left in the tree**, per the standing
-  orphan policy: `branch-split.svg`, `chart-line-up.svg`, `growth-chart-lg.svg`,
-  `haussmann-scene.svg`, `key-lg.svg`, `louvre-pyramid-lg.svg` and
-  `rocket.svg`. Nineteen of its twenty-six assets are still used elsewhere —
-  including `domed-building.svg`, which the Immobilier hero reuses.
+- Seven assets were orphaned by the deletion and left in the tree per the
+  standing orphan policy. **Six of them are back in use**: `branch-split`,
+  `chart-line-up` and `rocket` returned with the Droit des societes page, and
+  `growth-chart-lg`, `key-lg` and `louvre-pyramid-lg` with the rebuilt
+  Fusions-acquisitions page (Page 23). **Only `haussmann-scene.svg` is still an
+  orphan from this deletion.**
+- **The route itself is back** — see Page 23. `12873:881` stays deleted; the
+  page was rebuilt from a new frame, `13966:881`.
 
 **Two lessons from that build are still live and referenced elsewhere in this
 file**, so they are kept here rather than deleted with the page:
@@ -4139,6 +4142,117 @@ Pactes card's own clause list, the Secretariat juridique mission, and the
 Groupes & holdings and Contrats intragroupes missions with the four working
 languages. **That takes the sign-off list from forty-three drafted answers to
 forty-six.**
+
+## Page 23 — Fusions-acquisitions (`/expertises/fusions-acquisitions`), frame `13966:881`
+
+1920x8669 — and the frame total is honest for once: its own sections sum to
+8238, which with the 72 header and 359 footer is exactly 8669. The **tenth
+domain detail page**, same eleven-section shape as its siblings.
+
+**This route was deleted earlier in this file and is back.** The page built
+from `12873:881` was removed on the user's instruction; `13966:881` is a NEW
+frame for the same domain, named "(NEW 2)", and the user asked for it
+explicitly. Registering the path in `liveRoutes` re-lights the `fusions` card
+that `domaines.ts` never stopped carrying. **Three of the seven assets that
+deletion orphaned are in use again** — `growth-chart-lg`, `key-lg` and
+`louvre-pyramid-lg` — so the orphan list under Page 14 is now four:
+`branch-split` and `chart-line-up` came back with the Droit des societes page,
+leaving only `haussmann-scene` and `rocket`... and `rocket` came back too.
+**Only `haussmann-scene.svg` is still an orphan from that deletion.**
+
+Its sections live in `src/components/sections/ma/`, its data in
+`src/lib/ma.ts` and its copy under the **`MaPage`** namespace.
+
+| # | Section | Node | Figma | Rendered | delta |
+|---|---|---|---|---|---|
+| 1 | Hero | `13966:934` | 784 | 784.0 | **0** |
+| 2 | Domaines | `13966:1025` | 1677 | 1692.4 | +15.4 |
+| 3 | Tools | `13966:1174` | 890 | 894.7 | +4.7 |
+| 4 | Prestations | `13966:1230` | 755 | 759.9 | +4.9 |
+| 5 | Forfaits | `13966:1283` | 968 | 992.7 | +24.7 * |
+| 6 | MidCTA | `13966:1367` | 115 | 115.2 | +0.2 |
+| 7 | Methode | `13966:1372` | 550 | 552.3 | +2.3 |
+| 8 | Espace | `13966:1405` | 645 | 645.9 | +0.9 |
+| 9 | Bib | `13966:1475` | 641 | 643.5 | +2.5 |
+| 10 | FAQ | `13966:1498` | 663 | 696.7 | +33.7 ** |
+| 11 | CTAFinal | `13966:1591` | 550 | 550.4 | +0.4 |
+| **Sections** | | **8238** | **8328.7** | **+90.7 (1.1%)** |
+
+Page **8757** at 1920; no horizontal overflow at any of nine widths from 1920
+down to 320. \* the third plan's `Sur devis` price row overflows its card, so
+the comp clips it where the build wraps — the identical +24.7 the M&A and
+Droit des societes pages record. \*\* the deliberate answer cap plus four row
+borders.
+
+#### It was built from the Droit des societes frame, and it shows
+
+**Tools, Prestations and Forfaits are character-identical** to that page —
+same overline, title, lead, four tools, four prestations and three forfaits
+(including the same 4 900 € / 7 500 € / Sur devis and every feature line).
+Its nine Domaines icons are that page's too, **in the same order and at
+0.0000**, with the same tint sequence. Only the Hero, Domaines copy, Bib
+counts, MidCTA, FAQ and CTAFinal title are this page's own. Built as drawn;
+**flag the three duplicated sections** — a levée-de-fonds-seed forfait on an
+M&A page is plausible, but it is worth confirming it is intended and not a
+duplicated-frame leftover.
+
+#### Hero (`13966:934`) — 784 exactly, nine ornaments, nine reuses
+
+- The standard 64px crumb, a 720 stage, an **860** column (not the Droit des
+  societes 903) at a literal `top: 64`, the 12 / 20 / 30 / 38 spacer chain, and
+  three stats all at `text-h2`.
+- Its marker is **396x22 centred on the stage at y=287** — byte-identical to
+  the Droit des societes hero's, so the same 5.8235em x 0.3235em at
+  `bottom-[0.0624em]`. Measured live at **396 wide, x 762-1157, identical to
+  the comp**, with `band_bottom − ink_bottom` 8 in Figma against 9 here. The
+  band's absolute y differs by 24 for the documented reason: Figma renders the
+  glyphs 23px higher inside an identically positioned box.
+- The chunk (`bonnes conditions.`) closes the title, so no `-z-10` dance.
+- **Nine ornaments, nine reuses, eight of them at their exact native box**
+  (deviation 0.0000): `key-lg` 195x120, `louvre-pyramid-lg` 170x132.222,
+  `growth-chart-lg` 238x196, `domed-building` 198x222.75, `eiffel-tower-colour`
+  140x271, `laurel-branch-mint` 120x150 and `sparkle` at 36 and 46. Only
+  `three-figures.svg` is stretched (136x104), exact because it carries no
+  strokes. **The three `-lg` forks exist precisely because Figma keeps the same
+  stroke-width at these boxes** — the rule this file records — and this frame
+  uses them at the very boxes they were forked for.
+
+#### `passage-scene.svg` — the one new asset, and a tenth arch scene
+
+The FAQ draws a **Paris street crossing**: two shopfronts either side of a
+zebra crossing, with a traffic light, a pedestrian and a car.
+
+- **Rendering the arch node and diffing it against every stored scene is what
+  proved it new**: no winner — 44.9 against a runner-up of 45.8, where a real
+  match lands near 7 (the Droit des societes page's `place-scene` scored 6.79
+  against 31.53). **A close field means a new drawing; a real match is
+  unmistakable.**
+- Exported with `download_assets` at `defaultFormat: "svg"` and stripped of the
+  three painted ancestor rects that tool bakes in — the canvas, the 1920x8669
+  page frame and the 1926x663 section — plus the arch clip and drop shadow,
+  which the component draws itself. **Strip only the SURPLUS `</g>`**: closing
+  every trailing one breaks the art's own groups and the file will not parse.
+- Every tokened fill is mapped; two slate tones (`#94A3C4`, `#B8C4DC`) have no
+  token and stay raw hex, the call `paris-scene.svg` already makes.
+- That makes **eleven near-identical `FaqIllustration` components**.
+
+#### What differs from the sibling pages
+
+- Prices **30 / 30 / 40**, read from the frame's own price node heights.
+- Domaines tints **blue / gold / mint / pink, blue / gold / mint, gold / pink**
+  with each CTA pill taking its own card's tint — verified card by card at
+  runtime. Prestations **blue / gold / mint / pink**; Espace tiles **blue /
+  gold / pink / mint**, sampled from the node's own render; progress bar 358 in
+  a 592.5 track (60.5%), measured off that render where Figma paints it
+  periwinkle.
+- **Only its CTAFinal title is its own** — "Une cession ou une acquisition à
+  mener ?" against the shared block's.
+
+**Three of its four FAQ answers are drafts** — Figma supplies only the first.
+Composed strictly from facts already on this page: the Cessions and Garanties
+d'actif-passif cards, the due diligence mission, and the Joint-ventures
+cross-border mission with the four working languages. **That takes the sign-off
+list from forty-six drafted answers to forty-nine.**
 
 ## The hero markers, checked against every frame
 
@@ -7445,6 +7559,7 @@ resolve to 17, unchanged.
   Live today: `/`, `/expertises`, `/expertises/contentieux-arbitrage`,
   `/expertises/contrats-commerciaux`, `/expertises/droit-fiscal`,
   `/expertises/droit-social`, `/expertises/droit-des-societes`,
+  `/expertises/fusions-acquisitions`,
   `/expertises/immobilier-entreprise`, `/expertises/propriete-intellectuelle`,
   `/expertises/recouvrement`, `/bibliotheque/resultats`,
   `/expertises/contentieux-arbitrage/service-page`, `/le-cabinet/personal-page`,

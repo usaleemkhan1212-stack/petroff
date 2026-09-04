@@ -3293,6 +3293,330 @@
       "title": "Un projet de société, une question de gouvernance ?"
     }
   },
+  "MaPage": {
+    "hero": {
+      "breadcrumbLabel": "Fil d’Ariane",
+      "crumbHome": "Accueil",
+      "crumbExpertises": "Expertises",
+      "crumbCurrent": "Fusions-acquisitions",
+      "overline": "Expertises — fusions-acquisitions",
+      "title": "Acheter et vendre — au bon prix, aux <hl>bonnes conditions.</hl>",
+      "lead": "De la lettre d’intention au closing : cessions, acquisitions, LBO/OBO et garanties d’actif-passif, pilotés par phases avec data room sécurisée et budget maîtrisé.",
+      "ctaPrimary": "Parler à un avocat",
+      "ctaSecondary": "Voir les forfaits",
+      "stats": {
+        "delai": {
+          "value": "3–6 mois",
+          "label": "de la LOI au closing"
+        },
+        "dataRoom": {
+          "value": "Data room",
+          "label": "sécurisée, incluse"
+        },
+        "langues": {
+          "value": "4 langues",
+          "label": "FR · EN · 中文 · ES"
+        }
+      }
+    },
+    "domaines": {
+      "overline": "Le cœur du métier",
+      "title": "Vos opérations, de la LOI au closing",
+      "lead": "Côté cédant, côté acquéreur ou côté fonds : nous structurons, négocions et sécurisons chaque étape de l’opération.",
+      "cta": "Voir le service",
+      "footnote": "Ces missions font l’objet d’un devis par phases (analyse → stratégie → exécution), avec budget plafonné par étape et point d’arbitrage à chaque fin de phase.",
+      "items": {
+        "cessions": {
+          "title": "Cessions & acquisitions",
+          "description": "Share deal ou asset deal, cession de fonds, négociation du prix et des conditions suspensives, closing et séquestre.",
+          "tags": ["Sell-side"]
+        },
+        "dueDiligence": {
+          "title": "Due diligence",
+          "description": "Audit d’acquisition ou vendor due diligence : corporate, contrats, social, PI — rapport red flags priorisé.",
+          "tags": ["Data room"]
+        },
+        "loi": {
+          "title": "LOI & exclusivité",
+          "description": "Lettres d’intention, accords de confidentialité, exclusivité, structuration du calendrier de négociation.",
+          "tags": ["Term sheet"]
+        },
+        "gap": {
+          "title": "Garanties d’actif-passif",
+          "description": "Négociation des déclarations, plafonds, franchises et durées — et mise en jeu quand l’histoire tourne mal.",
+          "tags": ["Négociation"]
+        },
+        "buildUp": {
+          "title": "Build-up & croissance externe",
+          "description": "Acquisitions successives, lettres d’intention en série, standardisation des garanties d’actif-passif et intégration post-acquisition.",
+          "tags": ["Buy-side"]
+        },
+        "lbo": {
+          "title": "LBO, OBO & packages",
+          "description": "Montages avec effet de levier, management packages, pactes de porteurs, relution des fondateurs.",
+          "tags": ["Structuration"]
+        },
+        "jv": {
+          "title": "Joint-ventures & alliances",
+          "description": "Pactes de JV, gouvernance paritaire, options de sortie, résolution des blocages, cross-border.",
+          "tags": ["Cross-border"]
+        },
+        "carveOut": {
+          "title": "Carve-out & restructurations",
+          "description": "Apports partiels d’actifs, filialisation, fusions et scissions, réorganisations pré-cession.",
+          "tags": ["APA"]
+        },
+        "postClosing": {
+          "title": "Post-closing & earn-out",
+          "description": "Compléments de prix, ajustements, contentieux earn-out et garanties — anticipés dès la rédaction.",
+          "tags": ["Earn-out"]
+        }
+      }
+    },
+    "tools": {
+      "overline": "Legal tech — l’intendance en ligne",
+      "title": "Quatre outils pour préparer votre opération",
+      "lead": "Démo interactive — les résultats de la maquette sont fictifs.",
+      "result": "Démo interactive — cliquez pour voir un exemple de résultat.",
+      "items": {
+        "calendrier": {
+          "title": "Calendrier d’opération",
+          "badge": "60 sec",
+          "description": "Type d’opération → planning réaliste phase par phase, de la LOI au closing.",
+          "placeholder": "Ex. : cession de PME, levée seed…",
+          "submit": "Estimer"
+        },
+        "dataRoom": {
+          "title": "Check-list data room",
+          "badge": "Gratuit",
+          "description": "La liste des documents à réunir avant de vendre ou lever — par secteur.",
+          "placeholder": "Votre secteur — ex. SaaS, industrie…",
+          "submit": "Générer"
+        },
+        "dilution": {
+          "title": "Simulateur de dilution",
+          "badge": "Fondateurs",
+          "description": "Montant levé et valorisation → votre dilution et la table de cap post-levée.",
+          "placeholder": "Ex. : 1,5 M€ à 6 M€ pre-money",
+          "submit": "Simuler"
+        },
+        "nda": {
+          "title": "NDA en 5 minutes",
+          "badge": "Membre",
+          "description": "Un accord de confidentialité bilingue, généré et signé électroniquement.",
+          "placeholder": "Nom de la contrepartie",
+          "submit": "Préparer"
+        }
+      }
+    },
+    "prestations": {
+      "overline": "Gestion courante",
+      "title": "Le socle, industrialisé et au forfait",
+      "lead": "Les prestations récurrentes, produites avec nos outils et validées par un avocat — pour réserver le temps d’expertise à ce qui le mérite.",
+      "items": {
+        "nda": {
+          "title": "NDA & LOI standard",
+          "description": "Accords de confidentialité et lettres d’intention sur nos modèles éprouvés, bilingues.",
+          "tags": ["48 h"]
+        },
+        "housekeeping": {
+          "title": "Housekeeping pré-cession",
+          "description": "Mise au propre corporate avant data room : registres, délégations, conventions.",
+          "tags": ["Forfait"]
+        },
+        "formalites": {
+          "title": "Formalités post-closing",
+          "description": "Ordres de mouvement, enregistrements, publicités, mises à jour statutaires.",
+          "tags": ["Inclus GAP"]
+        },
+        "intragroupe": {
+          "title": "Contrats intragroupes",
+          "description": "Management fees, trésorerie centralisée, licences intragroupe documentées.",
+          "tags": ["Groupes"]
+        }
+      }
+    },
+    "forfaits": {
+      "overline": "Tarifs transparents",
+      "title": "Des forfaits fermés, affichés, sans surprise",
+      "lead": "Chaque forfait inclut un point visio avec un avocat. Montants indicatifs de maquette — tarif membre avec l’abonnement.",
+      "badge": "LE PLUS DEMANDÉ",
+      "footnote": "Au-delà des forfaits : devis fermé communiqué sous 24 h après un premier échange gratuit de 15 minutes.",
+      "items": {
+        "vdd": {
+          "title": "Vendor due diligence flash",
+          "price": "4 900 €",
+          "unit": "HT",
+          "flash": "Rapport red flags en 10 jours",
+          "features": [
+            "Audit corporate, contrats et social ciblé",
+            "Data room structurée et indexée",
+            "Rapport red flags priorisé",
+            "Restitution en visio (1 h)",
+            "Plan de remédiation avant mise en vente"
+          ],
+          "cta": "Démarrer"
+        },
+        "seed": {
+          "title": "Levée de fonds seed",
+          "price": "7 500 €",
+          "unit": "HT — à partir de",
+          "flash": "Term sheet → closing en 6 semaines",
+          "features": [
+            "Revue et négociation de la term sheet",
+            "Documentation d’investissement complète",
+            "Pacte d’associés investisseurs",
+            "BSA-AIR / OC-OCA le cas échéant",
+            "Closing et formalités inclus"
+          ],
+          "cta": "Démarrer"
+        },
+        "cession": {
+          "title": "Cession d’entreprise",
+          "price": "Sur devis",
+          "unit": "par phases plafonnées",
+          "flash": "Budget arbitré à chaque phase",
+          "features": [
+            "Phase 1 : préparation et data room",
+            "Phase 2 : négociation LOI et process",
+            "Phase 3 : SPA, GAP et closing",
+            "Modèles illimités",
+            "Earn-out et accompagnement post-closing"
+          ],
+          "cta": "Être rappelé"
+        }
+      }
+    },
+    "midCta": {
+      "text": "Une cession en vue, une acquisition à préparer ? <hl>15 minutes gratuites en visio avec un avocat.</hl>",
+      "cta": "Réserver un créneau"
+    },
+    "methode": {
+      "overline": "Méthode",
+      "title": "Rapide, digital, humain",
+      "items": {
+        "cadrage": {
+          "kicker": "Jour 0",
+          "title": "Visio de cadrage",
+          "description": "15 minutes gratuites. Vous repartez avec un diagnostic et un prix ferme."
+        },
+        "espace": {
+          "kicker": "Jour 0",
+          "title": "Espace client ouvert",
+          "description": "Questionnaire intelligent, pièces déposées dans un coffre sécurisé, avancement visible."
+        },
+        "redaction": {
+          "kicker": "Jour 1–5",
+          "title": "Rédaction & échanges",
+          "description": "Projets annotés en ligne, visios ciblées, versions comparées automatiquement."
+        },
+        "signature": {
+          "kicker": "Signature",
+          "title": "Signature & formalités",
+          "description": "Signature électronique qualifiée, dépôt au greffe, alertes des prochaines échéances."
+        }
+      }
+    },
+    "espace": {
+      "overline": "Espace client",
+      "title": "Votre dossier, en temps réel",
+      "lead": "Un portail sécurisé pensé comme un tableau de bord — pas comme une boîte mail qui déborde.",
+      "features": {
+        "avancement": {
+          "title": "Avancement en direct",
+          "description": "Chaque étape horodatée : rédaction, relecture, signature, greffe."
+        },
+        "coffre": {
+          "title": "Coffre-fort documentaire",
+          "description": "Statuts, pactes, PV d’AG, K-bis : tout au même endroit, partage contrôlé."
+        },
+        "alertes": {
+          "title": "Alertes d’échéances",
+          "description": "AG, dépôt des comptes, fin de mandats — prévenus avant, jamais après."
+        },
+        "langues": {
+          "title": "Quadrilingue",
+          "description": "Interface et échanges en français, anglais, chinois ou espagnol."
+        }
+      },
+      "mock": {
+        "label": "Aperçu de l’espace client",
+        "title": "Cession — Nova Robotics SAS",
+        "badge": "En cours",
+        "progressLabel": "Avancement du dossier",
+        "rows": {
+          "dataroom": {
+            "label": "Data room structurée",
+            "status": "Terminé ✓"
+          },
+          "loi": {
+            "label": "LOI signée — exclusivité",
+            "status": "Validé ✓"
+          },
+          "diligence": {
+            "label": "Due diligence acquéreur",
+            "status": "En cours"
+          },
+          "spa": {
+            "label": "SPA & garantie d’actif-passif",
+            "status": "À venir"
+          },
+          "closing": {
+            "label": "Closing & séquestre",
+            "status": "À venir"
+          }
+        }
+      }
+    },
+    "bib": {
+      "overline": "Bibliothèque — fusions-acquisitions",
+      "title": "Se renseigner d’abord, décider ensuite",
+      "cta": "Parcourir →",
+      "items": {
+        "guides": {
+          "count": "24",
+          "title": "Guides pratiques",
+          "description": "« Vendre sa PME : le guide complet », « Réussir son acquisition », « GAP mode d’emploi »…"
+        },
+        "fiches": {
+          "count": "280+",
+          "title": "Fiches & FAQ",
+          "description": "« Que couvre une garantie d’actif-passif ? » et 279 autres questions sourcées."
+        },
+        "modeles": {
+          "count": "52+",
+          "title": "Modèles commentés",
+          "description": "LOI, NDA, pactes, clauses d’earn-out et de prix — commentés point par point."
+        }
+      }
+    },
+    "faq": {
+      "overline": "Questions fréquentes",
+      "title": "Avant de nous appeler",
+      "illustrationLabel": "Illustration — une rue parisienne et son passage piéton",
+      "items": {
+        "duree": {
+          "question": "Combien de temps prend une cession d’entreprise ?",
+          "answer": "Comptez 3 à 6 mois entre la lettre d’intention et le closing pour une PME : due diligence (4-6 semaines), négociation du protocole et de la garantie d’actif-passif, puis levée des conditions suspensives. Notre outil de calendrier estime le délai par type d’opération, et le pilotage par phases évite les tunnels."
+        },
+        "shareAsset": {
+          "question": "Share deal ou asset deal : lequel privilégier ?",
+          "answer": "Le share deal transfère les titres — donc la société avec son passif, ce que la garantie d’actif-passif vient encadrer. L’asset deal ne reprend que les éléments choisis, au prix d’un formalisme plus lourd et de contrats à retransférer un par un. Le choix se tranche au vu de l’audit : c’est l’objet de la due diligence et de la négociation du protocole."
+        },
+        "gap": {
+          "question": "Comment se négocie une garantie d’actif-passif ?",
+          "answer": "Sur quatre paramètres : l’étendue des déclarations du cédant, le plafond d’indemnisation, la franchise en deçà de laquelle rien n’est dû, et la durée. S’y ajoute la garantie de la garantie — séquestre ou caution. Nous la négocions à partir des red flags remontés par la due diligence, et sa mise en jeu s’anticipe dès la rédaction."
+        },
+        "etrangers": {
+          "question": "Accompagnez-vous les acquéreurs et fonds étrangers ?",
+          "answer": "Oui : joint-ventures et alliances cross-border, pactes de porteurs et montages avec effet de levier font partie du quotidien du cabinet. Les échanges et la documentation se tiennent en français, anglais, chinois ou espagnol, et la data room est partagée depuis l’espace client."
+        }
+      }
+    },
+    "ctaFinal": {
+      "title": "Une cession ou une acquisition à mener ?"
+    }
+  },
   "BibliothequePage": {
     "hero": {
       "overline": "Bibliothèque juridique",
