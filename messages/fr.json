@@ -5612,12 +5612,12 @@
       "title": "Le partenaire juridique des vendeurs en ligne en France",
       "lead": "Donner aux vendeurs en ligne, places de marché et marques un accès direct au droit de la consommation et du e-commerce : audits, CGV, échanges avec le régulateur et contentieux, par des avocats inscrits au Barreau.",
       "checks": {
-        "c1": "Auditer le tunnel — fiche produit, panier, paiement, confirmation : là où le Code de la consommation s’applique et où une enquête commence.",
-        "c2": "Rédiger les conditions — CGV, mentions légales, politiques de rétractation, de retour et de livraison, rédigées pour le marché français.",
-        "c3": "Gérer le régulateur — questionnaires DGCCRF, contrôles, injonctions et transactions, traités en votre nom.",
-        "c4": "Défendre les réclamations — réclamations de consommateurs, actions d’associations, litiges avec places de marché ou prestataires de paiement.",
-        "c5": "Coordonner le transfrontalier — un seul corps de conditions cohérent au lieu de dix-sept.",
-        "c6": "Notre méthode — conseil clair ; actes et procédures en bonne forme ; coût annoncé avant chaque étape."
+        "c1": "<b>Auditer le tunnel</b> — fiche produit, panier, paiement, confirmation : là où le Code de la consommation s’applique et où une enquête commence.",
+        "c2": "<b>Rédiger les conditions</b> — CGV, mentions légales, politiques de rétractation, de retour et de livraison, rédigées pour le marché français.",
+        "c3": "<b>Gérer le régulateur</b> — questionnaires DGCCRF, contrôles, injonctions et transactions, traités en votre nom.",
+        "c4": "<b>Défendre les réclamations</b> — réclamations de consommateurs, actions d’associations, litiges avec places de marché ou prestataires de paiement.",
+        "c5": "<b>Coordonner le transfrontalier</b> — un seul corps de conditions cohérent au lieu de dix-sept.",
+        "c6": "<b>Notre méthode</b> — conseil clair ; actes et procédures en bonne forme ; coût annoncé avant chaque étape."
       },
       "cta": "Parler à un avocat",
       "imageAlt": "Une cliente règle une commande en ligne, carte bancaire à la main devant son ordinateur portable.",

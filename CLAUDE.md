@@ -7832,6 +7832,52 @@ Both are SF Symbols placeholders with no exported artwork — the same fourteen
 this file already flags — so drawing them is the designer's call, not a build
 fix. The clock was done because it was asked for.
 
+## A weighted run only goes full-encre when Figma says so
+
+Reported on the e-commerce **Notre rôle** checks: the lead-ins were not bold at
+all. `13331:11801` draws each check as **two runs** where the build had one flat
+one, and the comment in that component — "Figma gives the lead-in no emphasis" —
+was simply wrong:
+
+| run | Figma |
+|---|---|
+| `Auditer le tunnel` | Inter **SemiBold 18/1.5** in **`#122a4c`** — full encre, i.e. `text-body-strong` |
+| `— fiche produit, …` | Inter Regular 18/1.4 at `rgba(18,42,76,0.62)` |
+
+All six strings now carry a `<b>` around the lead-in only — the em dash stays
+in the regular run, as Figma splits it — and the handler re-declares the
+colour: **`text-body-strong text-encre`**. Without that second class the run
+inherits the paragraph's 62% and the emphasis disappears, which is the trap
+this file already records for `proseTags`.
+
+### The rule, which is not "bold means encre"
+
+Swept all 43 weighted rich-text handlers on the site. Seven carry no colour of
+their own, and **five of those are correct**, because their paragraph is
+already brique, red or full encre. Only two sit inside an `encre/62` paragraph,
+and the frames disagree about them:
+
+- **Notre rôle's lead-in sets `text-[#122a4c]` explicitly** → promote it.
+- **The service page's `QuandFaireAppel` bold does not** (`13445:28512`): its
+  SemiBold span overrides only font, size and leading, so it inherits the 62%
+  deliberately. **Built correctly, and left alone.**
+
+So the test is not "is it bold" but **does the run carry its own fill in the
+export**. A mid-sentence emphasis ("caractériser *un abus de majorité*") stays
+dimmed; a list item's lead-in is promoted. Read the span, not the weight.
+
+### It costs 10.8px, and that is the right trade
+
+The bold run's 1.5 leading makes each check's first line 27 where the rest of
+the paragraph is 25.2, so every row grows 1.8: the list goes **362.3 -> 373.1**
+against Figma's 366, the section **1160.5 -> 1171.4** against 1161, and the page
+17582 -> 17593. The old height matched the comp exactly *on the wrong
+typography*. This is the mixed-inline line-box difference already recorded for
+the article prose — Figma composites mixed leading per line where the browser
+takes the larger box — and correctness wins over the 10.8.
+
+No horizontal overflow at 1920, 1280, 768, 375 or 320.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.

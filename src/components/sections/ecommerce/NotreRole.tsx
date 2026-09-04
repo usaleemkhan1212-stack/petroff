@@ -53,8 +53,18 @@ export function NotreRole() {
                     {/* Figma exports this as a 12px SVG circle, which is not
                         worth a file — the same call the hero's trust dot makes. */}
                     <Bullet />
-                    {/* One flat run — Figma gives the lead-in no emphasis. */}
-                    <p className="text-body text-encre/62">{t(`checks.${key}`)}</p>
+                    {/* Two runs, not one: Figma sets the lead-in
+                        **Inter SemiBold 18/1.5 in full encre** — `text-body-strong`
+                        — against an 18/1.4 encre/62 remainder. The colour has
+                        to be re-declared on the run, or it silently inherits
+                        the paragraph's 62% and the emphasis disappears. */}
+                    <p className="text-body text-encre/62">
+                      {t.rich(`checks.${key}`, {
+                        b: (chunks) => (
+                          <span className="text-body-strong text-encre">{chunks}</span>
+                        ),
+                      })}
+                    </p>
                   </li>
                 ))}
               </ul>
