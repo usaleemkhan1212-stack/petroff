@@ -35,7 +35,11 @@ export function HeroOrnaments() {
           width={198.621}
           height={144}
         />
-        <Sparkle className="absolute top-[240px] left-[273.5px]" width={46} height={46} />
+        <Sparkle
+          className="absolute top-[240px] left-[273.5px]"
+          width={46}
+          height={46}
+        />
         <LaurelBranch
           className="absolute top-[314px] left-[396.5px] -scale-x-100"
           width={120}

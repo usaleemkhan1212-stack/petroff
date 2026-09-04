@@ -31,7 +31,7 @@ export function Transparence() {
       <Container className="py-12 lg:pt-15.5 lg:pb-15.25">
         <div className="mx-auto flex max-w-300 flex-col gap-5">
           <div className="flex max-w-196 flex-col gap-2">
-            <p className="text-overline font-poppins text-gold uppercase">
+            <p className="text-overline font-poppins text-brique uppercase">
               {t("overline")}
             </p>
             <h2 className="text-h2 text-encre">{t("title")}</h2>

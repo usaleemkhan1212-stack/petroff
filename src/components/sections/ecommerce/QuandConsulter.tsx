@@ -72,7 +72,7 @@ export function QuandConsulter() {
           */}
           <div className="bg-lilas-2 rounded-card flex min-w-0 flex-col items-start gap-6 p-6 sm:p-9 lg:sticky lg:top-6 lg:self-start">
             <div className="flex flex-col gap-4">
-              <p className="text-overline font-poppins text-gold uppercase">
+              <p className="text-overline font-poppins text-brique uppercase">
                 {t("card.overline")}
               </p>
               <h3 className="text-price text-encre">{t("card.title")}</h3>

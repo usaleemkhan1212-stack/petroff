@@ -224,7 +224,7 @@ export function CommentNousAidons() {
         tone === "mint" ? "bg-pale-mint" : "bg-pale-rose/30",
       )}
     >
-      <p className="text-overline font-poppins text-gold uppercase">
+      <p className="text-overline font-poppins text-brique uppercase">
         {t(`seams.${itemKey}.overline`)}
       </p>
       <h3 className="text-price text-encre">{t(`seams.${itemKey}.title`)}</h3>
