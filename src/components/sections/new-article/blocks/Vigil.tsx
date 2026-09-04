@@ -23,7 +23,12 @@ export function VigilRow({
         aria-hidden="true"
         width={24}
         height={24}
-        className="text-encre mt-0.5 shrink-0"
+        /* Figma strokes all four of these **brique**, not encre —
+           counted in the node's own render, 30 brique pixels to 0
+           encre in every row's icon column. Only the clock used to
+           look right here, and only because that file hard-coded its
+           own colour. */
+        className="text-brique mt-0.5 shrink-0"
       />
       <p className="text-body text-encre min-w-0 flex-1">{children}</p>
     </li>

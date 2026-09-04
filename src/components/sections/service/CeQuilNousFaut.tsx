@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import ClockIcon from "@/assets/icons/clock.svg";
+import ClockNineIcon from "@/assets/icons/clock-nine.svg";
 import DocumentIcon from "@/assets/icons/document.svg";
 import FileLinesIcon from "@/assets/icons/file-lines.svg";
 import TrendingUpIcon from "@/assets/icons/trending-up.svg";
@@ -14,16 +14,19 @@ import { cn } from "@/lib/utils";
  * The four families of documents, in Figma's order.
  *
  * **Figma draws these icons as SF Symbols placeholders too** — `text.document`,
- * `menucard`, `chart.line.uptrend.xyaxis`, `clock` — at 22px, so no artwork is
- * exported. Mapped to the nearest library glyphs and rendered at their native
- * 26, which is what every other 52px tile on the site carries. **Needs the
- * designer's own choices**, like the nine in "Quand faire appel".
+ * `menucard`, `chart.line.uptrend.xyaxis`, `clock` — so no artwork is exported;
+ * they render at **26**, like every other 52px tile on the site, in **encre**.
+ * Three map to the nearest library glyphs. The fourth needed its own file:
+ * SF Symbols' `clock` reads **9 o'clock**, where the article's exported
+ * `clock.svg` reads 4:30 — a different dial, hence `clock-nine.svg`.
+ * **Still needs the designer's own choices**, like the nine in
+ * "Quand faire appel".
  */
 const families = [
   { key: "statuts", Icon: DocumentIcon, tone: "bg-pale-blue" },
   { key: "registre", Icon: FileLinesIcon, tone: "bg-pale-gold" },
   { key: "comptes", Icon: TrendingUpIcon, tone: "bg-pale-mint" },
-  { key: "objectif", Icon: ClockIcon, tone: "bg-pink-soft/40" },
+  { key: "objectif", Icon: ClockNineIcon, tone: "bg-pink-soft/40" },
 ] as const;
 
 /**

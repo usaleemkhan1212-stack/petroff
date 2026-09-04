@@ -7789,6 +7789,49 @@ is 375, and clicking a live child still **closes the panel and navigates** —
 the bug this file already records. The header measures **73** on every route
 and no page height moved.
 
+## `clock.svg` hard-coded its own colour, and hid a second fault
+
+Reported on the service page's **Votre objectif** tile (`13445:21627`): wrong
+icon, wrong colour. Both, and for two unrelated reasons.
+
+- **`clock.svg` stroked `var(--color-brique)` where every sibling icon strokes
+  `currentColor`**, so the call site's `text-encre` was inert and the tile drew
+  a brique clock on a pink ground. It is `currentColor` now.
+  **A hard-coded colour inside an icon does not fail loudly — the class simply
+  does nothing.** Worth grepping the icon folder whenever a `text-*` on a glyph
+  appears to have no effect.
+- **The dial is genuinely a different drawing.** Figma renders this tile's SF
+  Symbols placeholder as a clock reading **9 o'clock** — hands meeting at the
+  centre, each 7 units long in a circle of radius 10 — where the article's
+  exported `clock.svg` reads **4:30**. Read off the node's own render as an
+  ASCII map of its dark pixels, which is the cheapest way to settle a 26px
+  glyph's geometry. So `clock-nine.svg` is a fork, 26px at the library's 1.95
+  stroke; the article keeps its own file, which is that frame's real artwork.
+- It was also rendering at **24 against the row's other three at 26**, since
+  `clock.svg` came from the article's 24px batch. The tile passes no size, so
+  the new 26px file fixes that by existing.
+
+### All four article `vigil` icons are brique, and three were wrong
+
+Found only because the fix above removed the hard-coded colour: `13318:2818`
+strokes **every** one of its four icons brique — counted in the node's own
+render, **30 brique pixels to 0 encre** in each row's icon column — while
+`VigilRow` set `text-encre` on all four. The clock had looked right purely
+because its file overrode the class.
+
+Both article pages take `text-brique` there now. Verified after: four icons at
+24x24 in `rgb(166,124,27)` on each page, and the four service tiles at 26x26 in
+`rgb(18,42,76)`. Service page **17510** with its section at **952.7**,
+new-article **18993**, old-article **18486** — all unchanged — and no
+horizontal overflow at 1920, 1280, 768, 375 or 320.
+
+**Two of the row's other three tiles still differ from the comp**, and are left
+alone: Figma's second is a folded booklet (`menucard`) where the build draws
+`file-lines`, and its third carries a y-axis the build's `trending-up` has not.
+Both are SF Symbols placeholders with no exported artwork — the same fourteen
+this file already flags — so drawing them is the designer's call, not a build
+fix. The clock was done because it was asked for.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.
