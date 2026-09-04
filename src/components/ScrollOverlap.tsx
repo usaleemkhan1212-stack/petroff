@@ -3,14 +3,14 @@
 import { useEffect, useState, type ReactNode } from "react";
 
 /** How far the wrapped section rides up over the one above, in px. */
-const MAX_OVERLAP = 25;
+const MAX_OVERLAP = 30;
 /** The scroll distance over which it gets there. */
 const TRAVEL = 120;
 
 /**
  * How far the section has climbed for a given scroll position, rounded to
- * whole pixels: 25 steps over 120px of scroll is one step every 4.8px, which
- * reads as continuous at this size and caps the re-renders at 26 rather than
+ * whole pixels: 30 steps over 120px of scroll is one step every 4px, which
+ * reads as continuous at this size and caps the re-renders at 31 rather than
  * one per frame. Pulling a section up is a layout change, so the rounding is
  * what keeps it cheap.
  */
@@ -19,12 +19,12 @@ const overlapFor = (scrollY: number) =>
 
 /**
  * Wraps a page's **second** section so that, as the reader scrolls, it climbs
- * up to 25px over the hero's bottom edge — the hero appears to lose that much
+ * up to 30px over the hero's bottom edge — the hero appears to lose that much
  * height and tuck underneath.
  *
  * **A negative `margin-top`, not a transform.** Everything below has to come
  * with it: a `translateY` would leave the sections after this one 20px too low
- * and open a gap above the footer. The margin makes the document itself 25px
+ * and open a gap above the footer. The margin makes the document itself 30px
  * shorter, which is exactly right.
  *
  * `relative z-10` is what lets the wrapped section's own ground paint over the
