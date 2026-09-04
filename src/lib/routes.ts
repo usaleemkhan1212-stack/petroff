@@ -26,7 +26,6 @@ export const liveRoutes: readonly string[] = [
   "/bibliotheque/article-design",
   "/bibliotheque/avocat-e-commerce",
   "/bibliotheque/new-article-page",
-  "/bibliotheque/resultats",
   "/le-cabinet",
   "/confidentialite",
   "/cookies",

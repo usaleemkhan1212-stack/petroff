@@ -11,8 +11,7 @@ type MessagePath =
   | "Nav.personalPage"
   | "Nav.articleDesign"
   | "Nav.ecommerce"
-  | "Nav.newArticle"
-  | "Nav.resultats";
+  | "Nav.newArticle";
 import { isLive } from "@/lib/routes";
 
 /** A sub-item under a primary nav entry. Plain data so it can cross into client components. */
@@ -73,7 +72,6 @@ const bibliothequeChildren: readonly NavChild[] = (
     { key: "articleDesign", href: "/bibliotheque/article-design" },
     { key: "ecommerce", href: "/bibliotheque/avocat-e-commerce" },
     { key: "newArticle", href: "/bibliotheque/new-article-page" },
-    { key: "resultats", href: "/bibliotheque/resultats" },
     /* Mᵉ Mariela Petrova's profile. It used to hang off Le Cabinet, which now
        has a page of its own and therefore no submenu — asked for. */
     { key: "personalPage", href: "/le-cabinet/personal-page" },

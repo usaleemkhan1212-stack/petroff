@@ -22,7 +22,6 @@
     "articleDesign": "article-design",
     "ecommerce": "Avocat e-commerce",
     "newArticle": "new-article-page",
-    "resultats": "résultats",
     "servicePage": "service-page",
     "cabinetPagesLabel": "Pages du cabinet",
     "personalPage": "personal-page"
@@ -4373,7 +4372,11 @@
         "bail": "Guide · 14 min · <cta>Lire →</cta>",
         "marque": "Guide · 10 min · <cta>Lire →</cta>",
         "garantie": "Fiche · 6 min · <cta>Lire →</cta>"
-      }
+      },
+      "count": "{count} résultats",
+      "countOne": "1 résultat",
+      "reset": "Réinitialiser",
+      "resetLabel": "Réinitialiser les filtres"
     },
     "parCategorie": {
       "overline": "Parcourir par catégorie",
@@ -4537,36 +4540,6 @@
     "ctaFinal": {
       "title": "Vous ne trouvez pas la réponse ?"
     }
-  },
-  "ResultatsPage": {
-    "contents": {
-      "impayee": {
-        "title": "Recouvrer une facture impayée",
-        "description": "Relance, mise en demeure, injonction, saisie : la chaîne complète, chiffrée."
-      },
-      "injonction": {
-        "title": "Injonction de payer : mode d’emploi",
-        "description": "Requête, ordonnance, signification, opposition — la procédure pas à pas."
-      },
-      "saisie": {
-        "title": "Saisie conservatoire : geler avant de perdre",
-        "description": "L’autorisation du juge, l’assiette, la conversion — l’arme sous-utilisée."
-      },
-      "redressement": {
-        "title": "Mon client est en redressement : que faire ?",
-        "description": "Déclaration sous 2 mois, revendication sous 3 — les réflexes qui sauvent la créance."
-      }
-    },
-    "meta": {
-      "impayee": "Guide · 12 min · <cta>Lire →</cta>",
-      "injonction": "Guide · 9 min · <cta>Lire →</cta>",
-      "saisie": "Fiche · 18 min · <cta>Lire →</cta>",
-      "redressement": "Fiche · 5 min · <cta>Lire →</cta>"
-    },
-    "count": "{count} résultats",
-    "countOne": "1 résultat",
-    "reset": "Réinitialiser",
-    "resetLabel": "Réinitialiser les filtres"
   },
   "ArticlePage": {
     "hero": {

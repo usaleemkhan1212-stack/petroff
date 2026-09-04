@@ -32,8 +32,8 @@ const pill = "text-small-strong text-encre rounded-full px-3 py-1";
  * where the comp puts them. `truncate` keeps a long choice inside the pill.
  */
 const select =
-  "text-button font-poppins border-encre/14 h-12 max-w-full cursor-pointer appearance-none truncate " +
-  "rounded-full border bg-white pr-11 pl-4.5 " +
+  "text-button font-poppins h-12 max-w-full cursor-pointer appearance-none truncate " +
+  "rounded-full bg-white pr-11 pl-4.5 " +
   "focus-visible:outline-gold focus-visible:outline-2 focus-visible:outline-offset-2";
 
 export function Resultats() {
@@ -52,6 +52,9 @@ export function Resultats() {
       (type === "all" || content.type === type)
     );
   });
+
+  /* Anything moved off the opening state — both facets start at `all`. */
+  const filtered = domain !== "all" || type !== "all";
 
   return (
     <section className="bg-white">
@@ -79,7 +82,18 @@ export function Resultats() {
                 id="library-category"
                 value={domain}
                 onChange={(e) => setDomain(e.target.value as ContentDomain | "all")}
-                className={cn(select, "text-encre w-59.75")}
+                className={cn(
+                  select,
+                  "text-encre w-59.75",
+                  /*
+                    Figma draws a chosen category at a 2px periwinkle border
+                    where the resting one is `encre/14`. `border-2` costs a
+                    pixel of inner width, which the fixed 239 absorbs.
+                  */
+                  domain === "all"
+                    ? "border-encre/14 border"
+                    : "border-periwinkle border-2",
+                )}
               >
                 <option value="all">{t("allCategories")}</option>
                 {contentDomains.map((key) => (
@@ -107,7 +121,10 @@ export function Resultats() {
               <select
                 id="library-subcategory"
                 disabled
-                className={cn(select, "text-encre/62 w-71.75 cursor-default")}
+                className={cn(
+                  select,
+                  "border-encre/14 text-encre/62 w-71.75 cursor-default border",
+                )}
               >
                 <option>{t("allSubcategories")}</option>
               </select>
@@ -152,6 +169,45 @@ export function Resultats() {
                 </button>
               ))}
             </div>
+          </div>
+
+          {/*
+            Figma's `13063:1088` is this same section once a filter has moved,
+            and the one thing it adds is this row — which is the whole of its
+            860 -> 890. It right-aligns in the 1200 band: the count at x=1003
+            and the reset at 1104, ending on 1200, which `justify-end`
+            reproduces without pinning either to a literal x.
+
+            **It stays mounted at rest, as `sr-only`.** A live region has to
+            exist before the value changes for it to be announced, so hiding
+            the row visually rather than unmounting it is what lets the first
+            filter change be read out — and it keeps the section at the
+            unfiltered frame's 860 until something actually moves.
+          */}
+          <div
+            className={cn(
+              "flex flex-wrap items-center justify-end gap-x-5 gap-y-2",
+              filtered ? "mt-3" : "sr-only",
+            )}
+          >
+            <p aria-live="polite" className="text-small-strong text-encre/62">
+              {visible.length === 1
+                ? t("countOne")
+                : t("count", { count: visible.length })}
+            </p>
+            {filtered && (
+              <button
+                type="button"
+                aria-label={t("resetLabel")}
+                onClick={() => {
+                  setDomain("all");
+                  setType("all");
+                }}
+                className="text-button font-poppins text-periwinkle focus-visible:outline-gold cursor-pointer rounded-sm hover:underline focus-visible:outline-2 focus-visible:outline-offset-2"
+              >
+                {t("reset")}
+              </button>
+            )}
           </div>
 
           {visible.length > 0 ? (
