@@ -3,6 +3,7 @@ import PhoneIcon from "@/assets/icons/phone.svg";
 import { NavMenu } from "@/components/layout/NavMenu";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { NavLink } from "@/components/layout/NavLink";
 import { ConsultButton, ConsultTrigger } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
@@ -50,12 +51,12 @@ export function Header() {
                         items={item.children}
                       />
                     ) : (
-                      <MaybeLink
+                      <NavLink
                         href={item.href}
-                        className="text-small text-encre hover:text-periwinkle whitespace-nowrap transition-colors"
+                        className="text-small whitespace-nowrap"
                       >
                         {t(item.key)}
-                      </MaybeLink>
+                      </NavLink>
                     )}
                   </li>
                 ))}

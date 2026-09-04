@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
-import { MaybeLink } from "@/components/ui/MaybeLink";
+import { NavLink } from "@/components/layout/NavLink";
 import type { NavItem } from "@/lib/nav";
 
 /** Hamburger toggle plus the panel it opens. Shown below lg only. */
@@ -52,13 +52,13 @@ export function MobileNav({ items }: { items: readonly NavItem[] }) {
             <ul className="flex flex-col">
               {items.map((item) => (
                 <li key={item.key}>
-                  <MaybeLink
+                  <NavLink
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="text-small text-encre hover:text-periwinkle block py-3"
+                    className="text-small block py-3"
                   >
                     {t(item.key)}
-                  </MaybeLink>
+                  </NavLink>
 
                   {/* Domains sit indented under their parent rather than in a
                       second panel — one scroll, no nesting to get lost in. */}
@@ -66,13 +66,13 @@ export function MobileNav({ items }: { items: readonly NavItem[] }) {
                     <ul className="border-encre/8 mb-2 flex flex-col border-l pl-4">
                       {item.children.map((child) => (
                         <li key={child.key}>
-                          <MaybeLink
+                          <NavLink
                             href={child.href}
                             onClick={() => setOpen(false)}
-                            className="text-small text-encre hover:text-periwinkle block py-2"
+                            className="text-small block py-2"
                           >
                             {tRoot(child.labelKey)}
-                          </MaybeLink>
+                          </NavLink>
                         </li>
                       ))}
                     </ul>

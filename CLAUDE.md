@@ -7742,6 +7742,47 @@ resolve to 17, unchanged.
   affected pages measure exactly what this file records — 5748, 6243, 19114,
   19832, 17602 and 17511.
 
+## The active nav item is brique too
+
+Asked for in the same breath as the overlines: the entry for the page you are
+reading takes **Petroff/Brique**, the colour every overline just moved to.
+
+**The header had no active state at all** — only `LanguageSwitcher` did. Knowing
+the current path needs `usePathname`, and `Header.tsx` is a server component, so
+it lives in one small client wrapper: **`components/layout/NavLink.tsx`**, a
+`MaybeLink` that sets `text-brique` plus **`aria-current="page"`** when current
+and `text-encre` otherwise, keeping the shared `hover:text-periwinkle`.
+
+- It stays a `MaybeLink`, not a `Link`: a parent may carry a submenu while its
+  own page does not exist — Le Cabinet is the first — and nothing on this site
+  may navigate to a 404.
+- **The match is a prefix, so a parent lights up for its children.**
+  `isCurrent` is an exact match or `pathname.startsWith(href + "/")`. The
+  trailing slash matters — without it `/expertises-x` would match
+  `/expertises` — and `/` is guarded, since every path starts with it.
+- Three call sites take it: the header's plain items, `NavMenu`'s parent label
+  **and its dropdown entries**, and both levels of `MobileNav`. Colour and hover
+  now live in the component, so each call site passes only its layout classes.
+- **A parent and its child are both brique at once** — on
+  `/expertises/droit-fiscal` the Expertises label and the `Droit fiscal` entry
+  in its open dropdown. That is the hierarchy, not a double highlight.
+
+Verified at runtime rather than by grep: nine routes read for every 16px nav
+element's computed colour and `aria-current`. `/expertises`, `/bibliotheque` and
+`/le-cabinet` mark themselves; `/expertises/droit-fiscal`,
+`.../service-page`, `/bibliotheque/new-article-page` and
+`/le-cabinet/personal-page` mark their parents. `/` marks nothing — the header
+has no Accueil entry, the logo is the way home — and `/confidentialite` marks
+nothing either, since it is reached from the footer. **No other nav element is
+any colour but encre or brique.**
+
+Driven open as well: the desktop dropdown marks exactly one child on each of
+two domain pages, the 375 panel marks parent and child together, `scrollWidth`
+is 375, and clicking a live child still **closes the panel and navigates** —
+`onClick` forwards through `NavLink` to `MaybeLink`'s `Link` branch, which is
+the bug this file already records. The header measures **73** on every route
+and no page height moved.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.

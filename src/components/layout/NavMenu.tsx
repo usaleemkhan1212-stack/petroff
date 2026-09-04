@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { MaybeLink } from "@/components/ui/MaybeLink";
+import { NavLink } from "@/components/layout/NavLink";
 import type { NavChild } from "@/lib/nav";
 
 /**
@@ -61,15 +60,13 @@ export function NavMenu({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      {/* MaybeLink, not Link: a parent can now carry a submenu while its own
-          page does not exist yet — Le Cabinet is the first — and nothing on
-          the site may navigate to a 404. */}
-      <MaybeLink
-        href={href}
-        className="text-small text-encre hover:text-periwinkle whitespace-nowrap transition-colors"
-      >
+      {/* NavLink wraps MaybeLink, so a parent can carry a submenu while its
+          own page does not exist yet — Le Cabinet is the first — and nothing
+          on the site may navigate to a 404. It also marks itself brique when
+          the page being read is this section or one below it. */}
+      <NavLink href={href} className="text-small whitespace-nowrap">
         {label}
-      </MaybeLink>
+      </NavLink>
 
       <button
         type="button"
@@ -109,13 +106,13 @@ export function NavMenu({
           >
             {items.map((item) => (
               <li key={item.key}>
-                <Link
+                <NavLink
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="text-small text-encre hover:text-periwinkle block px-4 py-2.5 transition-colors"
+                  className="text-small block px-4 py-2.5"
                 >
                   {t(item.labelKey)}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
