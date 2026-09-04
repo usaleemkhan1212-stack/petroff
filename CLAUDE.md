@@ -4898,6 +4898,16 @@ now carries two children.
   sRGB. Imperceptible, and the article's trap callout already renders this way.
 - Figma draws **no shadow** on these cards — sampling right below a card edge
   returns plain lilas — so `Card`'s hover-only shadow is correct here.
+- **Every card in the column lifts on hover now, except the two photographs**
+  — asked for. Driving a real pointer over all 18 column children found the 12
+  service cards already lifting at `Card`'s `0px 14px 17px` while the two
+  illustrated tiles and two CTA seams had no shadow in any state; they take the
+  same value through a shared `cardLift` const, so the three kinds cannot
+  drift. The photographs are deliberately left flat: a shadow under a
+  full-bleed image reads as a border rather than a raise.
+  Verified: 16 of 18 resolving to `rgba(0,0,0,0.1) 0px 14px 17px` on hover and
+  `none` at rest and after leaving, both photos `none` throughout, section
+  still **4784.4** and no overflow at 1920, 1280, 768, 375 or 320.
 - **A `Page.captureScreenshot` clip taller than the emulated viewport paints
   blank past it.** The first capture of this section was correct for its top
   2000px and empty for the remaining 2800, which read as three missing panel

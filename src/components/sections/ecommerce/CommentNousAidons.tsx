@@ -18,6 +18,19 @@ import { cn } from "@/lib/utils";
 const tileCorners =
   "rounded-tl-[120px] rounded-tr-[10px] rounded-br-[60px] rounded-bl-[20px]";
 
+/**
+ * The lift the section's service cards already carry, from `Card`. The
+ * illustrated tiles and the two CTA seams take it too, so every card in the
+ * column behaves the same way — asked for. **The photographs do not**, also
+ * asked for: a shadow under a full-bleed image reads as a border rather than
+ * a raise.
+ *
+ * Figma draws no shadow anywhere in this section, at rest or otherwise, so
+ * this is a deliberate addition — the site-wide "a card lifts on hover" rule
+ * rather than the comp.
+ */
+const cardLift = "transition-shadow hover:shadow-[0px_14px_17px_rgba(0,0,0,0.1)]";
+
 /*
   Literal key unions, not `string`. Widening a key to `string` turns
   t(`services.${key}.title`) into a plain template string, which next-intl's
@@ -195,6 +208,7 @@ export function CommentNousAidons() {
       className={cn(
         "flex aspect-[610/280] w-full items-center justify-center",
         tileCorners,
+        cardLift,
         ground === "lilas-2" ? "bg-lilas-2" : "bg-pale-gold",
       )}
     >
@@ -221,6 +235,7 @@ export function CommentNousAidons() {
       className={cn(
         "flex flex-col items-start gap-6 p-6 sm:pt-12 sm:pr-9 sm:pb-9 sm:pl-12",
         tileCorners,
+        cardLift,
         tone === "mint" ? "bg-pale-mint" : "bg-pale-rose/30",
       )}
     >
