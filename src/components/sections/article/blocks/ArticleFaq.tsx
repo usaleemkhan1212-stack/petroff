@@ -56,9 +56,7 @@ export function ArticleFaq() {
               </span>
             </summary>
 
-            <p className="text-body text-encre/62 pb-6">
-              {t.rich(`${key}.a`, proseTags)}
-            </p>
+            <p className="text-body text-encre pb-6">{t.rich(`${key}.a`, proseTags)}</p>
           </details>
         </li>
       ))}

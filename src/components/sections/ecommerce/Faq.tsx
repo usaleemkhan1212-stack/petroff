@@ -75,7 +75,7 @@ export function Faq() {
                       `SectionHeading`'s lead uses) while the question row
                       stays full width. A deliberate departure, asked for.
                     */}
-                    <p className="text-body text-encre/62 mt-2 max-w-160">
+                    <p className="text-body text-encre mt-2 max-w-160">
                       {t(`items.${key}.answer`)}
                     </p>
                   </details>

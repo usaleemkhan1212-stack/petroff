@@ -8001,6 +8001,30 @@ with **2.88px** tracking and `uppercase`, the arrow at `letter-spacing: normal`
 1920 down to 320, `pn` 138.8 against Figma's 137 (its two card borders), and
 both pages unchanged at 18486 and 18993 with no overflow at any of six widths.
 
+## FAQ answers are full-strength encre, site-wide
+
+Asked for, and it is a **deliberate override of most of the frames** rather
+than a drift being corrected — the same footing as the uppercase eyebrows and
+the gold bullet.
+
+**Sixteen accordions carry a Q&A**: eleven domain pages, the service page, the
+e-commerce page, the personal page and both article columns. Fourteen drew
+their answer at `encre/62` and two — service and personal — already drew it at
+full encre. All sixteen are `text-body text-encre` now.
+
+- **The comps genuinely disagree with each other**, which is why two were
+  already right: `12878:1083` on the Contentieux FAQ states
+  `rgba(18,42,76,0.62)`, while the service and personal frames state
+  `#122a4c`. The instruction settles it in favour of full encre everywhere.
+- Verified by driving each page — opening a row where the comp draws them all
+  closed — and reading the computed colour: **16 of 16 at `rgb(18, 42, 76)`**,
+  Inter 400 18/25.2.
+- The 640 answer cap is unchanged and still deliberate on the fourteen
+  standalone FAQs; the two article columns keep **no cap**, since their 831
+  measure is the article's own prose width.
+- A colour costs no layout, and that was checked rather than assumed: every
+  page height identical at 1920 and 375, no overflow at either.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.

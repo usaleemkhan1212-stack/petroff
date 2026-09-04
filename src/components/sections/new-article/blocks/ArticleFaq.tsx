@@ -60,9 +60,7 @@ export function ArticleFaq() {
 
             {/* No bottom padding: Figma closes the card on the answer's own
                 line box, 12 below the summary and nothing after. */}
-            <p className="text-body text-encre/62 mt-3">
-              {t.rich(`${key}.a`, proseTags)}
-            </p>
+            <p className="text-body text-encre mt-3">{t.rich(`${key}.a`, proseTags)}</p>
           </details>
         </li>
       ))}
