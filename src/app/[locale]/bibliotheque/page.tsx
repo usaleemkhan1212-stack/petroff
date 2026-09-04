@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Consultation } from "@/components/consultation/Consultation";
 import { CTAFinal } from "@/components/sections/bibliotheque/CTAFinal";
 import { Hero } from "@/components/sections/bibliotheque/Hero";
@@ -26,7 +27,9 @@ export default async function BibliothequePage({
   return (
     <>
       <Hero />
-      <Vitrine />
+      <ScrollOverlap>
+        <Vitrine />
+      </ScrollOverlap>
       <Resultats />
       <ParCategorie />
       <Parcours />

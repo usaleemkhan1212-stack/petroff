@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Consultation } from "@/components/consultation/Consultation";
 import { Cas } from "@/components/sections/le-cabinet/Cas";
 import { CTAFinal } from "@/components/sections/le-cabinet/CTAFinal";
@@ -49,7 +50,9 @@ export default async function CabinetPage({
   return (
     <>
       <Hero />
-      <Trust />
+      <ScrollOverlap>
+        <Trust />
+      </ScrollOverlap>
       <Methode />
       <Domaines />
       <Secteurs />

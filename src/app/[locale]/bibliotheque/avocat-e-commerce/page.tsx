@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Consultation } from "@/components/consultation/Consultation";
 import { ALireEnsuite } from "@/components/sections/ecommerce/ALireEnsuite";
 import { CommentCaMarche } from "@/components/sections/ecommerce/CommentCaMarche";
@@ -37,7 +38,9 @@ export default async function EcommercePage({
   return (
     <>
       <Hero />
-      <PrincipeIntro />
+      <ScrollOverlap>
+        <PrincipeIntro />
+      </ScrollOverlap>
       <NotreRole />
       <QuandConsulter />
       <CommentNousAidons />

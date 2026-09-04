@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Consultation } from "@/components/consultation/Consultation";
 import { Bib } from "@/components/sections/fiscal/Bib";
 import { CTAFinal } from "@/components/sections/fiscal/CTAFinal";
@@ -36,7 +37,9 @@ export default async function DroitFiscalPage({
   return (
     <>
       <Hero />
-      <Domaines />
+      <ScrollOverlap>
+        <Domaines />
+      </ScrollOverlap>
       <Tools />
       <Prestations />
       <Forfaits />

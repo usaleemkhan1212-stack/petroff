@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Consultation } from "@/components/consultation/Consultation";
 import { Lawcard } from "@/components/contact/Lawcard";
 import { EnBref } from "@/components/sections/personal/EnBref";
@@ -34,7 +35,9 @@ export default async function PersonalPage({
   return (
     <>
       <Hero />
-      <EnBref />
+      <ScrollOverlap>
+        <EnBref />
+      </ScrollOverlap>
       <Parcours />
       <Faq />
       <Lawcard />

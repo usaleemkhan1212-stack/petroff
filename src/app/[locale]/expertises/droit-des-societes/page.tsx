@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Consultation } from "@/components/consultation/Consultation";
 import { Bib } from "@/components/sections/societes/Bib";
 import { CTAFinal } from "@/components/sections/societes/CTAFinal";
@@ -37,7 +38,9 @@ export default async function SocietesPage({
   return (
     <>
       <Hero />
-      <Domaines />
+      <ScrollOverlap>
+        <Domaines />
+      </ScrollOverlap>
       <Tools />
       <Prestations />
       <Forfaits />

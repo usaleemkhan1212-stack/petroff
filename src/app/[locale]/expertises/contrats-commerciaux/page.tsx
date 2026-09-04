@@ -1,3 +1,4 @@
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Consultation } from "@/components/consultation/Consultation";
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
@@ -29,7 +30,9 @@ export default async function ContratsPage({
   return (
     <>
       <Hero />
-      <Domaines />
+      <ScrollOverlap>
+        <Domaines />
+      </ScrollOverlap>
       <Tools />
       <Prestations />
       <Forfaits />

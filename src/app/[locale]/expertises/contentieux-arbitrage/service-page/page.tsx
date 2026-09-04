@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Consultation } from "@/components/consultation/Consultation";
 import { Essentiel } from "@/components/sections/service/Essentiel";
 import { Faq } from "@/components/sections/service/Faq";
@@ -49,7 +50,9 @@ export default async function ServicePage({
   return (
     <>
       <Hero />
-      <Trust />
+      <ScrollOverlap>
+        <Trust />
+      </ScrollOverlap>
       <QuandFaireAppel />
       <Mission />
       <CommentNousProcedons />

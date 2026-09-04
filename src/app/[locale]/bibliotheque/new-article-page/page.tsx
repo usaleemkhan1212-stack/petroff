@@ -1,6 +1,7 @@
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ScrollOverlap } from "@/components/ScrollOverlap";
 import { Lawcard } from "@/components/contact/Lawcard";
 import { ALireEnsuite } from "@/components/sections/new-article/ALireEnsuite";
 import { CTAFinal } from "@/components/sections/new-article/CTAFinal";
@@ -45,7 +46,9 @@ export default async function NewArticlePage({
   return (
     <>
       <Hero />
-      <Corps />
+      <ScrollOverlap>
+        <Corps />
+      </ScrollOverlap>
 
       {/* `13544:34907` — the contact lawcard, a new top-level section
           between Corps and Cabinet. It replaces the `consult` form that
