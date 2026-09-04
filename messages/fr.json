@@ -3941,6 +3941,330 @@
       "title": "Une levée de fonds à structurer ?"
     }
   },
+  "LitigesPage": {
+    "hero": {
+      "breadcrumbLabel": "Fil d’Ariane",
+      "crumbHome": "Accueil",
+      "crumbExpertises": "Expertises",
+      "crumbCurrent": "Litiges entre associés",
+      "overline": "Expertises — litiges entre associés",
+      "title": "Débloquer, négocier, sortir — sans <hl>casser la valeur.</hl>",
+      "lead": "Blocages, abus de majorité ou de minorité, révocations, exclusions et retraits (art. 1843-4) : sécuriser vos droits et organiser une sortie au juste prix.",
+      "ctaPrimary": "Parler à un avocat",
+      "ctaSecondary": "Voir les forfaits",
+      "stats": {
+        "refere": {
+          "value": "48 h",
+          "label": "premières mesures en référé"
+        },
+        "dataRoom": {
+          "value": "Data room",
+          "label": "sécurisée, incluse"
+        },
+        "langues": {
+          "value": "4 langues",
+          "label": "FR · EN · 中文 · ES"
+        }
+      }
+    },
+    "domaines": {
+      "overline": "Le cœur du métier",
+      "title": "Sortir du blocage, préserver la valeur",
+      "lead": "Côté cédant, côté acquéreur ou côté fonds : nous structurons, négocions et sécurisons chaque étape de l’opération.",
+      "cta": "Voir le service",
+      "footnote": "Ces missions font l’objet d’un devis par phases (analyse → stratégie → exécution), avec budget plafonné par étape et point d’arbitrage à chaque fin de phase.",
+      "items": {
+        "blocages": {
+          "title": "Blocages & abus",
+          "description": "Abus de majorité, de minorité ou d’égalité, conflits d’intérêts, décisions contestables et paralysie des organes.",
+          "tags": ["Blocage"]
+        },
+        "exclusion": {
+          "title": "Exclusion & retrait",
+          "description": "Exclusion statutaire, retrait, cession forcée et fixation du prix par expert (art. 1843-4).",
+          "tags": ["1843-4"]
+        },
+        "revocation": {
+          "title": "Révocation de dirigeant",
+          "description": "Révocation pour juste motif, cessation des fonctions, indemnités et contentieux du mandat social.",
+          "tags": ["Mandat"]
+        },
+        "expertise": {
+          "title": "Expertise de gestion",
+          "description": "Expertise in futurum, expertise de gestion, questions écrites et accès aux documents sociaux.",
+          "tags": ["Preuve"]
+        },
+        "responsabilite": {
+          "title": "Responsabilité des dirigeants",
+          "description": "Faute de gestion, action sociale ut singuli, comblement de passif et responsabilité civile ou pénale.",
+          "tags": ["Responsabilité"]
+        },
+        "nullites": {
+          "title": "Nullités & contestations",
+          "description": "Contestation d’assemblées, de délibérations et de cessions ; nullités, vices du consentement et fraude.",
+          "tags": ["Nullité"]
+        },
+        "urgence": {
+          "title": "Mesures d’urgence",
+          "description": "Référé, administrateur provisoire, séquestre, expertise et mesures conservatoires pour préserver la société.",
+          "tags": ["Référé"]
+        },
+        "sortie": {
+          "title": "Sortie négociée",
+          "description": "Protocole transactionnel, rachat de titres, valorisation et clauses de non-concurrence — sans casser la valeur.",
+          "tags": ["Transaction"]
+        },
+        "dissolution": {
+          "title": "Dissolution judiciaire",
+          "description": "Dissolution pour mésentente paralysant la société, liquidation et partage lorsque la sortie est impossible.",
+          "tags": ["Sortie"]
+        }
+      }
+    },
+    "tools": {
+      "overline": "Legal tech — l’intendance en ligne",
+      "title": "Quatre outils pour préparer votre opération",
+      "lead": "Démo interactive — les résultats de la maquette sont fictifs.",
+      "result": "Démo interactive — cliquez pour voir un exemple de résultat.",
+      "items": {
+        "calendrier": {
+          "title": "Calendrier d’opération",
+          "badge": "60 sec",
+          "description": "Type d’opération → planning réaliste phase par phase, de la LOI au closing.",
+          "placeholder": "Ex. : cession de PME, levée seed…",
+          "submit": "Estimer"
+        },
+        "dataRoom": {
+          "title": "Check-list data room",
+          "badge": "Gratuit",
+          "description": "La liste des documents à réunir avant de vendre ou lever — par secteur.",
+          "placeholder": "Votre secteur — ex. SaaS, industrie…",
+          "submit": "Générer"
+        },
+        "dilution": {
+          "title": "Simulateur de dilution",
+          "badge": "Fondateurs",
+          "description": "Montant levé et valorisation → votre dilution et la table de cap post-levée.",
+          "placeholder": "Ex. : 1,5 M€ à 6 M€ pre-money",
+          "submit": "Simuler"
+        },
+        "nda": {
+          "title": "NDA en 5 minutes",
+          "badge": "Membre",
+          "description": "Un accord de confidentialité bilingue, généré et signé électroniquement.",
+          "placeholder": "Nom de la contrepartie",
+          "submit": "Préparer"
+        }
+      }
+    },
+    "prestations": {
+      "overline": "Gestion courante",
+      "title": "Le socle, industrialisé et au forfait",
+      "lead": "Les prestations récurrentes, produites avec nos outils et validées par un avocat — pour réserver le temps d’expertise à ce qui le mérite.",
+      "items": {
+        "nda": {
+          "title": "NDA & LOI standard",
+          "description": "Accords de confidentialité et lettres d’intention sur nos modèles éprouvés, bilingues.",
+          "tags": ["48 h"]
+        },
+        "housekeeping": {
+          "title": "Housekeeping pré-cession",
+          "description": "Mise au propre corporate avant data room : registres, délégations, conventions.",
+          "tags": ["Forfait"]
+        },
+        "formalites": {
+          "title": "Formalités post-closing",
+          "description": "Ordres de mouvement, enregistrements, publicités, mises à jour statutaires.",
+          "tags": ["Inclus GAP"]
+        },
+        "intragroupe": {
+          "title": "Contrats intragroupes",
+          "description": "Management fees, trésorerie centralisée, licences intragroupe documentées.",
+          "tags": ["Groupes"]
+        }
+      }
+    },
+    "forfaits": {
+      "overline": "Tarifs transparents",
+      "title": "Des forfaits fermés, affichés, sans surprise",
+      "lead": "Chaque forfait inclut un point visio avec un avocat. Montants indicatifs de maquette — tarif membre avec l’abonnement.",
+      "badge": "LE PLUS DEMANDÉ",
+      "footnote": "Au-delà des forfaits : devis fermé communiqué sous 24 h après un premier échange gratuit de 15 minutes.",
+      "items": {
+        "vdd": {
+          "title": "Vendor due diligence flash",
+          "price": "4 900 €",
+          "unit": "HT",
+          "flash": "Rapport red flags en 10 jours",
+          "features": [
+            "Audit corporate, contrats et social ciblé",
+            "Data room structurée et indexée",
+            "Rapport red flags priorisé",
+            "Restitution en visio (1 h)",
+            "Plan de remédiation avant mise en vente"
+          ],
+          "cta": "Démarrer"
+        },
+        "seed": {
+          "title": "Levée de fonds seed",
+          "price": "7 500 €",
+          "unit": "HT — à partir de",
+          "flash": "Term sheet → closing en 6 semaines",
+          "features": [
+            "Revue et négociation de la term sheet",
+            "Documentation d’investissement complète",
+            "Pacte d’associés investisseurs",
+            "BSA-AIR / OC-OCA le cas échéant",
+            "Closing et formalités inclus"
+          ],
+          "cta": "Démarrer"
+        },
+        "cession": {
+          "title": "Cession d’entreprise",
+          "price": "Sur devis",
+          "unit": "par phases plafonnées",
+          "flash": "Budget arbitré à chaque phase",
+          "features": [
+            "Phase 1 : préparation et data room",
+            "Phase 2 : négociation LOI et process",
+            "Phase 3 : SPA, GAP et closing",
+            "Modèles illimités",
+            "Earn-out et accompagnement post-closing"
+          ],
+          "cta": "Être rappelé"
+        }
+      }
+    },
+    "midCta": {
+      "text": "Un blocage à débloquer, une sortie à négocier ? <hl>15 minutes gratuites en visio avec un avocat.</hl>",
+      "cta": "Réserver un créneau"
+    },
+    "methode": {
+      "overline": "Méthode",
+      "title": "Rapide, digital, humain",
+      "items": {
+        "cadrage": {
+          "kicker": "Jour 0",
+          "title": "Visio de cadrage",
+          "description": "15 minutes gratuites. Vous repartez avec un diagnostic et un prix ferme."
+        },
+        "espace": {
+          "kicker": "Jour 0",
+          "title": "Espace client ouvert",
+          "description": "Questionnaire intelligent, pièces déposées dans un coffre sécurisé, avancement visible."
+        },
+        "redaction": {
+          "kicker": "Jour 1–5",
+          "title": "Rédaction & échanges",
+          "description": "Projets annotés en ligne, visios ciblées, versions comparées automatiquement."
+        },
+        "signature": {
+          "kicker": "Signature",
+          "title": "Signature & formalités",
+          "description": "Signature électronique qualifiée, dépôt au greffe, alertes des prochaines échéances."
+        }
+      }
+    },
+    "espace": {
+      "overline": "Espace client",
+      "title": "Votre dossier, en temps réel",
+      "lead": "Un portail sécurisé pensé comme un tableau de bord — pas comme une boîte mail qui déborde.",
+      "features": {
+        "avancement": {
+          "title": "Avancement en direct",
+          "description": "Chaque étape horodatée : rédaction, relecture, signature, greffe."
+        },
+        "coffre": {
+          "title": "Coffre-fort documentaire",
+          "description": "Statuts, pactes, PV d’AG, K-bis : tout au même endroit, partage contrôlé."
+        },
+        "alertes": {
+          "title": "Alertes d’échéances",
+          "description": "AG, dépôt des comptes, fin de mandats — prévenus avant, jamais après."
+        },
+        "langues": {
+          "title": "Quadrilingue",
+          "description": "Interface et échanges en français, anglais, chinois ou espagnol."
+        }
+      },
+      "mock": {
+        "label": "Aperçu de l’espace client",
+        "title": "Cession — Nova Robotics SAS",
+        "badge": "En cours",
+        "progressLabel": "Avancement du dossier",
+        "rows": {
+          "dataroom": {
+            "label": "Data room structurée",
+            "status": "Terminé ✓"
+          },
+          "loi": {
+            "label": "LOI signée — exclusivité",
+            "status": "Validé ✓"
+          },
+          "diligence": {
+            "label": "Due diligence acquéreur",
+            "status": "En cours"
+          },
+          "spa": {
+            "label": "SPA & garantie d’actif-passif",
+            "status": "À venir"
+          },
+          "closing": {
+            "label": "Closing & séquestre",
+            "status": "À venir"
+          }
+        }
+      }
+    },
+    "bib": {
+      "overline": "Bibliothèque — litiges entre associés",
+      "title": "Se renseigner d’abord, décider ensuite",
+      "cta": "Parcourir →",
+      "items": {
+        "guides": {
+          "count": "21",
+          "title": "Guides pratiques",
+          "description": "« Sortir d’une société bloquée », « Contester un abus de majorité », « Révocation de dirigeant : le guide »…"
+        },
+        "fiches": {
+          "count": "300+",
+          "title": "Fiches & FAQ",
+          "description": "« Comment se déroule l’expertise de l’article 1843-4 ? » et 299 autres questions sourcées."
+        },
+        "modeles": {
+          "count": "34+",
+          "title": "Modèles commentés",
+          "description": "Mise en demeure, requête en référé, protocole de sortie et clauses d’exclusion — commentés point par point."
+        }
+      }
+    },
+    "faq": {
+      "overline": "Questions fréquentes",
+      "title": "Avant de nous appeler",
+      "illustrationLabel": "Illustration — un pont parisien",
+      "items": {
+        "duree": {
+          "question": "Combien de temps dure un litige entre associés ?",
+          "answer": "De quelques semaines en référé à 12-24 mois au fond. Nous privilégions d’abord la négociation d’une sortie et les mesures d’urgence utiles, puis le contentieux si nécessaire. Notre outil vous situe le stade de votre dossier et les délais applicables."
+        },
+        "exclusion": {
+          "question": "Peut-on être exclu d’une société ?",
+          "answer": "Seulement si les statuts le prévoient, et dans les formes qu’ils fixent — à défaut, la sortie passe par une cession négociée ou forcée. Le prix se discute, et s’il ne se règle pas il est fixé par un expert au titre de l’article 1843-4. Nous intervenons sur les deux volets : la régularité de la procédure et la valorisation."
+        },
+        "refereFond": {
+          "question": "Faut-il agir en référé ou au fond ?",
+          "answer": "Le référé sert à préserver : administrateur provisoire, séquestre, expertise, mesures conservatoires — les premières mesures se prennent sous 48 h. Le fond tranche le droit : nullités, responsabilité des dirigeants, dissolution. Les deux se combinent souvent, le référé protégeant la société pendant que le fond se prépare."
+        },
+        "majoriteMinorite": {
+          "question": "Intervenez-vous pour la majorité comme pour la minorité ?",
+          "answer": "Oui, et l’abus se rencontre des deux côtés : abus de majorité, de minorité ou d’égalité. Nous intervenons pour le dirigeant révoqué comme pour l’associé qui conteste, en français, anglais, chinois ou espagnol — sur un même dossier, jamais pour les deux parties."
+        }
+      }
+    },
+    "ctaFinal": {
+      "title": "Un blocage ou un conflit entre associés ?"
+    }
+  },
   "BibliothequePage": {
     "hero": {
       "overline": "Bibliothèque juridique",

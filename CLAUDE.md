@@ -4351,6 +4351,101 @@ card's own clause list, the due diligence and data room missions, and the
 BSA-AIR and convertibles mission with the four working languages. **That takes
 the sign-off list from forty-nine drafted answers to fifty-two.**
 
+## Page 25 — Litiges entre associes (`/expertises/litiges-entre-associes`), frame `13986:881`
+
+1920x8619, honest again: its sections sum to 8188, which with the 72 header and
+359 footer is exactly 8619. The **twelfth domain detail page**, the fourth of
+the "NEW" family, and the one that makes **every domain in `domaines.ts` live**.
+
+`domaines.ts` already carried `{ key: "litigesAssocies", href:
+"/expertises/litiges-entre-associes" }`, so registering the path lit up the hub
+card and the dropdown at once — the Expertises submenu now lists **eleven
+domains**, this one sixth, plus the service page.
+
+Its sections live in `src/components/sections/litiges/`, its data in
+`src/lib/litiges.ts` and its copy under the **`LitigesPage`** namespace.
+
+| # | Section | Node | Figma | Rendered | delta |
+|---|---|---|---|---|---|
+| 1 | Hero | `13986:934` | 784 | 784.0 | **0** |
+| 2 | Domaines | `13986:1025` | 1627 | 1642.0 | +15.0 |
+| 3 | Tools | `13986:1174` | 890 | 894.7 | +4.7 |
+| 4 | Prestations | `13986:1230` | 755 | 759.9 | +4.9 |
+| 5 | Forfaits | `13986:1283` | 968 | 992.7 | +24.7 * |
+| 6 | MidCTA | `13986:1367` | 115 | 115.2 | +0.2 |
+| 7 | Methode | `13986:1372` | 550 | 552.3 | +2.3 |
+| 8 | Espace | `13986:1405` | 645 | 645.9 | +0.9 |
+| 9 | Bib | `13986:1475` | 666 | 668.7 | +2.7 |
+| 10 | FAQ | `13986:1498` | 638 | 671.5 | +33.5 ** |
+| 11 | CTAFinal | `13986:1591` | 550 | 550.4 | +0.4 |
+| **Sections** | | **8188** | **8278.3** | **+90.3 (1.1%)** |
+
+Page **8707** at 1920; no horizontal overflow at any of nine widths from 1920
+down to 320. \* the `Sur devis` price row overflowing its card. \*\* the
+deliberate answer cap plus four row borders.
+
+#### Reading a Domaines grid without a full export
+
+This page's tints and icons were derived with **small calls only**, which is
+worth keeping:
+
+- **`get_variable_defs` per ROW gives the tint set of that row.** Row 0 returned
+  Pale blue / Pale gold / Pale_Mint and no Pink; row 1 Pink / Pale blue / Pale
+  gold and no Mint; row 2 Pale_Mint / Pale gold / Pink and no Pale blue. That
+  is the family's blue / gold / mint, pink / blue / gold, mint / gold / pink —
+  three tiny calls instead of one 13k export.
+- **`download_assets` per TILE gives that card's icon**, and per row it does
+  NOT: `svgAssets` comes back in its own order, which is not the card order
+  (row 0 listed shuffle-arrows, file-lines, magnifier where the cards run
+  shuffle-arrows, magnifier, file-lines). All nine were checked tile by tile —
+  nine 1KB responses — and every one matches the family at 0.0000.
+
+#### Hero (`13986:934`) — 784 exactly
+
+- An 860 column, but **its title and lead carry their own measures inside it**:
+  746 and **712**, against the family's full-width title and 640 lead. Both are
+  capped rather than inherited.
+- Its marker is the family's, unchanged: **396x22 centred on the stage at
+  y=287**, measured live at 396 wide, x 762-1157, identical to the comp, with
+  `band_bottom − ink_bottom` 8 in Figma against 9 here.
+
+#### Assets — two new files
+
+- **`dialogue-bubbles.svg`** (170x122.778) — two overlapping speech bubbles,
+  apt for a disputes page. Eight paths where the nearest-sized stored file has
+  four, and nothing in the folder renders close to it.
+- **`pont-scene.svg`** (313x400.64) — a bridge over the Seine, the eleventh
+  arch scene. Diffing the exported arch against every stored scene gave **no
+  winner** (33.8 against a runner-up of 34.6, where a real match lands near
+  0-7), which is what proved it new. Unlike `passage-scene`, `download_assets`
+  returned this one **already flattened and free of painted ancestor rects** —
+  its only `rect` sits inside a clipPath and is inert. Worth knowing the tool
+  does both: check the export before assuming it needs stripping.
+- **`globe-plane.svg` reuses at 255x227 and the sibling file would not.** Its
+  stroke 5 in a 244x216.889 box renders **5.23** against Figma's 5 (4.5%),
+  where the 90x80 `globe-paper-plane-sm` would have drawn 14.2 — the same glyph
+  family, the wrong member. `key-lg` is at its exact native 195x120 and
+  `three-figures` stretches to 198x151 exactly, carrying no strokes.
+
+#### What differs from the sibling pages
+
+Prices **30 / 30 / 40**; Domaines tints and icons the family's; Prestations
+**blue / gold / mint / pink**; Espace tiles **blue / gold / pink / mint** with
+the bar 358 in a 592.5 track (60.5%). **Only its CTAFinal title is its own** —
+"Un blocage ou un conflit entre associés ?"
+
+**Its Domaines lead is the family's and is now plainly wrong here**: "Côté
+cédant, côté acquéreur ou côté fonds : nous structurons, négocions et
+sécurisons chaque étape de l'opération" describes an M&A page, not a disputes
+one. Built as drawn — **flag it**, along with the Tools, Prestations and
+Forfaits sections, which are character-identical across all four "NEW" frames.
+
+**Three of its four FAQ answers are drafts** — Figma supplies only the first.
+Composed strictly from facts already on this page: the Exclusion & retrait
+card's own art. 1843-4, the Mesures d'urgence card against the 48 h stat, and
+the Blocages & abus card with the four working languages. **That takes the
+sign-off list from fifty-two drafted answers to fifty-five.**
+
 ## The hero markers, checked against every frame
 
 Asked for: the hero headings' gold bar did not look like the design. Checked on
@@ -7657,6 +7752,7 @@ resolve to 17, unchanged.
   `/expertises/contrats-commerciaux`, `/expertises/droit-fiscal`,
   `/expertises/droit-social`, `/expertises/droit-des-societes`,
   `/expertises/fusions-acquisitions`, `/expertises/capital-risque`,
+  `/expertises/litiges-entre-associes`,
   `/expertises/immobilier-entreprise`, `/expertises/propriete-intellectuelle`,
   `/expertises/recouvrement`, `/bibliotheque/resultats`,
   `/expertises/contentieux-arbitrage/service-page`, `/le-cabinet/personal-page`,

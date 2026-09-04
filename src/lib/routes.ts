@@ -16,6 +16,7 @@ export const liveRoutes: readonly string[] = [
   "/expertises/droit-des-societes",
   "/expertises/fusions-acquisitions",
   "/expertises/capital-risque",
+  "/expertises/litiges-entre-associes",
   "/expertises/immobilier-entreprise",
   "/expertises/propriete-intellectuelle",
   "/expertises/recouvrement",

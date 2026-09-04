@@ -1,0 +1,21 @@
+<!--
+  Two overlapping speech bubbles - the Litiges entre associes hero. Its two
+  black fills are illustration shading, not brand colour, so they stay raw
+  hex as paris-scene.svg does.
+-->
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="170" height="122.778" viewBox="0 0 170 122.778" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<path id="Vector" d="M98.2222 15.1111H24.5556C18.2963 15.1111 13.2222 20.1852 13.2222 26.4444V71.7778C13.2222 78.037 18.2963 83.1111 24.5556 83.1111H98.2222C104.481 83.1111 109.556 78.037 109.556 71.7778V26.4444C109.556 20.1852 104.481 15.1111 98.2222 15.1111Z" fill="var(--color-pale-periwinkle)"/>
+<path id="Vector_2" d="M43.4444 83.1111L35.8889 103.889L62.3333 83.1111H43.4444Z" fill="var(--color-pale-periwinkle)"/>
+<g id="Vector_3">
+<path d="M37.7778 37.7778H85ZM37.7778 52.8889H69.8889Z" fill="black"/>
+<path d="M37.7778 37.7778H85M37.7778 52.8889H69.8889" stroke="var(--color-encre)" stroke-width="6" stroke-linecap="round"/>
+</g>
+<path id="Vector_4" d="M147.333 49.1111H102C95.7408 49.1111 90.6667 54.1852 90.6667 60.4444V86.8889C90.6667 93.1481 95.7408 98.2222 102 98.2222H147.333C153.593 98.2222 158.667 93.1481 158.667 86.8889V60.4444C158.667 54.1852 153.593 49.1111 147.333 49.1111Z" fill="var(--color-gold)"/>
+<path id="Vector_5" d="M132.222 98.2222L141.667 115.222L115.222 98.2222H132.222Z" fill="var(--color-gold)"/>
+<g id="Vector_6">
+<path d="M107.667 68H141.667Z" fill="black"/>
+<path d="M107.667 68H141.667" stroke="var(--color-lilas)" stroke-width="6" stroke-linecap="round"/>
+</g>
+</g>
+</svg>
