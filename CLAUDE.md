@@ -3815,11 +3815,12 @@ sign-off list drops from forty-six to **forty-three**.
 - The same is true of `personal/EnBref.tsx` and `le-cabinet.ts`, which both
   carry the href as data.
 - Seven assets were orphaned by the deletion and left in the tree per the
-  standing orphan policy. **Six of them are back in use**: `branch-split`,
-  `chart-line-up` and `rocket` returned with the Droit des societes page, and
+  standing orphan policy. **All seven are back in use**: `branch-split`,
+  `chart-line-up` and `rocket` returned with the Droit des societes page,
   `growth-chart-lg`, `key-lg` and `louvre-pyramid-lg` with the rebuilt
-  Fusions-acquisitions page (Page 23). **Only `haussmann-scene.svg` is still an
-  orphan from this deletion.**
+  Fusions-acquisitions page (Page 23), and `haussmann-scene` with
+  Capital-risque (Page 24). **This deletion now leaves no orphans at all** —
+  which is the argument for the orphan policy itself.
 - **The route itself is back** — see Page 23. `12873:881` stays deleted; the
   page was rebuilt from a new frame, `13966:881`.
 
@@ -4253,6 +4254,102 @@ Composed strictly from facts already on this page: the Cessions and Garanties
 d'actif-passif cards, the due diligence mission, and the Joint-ventures
 cross-border mission with the four working languages. **That takes the sign-off
 list from forty-six drafted answers to forty-nine.**
+
+## Page 24 — Capital-risque & private equity (`/expertises/capital-risque`), frame `13973:881`
+
+1920x8644, and honest again: its sections sum to 8213, which with the 72 header
+and 359 footer is exactly 8644. The **eleventh domain detail page**, and the
+third of the "NEW" family built from the Droit des societes frame.
+
+`domaines.ts` already carried `{ key: "capitalRisque", href:
+"/expertises/capital-risque" }`, so registering the path lit up the hub card and
+the dropdown at once — the Expertises submenu now lists **ten domains**, this
+one third, plus the service page.
+
+Its sections live in `src/components/sections/capital/`, its data in
+`src/lib/capital.ts` and its copy under the **`CapitalPage`** namespace.
+
+| # | Section | Node | Figma | Rendered | delta |
+|---|---|---|---|---|---|
+| 1 | Hero | `13973:934` | 784 | 784.0 | **0** |
+| 2 | Domaines | `13973:1025` | 1652 | 1667.2 | +15.2 |
+| 3 | Tools | `13973:1174` | 890 | 894.7 | +4.7 |
+| 4 | Prestations | `13973:1230` | 755 | 759.9 | +4.9 |
+| 5 | Forfaits | `13973:1283` | 968 | 992.7 | +24.7 * |
+| 6 | MidCTA | `13973:1367` | 115 | 115.2 | +0.2 |
+| 7 | Methode | `13973:1372` | 550 | 552.3 | +2.3 |
+| 8 | Espace | `13973:1405` | 645 | 645.9 | +0.9 |
+| 9 | Bib | `13973:1475` | 641 | 643.5 | +2.5 |
+| 10 | FAQ | `13973:1498` | 663 | 696.7 | +33.7 ** |
+| 11 | CTAFinal | `13973:1591` | 550 | 550.4 | +0.4 |
+| **Sections** | | **8213** | **8303.5** | **+90.5 (1.1%)** |
+
+Page **8732** at 1920; no horizontal overflow at any of nine widths from 1920
+down to 320. \* the `Sur devis` price row overflowing its card, the identical
++24.7 three sibling pages record. \*\* the deliberate answer cap plus four row
+borders.
+
+#### The "NEW" family shares three whole sections
+
+`13979` (Droit des societes), `13966` (Fusions-acquisitions) and this one were
+all built from the same base frame, and **Tools, Prestations and Forfaits are
+character-identical across all three** — same copy, same four tools, same three
+forfaits down to every feature line. Their nine Domaines icons are the same nine
+in the same order at 0.0000, with the same tint sequence. Only the Hero, the
+Domaines copy, the Bib counts, MidCTA, FAQ and the CTAFinal title differ.
+**Flag it**: a "Cession d'entreprise" forfait on a capital-risque page is
+plausible but unverified.
+
+#### Hero (`13973:934`) — 784 exactly
+
+- Its inner column is **951**, the widest of the family (against 903 and 860),
+  and the title still runs to three lines.
+- Its marker is the family's, unchanged: **396x22 centred on the stage at
+  y=287**, i.e. 5.8235em x 0.3235em at `bottom-[0.0624em]`. Measured live at
+  396 wide, x 762-1157, identical to the comp, with `band_bottom −
+  ink_bottom` 8 in Figma against 9 here. The 24px difference in absolute y is
+  the documented glyph offset.
+- The chunk closes the title, so no `-z-10` dance.
+
+#### Assets — one fork, and the deletion's last orphan comes home
+
+**`haussmann-buildings-lg.svg` is the one new file, and only the stroke says
+so.** Its 19 paths match the stored 116x93 `haussmann-buildings.svg` at 0.0009
+and every fill is identical, but Figma keeps `stroke-width` **4** at this
+217x174 box, where rendering the small file here would draw it at 7.48 — **87%
+too thick**. Same reason the three `-lg` forks exist.
+
+Two nearby boxes went the other way, and the arithmetic is the whole decision:
+
+| file | native | box | stroke rendered | Figma | verdict |
+|---|---|---|---|---|---|
+| `haussmann-buildings` | 116 | 217 | 7.48 | 4 | **fork (87%)** |
+| `growth-chart-lg` | 238 | 224 | 6.59 | 7 | reuse (5.9%) |
+| `coin-stack-wide` | 170 | 183 | 7.54 | 7 | reuse (7.6%) |
+
+**`haussmann-scene.svg` reuses at its native 312.5x400 for the FAQ arch** —
+identified by exporting the arch and diffing against every stored scene at
+**0.04**, against a runner-up of 35.76. It was the last file still orphaned by
+the M&A page's deletion, so **that deletion now leaves no orphans at all**.
+
+Everything else reuses: `pen-nib` at its documented 103.125x150,
+`eiffel-tower-colour` 140x271, `laurel-branch-mint` mirrored at its native box,
+both sparkles, and all thirteen 26px icons at 0.0000.
+
+#### What differs from the sibling pages
+
+- Prices **30 / 30 / 40**; Domaines tints **blue / gold / mint / pink, blue /
+  gold / mint, gold / pink** with each CTA pill taking its own card's tint,
+  verified card by card at runtime; Prestations **blue / gold / mint / pink**;
+  Espace tiles **blue / gold / pink / mint**, sampled from the node render, with
+  the bar 358 in a 592.5 track (60.5%).
+- **Only its CTAFinal title is its own** — "Une levée de fonds à structurer ?"
+
+**Three of its four FAQ answers are drafts** — Figma supplies only the first.
+Composed strictly from facts already on this page: the Pactes d'investisseurs
+card's own clause list, the due diligence and data room missions, and the
+BSA-AIR and convertibles mission with the four working languages. **That takes
+the sign-off list from forty-nine drafted answers to fifty-two.**
 
 ## The hero markers, checked against every frame
 
@@ -7559,7 +7656,7 @@ resolve to 17, unchanged.
   Live today: `/`, `/expertises`, `/expertises/contentieux-arbitrage`,
   `/expertises/contrats-commerciaux`, `/expertises/droit-fiscal`,
   `/expertises/droit-social`, `/expertises/droit-des-societes`,
-  `/expertises/fusions-acquisitions`,
+  `/expertises/fusions-acquisitions`, `/expertises/capital-risque`,
   `/expertises/immobilier-entreprise`, `/expertises/propriete-intellectuelle`,
   `/expertises/recouvrement`, `/bibliotheque/resultats`,
   `/expertises/contentieux-arbitrage/service-page`, `/le-cabinet/personal-page`,

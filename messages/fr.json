@@ -3617,6 +3617,330 @@
       "title": "Une cession ou une acquisition à mener ?"
     }
   },
+  "CapitalPage": {
+    "hero": {
+      "breadcrumbLabel": "Fil d’Ariane",
+      "crumbHome": "Accueil",
+      "crumbExpertises": "Expertises",
+      "crumbCurrent": "Capital-risque & private equity",
+      "overline": "Expertises — capital-risque & private equity",
+      "title": "Lever et investir — au bon prix, aux <hl>bonnes conditions.</hl>",
+      "lead": "Du term sheet à la sortie : levées de fonds, actions de préférence, pactes d’investisseurs et management packages, pilotés par phases avec data room sécurisée et budget maîtrisé.",
+      "ctaPrimary": "Parler à un avocat",
+      "ctaSecondary": "Voir les forfaits",
+      "stats": {
+        "delai": {
+          "value": "3–6 mois",
+          "label": "du term sheet au closing"
+        },
+        "dataRoom": {
+          "value": "Data room",
+          "label": "sécurisée, incluse"
+        },
+        "langues": {
+          "value": "4 langues",
+          "label": "FR · EN · 中文 · ES"
+        }
+      }
+    },
+    "domaines": {
+      "overline": "Le cœur du métier",
+      "title": "Vos opérations, du term sheet à la sortie",
+      "lead": "Côté cédant, côté acquéreur ou côté fonds : nous structurons, négocions et sécurisons chaque étape de l’opération.",
+      "cta": "Voir le service",
+      "footnote": "Ces missions font l’objet d’un devis par phases (analyse → stratégie → exécution), avec budget plafonné par étape et point d’arbitrage à chaque fin de phase.",
+      "items": {
+        "levees": {
+          "title": "Levées de fonds",
+          "description": "Seed à série C : préparation, term sheet, valorisation, data room et négociation avec les investisseurs.",
+          "tags": ["VC / PE"]
+        },
+        "dueDiligence": {
+          "title": "Due diligence investisseur",
+          "description": "Audit juridique côté investisseur ou vendor : corporate, PI, contrats, social — rapport red flags priorisé.",
+          "tags": ["DD"]
+        },
+        "termSheet": {
+          "title": "Term sheet & valorisation",
+          "description": "Term sheet, valorisation pré/post-money, table de capitalisation et structuration du calendrier de levée.",
+          "tags": ["Valorisation"]
+        },
+        "preference": {
+          "title": "Actions de préférence",
+          "description": "Ratchet, liquidation preference, anti-dilution et droits de gouvernance attachés aux actions de préférence.",
+          "tags": ["Preferred"]
+        },
+        "pactes": {
+          "title": "Pactes d’investisseurs",
+          "description": "Gouvernance, information, préemption, tag & drag-along, clauses de sortie — équilibre fondateurs / investisseurs.",
+          "tags": ["Pacte"]
+        },
+        "management": {
+          "title": "Management & BSPCE",
+          "description": "BSPCE, AGA, stock-options, sweet equity et relution — alignement des dirigeants et rétention des talents.",
+          "tags": ["BSPCE"]
+        },
+        "bsaAir": {
+          "title": "BSA-AIR & convertibles",
+          "description": "Instruments d’amorçage : BSA-AIR, obligations convertibles (OC/OCA), bons de souscription et calendrier de conversion.",
+          "tags": ["Amorçage"]
+        },
+        "tours": {
+          "title": "Tours de table & bridges",
+          "description": "Séries A, B, C, bridges et extensions : coordination des investisseurs, pro rata et clauses de nouveaux tours.",
+          "tags": ["Série A-C"]
+        },
+        "liquidite": {
+          "title": "Liquidité & sorties",
+          "description": "Cession secondaire, trade sale, IPO ou rachat : préparation de la sortie, clauses de liquidité et closing coordonné.",
+          "tags": ["Exit"]
+        }
+      }
+    },
+    "tools": {
+      "overline": "Legal tech — l’intendance en ligne",
+      "title": "Quatre outils pour préparer votre opération",
+      "lead": "Démo interactive — les résultats de la maquette sont fictifs.",
+      "result": "Démo interactive — cliquez pour voir un exemple de résultat.",
+      "items": {
+        "calendrier": {
+          "title": "Calendrier d’opération",
+          "badge": "60 sec",
+          "description": "Type d’opération → planning réaliste phase par phase, de la LOI au closing.",
+          "placeholder": "Ex. : cession de PME, levée seed…",
+          "submit": "Estimer"
+        },
+        "dataRoom": {
+          "title": "Check-list data room",
+          "badge": "Gratuit",
+          "description": "La liste des documents à réunir avant de vendre ou lever — par secteur.",
+          "placeholder": "Votre secteur — ex. SaaS, industrie…",
+          "submit": "Générer"
+        },
+        "dilution": {
+          "title": "Simulateur de dilution",
+          "badge": "Fondateurs",
+          "description": "Montant levé et valorisation → votre dilution et la table de cap post-levée.",
+          "placeholder": "Ex. : 1,5 M€ à 6 M€ pre-money",
+          "submit": "Simuler"
+        },
+        "nda": {
+          "title": "NDA en 5 minutes",
+          "badge": "Membre",
+          "description": "Un accord de confidentialité bilingue, généré et signé électroniquement.",
+          "placeholder": "Nom de la contrepartie",
+          "submit": "Préparer"
+        }
+      }
+    },
+    "prestations": {
+      "overline": "Gestion courante",
+      "title": "Le socle, industrialisé et au forfait",
+      "lead": "Les prestations récurrentes, produites avec nos outils et validées par un avocat — pour réserver le temps d’expertise à ce qui le mérite.",
+      "items": {
+        "nda": {
+          "title": "NDA & LOI standard",
+          "description": "Accords de confidentialité et lettres d’intention sur nos modèles éprouvés, bilingues.",
+          "tags": ["48 h"]
+        },
+        "housekeeping": {
+          "title": "Housekeeping pré-cession",
+          "description": "Mise au propre corporate avant data room : registres, délégations, conventions.",
+          "tags": ["Forfait"]
+        },
+        "formalites": {
+          "title": "Formalités post-closing",
+          "description": "Ordres de mouvement, enregistrements, publicités, mises à jour statutaires.",
+          "tags": ["Inclus GAP"]
+        },
+        "intragroupe": {
+          "title": "Contrats intragroupes",
+          "description": "Management fees, trésorerie centralisée, licences intragroupe documentées.",
+          "tags": ["Groupes"]
+        }
+      }
+    },
+    "forfaits": {
+      "overline": "Tarifs transparents",
+      "title": "Des forfaits fermés, affichés, sans surprise",
+      "lead": "Chaque forfait inclut un point visio avec un avocat. Montants indicatifs de maquette — tarif membre avec l’abonnement.",
+      "badge": "LE PLUS DEMANDÉ",
+      "footnote": "Au-delà des forfaits : devis fermé communiqué sous 24 h après un premier échange gratuit de 15 minutes.",
+      "items": {
+        "vdd": {
+          "title": "Vendor due diligence flash",
+          "price": "4 900 €",
+          "unit": "HT",
+          "flash": "Rapport red flags en 10 jours",
+          "features": [
+            "Audit corporate, contrats et social ciblé",
+            "Data room structurée et indexée",
+            "Rapport red flags priorisé",
+            "Restitution en visio (1 h)",
+            "Plan de remédiation avant mise en vente"
+          ],
+          "cta": "Démarrer"
+        },
+        "seed": {
+          "title": "Levée de fonds seed",
+          "price": "7 500 €",
+          "unit": "HT — à partir de",
+          "flash": "Term sheet → closing en 6 semaines",
+          "features": [
+            "Revue et négociation de la term sheet",
+            "Documentation d’investissement complète",
+            "Pacte d’associés investisseurs",
+            "BSA-AIR / OC-OCA le cas échéant",
+            "Closing et formalités inclus"
+          ],
+          "cta": "Démarrer"
+        },
+        "cession": {
+          "title": "Cession d’entreprise",
+          "price": "Sur devis",
+          "unit": "par phases plafonnées",
+          "flash": "Budget arbitré à chaque phase",
+          "features": [
+            "Phase 1 : préparation et data room",
+            "Phase 2 : négociation LOI et process",
+            "Phase 3 : SPA, GAP et closing",
+            "Modèles illimités",
+            "Earn-out et accompagnement post-closing"
+          ],
+          "cta": "Être rappelé"
+        }
+      }
+    },
+    "midCta": {
+      "text": "Une levée à préparer, un tour à structurer ? <hl>15 minutes gratuites en visio avec un avocat.</hl>",
+      "cta": "Réserver un créneau"
+    },
+    "methode": {
+      "overline": "Méthode",
+      "title": "Rapide, digital, humain",
+      "items": {
+        "cadrage": {
+          "kicker": "Jour 0",
+          "title": "Visio de cadrage",
+          "description": "15 minutes gratuites. Vous repartez avec un diagnostic et un prix ferme."
+        },
+        "espace": {
+          "kicker": "Jour 0",
+          "title": "Espace client ouvert",
+          "description": "Questionnaire intelligent, pièces déposées dans un coffre sécurisé, avancement visible."
+        },
+        "redaction": {
+          "kicker": "Jour 1–5",
+          "title": "Rédaction & échanges",
+          "description": "Projets annotés en ligne, visios ciblées, versions comparées automatiquement."
+        },
+        "signature": {
+          "kicker": "Signature",
+          "title": "Signature & formalités",
+          "description": "Signature électronique qualifiée, dépôt au greffe, alertes des prochaines échéances."
+        }
+      }
+    },
+    "espace": {
+      "overline": "Espace client",
+      "title": "Votre dossier, en temps réel",
+      "lead": "Un portail sécurisé pensé comme un tableau de bord — pas comme une boîte mail qui déborde.",
+      "features": {
+        "avancement": {
+          "title": "Avancement en direct",
+          "description": "Chaque étape horodatée : rédaction, relecture, signature, greffe."
+        },
+        "coffre": {
+          "title": "Coffre-fort documentaire",
+          "description": "Statuts, pactes, PV d’AG, K-bis : tout au même endroit, partage contrôlé."
+        },
+        "alertes": {
+          "title": "Alertes d’échéances",
+          "description": "AG, dépôt des comptes, fin de mandats — prévenus avant, jamais après."
+        },
+        "langues": {
+          "title": "Quadrilingue",
+          "description": "Interface et échanges en français, anglais, chinois ou espagnol."
+        }
+      },
+      "mock": {
+        "label": "Aperçu de l’espace client",
+        "title": "Cession — Nova Robotics SAS",
+        "badge": "En cours",
+        "progressLabel": "Avancement du dossier",
+        "rows": {
+          "dataroom": {
+            "label": "Data room structurée",
+            "status": "Terminé ✓"
+          },
+          "loi": {
+            "label": "LOI signée — exclusivité",
+            "status": "Validé ✓"
+          },
+          "diligence": {
+            "label": "Due diligence acquéreur",
+            "status": "En cours"
+          },
+          "spa": {
+            "label": "SPA & garantie d’actif-passif",
+            "status": "À venir"
+          },
+          "closing": {
+            "label": "Closing & séquestre",
+            "status": "À venir"
+          }
+        }
+      }
+    },
+    "bib": {
+      "overline": "Bibliothèque — capital-risque & private equity",
+      "title": "Se renseigner d’abord, décider ensuite",
+      "cta": "Parcourir →",
+      "items": {
+        "guides": {
+          "count": "18",
+          "title": "Guides pratiques",
+          "description": "« Réussir sa levée seed », « Pacte d’associés : le guide », « Management package mode d’emploi »…"
+        },
+        "fiches": {
+          "count": "240+",
+          "title": "Fiches & FAQ",
+          "description": "« Qu’est-ce qu’une action de préférence ? » et 239 autres questions sourcées."
+        },
+        "modeles": {
+          "count": "40+",
+          "title": "Modèles commentés",
+          "description": "Term sheet, pacte d’investisseurs, BSA-AIR, clauses de liquidité — commentés point par point."
+        }
+      }
+    },
+    "faq": {
+      "overline": "Questions fréquentes",
+      "title": "Avant de nous appeler",
+      "illustrationLabel": "Illustration — un immeuble haussmannien",
+      "items": {
+        "duree": {
+          "question": "Combien de temps dure une levée de fonds ?",
+          "answer": "Comptez 3 à 6 mois entre les premiers contacts et le closing : préparation et term sheet, due diligence investisseur, puis négociation du pacte et de la documentation d’investissement. Notre outil de calendrier vous donne une estimation par type de tour — et le pilotage par phases évite les tunnels."
+        },
+        "pacte": {
+          "question": "À quoi sert un pacte d’investisseurs ?",
+          "answer": "Il fixe l’équilibre entre fondateurs et investisseurs : gouvernance et droits d’information, préemption, tag et drag-along, et les clauses de sortie. C’est là que se règlent à l’avance les décisions qui, sans lui, se négocieraient dans l’urgence — et il se lit avec les droits attachés aux actions de préférence."
+        },
+        "leveur": {
+          "question": "Faut-il un avocat en plus de son leveur de fonds ?",
+          "answer": "Les deux rôles ne se recouvrent pas : le leveur ouvre le marché et amène les investisseurs, l’avocat rédige et négocie ce qui vous engage — term sheet, pacte, actions de préférence, BSPCE et documentation d’investissement. Notre due diligence investisseur et notre data room préparent le tour en amont, ce qui raccourcit la négociation."
+        },
+        "fondsEtrangers": {
+          "question": "Travaillez-vous avec des fonds d’investissement étrangers ?",
+          "answer": "Oui. La documentation d’investissement, les pactes et les instruments d’amorçage — BSA-AIR, obligations convertibles — se négocient en français, anglais, chinois ou espagnol, et la data room est partagée depuis l’espace client."
+        }
+      }
+    },
+    "ctaFinal": {
+      "title": "Une levée de fonds à structurer ?"
+    }
+  },
   "BibliothequePage": {
     "hero": {
       "overline": "Bibliothèque juridique",
