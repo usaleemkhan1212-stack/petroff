@@ -4749,11 +4749,11 @@ now carries two children.
 - **Principe + intro** measures **1198.67 against Figma's 1197**, with the
   illustration exactly 537.5x414 and the dark card exactly 611x414. Its left
   column profiles 17 ink bands in both renders, every one within 1-2px.
-- Its row is 610 + 24 + 611 = the container's whole 1245, so it only holds
-  together at **`xl`**; below that it stacks in DOM order — illustration,
-  headline, paragraphs, CTA, then the card. At `xl` the intro column is
-  `items-end` so the panel's right edge closes the column; once stacked it is
-  `items-start` and aligns with the copy.
+- **Its row is 679 + 96 + 470**, not the 610 + 24 + 611 first built — see the
+  standard-row note below. It holds together at **`xl`**; below that it stacks
+  in DOM order — illustration, headline, paragraphs, CTA, then the card. At
+  `xl` the intro column is `items-end` so the illustration's right edge closes
+  the column; once stacked it is `items-start` and aligns with the copy.
 - **Its illustration is a second Paris skyline, not the Bibliotheque hero's.**
   Same 450x414 panel with the same corner radii, and the same two stars at the
   same sizes (31.8656 and 20.7127), but a **narrower Eiffel tower** (80x243.1
@@ -7887,6 +7887,49 @@ the article prose — Figma composites mixed leading per line where the browser
 takes the larger box — and correctness wins over the 10.8.
 
 No horizontal overflow at 1920, 1280, 768, 375 or 320.
+
+## 679 + 470 is the site's standard two-column row
+
+Reported on the e-commerce **Principe + intro**, and it is a rule rather than
+one section's numbers: wherever a body column sits beside a card or a
+photograph, Figma draws the pair **679 and 470**, and they take **no gap** —
+679 + 470 is 1149 inside the container's 1245, which `justify-between` spaces
+by exactly **96**.
+
+**Swept all 24 routes for it** rather than fixing the one reported: every
+side-by-side pair whose two children plus their gap fill the 1245 band, read at
+1920. Seven sections carry this structure and **six were already right** — Le
+Cabinet's Domaines and Secteurs, the personal page's En bref, and the service
+page's Quand faire appel, Mission (as 679+470) and Comprendre le droit.
+
+The seventh, `13331:11415`, was built **610 + 24 + 611**, which was the only
+place on the site that pair was wrong. Fixed: the intro column is `xl:w-169.75`
+and the dark card `xl:w-117.5 xl:shrink-0`, with `xl:justify-between xl:gap-0`
+on the row. After, every band is Figma's own number — illustration at 0,
+overline **450**, title 486.8 against 487, first paragraph 660.8 against 661,
+button 955.5 against 954, row 1006.7 against 1005 — the card lands at
+**x=1112.5** (Figma's 775 inside the container) and the illustration at
+**141.5** inside the column, both exact. Section 1198.7 against 1197, page
+17593, no overflow at any of eight widths from 1920 down to 320.
+
+**Every other two-column row the sweep flagged is a different structure with
+its own frame numbers**, and none of them should be pulled to 679/470:
+
+| pair | where |
+|---|---|
+| 590.5 + 12 + 642.5 | Espace, on all ten domain pages |
+| 590.5 + 64 + 590.5 | Le Cabinet Dirigeants, ALireEnsuite's sub-categories |
+| 598.5 + 48 + 598.5 | three e-commerce grids |
+| 604.5 + 36 + 604.5 | the e-commerce masonry |
+| 574.5 + 96 + 574.5 | the service page's two `LinkRow` lists |
+| 612.5 + 20 + 612.5 | the home OpenData cards |
+| 814 + 48 + 383 | every standalone FAQ (the documented 1251-in-1245 squeeze) |
+| 679 + 48 + 511 | the service page's De l'analyse |
+| 470 + 64 + 711 | the service page's Essentiel |
+| 679 + 289 + 277 | the personal page's Parcours |
+| 661 + 134 + 450 | both MidCTA strips |
+| 221 + 64 + 830 | the Lawcard |
+| 656/670 + 36 + 553/539 | the article, service and Le Cabinet hero stages |
 
 ## Hard rules
 

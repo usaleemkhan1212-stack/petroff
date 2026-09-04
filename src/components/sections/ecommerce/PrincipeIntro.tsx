@@ -10,12 +10,18 @@ import { Container } from "@/components/ui/Container";
 const paragraphs = ["p1", "p2", "p3"] as const;
 
 /**
- * Figma's `13331:11415`: a 610px intro column beside the dark "Notre principe"
- * card, on white.
+ * Figma's `13331:11415`: a **679** intro column beside the **470** dark
+ * "Notre principe" card, on white.
  *
- * The two are 610 + 24 + 611 = the container's full 1245, so the row only
- * holds together at `xl`; below that it stacks in DOM order — illustration,
- * headline, paragraphs, CTA, then the card.
+ * **That 679 + 470 pair is the site's standard two-column row**, and it always
+ * takes no gap: 679 + 470 is 1149 inside the container's 1245, which
+ * `justify-between` spaces by exactly 96. Six other sections are built this way
+ * — Le Cabinet's Domaines and Secteurs, the personal page's En bref, and three
+ * on the service page. This one had been built 610 + 24 + 611, which is the
+ * only place on the site that pair was wrong.
+ *
+ * It holds together at `xl` only; below that it stacks in DOM order —
+ * illustration, headline, paragraphs, CTA, then the card.
  *
  * The illustration is a **second Paris skyline**, not the Bibliotheque hero's:
  * same 450x414 panel and the same two stars, but a narrower Eiffel tower, five
@@ -29,10 +35,10 @@ export function PrincipeIntro() {
   return (
     <section className="bg-white">
       <Container className="py-16 lg:py-24">
-        <div className="flex flex-col gap-6 xl:flex-row xl:items-start">
+        <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between xl:gap-0">
           {/* Figma's `intro`: right-aligned at xl so the panel's right edge
               closes the column; left-aligned once the row stacks. */}
-          <div className="flex flex-col items-start gap-9 xl:w-152.5 xl:shrink-0 xl:items-end">
+          <div className="flex flex-col items-start gap-9 xl:w-169.75 xl:shrink-0 xl:items-end">
             {/*
               537.5 wide — the 450 panel plus the polaroid overhanging its left
               edge. It needs a 601px viewport to fit, so it appears from `sm`.
@@ -96,7 +102,7 @@ export function PrincipeIntro() {
             stretching to the row and leaving nothing to stick. Below `xl` the
             two stack, so it goes back to static.
           */}
-          <div className="bg-encre flex flex-col items-start gap-6 rounded-[22px] p-6 sm:p-8 lg:p-12 xl:sticky xl:top-6 xl:h-103.5 xl:min-w-px xl:flex-1 xl:self-start">
+          <div className="bg-encre flex flex-col items-start gap-6 rounded-[22px] p-6 sm:p-8 lg:p-12 xl:sticky xl:top-6 xl:h-103.5 xl:w-117.5 xl:shrink-0 xl:self-start">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-4">
                 <p className="text-overline font-poppins text-gold uppercase">
