@@ -18,8 +18,8 @@ const memberships = ["paris", "aamti"] as const;
  * container. The side column carries its own `pr-96`, so its content is 233
  * wide and its right edge sits 96 in from the container.
  *
- * It splits at `xl`: 679 + 329 needs 1008, which the container cannot give at
- * `lg`.
+ * It splits at `xl`: 679 + 277 needs 956 plus a real gap, which the container
+ * cannot give at `lg`.
  */
 export function Parcours() {
   const t = useTranslations("PersonalPage.parcours");
@@ -59,7 +59,11 @@ export function Parcours() {
               ))}
             </ul>
 
-            <div className="flex min-w-0 flex-col gap-6 xl:w-82.25 xl:pr-24">
+            {/* Figma's `vigil` column is **277** wide at x=968, so it closes on
+                the container's right edge. Its Barreaux and Membre blocks hug
+                narrower (233 and 125) because their own copy is shorter — that
+                233 is a child's hug width, not the column's. */}
+            <div className="flex min-w-0 flex-col gap-6 xl:w-69.25">
               <div className="flex flex-col">
                 <p className="text-overline font-poppins text-brique uppercase">
                   {t("barreaux.title")}
@@ -70,12 +74,11 @@ export function Parcours() {
                       <p className="text-small-strong text-encre">
                         {t(`barreaux.${key}.name`)}
                       </p>
-                      {/* Figma fits these on one line, and the longer one
-                          needs **exactly** the 233 the column gives it — so
-                          sub-pixel rounding is all that separates fitting from
-                          wrapping, as on the privacy page's TOC. Pinned at the
-                          width the comp specifies; free to wrap once stacked. */}
-                      <p className="text-small text-encre/62 xl:whitespace-nowrap">
+                      {/* One line, with room now: the longer of the two needs
+                          233 in the column's 277. It used to be pinned with a
+                          nowrap against a 233 column, which was that child
+                          frame's own hug width rather than the column's. */}
+                      <p className="text-small text-encre/62">
                         {t(`barreaux.${key}.detail`)}
                       </p>
                     </div>
@@ -87,10 +90,12 @@ export function Parcours() {
                 <p className="text-overline font-poppins text-brique uppercase">
                   {t("languages.title")}
                 </p>
-                {/* Figma's three labels need 277 in a 233 column and it clips
-                    the last one; they wrap here, as every other clipped row on
-                    the site does. */}
-                <div className="border-encre/10 flex flex-wrap gap-x-6 gap-y-2 border-b py-6">
+                {/* One line, exactly: Figma lays the three labels at x=0/106/202
+                    at 82/72/75, i.e. a 24px gap summing to the column's own
+                    277. It fits with nothing to spare, so `xl:flex-nowrap`
+                    pins it at the width the comp specifies; below `xl` the
+                    column is the container and it may wrap. */}
+                <div className="border-encre/10 flex flex-wrap gap-x-6 gap-y-2 border-b py-6 xl:flex-nowrap">
                   {languages.map((key) => (
                     <p key={key} className="text-small-strong text-encre uppercase">
                       {t(`languages.${key}`)}

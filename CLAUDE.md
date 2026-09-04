@@ -6031,18 +6031,24 @@ right edge 96 in from the container. It splits at `xl` — 679 + 329 needs 1008.
 - **The year sits in a fixed 100px column**, which is what puts every title on
   one left edge — it had been sized to its content. Measured: year **100**,
   titles all starting at **136** (100 + the 36 gap), rows 96.2 against 95.
-- **One label needed exactly the room it had.** "Avocat européen · depuis 2012"
-  measures **233** against the side column's **233**, so sub-pixel rounding was
-  all that separated fitting from wrapping, and it wrapped — running its item
-  71.2 against 47.2 and pushing the column's three blocks ~25px below the comp.
-  It takes `xl:whitespace-nowrap`, pinned at the width the comp specifies and
-  free to wrap once the columns stack: **0 wrapped rows at every width from
-  1920 down to 320**. Exactly the privacy TOC's case, one section later —
-  **when a line wraps that the comp fits, measure the string against its column
-  before assuming the layout is wrong.**
-- Its "Langues de travail" row is the same story at the other end: Figma's
-  three labels need 277 in the 233 column and it **clips** the third; they wrap
-  here, as every other clipped row on the site does.
+- **The side column is 277, and reading it as 233 was the whole bug.** Its
+  `vigil` frame (`13495:31105`) is **277 wide at x=968**, so it closes on the
+  container's right edge; the 233 belongs to the *Barreaux* child frame, which
+  hugs its own shorter copy, and Membre hugs narrower still at 125. Built at
+  233 + a `pr-96`, two rows in it were fighting for room they should have had:
+  - the **Langues de travail** row wrapped. Figma lays its three labels at
+    x=0/106/202 at 82/72/75 — a 24px gap summing to exactly the column's 277 —
+    so at 233 the third dropped to a second line. At 277 they land on
+    **0 / 105.5 / 200.8** and the row ends flush with the container. It keeps
+    `xl:flex-nowrap`, since it fits with nothing to spare.
+  - "Avocat européen · depuis 2012" needs 233 and had **exactly** 233, so
+    sub-pixel rounding was all that separated fitting from wrapping. It had
+    been pinned with an `xl:whitespace-nowrap`; against a 277 column it fits
+    with 44 to spare and the pin is gone.
+- **A hug-width child is not the column's width.** Both fixes above were one
+  number, misread from the widest child rather than from the frame that holds
+  them. The section is unchanged at **835.7** either way — the timeline column
+  sets the height — so nothing but measuring the row itself shows it.
 - The last block carries **no rule** — only the first two close on one.
 - Its three language labels are typed uppercase in the text node; stored
   natural and uppercased at the call site, per the site-wide rule.
