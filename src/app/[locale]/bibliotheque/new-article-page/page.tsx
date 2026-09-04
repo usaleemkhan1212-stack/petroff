@@ -15,7 +15,7 @@ import { routing } from "@/i18n/routing";
 
 /**
  * A second build of the article frame `13318:2398`, alongside the original at
- * `/bibliotheque/article-design`.
+ * `/bibliotheque/old-article`.
  *
  * The frame has grown since that page was derived — Corps 13966.6 -> 14362.6
  * and ALireEnsuite 1405 -> 1411 — so this page is being rebuilt section by

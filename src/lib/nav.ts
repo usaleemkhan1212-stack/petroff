@@ -9,7 +9,6 @@ type MessagePath =
   | `ExpertisesPage.domaines.items.${DomaineKey}.title`
   | "Nav.servicePage"
   | "Nav.personalPage"
-  | "Nav.articleDesign"
   | "Nav.ecommerce"
   | "Nav.newArticle";
 import { isLive } from "@/lib/routes";
@@ -69,7 +68,6 @@ const expertiseChildren: readonly NavChild[] = [
  */
 const bibliothequeChildren: readonly NavChild[] = (
   [
-    { key: "articleDesign", href: "/bibliotheque/article-design" },
     { key: "ecommerce", href: "/bibliotheque/avocat-e-commerce" },
     { key: "newArticle", href: "/bibliotheque/new-article-page" },
     /* Mᵉ Mariela Petrova's profile. It used to hang off Le Cabinet, which now

@@ -13,9 +13,9 @@ import { Hero } from "@/components/sections/article/Hero";
 import { Consultation } from "@/components/sections/article/Consultation";
 import { routing } from "@/i18n/routing";
 
-export default async function ArticleDesignPage({
+export default async function OldArticlePage({
   params,
-}: PageProps<"/[locale]/bibliotheque/article-design">) {
+}: PageProps<"/[locale]/bibliotheque/old-article">) {
   const { locale } = await params;
 
   if (!hasLocale(routing.locales, locale)) {

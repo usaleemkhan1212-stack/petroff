@@ -19,7 +19,6 @@
     "homeLabel": "Petroff — retour à l’accueil",
     "domainsLabel": "Domaines d’expertise",
     "libraryPagesLabel": "Pages de la bibliothèque",
-    "articleDesign": "article-design",
     "ecommerce": "Avocat e-commerce",
     "newArticle": "new-article-page",
     "servicePage": "service-page",
@@ -306,7 +305,12 @@
     "columns": {
       "cabinet": {
         "title": "Le cabinet",
-        "items": ["Qui sommes-nous", "L’équipe", "Honoraires", "Contact"]
+        "items": [
+          "Qui sommes-nous",
+          "L’équipe",
+          "Honoraires",
+          "Contact"
+        ]
       },
       "ressources": {
         "title": "Ressources",
@@ -369,57 +373,101 @@
         "societes": {
           "title": "Droit des sociétés & gouvernance",
           "description": "Constitution, pactes, opérations sur capital, litiges d’associés, dirigeants.",
-          "tags": ["Pactes", "BSPCE · OC/OCA", "Exclusions"]
+          "tags": [
+            "Pactes",
+            "BSPCE · OC/OCA",
+            "Exclusions"
+          ]
         },
         "fusions": {
           "title": "Fusions-acquisitions",
           "description": "Cessions, acquisitions, due diligence, garanties d’actif-passif, closing.",
-          "tags": ["LOI → closing", "GAP", "Data room"]
+          "tags": [
+            "LOI → closing",
+            "GAP",
+            "Data room"
+          ]
         },
         "capitalRisque": {
           "title": "Capital-risque & private equity",
           "description": "Levées de fonds, term sheets, actions de préférence, sorties d’investisseurs.",
-          "tags": ["Seed → série C", "BSA-AIR", "Liquidité"]
+          "tags": [
+            "Seed → série C",
+            "BSA-AIR",
+            "Liquidité"
+          ]
         },
         "contrats": {
           "title": "Contrats & droit commercial",
           "description": "Distribution, agence, CGV, contrats internationaux, négociations.",
-          "tags": ["CGV", "Distribution", "Cross-border"]
+          "tags": [
+            "CGV",
+            "Distribution",
+            "Cross-border"
+          ]
         },
         "contentieux": {
           "title": "Contentieux & arbitrage",
           "description": "Litiges commerciaux, référés, arbitrage, exécution des décisions.",
-          "tags": ["Urgence 48 h", "Arbitrage", "Exécution"]
+          "tags": [
+            "Urgence 48 h",
+            "Arbitrage",
+            "Exécution"
+          ]
         },
         "litigesAssocies": {
           "title": "Litiges entre associés",
           "description": "Blocages, abus de majorité, révocations, exclusions, sorties négociées.",
-          "tags": ["Référé", "1843-4", "Sortie"]
+          "tags": [
+            "Référé",
+            "1843-4",
+            "Sortie"
+          ]
         },
         "propriete": {
           "title": "Propriété intellectuelle & marques",
           "description": "Dépôts FR/UE, oppositions, contrefaçon, licences, logiciels, IA.",
-          "tags": ["INPI · EUIPO", "Contrefaçon", "Licences"]
+          "tags": [
+            "INPI · EUIPO",
+            "Contrefaçon",
+            "Licences"
+          ]
         },
         "social": {
           "title": "Droit social",
           "description": "Contrats, ruptures, PSE, prud’hommes, enquêtes internes, URSSAF.",
-          "tags": ["PSE", "Transactions", "CSE"]
+          "tags": [
+            "PSE",
+            "Transactions",
+            "CSE"
+          ]
         },
         "fiscal": {
           "title": "Droit fiscal",
           "description": "Structuration, fiscalité du dirigeant, contrôle et contentieux, Dutreil.",
-          "tags": ["Contrôle", "Dutreil", "Packages"]
+          "tags": [
+            "Contrôle",
+            "Dutreil",
+            "Packages"
+          ]
         },
         "immobilier": {
           "title": "Immobilier d’entreprise",
           "description": "Baux commerciaux, acquisitions, construction, montages, contentieux.",
-          "tags": ["3-6-9", "VEFA", "SCI"]
+          "tags": [
+            "3-6-9",
+            "VEFA",
+            "SCI"
+          ]
         },
         "recouvrement": {
           "title": "Recouvrement & mesures conservatoires",
           "description": "Relances, injonctions, saisies conservatoires, procédures collectives.",
-          "tags": ["72 h", "Saisies", "BODACC"]
+          "tags": [
+            "72 h",
+            "Saisies",
+            "BODACC"
+          ]
         }
       },
       "transverse": {
@@ -753,47 +801,66 @@
         "strategie": {
           "title": "Stratégie précontentieuse",
           "description": "Évaluation des chances, sécurisation des preuves (constats, 145 CPC), mise en demeure calibrée, négociation.",
-          "tags": ["Audit de dossier"]
+          "tags": [
+            "Audit de dossier"
+          ]
         },
         "referes": {
           "title": "Référés & urgence",
           "description": "Référé-provision, mesures conservatoires, interdictions sous astreinte, requêtes non contradictoires.",
-          "tags": ["48 h"]
+          "tags": [
+            "48 h"
+          ]
         },
         "commercial": {
           "title": "Contentieux commercial",
           "description": "Rupture brutale des relations établies, concurrence déloyale, parasitisme, pratiques restrictives.",
-          "tags": ["Tribunal de commerce"]
+          "tags": [
+            "Tribunal de commerce"
+          ]
         },
         "contractuels": {
           "title": "Litiges contractuels",
           "description": "Inexécution, résolution, responsabilité, pénalités — la lecture fine du contrat au service du dossier.",
-          "tags": ["Fond"]
+          "tags": [
+            "Fond"
+          ]
         },
         "associes": {
           "title": "Litiges entre associés",
           "description": "Abus de majorité, révocations, exclusions, expertise de gestion — en lien avec l’équipe sociétés.",
-          "tags": ["Transverse"]
+          "tags": [
+            "Transverse"
+          ]
         },
         "arbitrage": {
           "title": "Arbitrage & international",
           "description": "Arbitrage CCI/ad hoc, clauses compromissoires, exequatur, litiges multi-juridictions.",
-          "tags": ["CCI", "Exequatur"]
+          "tags": [
+            "CCI",
+            "Exequatur"
+          ]
         },
         "mediation": {
           "title": "Médiation & MARD",
           "description": "Médiation, conciliation, procédure participative — quand l’accord vaut mieux qu’un jugement.",
-          "tags": ["Confidentiel"]
+          "tags": [
+            "Confidentiel"
+          ]
         },
         "execution": {
           "title": "Exécution des décisions",
           "description": "Saisies, astreintes, recherche d’actifs, exécution transfrontalière — le jugement n’est que le début.",
-          "tags": ["Commissaire de justice"]
+          "tags": [
+            "Commissaire de justice"
+          ]
         },
         "defense": {
           "title": "Défense & responsabilité",
           "description": "Défense aux assignations, appels en garantie, coordination assureurs et experts.",
-          "tags": ["Défense"]
+          "tags": [
+            "Défense"
+          ]
         }
       }
     },
@@ -841,22 +908,30 @@
         "misesEnDemeure": {
           "title": "Mises en demeure",
           "description": "Calibrées et envoyées sous 48 h, avec stratégie de suite en cas de silence.",
-          "tags": ["190 €"]
+          "tags": [
+            "190 €"
+          ]
         },
         "injonctions": {
           "title": "Injonctions de payer",
           "description": "Requêtes et suivi jusqu’à l’ordonnance et la signification.",
-          "tags": ["Forfait"]
+          "tags": [
+            "Forfait"
+          ]
         },
         "creances": {
           "title": "Déclarations de créances",
           "description": "Dans les procédures collectives de vos débiteurs — délais surveillés.",
-          "tags": ["Délais critiques"]
+          "tags": [
+            "Délais critiques"
+          ]
         },
         "veille": {
           "title": "Veille de vos litiges",
           "description": "Alertes sur vos adversaires : procédures collectives, publications BODACC.",
-          "tags": ["Open data"]
+          "tags": [
+            "Open data"
+          ]
         }
       }
     },
@@ -1078,47 +1153,65 @@
         "distribution": {
           "title": "Distribution & franchise",
           "description": "Réseaux de distribution, franchise, concession, distribution sélective — DIP, quotas, exclusivités.",
-          "tags": ["Réseaux"]
+          "tags": [
+            "Réseaux"
+          ]
         },
         "agence": {
           "title": "Agence commerciale",
           "description": "Statut d’agent, indemnité de fin de contrat, contentieux de la rupture — côté mandant ou agent.",
-          "tags": ["Indemnité"]
+          "tags": [
+            "Indemnité"
+          ]
         },
         "cgv": {
           "title": "CGV, CGU & e-commerce",
           "description": "Conditions générales solides, parcours de vente conformes, plateformes et marketplaces.",
-          "tags": ["Conso & B2B"]
+          "tags": [
+            "Conso & B2B"
+          ]
         },
         "industriels": {
           "title": "Contrats industriels",
           "description": "Fabrication, approvisionnement, maintenance, SLA — pénalités, responsabilités et réversibilité.",
-          "tags": ["Long terme"]
+          "tags": [
+            "Long terme"
+          ]
         },
         "sousTraitance": {
           "title": "Sous-traitance",
           "description": "Chaînes de sous-traitance, loi de 1975, garanties de paiement, responsabilités croisées.",
-          "tags": ["BTP & industrie"]
+          "tags": [
+            "BTP & industrie"
+          ]
         },
         "rupture": {
           "title": "Rupture des relations",
           "description": "Rupture brutale de relations établies : sécuriser une sortie ou défendre vos préavis.",
-          "tags": ["L.442-1"]
+          "tags": [
+            "L.442-1"
+          ]
         },
         "transparence": {
           "title": "Transparence & pratiques",
           "description": "Négociation annuelle, conventions uniques, pratiques restrictives, déséquilibre significatif.",
-          "tags": ["Grande distribution"]
+          "tags": [
+            "Grande distribution"
+          ]
         },
         "international": {
           "title": "Contrats internationaux",
           "description": "Loi applicable, juridiction, Incoterms, garanties bancaires — bilingues et exécutables.",
-          "tags": ["Cross-border"]
+          "tags": [
+            "Cross-border"
+          ]
         },
         "negociations": {
           "title": "Négociations stratégiques",
           "description": "À vos côtés en négociation : tactique, red lines, clauses de sortie — avant la signature.",
-          "tags": ["Deal team"]
+          "tags": [
+            "Deal team"
+          ]
         }
       }
     },
@@ -1166,22 +1259,30 @@
         "modeles": {
           "title": "Modèles à jour",
           "description": "NDA, CGV, prestations, apporteur d’affaires — adaptés à votre activité.",
-          "tags": ["Membre"]
+          "tags": [
+            "Membre"
+          ]
         },
         "relecture": {
           "title": "Relecture express 48 h",
           "description": "Un contrat reçu, relu et annoté avec contre-propositions sous 48 h.",
-          "tags": ["490 €"]
+          "tags": [
+            "490 €"
+          ]
         },
         "traductions": {
           "title": "Traductions juridiques",
           "description": "Vos contrats en anglais, chinois ou espagnol — juridiquement fiables.",
-          "tags": ["4 langues"]
+          "tags": [
+            "4 langues"
+          ]
         },
         "contratheque": {
           "title": "Contrathèque en ligne",
           "description": "Stockage, signature, échéances : la vie de vos contrats, organisée.",
-          "tags": ["Abonnement"]
+          "tags": [
+            "Abonnement"
+          ]
         }
       }
     },
@@ -1399,47 +1500,65 @@
         "structuration": {
           "title": "Structuration d’opérations",
           "description": "M&A, LBO, restructurations : régimes de faveur, report d’imposition, TVA immobilière.",
-          "tags": ["150-0 B ter"]
+          "tags": [
+            "150-0 B ter"
+          ]
         },
         "dirigeant": {
           "title": "Fiscalité du dirigeant",
           "description": "Rémunération vs dividendes, management packages, BSPCE, holding patrimoniale.",
-          "tags": ["Arbitrages"]
+          "tags": [
+            "Arbitrages"
+          ]
         },
         "controle": {
           "title": "Contrôle fiscal",
           "description": "Vérifications de comptabilité, ESFP : préparation, assistance, réponses aux propositions.",
-          "tags": ["Défense"]
+          "tags": [
+            "Défense"
+          ]
         },
         "contentieux": {
           "title": "Contentieux fiscal",
           "description": "Réclamations, tribunal administratif et judiciaire, transactions avec l’administration.",
-          "tags": ["Procédure"]
+          "tags": [
+            "Procédure"
+          ]
         },
         "prixTransfert": {
           "title": "Prix de transfert",
           "description": "Politique intragroupe, documentation, accords préalables — groupes et scale-ups.",
-          "tags": ["Groupes"]
+          "tags": [
+            "Groupes"
+          ]
         },
         "integration": {
           "title": "Intégration & groupes",
           "description": "Intégration fiscale, remontées de dividendes, mère-fille, restructurations de groupe.",
-          "tags": ["Optimisation"]
+          "tags": [
+            "Optimisation"
+          ]
         },
         "dutreil": {
           "title": "Dutreil & transmission",
           "description": "Pactes Dutreil, donations avant cession, family buy-out — jusqu’à 75 % d’abattement.",
-          "tags": ["Transmission"]
+          "tags": [
+            "Transmission"
+          ]
         },
         "tva": {
           "title": "TVA complexe",
           "description": "TVA internationale et e-commerce, immobilière, secteurs exonérés, guichet OSS.",
-          "tags": ["International"]
+          "tags": [
+            "International"
+          ]
         },
         "rescrits": {
           "title": "Rescrits & sécurité",
           "description": "Rescrits, régularisations spontanées, garanties contre les changements de doctrine.",
-          "tags": ["Sécurisation"]
+          "tags": [
+            "Sécurisation"
+          ]
         }
       }
     },
@@ -1487,22 +1606,30 @@
         "revue": {
           "title": "Revue fiscale annuelle",
           "description": "Les risques et opportunités de l’exercice, en un rapport actionnable.",
-          "tags": ["Forfait"]
+          "tags": [
+            "Forfait"
+          ]
         },
         "rescrits": {
           "title": "Rescrits simples",
           "description": "Sécuriser une position par écrit auprès de l’administration.",
-          "tags": ["Sécurité"]
+          "tags": [
+            "Sécurité"
+          ]
         },
         "declarations": {
           "title": "Déclarations ponctuelles",
           "description": "IFI, exit tax, plus-values complexes — établies et télédéclarées.",
-          "tags": ["Dirigeants"]
+          "tags": [
+            "Dirigeants"
+          ]
         },
         "prixTransfert": {
           "title": "Doc. prix de transfert",
           "description": "Documentation allégée conforme pour groupes sous les seuils.",
-          "tags": ["Light"]
+          "tags": [
+            "Light"
+          ]
         }
       }
     },
@@ -1720,47 +1847,65 @@
         "restructurations": {
           "title": "Restructurations & PSE",
           "description": "Réorganisations, licenciements collectifs, PSE, transferts d’entreprise (L.1224-1), CSE.",
-          "tags": ["Collectif"]
+          "tags": [
+            "Collectif"
+          ]
         },
         "prudhomal": {
           "title": "Contentieux prud’homal",
           "description": "Défense de l’employeur : licenciements contestés, heures supplémentaires, harcèlement.",
-          "tags": ["Défense"]
+          "tags": [
+            "Défense"
+          ]
         },
         "negociation": {
           "title": "Négociation collective",
           "description": "Accords d’entreprise, temps de travail, télétravail, NAO, relations avec le CSE.",
-          "tags": ["Accords"]
+          "tags": [
+            "Accords"
+          ]
         },
         "dirigeants": {
           "title": "Statut des dirigeants",
           "description": "Cumul mandat/contrat, rémunération, protection sociale, départs négociés — avec l’équipe sociétés.",
-          "tags": ["Transverse"]
+          "tags": [
+            "Transverse"
+          ]
         },
         "ruptures": {
           "title": "Ruptures négociées",
           "description": "Ruptures conventionnelles, transactions sécurisées, protocoles — individuels et collectifs.",
-          "tags": ["Transaction"]
+          "tags": [
+            "Transaction"
+          ]
         },
         "enquetes": {
           "title": "Enquêtes internes",
           "description": "Harcèlement, discriminations, alertes : enquêtes menées ou supervisées, rapports exploitables.",
-          "tags": ["Sensible"]
+          "tags": [
+            "Sensible"
+          ]
         },
         "epargne": {
           "title": "Épargne & intéressement",
           "description": "Intéressement, participation, BSPCE côté social, épargne salariale optimisée.",
-          "tags": ["Motivation"]
+          "tags": [
+            "Motivation"
+          ]
         },
         "mobilite": {
           "title": "Mobilité internationale",
           "description": "Détachement, expatriation, impatriés, salariés étrangers — permis et sécurité sociale.",
-          "tags": ["Cross-border"]
+          "tags": [
+            "Cross-border"
+          ]
         },
         "urssaf": {
           "title": "Contrôles URSSAF",
           "description": "Préparation, assistance pendant le contrôle, contestation des redressements.",
-          "tags": ["Défense"]
+          "tags": [
+            "Défense"
+          ]
         }
       }
     },
@@ -1808,22 +1953,30 @@
         "contrats": {
           "title": "Contrats & avenants",
           "description": "CDI, CDD, clauses sensibles — à jour des conventions collectives.",
-          "tags": ["48 h"]
+          "tags": [
+            "48 h"
+          ]
         },
         "reglement": {
           "title": "Règlement intérieur",
           "description": "RI, chartes télétravail et IT, à jour et opposables.",
-          "tags": ["Opposable"]
+          "tags": [
+            "Opposable"
+          ]
         },
         "disciplinaire": {
           "title": "Procédures disciplinaires",
           "description": "Courriers et calendriers générés, délais surveillés automatiquement.",
-          "tags": ["Zéro vice de forme"]
+          "tags": [
+            "Zéro vice de forme"
+          ]
         },
         "audit": {
           "title": "Audit social flash",
           "description": "Les 20 points de conformité qui déclenchent 80 % des redressements.",
-          "tags": ["Forfait"]
+          "tags": [
+            "Forfait"
+          ]
         }
       }
     },
@@ -2041,47 +2194,65 @@
         "baux": {
           "title": "Baux commerciaux",
           "description": "Négociation et rédaction : loyer, charges, travaux, destination, garanties — côté preneur ou bailleur.",
-          "tags": ["Preneur"]
+          "tags": [
+            "Preneur"
+          ]
         },
         "renouvellement": {
           "title": "Renouvellement & déplafonnement",
           "description": "Congés, renouvellements, déplafonnement, indemnité d’éviction — les batailles du 3-6-9.",
-          "tags": ["Éviction"]
+          "tags": [
+            "Éviction"
+          ]
         },
         "cessions": {
           "title": "Cessions de fonds & droit au bail",
           "description": "Cession de fonds de commerce ou de droit au bail, agréments, garanties du cédant.",
-          "tags": ["Fonds de commerce"]
+          "tags": [
+            "Fonds de commerce"
+          ]
         },
         "acquisitions": {
           "title": "Acquisitions & VEFA",
           "description": "Achat de murs, VEFA, BEFA, audits immobiliers, négociation des promesses.",
-          "tags": ["Due diligence"]
+          "tags": [
+            "Due diligence"
+          ]
         },
         "construction": {
           "title": "Construction",
           "description": "Marchés de travaux, maîtrise d’ouvrage, garanties légales, réception, contentieux de chantier.",
-          "tags": ["MOA"]
+          "tags": [
+            "MOA"
+          ]
         },
         "copropriete": {
           "title": "Copropriété & ASL",
           "description": "Règlements, assemblées, charges, travaux — quand vos locaux sont en copropriété.",
-          "tags": ["Syndic"]
+          "tags": [
+            "Syndic"
+          ]
         },
         "montages": {
           "title": "Montages & financement",
           "description": "SCI, OBO immobilier, crédit-bail, sûretés — structuration juridique et fiscale des murs.",
-          "tags": ["SCI"]
+          "tags": [
+            "SCI"
+          ]
         },
         "urbanisme": {
           "title": "Urbanisme",
           "description": "Autorisations, changements de destination, enseignes, recours des tiers.",
-          "tags": ["Autorisations"]
+          "tags": [
+            "Autorisations"
+          ]
         },
         "contentieux": {
           "title": "Contentieux immobilier",
           "description": "Loyers impayés, expulsions, contestations de charges, troubles de jouissance.",
-          "tags": ["Procédure"]
+          "tags": [
+            "Procédure"
+          ]
         }
       }
     },
@@ -2129,22 +2300,30 @@
         "modeles": {
           "title": "Modèles à jour",
           "description": "NDA, CGV, prestations, apporteur d’affaires — adaptés à votre activité.",
-          "tags": ["Membre"]
+          "tags": [
+            "Membre"
+          ]
         },
         "relecture": {
           "title": "Relecture express 48 h",
           "description": "Un contrat reçu, relu et annoté avec contre-propositions sous 48 h.",
-          "tags": ["490 €"]
+          "tags": [
+            "490 €"
+          ]
         },
         "traductions": {
           "title": "Traductions juridiques",
           "description": "Vos contrats en anglais, chinois ou espagnol — juridiquement fiables.",
-          "tags": ["4 langues"]
+          "tags": [
+            "4 langues"
+          ]
         },
         "contratheque": {
           "title": "Contrathèque en ligne",
           "description": "Stockage, signature, échéances : la vie de vos contrats, organisée.",
-          "tags": ["Abonnement"]
+          "tags": [
+            "Abonnement"
+          ]
         }
       }
     },
@@ -2362,47 +2541,65 @@
         "strategie": {
           "title": "Stratégie de marque",
           "description": "Recherches d’antériorités sérieuses, classes pertinentes, arborescence FR/UE/international (Madrid).",
-          "tags": ["INPI"]
+          "tags": [
+            "INPI"
+          ]
         },
         "oppositions": {
           "title": "Oppositions",
           "description": "Oppositions et procédures INPI/EUIPO, négociations de coexistence, surveillances actives.",
-          "tags": ["Délais courts"]
+          "tags": [
+            "Délais courts"
+          ]
         },
         "contrefacon": {
           "title": "Contrefaçon",
           "description": "Saisie-contrefaçon, action au fond, référés, douanes — côté demandeur ou défendeur.",
-          "tags": ["Saisie"]
+          "tags": [
+            "Saisie"
+          ]
         },
         "logiciels": {
           "title": "Logiciels & créations",
           "description": "Droits d’auteur, œuvres logicielles, chaînes de droits, dépôts probatoires (APP).",
-          "tags": ["Tech"]
+          "tags": [
+            "Tech"
+          ]
         },
         "licences": {
           "title": "Licences & cessions",
           "description": "Licences d’exploitation, cessions de droits, redevances, audits de portefeuille.",
-          "tags": ["Contrats IP"]
+          "tags": [
+            "Contrats IP"
+          ]
         },
         "domaines": {
           "title": "Noms de domaine",
           "description": "Récupération de domaines (UDRP, Syreli), cybersquatting, stratégie de nommage.",
-          "tags": ["UDRP"]
+          "tags": [
+            "UDRP"
+          ]
         },
         "secrets": {
           "title": "Secrets d’affaires",
           "description": "Protection du savoir-faire, NDA renforcés, actions sur le fondement de la loi de 2018.",
-          "tags": ["Confidentiel"]
+          "tags": [
+            "Confidentiel"
+          ]
         },
         "donnees": {
           "title": "Données & IA",
           "description": "Contenus et IA générative, bases de données, licences de données, conformité.",
-          "tags": ["Émergent"]
+          "tags": [
+            "Émergent"
+          ]
         },
         "titularite": {
           "title": "Contentieux de titularité",
           "description": "Créations de salariés et de prestataires, revendications de droits, copropriété de titres.",
-          "tags": ["Salariés & freelances"]
+          "tags": [
+            "Salariés & freelances"
+          ]
         }
       }
     },
@@ -2450,22 +2647,30 @@
         "depots": {
           "title": "Dépôts & renouvellements",
           "description": "FR, UE, international — classes optimisées, délais tenus.",
-          "tags": ["Forfaits"]
+          "tags": [
+            "Forfaits"
+          ]
         },
         "inscriptions": {
           "title": "Inscriptions",
           "description": "Cessions, licences, changements de titulaire inscrits aux registres.",
-          "tags": ["INPI/EUIPO"]
+          "tags": [
+            "INPI/EUIPO"
+          ]
         },
         "constats": {
           "title": "Constats en ligne",
           "description": "Captures certifiées de contrefaçons en ligne, prêtes pour le contentieux.",
-          "tags": ["Preuve"]
+          "tags": [
+            "Preuve"
+          ]
         },
         "portefeuille": {
           "title": "Portefeuille en ligne",
           "description": "Tous vos titres, échéances et surveillances dans l’espace client.",
-          "tags": ["Abonnement"]
+          "tags": [
+            "Abonnement"
+          ]
         }
       }
     },
@@ -2683,47 +2888,65 @@
         "amiable": {
           "title": "Recouvrement amiable",
           "description": "Relances graduées, mises en demeure d’avocat, négociation d’échéanciers sécurisés.",
-          "tags": ["72 h"]
+          "tags": [
+            "72 h"
+          ]
         },
         "injonction": {
           "title": "Injonction & référé-provision",
           "description": "Injonction de payer, référé-provision pour les créances non sérieusement contestables.",
-          "tags": ["Rapide"]
+          "tags": [
+            "Rapide"
+          ]
         },
         "saisies": {
           "title": "Saisies conservatoires",
           "description": "Geler les comptes et actifs du débiteur avant qu’il n’organise son insolvabilité.",
-          "tags": ["Effet de levier"]
+          "tags": [
+            "Effet de levier"
+          ]
         },
         "collective": {
           "title": "Débiteur en procédure collective",
           "description": "Déclaration de créances dans les délais, revendications, poursuite des garants.",
-          "tags": ["Délais critiques"]
+          "tags": [
+            "Délais critiques"
+          ]
         },
         "international": {
           "title": "Recouvrement international",
           "description": "Injonction européenne, exequatur, réseaux de correspondants — créances export.",
-          "tags": ["UE & export"]
+          "tags": [
+            "UE & export"
+          ]
         },
         "garanties": {
           "title": "Garanties & sûretés",
           "description": "Réserve de propriété, cautions, garanties à première demande — le recouvrement se prépare au contrat.",
-          "tags": ["Prévention"]
+          "tags": [
+            "Prévention"
+          ]
         },
         "dailly": {
           "title": "Dailly & affacturage",
           "description": "Cessions de créances professionnelles, mobilisation du poste clients, contentieux.",
-          "tags": ["Financement"]
+          "tags": [
+            "Financement"
+          ]
         },
         "contentieux": {
           "title": "Contentieux de l’impayé",
           "description": "Créances contestées : du dossier de preuve à l’exécution forcée du jugement.",
-          "tags": ["Fond"]
+          "tags": [
+            "Fond"
+          ]
         },
         "prevention": {
           "title": "Prévention des impayés",
           "description": "CGV, pénalités, acomptes, scoring clients — réduire l’impayé à la source.",
-          "tags": ["CGV"]
+          "tags": [
+            "CGV"
+          ]
         }
       }
     },
@@ -2771,22 +2994,30 @@
         "relances": {
           "title": "Relances graduées",
           "description": "Séquences automatiques : courriel, courrier, mise en demeure — tracées.",
-          "tags": ["Automatisé"]
+          "tags": [
+            "Automatisé"
+          ]
         },
         "injonctions": {
           "title": "Injonctions de payer",
           "description": "Requêtes générées depuis vos factures, suivies jusqu’à l’ordonnance.",
-          "tags": ["Forfait"]
+          "tags": [
+            "Forfait"
+          ]
         },
         "declarations": {
           "title": "Déclarations de créances",
           "description": "Vos créances déclarées dans les délais, pièces à l’appui.",
-          "tags": ["Surveillance BODACC"]
+          "tags": [
+            "Surveillance BODACC"
+          ]
         },
         "surveillance": {
           "title": "Surveillance débiteurs",
           "description": "Alertes en cas de procédure collective ou d’événement BODACC chez vos clients.",
-          "tags": ["Open data"]
+          "tags": [
+            "Open data"
+          ]
         }
       }
     },
@@ -3004,47 +3235,65 @@
         "constitution": {
           "title": "Constitution & statuts",
           "description": "Choix de la forme (SAS, SARL, SA), rédaction des statuts, apports, clauses fondateurs et immatriculation.",
-          "tags": ["Constitution"]
+          "tags": [
+            "Constitution"
+          ]
         },
         "pactes": {
           "title": "Pactes d’associés",
           "description": "Gouvernance, inaliénabilité, préemption, sortie conjointe, bad / good leaver et clauses anti-dilution.",
-          "tags": ["Pacte"]
+          "tags": [
+            "Pacte"
+          ]
         },
         "capital": {
           "title": "Opérations sur capital",
           "description": "Augmentations, réductions, coup d’accordéon, actions de préférence, BSPCE et valorisation.",
-          "tags": ["Capital"]
+          "tags": [
+            "Capital"
+          ]
         },
         "gouvernance": {
           "title": "Gouvernance & organes",
           "description": "Répartition des pouvoirs, conseils, comités, délégations, règlements intérieurs et conventions réglementées.",
-          "tags": ["Gouvernance"]
+          "tags": [
+            "Gouvernance"
+          ]
         },
         "dirigeants": {
           "title": "Dirigeants & mandats",
           "description": "Nomination, révocation, rémunération, cumul mandat / contrat de travail, responsabilité et protection.",
-          "tags": ["Mandataires"]
+          "tags": [
+            "Mandataires"
+          ]
         },
         "secretariat": {
           "title": "Secrétariat juridique",
           "description": "Convocations, procès-verbaux, approbation des comptes, tenue des registres et obligations annuelles.",
-          "tags": ["Corporate"]
+          "tags": [
+            "Corporate"
+          ]
         },
         "restructurations": {
           "title": "Restructurations",
           "description": "Transformations, fusions, scissions, apports partiels d’actifs et transferts de siège.",
-          "tags": ["Restructuration"]
+          "tags": [
+            "Restructuration"
+          ]
         },
         "groupes": {
           "title": "Groupes & holdings",
           "description": "Structuration de groupe, holding animatrice, conventions intragroupe et remontées de dividendes.",
-          "tags": ["Groupe"]
+          "tags": [
+            "Groupe"
+          ]
         },
         "dissolution": {
           "title": "Dissolution & liquidation",
           "description": "Dissolution amiable, liquidation, transmission universelle de patrimoine (TUP) et radiation.",
-          "tags": ["Sortie"]
+          "tags": [
+            "Sortie"
+          ]
         }
       }
     },
@@ -3092,22 +3341,30 @@
         "nda": {
           "title": "NDA & LOI standard",
           "description": "Accords de confidentialité et lettres d’intention sur nos modèles éprouvés, bilingues.",
-          "tags": ["48 h"]
+          "tags": [
+            "48 h"
+          ]
         },
         "housekeeping": {
           "title": "Housekeeping pré-cession",
           "description": "Mise au propre corporate avant data room : registres, délégations, conventions.",
-          "tags": ["Forfait"]
+          "tags": [
+            "Forfait"
+          ]
         },
         "formalites": {
           "title": "Formalités post-closing",
           "description": "Ordres de mouvement, enregistrements, publicités, mises à jour statutaires.",
-          "tags": ["Inclus GAP"]
+          "tags": [
+            "Inclus GAP"
+          ]
         },
         "intragroupe": {
           "title": "Contrats intragroupes",
           "description": "Management fees, trésorerie centralisée, licences intragroupe documentées.",
-          "tags": ["Groupes"]
+          "tags": [
+            "Groupes"
+          ]
         }
       }
     },
@@ -3328,47 +3585,65 @@
         "cessions": {
           "title": "Cessions & acquisitions",
           "description": "Share deal ou asset deal, cession de fonds, négociation du prix et des conditions suspensives, closing et séquestre.",
-          "tags": ["Sell-side"]
+          "tags": [
+            "Sell-side"
+          ]
         },
         "dueDiligence": {
           "title": "Due diligence",
           "description": "Audit d’acquisition ou vendor due diligence : corporate, contrats, social, PI — rapport red flags priorisé.",
-          "tags": ["Data room"]
+          "tags": [
+            "Data room"
+          ]
         },
         "loi": {
           "title": "LOI & exclusivité",
           "description": "Lettres d’intention, accords de confidentialité, exclusivité, structuration du calendrier de négociation.",
-          "tags": ["Term sheet"]
+          "tags": [
+            "Term sheet"
+          ]
         },
         "gap": {
           "title": "Garanties d’actif-passif",
           "description": "Négociation des déclarations, plafonds, franchises et durées — et mise en jeu quand l’histoire tourne mal.",
-          "tags": ["Négociation"]
+          "tags": [
+            "Négociation"
+          ]
         },
         "buildUp": {
           "title": "Build-up & croissance externe",
           "description": "Acquisitions successives, lettres d’intention en série, standardisation des garanties d’actif-passif et intégration post-acquisition.",
-          "tags": ["Buy-side"]
+          "tags": [
+            "Buy-side"
+          ]
         },
         "lbo": {
           "title": "LBO, OBO & packages",
           "description": "Montages avec effet de levier, management packages, pactes de porteurs, relution des fondateurs.",
-          "tags": ["Structuration"]
+          "tags": [
+            "Structuration"
+          ]
         },
         "jv": {
           "title": "Joint-ventures & alliances",
           "description": "Pactes de JV, gouvernance paritaire, options de sortie, résolution des blocages, cross-border.",
-          "tags": ["Cross-border"]
+          "tags": [
+            "Cross-border"
+          ]
         },
         "carveOut": {
           "title": "Carve-out & restructurations",
           "description": "Apports partiels d’actifs, filialisation, fusions et scissions, réorganisations pré-cession.",
-          "tags": ["APA"]
+          "tags": [
+            "APA"
+          ]
         },
         "postClosing": {
           "title": "Post-closing & earn-out",
           "description": "Compléments de prix, ajustements, contentieux earn-out et garanties — anticipés dès la rédaction.",
-          "tags": ["Earn-out"]
+          "tags": [
+            "Earn-out"
+          ]
         }
       }
     },
@@ -3416,22 +3691,30 @@
         "nda": {
           "title": "NDA & LOI standard",
           "description": "Accords de confidentialité et lettres d’intention sur nos modèles éprouvés, bilingues.",
-          "tags": ["48 h"]
+          "tags": [
+            "48 h"
+          ]
         },
         "housekeeping": {
           "title": "Housekeeping pré-cession",
           "description": "Mise au propre corporate avant data room : registres, délégations, conventions.",
-          "tags": ["Forfait"]
+          "tags": [
+            "Forfait"
+          ]
         },
         "formalites": {
           "title": "Formalités post-closing",
           "description": "Ordres de mouvement, enregistrements, publicités, mises à jour statutaires.",
-          "tags": ["Inclus GAP"]
+          "tags": [
+            "Inclus GAP"
+          ]
         },
         "intragroupe": {
           "title": "Contrats intragroupes",
           "description": "Management fees, trésorerie centralisée, licences intragroupe documentées.",
-          "tags": ["Groupes"]
+          "tags": [
+            "Groupes"
+          ]
         }
       }
     },
@@ -3652,47 +3935,65 @@
         "levees": {
           "title": "Levées de fonds",
           "description": "Seed à série C : préparation, term sheet, valorisation, data room et négociation avec les investisseurs.",
-          "tags": ["VC / PE"]
+          "tags": [
+            "VC / PE"
+          ]
         },
         "dueDiligence": {
           "title": "Due diligence investisseur",
           "description": "Audit juridique côté investisseur ou vendor : corporate, PI, contrats, social — rapport red flags priorisé.",
-          "tags": ["DD"]
+          "tags": [
+            "DD"
+          ]
         },
         "termSheet": {
           "title": "Term sheet & valorisation",
           "description": "Term sheet, valorisation pré/post-money, table de capitalisation et structuration du calendrier de levée.",
-          "tags": ["Valorisation"]
+          "tags": [
+            "Valorisation"
+          ]
         },
         "preference": {
           "title": "Actions de préférence",
           "description": "Ratchet, liquidation preference, anti-dilution et droits de gouvernance attachés aux actions de préférence.",
-          "tags": ["Preferred"]
+          "tags": [
+            "Preferred"
+          ]
         },
         "pactes": {
           "title": "Pactes d’investisseurs",
           "description": "Gouvernance, information, préemption, tag & drag-along, clauses de sortie — équilibre fondateurs / investisseurs.",
-          "tags": ["Pacte"]
+          "tags": [
+            "Pacte"
+          ]
         },
         "management": {
           "title": "Management & BSPCE",
           "description": "BSPCE, AGA, stock-options, sweet equity et relution — alignement des dirigeants et rétention des talents.",
-          "tags": ["BSPCE"]
+          "tags": [
+            "BSPCE"
+          ]
         },
         "bsaAir": {
           "title": "BSA-AIR & convertibles",
           "description": "Instruments d’amorçage : BSA-AIR, obligations convertibles (OC/OCA), bons de souscription et calendrier de conversion.",
-          "tags": ["Amorçage"]
+          "tags": [
+            "Amorçage"
+          ]
         },
         "tours": {
           "title": "Tours de table & bridges",
           "description": "Séries A, B, C, bridges et extensions : coordination des investisseurs, pro rata et clauses de nouveaux tours.",
-          "tags": ["Série A-C"]
+          "tags": [
+            "Série A-C"
+          ]
         },
         "liquidite": {
           "title": "Liquidité & sorties",
           "description": "Cession secondaire, trade sale, IPO ou rachat : préparation de la sortie, clauses de liquidité et closing coordonné.",
-          "tags": ["Exit"]
+          "tags": [
+            "Exit"
+          ]
         }
       }
     },
@@ -3740,22 +4041,30 @@
         "nda": {
           "title": "NDA & LOI standard",
           "description": "Accords de confidentialité et lettres d’intention sur nos modèles éprouvés, bilingues.",
-          "tags": ["48 h"]
+          "tags": [
+            "48 h"
+          ]
         },
         "housekeeping": {
           "title": "Housekeeping pré-cession",
           "description": "Mise au propre corporate avant data room : registres, délégations, conventions.",
-          "tags": ["Forfait"]
+          "tags": [
+            "Forfait"
+          ]
         },
         "formalites": {
           "title": "Formalités post-closing",
           "description": "Ordres de mouvement, enregistrements, publicités, mises à jour statutaires.",
-          "tags": ["Inclus GAP"]
+          "tags": [
+            "Inclus GAP"
+          ]
         },
         "intragroupe": {
           "title": "Contrats intragroupes",
           "description": "Management fees, trésorerie centralisée, licences intragroupe documentées.",
-          "tags": ["Groupes"]
+          "tags": [
+            "Groupes"
+          ]
         }
       }
     },
@@ -3976,47 +4285,65 @@
         "blocages": {
           "title": "Blocages & abus",
           "description": "Abus de majorité, de minorité ou d’égalité, conflits d’intérêts, décisions contestables et paralysie des organes.",
-          "tags": ["Blocage"]
+          "tags": [
+            "Blocage"
+          ]
         },
         "exclusion": {
           "title": "Exclusion & retrait",
           "description": "Exclusion statutaire, retrait, cession forcée et fixation du prix par expert (art. 1843-4).",
-          "tags": ["1843-4"]
+          "tags": [
+            "1843-4"
+          ]
         },
         "revocation": {
           "title": "Révocation de dirigeant",
           "description": "Révocation pour juste motif, cessation des fonctions, indemnités et contentieux du mandat social.",
-          "tags": ["Mandat"]
+          "tags": [
+            "Mandat"
+          ]
         },
         "expertise": {
           "title": "Expertise de gestion",
           "description": "Expertise in futurum, expertise de gestion, questions écrites et accès aux documents sociaux.",
-          "tags": ["Preuve"]
+          "tags": [
+            "Preuve"
+          ]
         },
         "responsabilite": {
           "title": "Responsabilité des dirigeants",
           "description": "Faute de gestion, action sociale ut singuli, comblement de passif et responsabilité civile ou pénale.",
-          "tags": ["Responsabilité"]
+          "tags": [
+            "Responsabilité"
+          ]
         },
         "nullites": {
           "title": "Nullités & contestations",
           "description": "Contestation d’assemblées, de délibérations et de cessions ; nullités, vices du consentement et fraude.",
-          "tags": ["Nullité"]
+          "tags": [
+            "Nullité"
+          ]
         },
         "urgence": {
           "title": "Mesures d’urgence",
           "description": "Référé, administrateur provisoire, séquestre, expertise et mesures conservatoires pour préserver la société.",
-          "tags": ["Référé"]
+          "tags": [
+            "Référé"
+          ]
         },
         "sortie": {
           "title": "Sortie négociée",
           "description": "Protocole transactionnel, rachat de titres, valorisation et clauses de non-concurrence — sans casser la valeur.",
-          "tags": ["Transaction"]
+          "tags": [
+            "Transaction"
+          ]
         },
         "dissolution": {
           "title": "Dissolution judiciaire",
           "description": "Dissolution pour mésentente paralysant la société, liquidation et partage lorsque la sortie est impossible.",
-          "tags": ["Sortie"]
+          "tags": [
+            "Sortie"
+          ]
         }
       }
     },
@@ -4064,22 +4391,30 @@
         "nda": {
           "title": "NDA & LOI standard",
           "description": "Accords de confidentialité et lettres d’intention sur nos modèles éprouvés, bilingues.",
-          "tags": ["48 h"]
+          "tags": [
+            "48 h"
+          ]
         },
         "housekeeping": {
           "title": "Housekeeping pré-cession",
           "description": "Mise au propre corporate avant data room : registres, délégations, conventions.",
-          "tags": ["Forfait"]
+          "tags": [
+            "Forfait"
+          ]
         },
         "formalites": {
           "title": "Formalités post-closing",
           "description": "Ordres de mouvement, enregistrements, publicités, mises à jour statutaires.",
-          "tags": ["Inclus GAP"]
+          "tags": [
+            "Inclus GAP"
+          ]
         },
         "intragroupe": {
           "title": "Contrats intragroupes",
           "description": "Management fees, trésorerie centralisée, licences intragroupe documentées.",
-          "tags": ["Groupes"]
+          "tags": [
+            "Groupes"
+          ]
         }
       }
     },
@@ -7098,7 +7433,12 @@
           },
           {
             "type": "table",
-            "head": ["Cookie", "Finalité", "Catégorie", "Durée"],
+            "head": [
+              "Cookie",
+              "Finalité",
+              "Catégorie",
+              "Durée"
+            ],
             "rows": [
               {
                 "name": "petroff_consent",

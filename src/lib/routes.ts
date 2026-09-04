@@ -23,7 +23,6 @@ export const liveRoutes: readonly string[] = [
   "/expertises/contentieux-arbitrage/service-page",
   "/le-cabinet/personal-page",
   "/bibliotheque",
-  "/bibliotheque/article-design",
   "/bibliotheque/avocat-e-commerce",
   "/bibliotheque/new-article-page",
   "/le-cabinet",
