@@ -16,29 +16,49 @@ const fields = [
 
 const marks = ["reponse", "visio", "prix"] as const;
 
-const labelClass = "text-small-strong text-encre/62";
-
 /*
-  border-[1.5px] in every state rather than 1px growing to Figma's focused
-  1.5px: browsers round border widths to whole device pixels, so at dpr 1 both
-  render 1px, and swapping the width on focus would shift the field's content
-  by half a pixel. Only the colour and the ground change, which is the whole of
-  what Figma draws for the focused Nom field.
+  The redesign turns the field inside out: white on an `encre/20` hairline
+  where it was lilas on `encre/10`, 18/16 padding where it was 18/13, and
+  Inter 16/1.5 where it was the 18px body. Its labels are gone from the comp
+  entirely — the placeholder carries the name now — so each label stays in the
+  DOM as `sr-only` rather than being dropped, since an unlabelled input is not
+  something to ship for a 22px saving.
+
+  `border` is 1px in every state here, not the old `border-[1.5px]`: Figma
+  draws 1 and browsers round border widths to whole device pixels anyway.
 */
 const control =
-  "text-body text-encre placeholder:text-encre/45 rounded-field border-encre/10 bg-lilas " +
-  "w-full border-[1.5px] px-4.5 py-3.25 transition-colors " +
-  "focus-visible:border-periwinkle focus-visible:bg-white focus-visible:outline-hidden";
+  "text-small text-encre placeholder:text-encre/62 rounded-field border-encre/20 bg-white " +
+  "w-full border px-4.5 py-4 transition-colors " +
+  "focus-visible:border-periwinkle focus-visible:outline-hidden";
 
 /**
  * The consultation panel, sliding in from the right edge over the page.
  *
- * **One component for both pages.** The article had its own drawer — an
- * illustrated figure, a gold submit, result-green ticks, a caps overline —
- * until the redesign replaced it with `13318:3628`, which is identical to the
- * home page's `13323:4833` right down to the photograph: the two exports diff
- * at **0.00**. So the two were merged. If they diverge again, split the
- * presentation and keep sharing `useDrawerBehaviour`.
+ * **One component for both pages**, and now re-derived against `13816:221`,
+ * which redesigns it rather than replacing it — same 510 panel, same header
+ * band, same photograph, same three marks.
+ *
+ * What that node changed, against the `13323:4833` build:
+ *
+ * - the overline is **two runs**: `Consultation` in Poppins SemiBold and
+ *   ` — 15 minutes gratuites` in **Inter SemiBold 16/1.45**, both still
+ *   uppercase and both still tracked. **It keeps `--text-overline-tight`'s
+ *   0.14em, not the 2.88px Figma states**: at 0.18em the string needs 430 of
+ *   its 412px slot and wraps to two lines, taking the header from 202 to
+ *   225.4. Even at 0.14em it measures **414.5** — 2.5px over — because the
+ *   Inter SemiBold half is fractionally wider than the Poppins it replaced, so
+ *   it also takes `sm:whitespace-nowrap` and spends those 2.5px of the ✕'s
+ *   16px gap. Figma draws one line and the gap can afford it; below `sm` the
+ *   panel is the viewport and it wraps, which is the behaviour already agreed
+ *   for this string.
+ * - the title drops from `text-h2-sm` to **`text-h3`** (Poppins SemiBold 20);
+ * - the pale-blue `Objet :` pill under the header is **gone**;
+ * - the fields lose their visible labels and turn white on an `encre/20`
+ *   hairline at a 12px radius, with 18/16 padding and the name as placeholder;
+ * - the textarea is a fixed **155** rather than four rows;
+ * - the body pads **20** top and bottom where it was 24/30, the marks rule
+ *   sits **8** above them where it was 18, and their lines run at 26.
  *
  * Real, labelled inputs but **not wrapped in a `<form>`** — there is no submit
  * handler, and a bare form would reload the page on Enter. Same call as Tools
@@ -91,98 +111,92 @@ export function ConsultationDrawer({
             : "translate-x-full shadow-none"
         }`}
       >
-        <div className="bg-lilas border-encre/8 flex flex-col gap-4 border-b px-7.5 pt-6.5 pb-4.5">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-4">
-              {/*
-                +14% tracking, not the +18% every other overline on the site
-                carries: Figma leaves this string exactly 412px of a 450px row
-                once the 22px close control and its 16px gap are taken out.
-              */}
-              <p className="text-overline-tight font-poppins text-brique min-w-0 flex-1 uppercase">
-                {t("overline")}
-              </p>
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label={t("close")}
-                /* h-6 because Figma's close box is 24 tall and sets the row's
-                   height; text-lead with leading-none draws a 20px box. */
-                className="text-lead font-inter text-encre/62 hover:text-encre h-6 w-5.5 shrink-0 cursor-pointer text-center leading-none transition-colors"
-              >
-                <span aria-hidden="true">✕</span>
-              </button>
-            </div>
-
-            {/*
-              Figma's `who` row: a 126px photo that stretches to the height of
-              the copy beside it (`self-stretch`), not a fixed box.
-            */}
-            <div className="flex items-start gap-4">
-              <div className="relative w-31.5 shrink-0 self-stretch overflow-hidden rounded-tl-[59.854px] rounded-tr-[2.993px] rounded-br-[29.927px] rounded-bl-[17.956px]">
-                <Image
-                  src={lawyerPortrait}
-                  alt=""
-                  fill
-                  sizes="126px"
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex min-w-0 flex-1 flex-col justify-center gap-1">
-                <h2 className="text-h2-sm text-encre">{t("title")}</h2>
-                <p className="text-small text-encre/62">{t("lead")}</p>
-              </div>
-            </div>
+        <div className="bg-lilas border-encre/8 flex flex-col gap-2 border-b px-7.5 pt-6.5 pb-4.5">
+          <div className="flex items-center gap-4">
+            <p className="text-overline-tight font-poppins text-brique min-w-0 flex-1 uppercase sm:whitespace-nowrap">
+              {t.rich("overline", {
+                /* The second half is Inter SemiBold 16/1.45 and inherits the
+                   overline's tracking and uppercase — `text-small-strong`
+                   cannot be used, since it would reset letter-spacing to 0. */
+                i: (chunks) => (
+                  <span className="font-inter leading-[1.45] font-semibold">
+                    {chunks}
+                  </span>
+                ),
+              })}
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label={t("close")}
+              /* h-6 because Figma's close box is 24 tall and sets the row's
+                 height; text-lead with leading-none draws a 20px box. */
+              className="text-lead font-inter text-encre/62 hover:text-encre h-6 w-5.5 shrink-0 cursor-pointer text-center leading-none transition-colors"
+            >
+              <span aria-hidden="true">✕</span>
+            </button>
           </div>
 
-          <p className="bg-pale-blue text-small-strong text-encre self-start rounded-full px-3.5 py-1.25">
-            {t("objet")}
-          </p>
+          {/*
+            Figma's `who` row: a 126px photo that stretches to the height of
+            the copy beside it (`self-stretch`), not a fixed box.
+          */}
+          <div className="flex items-start gap-4">
+            <div className="relative w-31.5 shrink-0 self-stretch overflow-hidden rounded-tl-[59.854px] rounded-tr-[2.993px] rounded-br-[29.927px] rounded-bl-[17.956px]">
+              <Image
+                src={lawyerPortrait}
+                alt=""
+                fill
+                sizes="126px"
+                className="object-cover"
+              />
+            </div>
+            <div className="flex min-w-0 flex-1 flex-col justify-center gap-1">
+              <h2 className="text-h3 font-poppins text-encre">{t("title")}</h2>
+              <p className="text-small text-encre/62">{t("lead")}</p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-3 px-7.5 pt-6 pb-7.5">
+        <div className="flex flex-col gap-3 px-7.5 py-5">
           {fields.map(({ key, type }) => (
-            <div key={key} className="flex flex-col gap-1.5">
-              <label htmlFor={`consult-drawer-${key}`} className={labelClass}>
+            <div key={key} className="flex flex-col gap-1">
+              <label htmlFor={`consult-drawer-${key}`} className="sr-only">
                 {t(`fields.${key}`)}
               </label>
               <input
                 id={`consult-drawer-${key}`}
                 ref={key === "nom" ? firstFieldRef : undefined}
                 type={type}
+                placeholder={t(`fields.${key}`)}
                 className={control}
               />
             </div>
           ))}
 
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="consult-drawer-situation" className={labelClass}>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="consult-drawer-situation" className="sr-only">
               {t("situation")}
             </label>
-            {/*
-              4 rows at text-body's 25.2px line box lands the control on
-              Figma's 132px, which it draws as 14px of copy over 70px of
-              empty space.
-            */}
+            {/* Figma fixes this control at 155, where it used to be four rows. */}
             <textarea
               id="consult-drawer-situation"
-              rows={4}
               placeholder={t("situationPlaceholder")}
-              className={`${control} resize-y`}
+              className={`${control} h-38.75 resize-y`}
             />
           </div>
 
-          <Button variant="red" className="w-full px-0 py-3.75">
+          <Button variant="red" className="w-full px-0 py-3.5">
             {t("cta")}
           </Button>
 
-          <p className="text-small text-encre/62">{t("footnote")}</p>
+          <p className="text-small text-encre/62 leading-6">{t("footnote")}</p>
 
-          <ul className="border-encre/10 border-t pt-4.5">
+          <ul className="border-encre/10 border-t pt-2">
             {marks.map((key) => (
               <li
                 key={key}
-                className="text-small text-encre/62 flex items-start gap-2.5 py-1.75"
+                className="text-small text-encre/62 flex items-start gap-2.5 py-1.75 leading-[26px]"
               >
                 <span
                   aria-hidden="true"

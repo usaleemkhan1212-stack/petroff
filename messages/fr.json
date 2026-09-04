@@ -5179,15 +5179,14 @@
     "close": "Fermer la demande de consultation",
     "title": "Exposez votre situation",
     "lead": "Un avocat du cabinet vous répond sous 24 heures et vous indique le périmètre de l’intervention ainsi que son coût, avant toute mise en œuvre.",
-    "objet": "Objet : signature électronique",
     "fields": {
       "nom": "Nom et prénom",
-      "email": "E-mail professionnel",
-      "tel": "Téléphone (facultatif)",
+      "email": "E-mail",
+      "tel": "Téléphone",
       "societe": "Société"
     },
     "situation": "Votre situation",
-    "situationPlaceholder": "Stade de l’opération, difficulté rencontrée, échéance à tenir.",
+    "situationPlaceholder": "Votre situation. Par exemple “Stade de l’opération, difficulté rencontrée, échéance à tenir.”",
     "cta": "Soumettre votre demande",
     "footnote": "Échange couvert par le secret professionnel de l’avocat (art. 66-5 de la loi du 31 décembre 1971). Vos données ne servent qu’au traitement de votre demande.",
     "marks": {
@@ -5197,7 +5196,7 @@
     },
     "phone": "<q>Vous préférez appeler ?</q> <tel>+ 33 (0) 1 78 90 46 46</tel> · Paris",
     "tabLabel": "Consulter un avocat",
-    "overline": "Consultation — 15 minutes gratuites"
+    "overline": "Consultation<i> — 15 minutes gratuites</i>"
   },
   "Trust": {
     "reponse": "Réponse sous 48 h",

@@ -4446,6 +4446,58 @@ card's own art. 1843-4, the Mesures d'urgence card against the 48 h stat, and
 the Blocages & abus card with the four working languages. **That takes the
 sign-off list from fifty-two drafted answers to fifty-five.**
 
+## The consultation drawer, re-derived against `13816:221`
+
+A redesign of the drawer rather than a replacement — same 510 panel, same lilas
+header band, same photograph, same three marks, same behaviour. Both pages that
+draw a side tab get it, since there is still **one component**.
+
+| | was (`13323:4833`) | now (`13816:221`) |
+|---|---|---|
+| overline | one Poppins run | **two runs** — `Consultation` in Poppins SemiBold, ` — 15 minutes gratuites` in **Inter SemiBold 16/1.45**, both still uppercase and tracked |
+| title | `text-h2-sm` (Poppins SemiBold 24) | **`text-h3`** (20) |
+| the `Objet :` pill | pale blue, under the header | **gone** |
+| field labels | visible above each input | **none** — the placeholder carries the name |
+| field | lilas, `encre/10` at 1.5px, 18/13 padding, 18px body | **white, `encre/20` at 1px, 12px radius, 18/16 padding, Inter 16/1.5** |
+| textarea | four rows (~132) | a fixed **155** |
+| body padding | 24 top, 30 bottom | **20 / 20** |
+| marks rule | 18 above | **8** above, lines at 26 |
+
+- **The labels are `sr-only`, not deleted.** Figma draws none, but an
+  unlabelled input is not something to ship to save 22px of DOM; each `<label>`
+  stays and the placeholder repeats it.
+- Because the label is now the only visible name, `fields.email` and
+  `fields.tel` take **Figma's own shorter strings** — `E-mail` and `Téléphone`,
+  where the build said `E-mail professionnel` and `Téléphone (facultatif)`.
+  **That loses the "optional" cue**; it is the designer's call, worth raising.
+- `Consultation.objet` is deleted — nothing else read it.
+
+### The overline still does not fit, and now by less
+
+`--text-overline-tight` exists because at the standard 0.18em this string
+overran its 412px slot. The redesign does not change that: at 0.18em it needs
+**430** and wraps to two lines, taking the header from 202 to 225.4. And at
+0.14em it now measures **414.5** — still 2.5px over — because the Inter
+SemiBold half is fractionally wider than the Poppins it replaced.
+
+So it keeps the tight token **and** takes `sm:whitespace-nowrap`, spending 2.5px
+of the ✕'s 16px gap. Figma draws one line and the gap can afford it. Below `sm`
+the panel is the viewport and it wraps, which is the behaviour already agreed
+for this string.
+
+Measured after: panel **510**, header **203 against Figma's 202** (its own
+border), header padding `26 / 30 / 18` on an 8 gap, ✕ **22x24** at y=26, photo
+**126** at y=58, title 20px, body `20 / 30` on a 12 gap, inputs **450x58** with
+`16px 18px` at a 12 radius on white, textarea **155**, submit `14 / 0` in red,
+the marks rule at **pt-8** with 7px rows at a 26 line. Every one Figma's number.
+
+Behaviour re-driven at seven widths from 1920 to 320: closed panel `inert`,
+focus landing on the Nom field, `body` overflow locking and restoring, Escape
+closing, focus returning to the tab, the overline holding one line down to 640,
+and **no horizontal overflow at any width**. The contact popup is untouched —
+still 1000x676.8 with focus to its textarea — and every page height is
+unchanged.
+
 ## The hero markers, checked against every frame
 
 Asked for: the hero headings' gold bar did not look like the design. Checked on
