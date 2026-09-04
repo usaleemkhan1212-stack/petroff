@@ -91,8 +91,15 @@ export function ALireEnsuite() {
               </p>
             </div>
             <div className="rounded-note-lg border-encre/8 flex flex-col items-end gap-2 border bg-white p-5 text-right sm:flex-1 sm:self-stretch sm:p-7">
-              <p className="text-button font-poppins text-periwinkle uppercase">
+              <p className="text-overline font-poppins text-periwinkle uppercase">
                 {t("nextLabel")}
+                {/* Figma splits the arrow into its own run at **Petroff/Button**
+                    — 16/1.2 with no tracking — so the overline's 0.18em does
+                    not push it away from the word. `--text-button` declares
+                    `letter-spacing: 0em`, so nesting the token is all it takes. */}
+                <span aria-hidden="true" className="text-button font-poppins">
+                  {" →"}
+                </span>
               </p>
               <p className="text-h3 font-poppins text-encre">{t("nextTitle")}</p>
             </div>

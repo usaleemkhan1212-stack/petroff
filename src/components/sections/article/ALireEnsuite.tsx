@@ -59,11 +59,12 @@ export function ALireEnsuite() {
         {/* Previous / next. **Both labels are periwinkle since the redesign** —
             the left one was brique, verified by sampling the node render at
             #2e5bb8 for both. They keep different type styles on purpose: the
-            left is the overline (0.18em tracking), the right the Button style
-            with none. The section overline above stays brique (#a67c1b). */}
+            both are the overline (0.18em, uppercase) — only the next label's
+            trailing arrow is the Button style, with no tracking. The section
+            overline above stays brique (#a67c1b). */}
         <nav className="mt-11 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="rounded-note-lg border-encre/8 flex flex-col items-start gap-2 border bg-white p-5 sm:p-7">
-            <p className="text-overline font-poppins text-periwinkle">
+            <p className="text-overline font-poppins text-periwinkle uppercase">
               {t("prevLabel")}
             </p>
             <p className="text-h3 font-poppins text-encre">
@@ -71,7 +72,16 @@ export function ALireEnsuite() {
             </p>
           </div>
           <div className="rounded-note-lg border-encre/8 flex flex-col items-end gap-2 border bg-white p-5 text-right sm:p-7">
-            <p className="text-button font-poppins text-periwinkle">{t("nextLabel")}</p>
+            <p className="text-overline font-poppins text-periwinkle uppercase">
+              {t("nextLabel")}
+              {/* Figma splits the arrow into its own run at **Petroff/Button**
+                — 16/1.2 with no tracking — so the overline's 0.18em does
+                not push it away from the word. `--text-button` declares
+                `letter-spacing: 0em`, so nesting the token is all it takes. */}
+              <span aria-hidden="true" className="text-button font-poppins">
+                {" →"}
+              </span>
+            </p>
             <p className="text-h3 font-poppins text-encre">{t("nextTitle")}</p>
           </div>
         </nav>

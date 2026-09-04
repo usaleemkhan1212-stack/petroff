@@ -2864,11 +2864,11 @@ against the live build at 1920:
      be hover; **assume hover unless a second card in the same grid lacks it.**
   2. **Both prev/next labels are periwinkle.** The left one was brique — the
      old frame really did set them differently, and the note recording that is
-     now out of date. Sampled at `#2e5bb8` for both. They keep different type
-     styles: the left is the overline (0.18em), the right the Button style with
-     none. **The section overline above them stays brique `#a67c1b`** — a
-     global replace of `text-brique` catches it too, which is exactly the
-     mistake to avoid here.
+     now out of date. Sampled at `#2e5bb8` for both. **They also share one type
+     style — see the correction below; the claim that the right one is the
+     Button style was wrong.** **The section overline above them stays brique
+     `#a67c1b`** — a global replace of `text-brique` catches it too, which is
+     exactly the mistake to avoid here.
   3. The sticky bar left its **2px red rule showing along the bottom edge when
      dismissed**: `translate-y-full` moves the box but the rule still painted
      at the boundary. The closed state now carries `opacity-0` as well, and the
@@ -7965,6 +7965,41 @@ Note the change is **two** things: rose to periwinkle, and SemiBold to Regular.
 
 Verified by clicking it on all five pages: the popup opens at **1000px** with
 focus landing on its textarea each time.
+
+## `SUIVANT →` is the overline, and only its arrow is not
+
+Reported against the comp. `13318:3242` writes that label as **two runs**, and
+the build had one:
+
+| run | Figma |
+|---|---|
+| `SUIVANT` | Poppins SemiBold 16/1.3, **`tracking-[2.88px]`**, uppercase — Petroff/**Overline** |
+| ` →` | Poppins SemiBold 16/**1.2**, no tracking — Petroff/**Button** |
+
+Both `#2e5bb8`. So this file's standing note — "the left is the overline, the
+right the Button style with none" — was reading the *whole* right label as one
+Button run. Only the arrow is.
+
+- The arrow leaves the message: `alire.nextLabel` is **`Suivant`** now, with
+  `→` rendered as an `aria-hidden` span carrying `text-button`. Because
+  `--text-button` declares `letter-spacing: 0em`, nesting the token inside the
+  overline is the whole fix — no `tracking-normal` needed. Splitting it matters
+  visually: the overline's 0.18em would otherwise push the arrow ~3px off the
+  word and add a trailing gap.
+- **The article page's `← précédent` was missing its `uppercase`.** Figma sets
+  `text-transform: uppercase` on that node too — confirmed by rendering it,
+  which draws `← PRÉCÉDENT` — and the new-article twin already had the class.
+  So the label is stored in natural case and uppercased in CSS, like every
+  other eyebrow on the site.
+- **Only two components carry this row** — `article/` and
+  `new-article/ALireEnsuite.tsx`. The e-commerce and service ALireEnsuite
+  blocks have no prev/next at all, so "all pages" is those two.
+
+Measured after, identical on both: prev and next word at Poppins 600 16/20.8
+with **2.88px** tracking and `uppercase`, the arrow at `letter-spacing: normal`
+16/19.2, all in `rgb(46,91,184)`. The label holds **one line at 111.1px** from
+1920 down to 320, `pn` 138.8 against Figma's 137 (its two card borders), and
+both pages unchanged at 18486 and 18993 with no overflow at any of six widths.
 
 ## Hard rules
 
