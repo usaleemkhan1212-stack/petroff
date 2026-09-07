@@ -8293,13 +8293,82 @@ in — shows this is not one page's problem, in two different degrees:
 | **no chunk at all**, a bar pinned to the title | the two article heroes (**fixed**) and **`/le-cabinet`** |
 | tied to a chunk but at a **fixed em width** | ten heroes — home, the hub, Bibliothèque and seven domain pages |
 
-The ten do follow their text horizontally, since the bar is centred on the
-chunk, but they would not *resize* with it. And their fixed widths are Figma's
-own numbers, which often disagree with the chunk sharply — `bonnes conditions.`
-is 653.6 wide under a 396 bar, `clairement.` 397.5 under 336 on Bibliothèque.
-**Making those span their chunks is a visible departure from the comp**, up to
-257px on one, so it is not done here. `/le-cabinet`'s pinned 172 bar is the same
-fault as this one and is the obvious next candidate.
+**All of them are fixed now — see the section below.** The instruction is that
+the underline must be the width of the words in any language, which no fixed
+`w-[…em]` can be.
+
+## The hero underline is a background on the marked words
+
+The rule, asked for plainly: **if a word is 5px wide in French and 10px once
+translated, the underline is 5px then 10px.** No fixed width can do that, and
+every one of the site's **19** hero markers was a fixed `w-[…em]` bar — four of
+them not even anchored to a marked run, just pinned to the title's left edge.
+
+They are now one component, **`components/ui/HeroMarker.tsx`**, which paints the
+bar as a **`linear-gradient` background on the marked run itself**. A background
+box is the width of its text by definition, so the bar cannot drift from the
+words; and `box-decoration-break: clone` gives every line fragment its own band,
+so a translation long enough to wrap gets an underline on each line instead of
+one stranded bar.
+
+Proven by swapping the run's text and reading the painted width:
+
+| run | underline |
+|---|---|
+| `clairement.` | 397.5 |
+| `clearly.` | **255.1** |
+| `klar und deutlich.` | **599.6** |
+| `明确地` | **202** |
+| `con toda claridad y sin rodeos` | wraps to two lines, capped at the column, **no overflow** |
+
+**Two hacks retire with the absolute bar.** It paints *behind* the glyphs by
+definition, so the negative-z-index dance four heroes carried is gone; and it
+cannot overhang its column, so the `max-w-full` patches and the e-commerce
+marker's `hidden sm:block` — which existed because a pinned bar sat under the
+wrong word on a phone — are gone too.
+
+- **`inline-block` is load-bearing, and dropping it cost four titles a line.**
+  As a plain inline the marked phrase splits mid-phrase and the line breaking
+  changes; as an `inline-block` it stays whole, which is what these heroes were
+  built with. `max-w-full` is what makes that safe — a run too long for the
+  column wraps inside its own box rather than pushing the page sideways.
+- **The 4px corner radius Figma draws on the rect is the one thing lost.** A
+  background cannot round only its painted band.
+
+### Cutting a chunk out of a bare rect
+
+Four markers had no run to attach to, so the words had to be recovered from the
+comp. **The rule that settles it: the chunk is the words the bar covers** —
+scan the rendered bar's x-extent against each word's own extent.
+
+| hero | what the bar covered | now marked |
+|---|---|---|
+| the two article heroes | ends at 559, mid-colon | `Signature électronique` |
+| `/le-cabinet` | 0..172, over `Le` and `droit` | `Le droit` — the string was already tagged, only the bar sat outside it |
+| service page | 267.5..538.5, over `associés` **and the whole colon** | `associés :` |
+| e-commerce | 280.5..590.5 against `e-commerce` at 277.1..590.9 | `e-commerce` |
+
+Note the article and the service page treat their colon differently, and that is
+the same rule applied to different evidence: one bar stops inside the colon, the
+other covers it completely.
+
+### What moved, and what did not
+
+On **eight** heroes the fixed bar was already within ~12px of its chunk, so the
+French is unchanged in practice. On **five** it was a copied `5.8235em` template
+landing mid-word — `bonnes conditions.` carried a 396 bar over a 653.6 phrase —
+and those now underline the whole phrase. Contentieux's 204 bar deliberately ran
+past `vite` (129.4) and now stops at the word.
+
+Verified across all 19 heroes at 1920, 768, 375 and 320: a gradient marker on
+every one, **no leftover absolute bar anywhere**, no horizontal overflow, and
+every page height unchanged.
+
+**One measurement caveat worth recording.** Four domain pages read +46 against
+figures taken earlier the same day. That was **not** this change — stashing it
+gave byte-identical numbers. It was the font restoration: those earlier readings
+were taken while the dev server was serving Arial fallbacks, so **any height
+measured during that window is suspect.**
 
 ## Hard rules
 

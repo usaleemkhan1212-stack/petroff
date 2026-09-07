@@ -5544,7 +5544,7 @@
       "crumb": "Accueil · Bibliothèque · Vendre, contracter & commercer · Contrats commerciaux · ",
       "crumbCurrent": "Signature électronique",
       "overline": "Avocat en droit du e-commerce",
-      "title": "Avocats du e-commerce en France",
+      "title": "Avocats du <hl>e-commerce</hl> en France",
       "lead": "Le droit français du e-commerce, expliqué et pris en charge. Nos avocats conseillent vendeurs en ligne, places de marché et marques : CGV, parcours de commande, rétractation et garanties, prix et publicité, obligations des plateformes et enquêtes DGCCRF.",
       "cta": "Parler à un avocat du e-commerce",
       "ctaNote": "15 minutes gratuites en visio, prix ferme sous 24 h.",
@@ -6167,7 +6167,7 @@
       "crumb": "Accueil · Expertises · Contentieux & arbitrage · ",
       "crumbCurrent": "Litiges entre associés",
       "overline": "Litige entre associés : avocat en droit des sociétés à Paris",
-      "title": "Litige entre associés : reprenez la main.",
+      "title": "Litige entre <hl>associés :</hl> reprenez la main.",
       "lead": "Votre associé bloque la société, vous écarte de la gestion ou organise votre sortie ? Nous intervenons pour sécuriser vos droits, préserver les preuves et débloquer la situation — négociation, référé ou procédure au fond.",
       "checks": {
         "pouvoir": "Un associé n’est jamais sans pouvoir : la théorie de l’abus fait tomber une résolution.",

@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import CalendarDotsBold from "@/assets/icons/calendar-dots-bold.svg";
 import RosetteRibbon from "@/assets/icons/seal-ribbon.svg";
 import heroPhoto from "@/assets/images/litige-associes-hero.jpg";
+import { HeroMarker } from "@/components/ui/HeroMarker";
 import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Container } from "@/components/ui/Container";
 
@@ -57,11 +58,13 @@ export function Hero() {
                 the page sideways, which is how the e-commerce hero broke.
               */}
               <h1 className="text-article-title text-encre font-poppins relative">
-                <span
-                  aria-hidden="true"
-                  className="bg-pale-gold absolute top-[0.917em] left-[5.815em] h-[0.326em] w-[5.891em] max-w-full rounded-[4px]"
-                />
-                <span className="relative">{t("title")}</span>
+                {t.rich("title", {
+                  hl: (chunks) => (
+                    <HeroMarker top={1.0478} height={0.3261}>
+                      {chunks}
+                    </HeroMarker>
+                  ),
+                })}
               </h1>
             </div>
 

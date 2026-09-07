@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { HeroMarker } from "@/components/ui/HeroMarker";
 import { HeroIllustration } from "@/components/sections/bibliotheque/HeroIllustration";
 import { HeroSearch } from "@/components/sections/bibliotheque/HeroSearch";
 import { Container } from "@/components/ui/Container";
@@ -31,13 +32,9 @@ export function Hero() {
                     br: () => <br className="hidden sm:inline" />,
                     // Pale-gold marker bar sitting behind the final word.
                     hl: (chunks) => (
-                      <span className="relative inline-block">
-                        <span
-                          aria-hidden="true"
-                          className="bg-pale-gold absolute bottom-[0.069em] left-0 h-[0.382em] w-[4.941em] rounded"
-                        />
-                        <span className="relative">{chunks}</span>
-                      </span>
+                      <HeroMarker top={0.7856} height={0.3819}>
+                        {chunks}
+                      </HeroMarker>
                     ),
                   })}
                 </h1>

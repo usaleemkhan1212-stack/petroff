@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import heroPhoto from "@/assets/images/reading-outdoors-tall.jpg";
+import { HeroMarker } from "@/components/ui/HeroMarker";
 import { Container } from "@/components/ui/Container";
 import { heroArticles } from "@/lib/article";
 import { ArticleActions } from "@/components/sections/article/ArticleActions";
@@ -43,13 +44,9 @@ export function Hero() {
             <h1 className="text-article-title text-encre font-poppins relative">
               {t.rich("title", {
                 hl: (chunks) => (
-                  <span className="relative">
-                    <span
-                      aria-hidden="true"
-                      className="bg-pale-gold absolute inset-x-0 top-[0.721em] h-[0.326em] rounded"
-                    />
-                    <span className="relative">{chunks}</span>
-                  </span>
+                  <HeroMarker top={0.721} height={0.326}>
+                    {chunks}
+                  </HeroMarker>
                 ),
               })}
             </h1>

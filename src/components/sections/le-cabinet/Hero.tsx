@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import PenNib from "@/assets/icons/pen-nib.svg";
 import SealRibbon from "@/assets/icons/seal-ribbon.svg";
 import photo from "@/assets/images/place-concorde.jpg";
+import { HeroMarker } from "@/components/ui/HeroMarker";
 import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { buttonClasses } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -63,16 +64,12 @@ export function Hero() {
                     and the bar goes behind every glyph — the same pair the
                     Contentieux, Contrats and Immobilier heroes need.
                   */}
-                  <h1 className="text-article-title text-encre relative z-0">
+                  <h1 className="text-article-title text-encre">
                     {t.rich("title", {
                       hl: (chunks) => (
-                        <span className="relative">
-                          <span
-                            aria-hidden="true"
-                            className="bg-pale-gold absolute bottom-[0.213em] left-0 -z-10 h-[0.3261em] w-[3.739em] rounded-[4px]"
-                          />
+                        <HeroMarker top={0.8522} height={0.3261}>
                           {chunks}
-                        </span>
+                        </HeroMarker>
                       ),
                     })}
                   </h1>

@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { HeroMarker } from "@/components/ui/HeroMarker";
 import { StageOrnaments } from "@/components/sections/expertises/StageOrnaments";
 import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
@@ -54,13 +55,9 @@ export function Stage() {
               {t.rich("title", {
                 // Pale-gold marker bar sitting behind the closing words.
                 hl: (chunks) => (
-                  <span className="relative inline-block">
-                    <span
-                      aria-hidden="true"
-                      className="bg-pale-gold absolute bottom-[0.045em] left-1/2 h-[0.353em] w-[5.426em] -translate-x-1/2 rounded"
-                    />
-                    <span className="relative">{chunks}</span>
-                  </span>
+                  <HeroMarker top={0.8387} height={0.3529}>
+                    {chunks}
+                  </HeroMarker>
                 ),
               })}
             </h1>

@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { HeroMarker } from "@/components/ui/HeroMarker";
 import { HeroOrnaments } from "@/components/sections/immobilier/HeroOrnaments";
 import { ConsultButton } from "@/components/consultation/ConsultButton";
 import { Button } from "@/components/ui/Button";
@@ -77,13 +78,9 @@ export function Hero() {
                   now agrees within a pixel.
                 */
                 hl: (chunks) => (
-                  <span className="relative inline-block">
-                    <span
-                      aria-hidden="true"
-                      className="bg-pale-gold absolute bottom-[0.1483em] left-1/2 -z-10 h-[0.3235em] w-[9.971em] max-w-full -translate-x-1/2 rounded-[4px]"
-                    />
-                    <span>{chunks}</span>
-                  </span>
+                  <HeroMarker top={0.7649} height={0.3233}>
+                    {chunks}
+                  </HeroMarker>
                 ),
               })}
             </h1>

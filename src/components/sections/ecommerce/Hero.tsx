@@ -1,3 +1,4 @@
+import { HeroMarker } from "@/components/ui/HeroMarker";
 import { ConsultTrigger } from "@/components/consultation/ConsultButton";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -52,11 +53,13 @@ export function Hero() {
               bar under the wrong word.
             */}
             <h1 className="text-article-title text-encre font-poppins relative">
-              <span
-                aria-hidden="true"
-                className="bg-pale-gold absolute top-[0.754em] left-[6.098em] hidden h-[0.326em] w-[6.739em] rounded sm:block"
-              />
-              <span className="relative">{t("title")}</span>
+              {t.rich("title", {
+                hl: (chunks) => (
+                  <HeroMarker top={0.8848} height={0.3261}>
+                    {chunks}
+                  </HeroMarker>
+                ),
+              })}
             </h1>
 
             <p className="text-lead font-inter text-encre/62">{t("lead")}</p>

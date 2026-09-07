@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import heroPhoto from "@/assets/images/bench-laptop-portrait.jpg";
+import { HeroMarker } from "@/components/ui/HeroMarker";
 import { HeroActions } from "@/components/sections/new-article/HeroActions";
 import { Container } from "@/components/ui/Container";
 
@@ -54,18 +55,9 @@ export function Hero() {
               <h1 className="text-article-title text-encre font-poppins relative">
                 {t.rich("title", {
                   hl: (chunks) => (
-                    <span className="relative">
-                      {/* `inset-x-0` is the point: the bar is exactly as wide as
-                          the words it marks, so it follows them into any
-                          translation. It had been a fixed 12.17em bar pinned to
-                          the title's own left edge, which is only under the right
-                          words in French. */}
-                      <span
-                        aria-hidden="true"
-                        className="bg-pale-gold absolute inset-x-0 top-[0.934em] h-[0.326em] rounded"
-                      />
-                      <span className="relative">{chunks}</span>
-                    </span>
+                    <HeroMarker top={0.934} height={0.326}>
+                      {chunks}
+                    </HeroMarker>
                   ),
                 })}
               </h1>
