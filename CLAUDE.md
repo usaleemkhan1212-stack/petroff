@@ -8090,6 +8090,63 @@ is actually read in.
   aborts the load the previous one started, so the tab never leaves
   `about:blank`. Navigate once and poll `location.href`.
 
+## Fonts vanished locally while production was fine — a half-written build
+
+Reported as "the fonts are not appearing locally". They were not: every page
+rendered in metric-adjusted Arial while the deployed site was correct.
+
+**The tell is the count of `@font-face` rules in the served CSS.** The page had
+**two**, and both were the fallbacks:
+
+| what was there | what it means |
+|---|---|
+| `"Poppins Fallback" | local("Arial")` | the metric-adjusted stand-in |
+| `"Inter Fallback" | local("Arial")` | the same |
+| *(no rule for `Poppins` or `Inter` at all)* | nothing to load, so the stack falls straight through to Arial |
+
+Everything else looked healthy and that is what makes it slow to spot: the
+`next/font` module classes were on `<html>`, `--poppins` resolved to
+`"Poppins", "Poppins Fallback"`, the `h1` computed to `Poppins, …`, and all
+**13 woff2 files were on disk** in `.next/dev/static/media`. The font CSS that
+points at them had simply never been generated — `grep -rl 'static/media/.*woff2'
+.next --include=*.css` returned **nothing**.
+
+So: **check `document.fonts`, not `getComputedStyle`.** A correct
+`font-family` proves only that the cascade is right; `document.fonts.forEach`
+showing nothing but `… Fallback loaded` is what names the fault. `CSS.getPlatformFontsForNode`
+over CDP is the final word — it reports the family Chrome actually rasterised
+with (`Poppins x22`, `Poppins SemiBold x46`, `Inter x28` once fixed).
+
+### Killing `next dev` is not enough — its workers outlive it
+
+The remedy is the one already recorded: kill the server, `rm -rf .next`,
+restart. **Doing that naively re-created the corruption**, and the second
+failure named the reason. After the restart every route 500'd with
+
+`SyntaxError: Unexpected non-whitespace character after JSON at position 840`
+
+which is this file's own manifest race: `.next/dev/prerender-manifest.json`,
+**972 bytes holding a complete 840-byte document followed by the tail of a
+longer one**. Listing node processes showed why — killing `next dev` leaves its
+**turbopack pool workers running** (`pool_entry-[turbopack-node]_transforms_…`),
+and they keep writing into `.next` while it is being deleted and re-made.
+
+The reliable sequence, all of it:
+
+1. Kill **every** node process whose command line names the project, not just
+   the one holding port 3000 — there were **seven**.
+2. Confirm zero remain and the port is free.
+3. `rm -rf .next`.
+4. Start **one** `next dev` and let it reach Ready before touching it.
+
+After that: 29 `@font-face` rules with real `../media/*.woff2` sources, 33 faces
+registered, `Poppins 600` and `Poppins 700` reporting `loaded`, and all seven
+sampled routes serving 200.
+
+**Next also warns that `.next/dev` is on a slow filesystem here** (a 210ms
+benchmark, `D:`). That is worth knowing as background for why a half-written
+build happened at all — a slow or networked drive widens every write race.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.
