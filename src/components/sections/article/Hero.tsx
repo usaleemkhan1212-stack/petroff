@@ -37,16 +37,21 @@ export function Hero() {
             {/*
               46/52 rather than the fluid text-display: this is an article
               title inside a 656px measure, not a page hero. The pale-gold
-              marker is a fixed 12.17em bar rather than a highlighted chunk, so
-              it needs max-w-full: below ~500px it would otherwise be wider
-              than the column and push the whole page sideways.
+              marker spans the `hl` chunk itself, so it is exactly as wide as
+              the words it marks and follows them into any translation.
             */}
             <h1 className="text-article-title text-encre font-poppins relative">
-              <span
-                aria-hidden="true"
-                className="bg-pale-gold absolute top-[0.591em] left-0 h-[0.326em] w-[12.174em] max-w-full rounded"
-              />
-              <span className="relative">{t("title")}</span>
+              {t.rich("title", {
+                hl: (chunks) => (
+                  <span className="relative">
+                    <span
+                      aria-hidden="true"
+                      className="bg-pale-gold absolute inset-x-0 top-[0.721em] h-[0.326em] rounded"
+                    />
+                    <span className="relative">{chunks}</span>
+                  </span>
+                ),
+              })}
             </h1>
 
             <p className="text-lead font-inter text-encre/62">{t("lead")}</p>

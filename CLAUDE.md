@@ -8239,6 +8239,68 @@ where the glyphs actually land inside their box.
   +8.5. It is the legacy column this file keeps for comparison, so it was left
   as it is.
 
+## A hero marker has to be attached to the words it marks
+
+Reported on the article hero: translate the title and the gold bar stays put,
+"separate pixels underneath the title". It did — `13318:2455` is a bare
+**560x15 rect at (338, 148)**, a sibling of the copy column with no text run
+behind it, and the build reproduced it literally as an absolutely positioned
+`w-[12.174em]` bar pinned to the title's own `left-0`. Nothing tied it to a
+word, so it was only ever correct for this one French string.
+
+**Which words does a bare rect mark?** Scanning the node's own render answers
+it: the bar occupies x 338..897 — exactly Figma's 560 — so in title
+coordinates it ends at **559**, while the glyph clusters on line one run
+`Signature` 2..230, `électronique` 244..541, `:` 556..563, `ce` 578..630. The
+hand-drawn rect stops *mid-colon*. The term it underlines is
+**`Signature électronique`**, and the extra 15px is the trailing space it
+happens to cover.
+
+So the title now carries a real chunk — `<hl>Signature électronique</hl> : …` —
+and the bar is `absolute inset-x-0` inside a `relative` wrapper around it. It is
+therefore **exactly as wide as the words**, in any language.
+
+- **The bar is 543.7 where Figma draws 560**, and that is the deliberate part:
+  it now ends flush with `électronique` instead of 15px into the colon. Left,
+  top and height are Figma's own — **0 / 37 / 15**.
+- **`top` had to be re-derived, and this is the trap.** Moving the bar inside an
+  inline wrapper changes what `top` resolves against: the inline's content box
+  starts **6px above** the `h1`'s at 46px, so the same `0.804em` drew at 31
+  instead of 37. It is a constant **0.1304em** because the title's 46/52 ratio
+  is fixed as the size scales, so `0.804 -> 0.934em` holds at every width —
+  verified at six. The old page's own `0.591 -> 0.721em` likewise restores its 27.2.
+- **The wrapper is a plain `relative` inline, not `inline-block`.** An
+  inline-block cannot break, and `Signature électronique` is wider than a 280px
+  column at 320 — it would push the page sideways, which is the very hazard the
+  old `max-w-full` existed to patch. As an inline it wraps and `max-w-full` is
+  no longer needed at all.
+- **Both article pages take it**, because both read `ArticlePage.hero.title` and
+  both rendered it with a plain `t("title")` — adding the tag to a shared string
+  means both call sites have to become `t.rich`, or the untouched one renders
+  the markup literally.
+
+Verified at 1920, 1440, 1280, 768, 375 and 320 on both pages: bar width equals
+the chunk width to **Δ 0** at every one, the full title reads back intact with
+no leaked tag, pages unchanged at 19009 and 18502, and no horizontal overflow.
+
+### The rest of the site's markers, surveyed
+
+Reading every hero at 1920 — bar width against the width of the chunk it sits
+in — shows this is not one page's problem, in two different degrees:
+
+| | pages |
+|---|---|
+| **no chunk at all**, a bar pinned to the title | the two article heroes (**fixed**) and **`/le-cabinet`** |
+| tied to a chunk but at a **fixed em width** | ten heroes — home, the hub, Bibliothèque and seven domain pages |
+
+The ten do follow their text horizontally, since the bar is centred on the
+chunk, but they would not *resize* with it. And their fixed widths are Figma's
+own numbers, which often disagree with the chunk sharply — `bonnes conditions.`
+is 653.6 wide under a 396 bar, `clairement.` 397.5 under 336 on Bibliothèque.
+**Making those span their chunks is a visible departure from the comp**, up to
+257px on one, so it is not done here. `/le-cabinet`'s pinned 172 bar is the same
+fault as this one and is the obvious next candidate.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.

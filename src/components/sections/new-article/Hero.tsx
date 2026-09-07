@@ -52,11 +52,22 @@ export function Hero() {
                 its measure and would push the page sideways.
               */}
               <h1 className="text-article-title text-encre font-poppins relative">
-                <span
-                  aria-hidden="true"
-                  className="bg-pale-gold absolute top-[0.804em] left-0 h-[0.326em] w-[12.174em] max-w-full rounded"
-                />
-                <span className="relative">{t("title")}</span>
+                {t.rich("title", {
+                  hl: (chunks) => (
+                    <span className="relative">
+                      {/* `inset-x-0` is the point: the bar is exactly as wide as
+                          the words it marks, so it follows them into any
+                          translation. It had been a fixed 12.17em bar pinned to
+                          the title's own left edge, which is only under the right
+                          words in French. */}
+                      <span
+                        aria-hidden="true"
+                        className="bg-pale-gold absolute inset-x-0 top-[0.934em] h-[0.326em] rounded"
+                      />
+                      <span className="relative">{chunks}</span>
+                    </span>
+                  ),
+                })}
               </h1>
 
               <p className="text-lead font-inter text-encre/62">{t("lead")}</p>
