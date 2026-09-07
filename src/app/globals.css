@@ -117,6 +117,20 @@
   --text-display--font-weight: 700;
 
   /*
+    Poppins Bold — 34px mobile -> 58px desktop. The landing page's hero title
+    (`14221:10012`): the display style at a smaller size, with --text-display's
+    own 1.06 line-height and -0.01em tracking but a fixed 58 where that token
+    reaches 68. It carries no named Figma library style, so it is added under
+    the --text-article-title precedent — a real size in the design with none —
+    and it is fluid over the same 375..1440 range rather than fixed, since a
+    literal 58px title is unreadable on a phone.
+  */
+  --text-display-sm: clamp(2.125rem, 1.5968rem + 2.2535vw, 3.625rem);
+  --text-display-sm--line-height: 1.06;
+  --text-display-sm--letter-spacing: -0.01em;
+  --text-display-sm--font-weight: 700;
+
+  /*
     Poppins Bold — 32px mobile -> 46px desktop. The article title: a real size
     in the design with no named Figma style, added under the --text-badge and
     --text-price precedent. Scales over the same 375..1440 range as --text-h2.

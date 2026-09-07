@@ -17,5 +17,8 @@ export const config = {
     and `localePrefix: "as-needed"` then 404s on unprefixed routes like
     /expertises while "/" keeps working.
   */
-  matcher: "/((?!api|_next|_vercel|.*\\..*).*)",
+  // `landing-page` is excluded deliberately: it is a second root layout
+  // outside `[locale]`, so without this next-intl rewrites it to
+  // /fr/landing-page, which has no route, and the page 404s.
+  matcher: "/((?!api|_next|_vercel|landing-page|.*\\..*).*)",
 };
