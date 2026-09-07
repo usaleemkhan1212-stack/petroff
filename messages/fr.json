@@ -23,7 +23,8 @@
     "newArticle": "new-article-page",
     "servicePage": "service-page",
     "cabinetPagesLabel": "Pages du cabinet",
-    "personalPage": "personal-page"
+    "personalPage": "personal-page",
+    "landingPage": "landing-page"
   },
   "Common": {
     "skipToContent": "Aller au contenu",

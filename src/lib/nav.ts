@@ -8,6 +8,7 @@ import { type DomaineKey, domaines } from "@/lib/domaines";
 type MessagePath =
   | `ExpertisesPage.domaines.items.${DomaineKey}.title`
   | "Nav.servicePage"
+  | "Nav.landingPage"
   | "Nav.personalPage"
   | "Nav.ecommerce"
   | "Nav.newArticle";
@@ -38,11 +39,18 @@ const expertiseChildren: readonly NavChild[] = [
       labelKey: `ExpertisesPage.domaines.items.${key}.title`,
     })),
   /*
-    Service pages sit a level below a domain — this one's crumb reads
-    Accueil · Expertises · Contentieux & arbitrage · Litiges entre associés —
-    but the submenu is a flat list, so they are appended after the domains
-    rather than nested. Same purpose as the rest of this menu: it exists so a
-    page is reachable while it is being built.
+    Pages that are not domains but belong under this heading. Service pages sit
+    a level below a domain — the first one's crumb reads Accueil · Expertises ·
+    Contentieux & arbitrage · Litiges entre associés — but the submenu is a flat
+    list, so they are appended after the domains rather than nested.
+
+    `/landing-page` is not under `/expertises` at all: it is a standalone
+    English landing page on enforcement, with its own root layout, header and
+    footer. It is listed here because its subject is an Expertises one and
+    because this menu's whole purpose is reaching a page while it is being
+    built. Note it lives outside `[locale]`, so following it is a full document
+    load rather than a client-side transition — Next does that by itself when
+    the two routes have different root layouts.
   */
   ...(
     [
@@ -50,6 +58,7 @@ const expertiseChildren: readonly NavChild[] = [
         key: "servicePage",
         href: "/expertises/contentieux-arbitrage/service-page",
       },
+      { key: "landingPage", href: "/landing-page" },
     ] as const
   )
     .filter(({ href }) => isLive(href))

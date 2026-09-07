@@ -21,6 +21,7 @@ export const liveRoutes: readonly string[] = [
   "/expertises/propriete-intellectuelle",
   "/expertises/recouvrement",
   "/expertises/contentieux-arbitrage/service-page",
+  "/landing-page",
   "/le-cabinet/personal-page",
   "/bibliotheque",
   "/bibliotheque/avocat-e-commerce",
