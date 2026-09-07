@@ -8198,6 +8198,47 @@ which is this build's ordinary figure. Pages go 18993 -> **19009** and
 18486 -> **18502**; verified 5 bold runs of 5 on both pages at 1920, 1440, 1280,
 768, 375 and 320, with no horizontal overflow at any of them.
 
+## The timeline dots belong beside the step label, not below it
+
+Reported: the rail's dots sit low against their gold `ÉTAPE N` label. They did,
+by 11px, and Figma is unambiguous — every `tl-item` puts its **`pastille` and
+its label both at `y=0`** (`13318:2757` / `13318:2759`). The build carried an
+`mt-2.75` on the dot, which is the whole fault.
+
+Measured before and after, as the dot's centre against the label's **glyph**
+centre (a `Range` over the text node, not its element box):
+
+| | dot top in the item | dot centre − gold ink centre |
+|---|---|---|
+| was | 11 | **+8.5** (below the text) |
+| now | **0** | −2.5 |
+| Figma's own render | 0 | **−1.5** |
+
+So the comp itself sits the dot slightly *above* the ink centre, and the build
+now matches that to within a pixel where it had been 10px out. **Pixel-scanning
+the node's render is what settles a question like "should this align with the
+text"** — the frame's box offsets give the layout, but only the render says
+where the glyphs actually land inside their box.
+
+- The rail moves with it, to Figma's own **`y=11`** (`13318:2755`), so it starts
+  just inside the dot's lower edge instead of 3px below where the dot used to
+  be.
+- **It costs no height.** The dot is `shrink-0` and the text column sets the
+  item height, so the list is still **577.9** and the page **19009**; verified
+  at 1920, 1440, 1280, 768, 375 and 320 with no horizontal overflow.
+
+### Two things left alone, both worth raising
+
+- **Figma's pastille is a solid 14px periwinkle disc.** Scanning the node's
+  render shows periwinkle across all 14 rows with white only outside it — where
+  the build draws `size-3.5 border-4 border-white`, i.e. a **6px core inside a
+  white ring**. That is why the dots read so much smaller than the comp. The
+  ring was there to mask the rail behind the dot, which a solid opaque disc
+  does by itself. Not part of the reported fault and not changed.
+- **`/bibliotheque/old-article` still has the `mt-2.75`** and measures the same
+  +8.5. It is the legacy column this file keeps for comparison, so it was left
+  as it is.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.
