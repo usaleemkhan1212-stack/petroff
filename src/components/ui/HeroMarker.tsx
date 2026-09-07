@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { cn } from "@/lib/utils";
+
 /**
  * The pale-gold bar under a hero's highlighted words.
  *
@@ -23,10 +25,19 @@ import type { ReactNode } from "react";
 export function HeroMarker({
   top,
   height,
+  className,
   children,
 }: {
   top: number;
   height: number;
+  /**
+   * Escape hatch for the one case `inline-block` cannot serve: a marked run
+   * that must WRAP. An inline-block has a single background box, so a run that
+   * breaks over two lines gets one band painted across the pair rather than one
+   * per line — which is exactly what the landing hero does on a phone. Passing
+   * `inline` there restores per-fragment bands via `box-decoration-break`.
+   */
+  className?: string;
   children: ReactNode;
 }) {
   const from = `${top}em`;
@@ -41,7 +52,10 @@ export function HeroMarker({
         makes that safe: a translation too long for the column wraps inside the
         box rather than pushing the page sideways.
       */
-      className="inline-block max-w-full [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
+      className={cn(
+        "inline-block max-w-full [box-decoration-break:clone] [-webkit-box-decoration-break:clone]",
+        className,
+      )}
       style={{
         backgroundImage: `linear-gradient(to bottom, transparent ${from}, var(--color-pale-gold) ${from}, var(--color-pale-gold) ${to}, transparent ${to})`,
       }}
