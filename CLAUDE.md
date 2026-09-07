@@ -8025,6 +8025,71 @@ full encre. All sixteen are `text-body text-encre` now.
 - A colour costs no layout, and that was checked rather than assumed: every
   page height identical at 1920 and 375, no overflow at either.
 
+## The hero needs room for the overlap to eat
+
+Reported: on some pages the scroll overlap covers the bottom of the hero's copy.
+It does, and on exactly five.
+
+**The clearance under a hero's last line is not designed — it is leftover.**
+Every domain hero is a fixed 720 stage (`lg:min-h-180`) with **`lg:pb-0`**, so
+whatever the headline and stat band do not use is the room the next section
+climbs into. Measured on all 20 pages that wrap a section in `ScrollOverlap`,
+at 1920 and 1440, five came in under `MAX_OVERLAP`:
+
+| page | clearance was | covered |
+|---|---|---|
+| `/expertises/droit-des-societes` | 20.2 (23.2 to the glyphs) | **6.8px of ink** |
+| `/expertises/fusions-acquisitions` | 20.2 | 6.8 |
+| `/expertises/droit-social` | 20.2 | 6.8 |
+| `/expertises/propriete-intellectuelle` | 20.2 | 6.8 |
+| `/expertises/recouvrement` | 20.2 | 6.8 |
+
+The other fifteen were never at risk — the next tightest is `/le-cabinet` at 32,
+then litiges at 45.4, and most sit between 64 and 237. It is also **an `xl`-only
+fault**: at 1280 those same five had 35.7 and at 375 they have 64, because the
+stat band reflows.
+
+All five take **`lg:pb-12`**, which puts the clearance at **48** and leaves
+**18px of line box (21 of glyphs) showing at full overlap** — marginally more
+room than litiges, the sibling that never clipped. Their heroes grow
+**784 -> 811.8** and **764 -> 791.8**, and their pages **+28**:
+
+| page | page was | now |
+|---|---|---|
+| droit-des-societes | 8661 | 8689 |
+| fusions-acquisitions | 8711 | 8739 |
+| droit-social | 8673 | 8701 |
+| propriete-intellectuelle | 8546 | 8574 |
+| recouvrement | 8533 | 8560 |
+
+**This supersedes the Hero row in the section tables for Pages 13, 16, 17, 22
+and 23**, which record those heroes at Figma's 784 / 764. The comp is a static
+design and the overlap is an addition to it, so the trade taken here is: the
+hero sits ~28 over its Figma height at rest and reads **781.8 / 761.8 — within
+2px of the comp — once the reader has scrolled**, which is the state the page
+is actually read in.
+
+- **Measure the ink, not the box.** A `Range` over the last text node gives the
+  glyph line box; the element box sits ~3px lower, so judging by the element
+  alone understates the clearance and overstates the damage.
+- **`/le-cabinet` is now the tightest on the site** — 32 of clearance, so 2px of
+  line box and 5px of glyph remain at full overlap. Nothing is covered, but it
+  is the next one to watch if its hero copy ever grows.
+- Below `lg` nothing changed: the column keeps `pb-16` and the clearance is 64.
+- No horizontal overflow at 1920, 1280, 768, 375 or 320 on any of the five.
+
+### Two harness notes from driving this
+
+- **A CDP script that leaves its tab open poisons the next run.** Seven
+  abandoned `about:blank` tabs had accumulated from failed captures, and after
+  that new tabs would not navigate at all — `location.href` stayed `about:blank`
+  through a dozen retries, which reads exactly like a page that will not render.
+  Close the tab in a `finally`, and check `/json/list` before believing a
+  navigation failure.
+- **Re-sending `Page.navigate` in a poll loop is self-defeating** — each call
+  aborts the load the previous one started, so the tab never leaves
+  `about:blank`. Navigate once and poll `location.href`.
+
 ## Hard rules
 
 - **Tokens only.** No hardcoded hex, no arbitrary font sizes, no one-off spacing.

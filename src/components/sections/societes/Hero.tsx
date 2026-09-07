@@ -48,7 +48,17 @@ export function Hero() {
           <span className="text-small-strong text-encre">{t("crumbCurrent")}</span>
         </nav>
 
-        <div className="flex flex-col items-center gap-3 pt-16 pb-16 lg:min-h-180 lg:pt-16 lg:pb-0">
+        {/*
+            **`lg:pb-12` is room for the scroll overlap to eat, not styling.**
+            The stage is a fixed 720 (`min-h-180`) and the bottom clearance is
+            just whatever slack the copy leaves inside it — on this page the
+            headline and stat band nearly fill it, leaving **20.2px**, so the
+            next section climbing its 30 covered the last stat label. The 48
+            here puts the clearance at 48 and leaves ~18 showing at full
+            overlap, which is the room the heroes that never clipped already
+            have. See CLAUDE.md, "the hero needs room for the overlap to eat".
+          */}
+        <div className="flex flex-col items-center gap-3 pt-16 pb-16 lg:min-h-180 lg:pt-16 lg:pb-12">
           <div className="mx-auto flex max-w-225.75 flex-col items-center gap-3 text-center">
             <p className="text-overline font-poppins text-brique uppercase">
               {t("overline")}
