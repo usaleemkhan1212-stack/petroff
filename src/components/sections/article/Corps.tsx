@@ -275,15 +275,16 @@ export function Corps() {
                     citation={jur(`${key}.citation`)}
                     title={jur(`${key}.title`)}
                   >
-                    {/* Figma weights the lead-in at full encre inside an encre/62
-                        line; `proseTags`' own `b` carries no colour, so here it
-                        would inherit the 62%. */}
+                    {/* Every one of the five cards weights a phrase, and Figma
+                        styles all five **Inter SemiBold 18/1.5 in full encre** —
+                        `text-body-strong`, not `proseTags`' Poppins `b`. Two
+                        things have to be re-declared here: the family, or the
+                        run draws in Poppins; and the colour, or it inherits the
+                        paragraph's 62% and the weighting disappears. */}
                     {jur.rich(`${key}.body`, {
                       ...proseTags,
                       b: (chunks) => (
-                        <span className="text-h4 font-poppins text-encre">
-                          {chunks}
-                        </span>
+                        <span className="text-body-strong text-encre">{chunks}</span>
                       ),
                     })}
                   </JurCard>

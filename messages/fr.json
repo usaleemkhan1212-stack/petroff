@@ -5219,22 +5219,22 @@
       "scannee": {
         "citation": "Cass. com., 13 mars 2024, n° 22-16.487",
         "title": "La signature scannée n’est pas une signature électronique",
-        "body": "Le procédé consistant à scanner des signatures, s’il est valable, ne peut être assimilé à celui qui bénéficie de la présomption de fiabilité. La production de copies de pièces d’identité et d’une pratique antérieure entre les parties n’a pas suffi à établir que les signataires avaient personnellement consenti."
+        "body": "Le procédé consistant à scanner des signatures, s’il est valable, <b>ne peut être assimilé à celui qui bénéficie de la présomption de fiabilité</b>. La production de copies de pièces d’identité et d’une pratique antérieure entre les parties n’a pas suffi à établir que les signataires avaient personnellement consenti."
       },
       "verification": {
         "citation": "Cass. 1re civ., 30 septembre 2010, n° 09-68.555",
         "title": "L’écrit électronique doit être vérifié, pas admis",
-        "body": "Cassation pour défaut de vérification : le juge doit rechercher si les conditions des articles 1366 et 1367 sont satisfaites."
+        "body": "Cassation pour défaut de vérification : <b>le juge doit rechercher si les conditions des articles 1366 et 1367 sont satisfaites</b>."
       },
       "cjue": {
         "citation": "CJUE, 29 février 2024, aff. 466/22",
         "title": "Équivalence imposée à la signature qualifiée",
-        "body": "Les juridictions des États membres doivent lui reconnaître une force probante équivalente à la signature manuscrite, dans le cadre du régime national."
+        "body": "Les juridictions des États membres doivent lui reconnaître <b>une force probante équivalente à la signature manuscrite</b>, dans le cadre du régime national."
       },
       "mention": {
         "citation": "Cass. 1re civ., 28 octobre 2015, n° 14-23.110",
         "title": "La mention obligatoire apposée sous forme électronique",
-        "body": "La mention légale peut être électronique si le procédé garantit qu’elle émane de celui qui s’oblige, ou que le signataire en est le scripteur."
+        "body": "La mention légale peut être électronique <b>si le procédé garantit qu’elle émane de celui qui s’oblige</b>, ou que le signataire en est le scripteur."
       }
     },
     "triage": {

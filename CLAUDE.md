@@ -7072,7 +7072,7 @@ heading and the list, which neither page had.
   corner with a 1px `encre/8` border and a **12** gap, and the card's three
   fields at **29 / 64.2 / 102.2** — 28 padding plus the border, then 12 between
   each. Citation Inter 16/23.2 brique, holding Poppins 20/26 encre, body Inter
-  18/25.2 encre/62, the lead-in Poppins 18/24.3 in **full encre**.
+  18/25.2 encre/62, and the weighted run **Inter SemiBold 18/27** in **full encre** — *this read "Poppins 18/24.3" until the correction below; it was reading `--text-h4`'s metrics rather than the export*.
 - Block **1176.7 against the node's 1164** — the five cards' borders.
 - Both article pages are identical here now; only the heading's own wrapper
   still differs, since article-design keeps the older frame's per-block spacers.
@@ -8146,6 +8146,57 @@ sampled routes serving 200.
 **Next also warns that `.next/dev` is on a slow filesystem here** (a 210ms
 benchmark, `D:`). That is worth knowing as background for why a half-written
 build happened at all — a slow or networked drive widens every write race.
+
+## Every jurisprudence card weights a phrase, and the run is Inter
+
+Reported against the comp: only the first of the five cards showed a bold
+phrase. Figma bolds one in **all five** (`13318:2930` / `2934` / `2938` /
+`2942` / `2946`), and it exposed two faults rather than one.
+
+| card | the phrase Figma weights | was |
+|---|---|---|
+| Cass. 3e civ., 5 mars 2026 | seule de nature à permettre… fiabilité | bold, **but Poppins** |
+| Cass. com., 13 mars 2024 | ne peut être assimilé… de fiabilité | **not bold** |
+| Cass. 1re civ., 30 sept. 2010 | le juge doit rechercher… satisfaites | **not bold** |
+| CJUE, 29 février 2024 | une force probante équivalente… manuscrite | **not bold** |
+| Cass. 1re civ., 28 oct. 2015 | si le procédé garantit… s'oblige | **not bold** |
+
+**All five runs are one style: `Inter SemiBold 18/1.5` in `#122a4c`** — i.e.
+`text-body-strong` plus `text-encre`. The handler was `text-h4 font-poppins
+text-encre`, so the one card that did weight its phrase drew it in **Poppins**.
+That is the correction noted above: this file had recorded the run as
+"Poppins 18/24.3", reading `--text-h4`'s metrics rather than the export.
+
+- **The handler has to re-declare two things**, and missing either is silent.
+  The **colour**, or the run inherits the paragraph's `encre/62` and the
+  weighting disappears — already recorded. And now the **family**: spreading
+  `proseTags` brings its Poppins `b` with it, so a `text-body-strong` that does
+  not also override the family still draws in Poppins.
+- **No copy was rewritten.** All five phrases were already in the stored strings
+  verbatim, so the change is a `<b>` around an existing substring — checked for
+  uniqueness before wrapping.
+- **Both article pages take it together.** `/bibliotheque/new-article-page` and
+  `/bibliotheque/old-article` read the same `ArticlePage.jurList` and had
+  byte-identical handlers, so the tags land on both and the style fix is one
+  line in each of two files.
+
+### It brings the block back up to the comp rather than past it
+
+The bold run's 1.5 leading makes its line 27 where the body is 25.2, so each
+card grows. Measured per card against the frame's own:
+
+| | Figma | was | now |
+|---|---|---|---|
+| Cass. 3e civ. | 232 | 232 | 233.8 |
+| Cass. com. | 232 | 231.9 | 235.6 |
+| the other three | 183 each | 181.6 | 185.2 |
+| **list** | **1109** | 1104.7 | **1120.9** |
+
+**The old number was under the comp, not on it** — four cards were short a bold
+line's worth of leading. The +11.9 now is the five card borders plus rounding,
+which is this build's ordinary figure. Pages go 18993 -> **19009** and
+18486 -> **18502**; verified 5 bold runs of 5 on both pages at 1920, 1440, 1280,
+768, 375 and 320, with no horizontal overflow at any of them.
 
 ## Hard rules
 
