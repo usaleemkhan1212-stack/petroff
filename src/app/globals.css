@@ -299,6 +299,67 @@
    * JavaScript and keeps its own snap points; the bar itself would sit under
    * the cards and read as a rendering artefact.
    */
+  /*
+    The admin's two scrolling columns. Both were carrying these class names
+    with nothing behind them, which left the browser default: a wide, opaque
+    bar that reads as a seam down the dark rail.
+
+    Slim, rounded, no track, and inset from the edge by a transparent border
+    with `background-clip: padding-box` — the trick that lets a webkit thumb
+    have padding at all. Light thumb inside the encre sidebar, encre thumb in
+    the content column, each only visible on hover so the rail is clean at
+    rest. Firefox gets the same through `scrollbar-color`, which is why both
+    properties are set rather than one.
+  */
+  .admin-nav,
+  .admin-content {
+    scrollbar-width: thin;
+  }
+
+  .admin-nav {
+    scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  }
+
+  .admin-content {
+    scrollbar-color: rgba(18, 42, 76, 0.18) transparent;
+  }
+
+  .admin-nav::-webkit-scrollbar,
+  .admin-content::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .admin-nav::-webkit-scrollbar-track,
+  .admin-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .admin-nav::-webkit-scrollbar-thumb,
+  .admin-content::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    transition: background-color 150ms;
+  }
+
+  /* Present at rest, firmer on hover. Hiding it entirely until hover looked
+     tidy in a screenshot and left no affordance at all that the rail scrolls. */
+  .admin-nav::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .admin-nav:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.28);
+  }
+
+  .admin-content::-webkit-scrollbar-thumb {
+    background-color: rgba(18, 42, 76, 0.12);
+  }
+
+  .admin-content:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(18, 42, 76, 0.22);
+  }
+
   .no-scrollbar {
     scrollbar-width: none;
   }

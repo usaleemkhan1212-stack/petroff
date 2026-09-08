@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Content manager for Petroff.law — enquiries, pages, articles, media and site settings.">
+<meta name="author" content="Petroff Avocats">
+<meta name="theme-color" content="#122a4c">
+<meta name="color-scheme" content="light">
+<title>Petroff Avocats — Content Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<!--
+  ============================================================================
+  Petroff admin panel — single-file UI prototype
+  ----------------------------------------------------------------------------
+  Chrome, icon paths, colours and empty states are taken from the live panel
+  (app/admin/_components/AdminShell.tsx, Icon.tsx, ComingSoon.tsx) so this reads
+  as the same product rather than a lookalike.
+
+  Sections: Dashboard · Contact Enquiries · Pages · Articles · Media Library
+            · Global Settings · Redirects
+
+  No sample rows anywhere: each list shows the panel's own dashed empty state,
+  and counts render as "·" — which is exactly what the live sidebar shows before
+  the API answers. The only script here switches sections.
+  ============================================================================
+-->
+<style>
+:root{
+  /* --------------------------------------------------------------------
+     Petroff palette, from src/app/globals.css. The variable NAMES are kept
+     so the rest of this prototype needs no edits — only the values change.
+
+       --green / -ink / -soft  ->  gold / brique / pale gold
+             the action colour. Brique is the site's darker gold, used where
+             the accent has to read as text on white; pale gold is its light
+             counterpart on encre, exactly as the site's dark sections use it.
+       --ink, --grey           ->  encre
+             these two collapse: the site has one dark, and its controls are
+             full encre rather than a softer second tone.
+       --muted                 ->  encre at 62%, the site's secondary text
+       --page / --tint / --field -> lilas / white / lilas
+       --red                   ->  Petroff red
+       --line*                 ->  encre at 7 / 8 / 13%
+     -------------------------------------------------------------------- */
+  --green:#d9a441; --green-ink:#a67c1b; --green-soft:#f3e3c0;
+  --ink:#122a4c; --grey:#122a4c; --muted:rgba(18,42,76,.62);
+  --page:#f6f5f1; --tint:#ffffff; --field:#f6f5f1; --red:#f01a5d;
+  --line:rgba(18,42,76,.08); --line-soft:rgba(18,42,76,.07); --line-strong:rgba(18,42,76,.13);
+  --shadow:0 1px 2px rgba(18,42,76,.04);
+  --periwinkle:#2e5bb8; --stone:#e9e4d8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:var(--page); color:var(--ink); font-size:14px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+/* Poppins for headings, buttons and overlines; Inter for everything else —
+   the split globals.css makes, where only h1-h4 inherit Poppins. */
+h1,h2,h3,h4,a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+
+/* ---------------------------------------------------------------- icons */
+.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;
+    stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ic-14{width:14px;height:14px}
+.ic-15{width:15px;height:15px}
+.ic-16{width:16px;height:16px}
+.ic-20{width:20px;height:20px}
+
+/* ---------------------------------------------------------------- scrollbars
+   Slim, rounded, no track — light thumb inside the dark sidebar, dark thumb in
+   the content column. Firefox gets the same via scrollbar-color. */
+.nav{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
+.nav::-webkit-scrollbar{width:8px}
+.nav::-webkit-scrollbar-track{background:transparent}
+.nav::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.16); border-radius:8px;
+  border:2px solid transparent; background-clip:padding-box;
+}
+.nav::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.3);background-clip:padding-box}
+
+.content{scrollbar-width:thin;scrollbar-color:rgba(18,42,76,.22) transparent}
+.content::-webkit-scrollbar{width:11px}
+.content::-webkit-scrollbar-track{background:transparent}
+.content::-webkit-scrollbar-thumb{
+  background:rgba(18,42,76,.18); border-radius:9px;
+  border:3px solid transparent; background-clip:padding-box;
+}
+.content::-webkit-scrollbar-thumb:hover{background:rgba(18,42,76,.32);background-clip:padding-box}
+
+/* ---------------------------------------------------------------- layout */
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* ---------------------------------------------------------------- sidebar */
+.sidebar{
+  width:266px;flex:none;height:100vh;
+  background:#122a4c;
+  display:flex;flex-direction:column;
+  border-right:1px solid rgba(255,255,255,.05);
+}
+.brand{padding:22px 20px 18px;display:flex;flex-direction:column;align-items:flex-start;
+  gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+/* The lockup keeps the three files' intrinsic sizes, which is what preserves
+   the designed geometry — the same reason Logo.tsx leaves them untouched. */
+.lockup{display:flex;align-items:center;gap:8px}
+.lockup svg{display:block;fill:currentColor;stroke:none}
+.lockup-stack{display:flex;flex-direction:column;gap:4px}
+.lg-mark{width:36.3925px;height:36.3988px;flex:none;color:var(--periwinkle)}
+.lg-word{width:104.462px;height:15.9704px;color:#fff}
+.lg-tag{width:103.062px;height:7.23249px;color:var(--green)}
+.brand-sub{font-family:'Poppins',system-ui,sans-serif;color:rgba(255,255,255,.42);
+  font-size:10.5px;font-weight:600;letter-spacing:.6px}
+
+.nav{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:16px}
+.nav-label{color:rgba(255,255,255,.32);font-size:10px;font-weight:700;letter-spacing:1.1px;padding:0 12px 8px}
+.nav-items{display:flex;flex-direction:column;gap:3px}
+.nav-item{
+  display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:10px;
+  font-size:13.5px;font-weight:500;color:rgba(255,255,255,.66);
+  background:transparent;border:0;width:100%;text-align:left;cursor:pointer;
+  transition:color .15s,background .15s;
+}
+.nav-item .txt{flex:1}
+.nav-item:hover{color:rgba(255,255,255,.92)}
+.nav-item.is-active{
+  font-weight:600;color:var(--green-soft);
+  background:linear-gradient(90deg,rgba(217,164,65,.24),rgba(217,164,65,.05));
+  box-shadow:inset 2px 0 0 var(--green);
+}
+.nav-row{display:flex;align-items:center;border-radius:10px}
+.nav-row.is-active{
+  background:linear-gradient(90deg,rgba(217,164,65,.24),rgba(217,164,65,.05));
+  box-shadow:inset 2px 0 0 var(--green);
+}
+.nav-row.is-active .nav-item{color:var(--green-soft);font-weight:600}
+.nav-row .nav-item{background:none;box-shadow:none}
+.nav-caret{background:none;border:0;cursor:pointer;color:rgba(255,255,255,.5);padding:9px 12px;display:flex}
+.nav-caret .ic{transition:transform .15s}
+.nav-caret.is-open .ic{transform:rotate(180deg)}
+.nav-sub{display:flex;flex-direction:column;gap:2px;margin:4px 0 4px 23px;padding-left:11px;
+  border-left:1.5px solid rgba(255,255,255,.1)}
+.nav-sub button{
+  display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;
+  font-size:12.5px;font-weight:500;color:rgba(255,255,255,.6);
+  background:none;border:0;width:100%;text-align:left;cursor:pointer;
+}
+.nav-sub button:hover{color:rgba(255,255,255,.88)}
+.nav-sub button span:first-child{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-sub .n{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:6px;
+  background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);flex:none}
+
+.sidebar-foot{padding:14px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:4px}
+.sidebar-foot a,.sidebar-foot button{
+  display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:10px;
+  font-size:13.5px;font-weight:500;color:rgba(255,255,255,.66);
+  background:transparent;border:0;width:100%;text-align:left;cursor:pointer;
+}
+.sidebar-foot a:hover,.sidebar-foot button:hover{color:rgba(255,255,255,.92)}
+
+/* ---------------------------------------------------------------- main */
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.topbar{
+  height:66px;flex:none;background:#fff;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;padding:0 28px;
+}
+.page-title{font-size:19px;font-weight:600;letter-spacing:-.3px}
+.user{display:flex;align-items:center;gap:9px;background:none;border:0;cursor:pointer;padding:4px 6px;border-radius:10px}
+.user .ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#d9a441,#122a4c);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px}
+.user .who{line-height:1.2;text-align:left}
+.user .who b{display:block;font-size:13.5px;font-weight:600}
+.user .who span{display:block;font-size:11.5px;color:var(--muted)}
+.user .caret{display:flex;color:rgba(255,255,255,.5)}
+
+.content{flex:1;overflow-y:auto;padding:30px 34px 60px}
+.panel{display:flex;flex-direction:column;gap:18px}
+
+/* ---------------------------------------------------------------- pieces */
+.card{background:#fff;border:1px solid var(--line-soft);border-radius:14px;box-shadow:var(--shadow)}
+.card.r18{border-radius:18px}
+.card-pad{padding:20px 22px}
+.card-title{font-size:14px;font-weight:600;margin-bottom:14px}
+
+.banner{position:relative;overflow:hidden;border-radius:22px;
+  background:linear-gradient(135deg,#122a4c 0%,#1d3b73 55%,#2e5bb8 100%);
+  padding:28px 30px;box-shadow:0 22px 44px -22px rgba(18,42,76,.5);color:#fff}
+.banner .eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.5)}
+.banner h2{font-size:26px;font-weight:600;letter-spacing:-.5px;margin-top:9px}
+.banner p{color:rgba(255,255,255,.62);font-size:14px;margin-top:6px}
+
+.quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.quick{display:flex;align-items:center;gap:13px;background:var(--tint);
+  border:1px solid rgba(18,42,76,.06);border-radius:14px;padding:14px 15px;
+  color:var(--ink);cursor:pointer;text-align:left;width:100%;transition:border-color .15s}
+.quick:hover{border-color:rgba(217,164,65,.5)}
+.quick .tile{width:40px;height:40px;border-radius:11px;flex:none;background:rgba(217,164,65,.16);
+  color:var(--green-ink);display:flex;align-items:center;justify-content:center}
+.quick .txt{line-height:1.3;min-width:0}
+.quick .txt b{display:block;font-size:13.5px;font-weight:600}
+.quick .txt span{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.stat{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;
+  border:1px solid var(--line);border-radius:14px;padding:13px 15px;cursor:pointer;
+  box-shadow:var(--shadow);transition:border-color .15s}
+.stat:hover{border-color:rgba(217,164,65,.5)}
+.stat .tile{width:34px;height:34px;border-radius:10px;flex:none;background:rgba(18,42,76,.05);
+  color:var(--green-ink);display:flex;align-items:center;justify-content:center}
+.stat.is-on .tile{background:var(--green);color:#fff}
+.stat .txt b{display:block;font-size:20px;font-weight:700;letter-spacing:-.4px;line-height:1.15}
+.stat .txt span{display:block;font-size:12px;color:var(--muted)}
+.bigstat b{display:block;font-size:24px;font-weight:700;letter-spacing:-.5px;line-height:1.1}
+.bigstat span{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+
+.bar{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.searchbox{position:relative;flex:1;min-width:220px}
+.searchbox .ic{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.searchbox input{width:100%;background:var(--field);border:1px solid transparent;border-radius:10px;
+  padding:10px 12px 10px 36px;font-size:13px;outline:none}
+.searchbox input:focus{border-color:rgba(217,164,65,.5)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#fff;
+  border:1px solid var(--line-strong);border-radius:10px;padding:9px 14px;font-size:13px;
+  font-weight:600;color:var(--grey);cursor:pointer;flex:none;transition:border-color .15s,color .15s}
+.btn:hover{border-color:rgba(217,164,65,.5);color:var(--green-ink)}
+.btn-icon{width:38px;height:38px;padding:0}
+.btn-primary{background:var(--green);border-color:var(--green);color:var(--ink);
+  font-weight:700;border-radius:11px;padding:10px 16px}
+.btn-primary:hover{background:#a67c1b;border-color:#a67c1b;color:var(--ink)}
+
+.chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line-strong);
+  border-radius:10px;padding:8px 12px;font-size:12.5px;font-weight:600;color:var(--grey);
+  cursor:pointer;transition:border-color .15s,background .15s,color .15s}
+.chip:hover{border-color:rgba(217,164,65,.5)}
+.chip.is-on{background:rgba(217,164,65,.1);border-color:rgba(217,164,65,.5);color:var(--green-ink)}
+.chip .n{font-size:11px;opacity:.75}
+.chip.is-uncat{color:var(--red);border-color:rgba(240,26,93,.35)}
+.chip.is-uncat:hover{background:rgba(240,26,93,.06);border-color:rgba(240,26,93,.5)}
+
+.field-input{background:#fff;border:1px solid var(--line-strong);border-radius:10px;
+  padding:9px 12px;font-size:13px;outline:none;color:var(--grey)}
+.field-input:focus{border-color:rgba(217,164,65,.5)}
+textarea.field-input{resize:vertical;min-height:88px;line-height:1.6}
+
+/* the panel's own empty state */
+.empty{background:#fff;border:1px dashed rgba(18,42,76,.18);border-radius:16px;
+  padding:56px 24px;text-align:center}
+.empty .tile{width:46px;height:46px;border-radius:13px;background:rgba(217,164,65,.14);
+  color:var(--green-ink);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.empty b{display:block;font-size:18px;font-weight:700;margin-bottom:8px}
+.empty p{font-size:13.5px;color:var(--muted);line-height:1.6;max-width:460px;margin:0 auto}
+
+/* settings */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+.fld{display:flex;flex-direction:column;gap:6px;min-width:0}
+.fld.full{grid-column:1/-1}
+.fld label{font-size:12.5px;font-weight:600}
+.fld .hint{font-size:11.5px;color:var(--muted)}
+.switch-row{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line-soft)}
+.switch-row:last-child{border-bottom:0;padding-bottom:0}
+.switch-row .txt{flex:1;min-width:0}
+.switch-row .txt b{display:block;font-size:13.5px;font-weight:600}
+.switch-row .txt span{display:block;font-size:12px;color:var(--muted)}
+.switch{width:40px;height:23px;border-radius:20px;background:rgba(18,42,76,.18);position:relative;
+  flex:none;cursor:pointer;border:0;transition:background .18s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;
+  border-radius:50%;background:#fff;transition:left .18s}
+.switch.is-on{background:var(--green)}
+.switch.is-on::after{left:20px}
+.save-bar{position:sticky;bottom:0;display:flex;align-items:center;gap:10px;background:#fff;
+  border:1px solid var(--line);border-radius:14px;padding:13px 15px;box-shadow:var(--shadow)}
+.save-bar span{flex:1;font-size:12.5px;color:var(--muted)}
+
+@media(max-width:1000px){
+  .sidebar{display:none}
+  .topbar{padding:0 18px}
+  .content{padding:20px 18px 50px}
+  .form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Icon sprite — paths copied from app/admin/_components/Icon.tsx -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<!-- The firm's own lockup, from src/assets/icons/logo-*.svg. Each part
+     fills currentColor, so the sidebar sets its colour with a class the
+     way Logo.tsx does: periwinkle mark, white wordmark on this dark
+     ground, gold tagline. -->
+<symbol id="logo-mark" viewBox="0 0 36.3925 36.3988"><g>
+<path d="M19.734 1.52525L16.9029 2.67082C13.1451 4.45119 6.33737 10.0258 4.20675 17.2057C1.05461 27.815 7.32241 35.0021 15.7281 33.1561C21.6895 31.85 29.1393 26.2608 31.5399 19.2414C32.5322 16.3593 32.0653 10.9379 30.19 8.37678C26.622 3.51723 18.1068 7.48659 14.1302 8.29651C13.5756 7.85872 15.5822 6.3848 15.7646 6.27535C20.6606 2.9335 28.4607 2.39355 32.8533 8.20895C36.2024 12.638 36.4213 18.5337 34.2178 22.7219C30.6716 29.4494 21.4997 35.294 15.0495 35.6588C8.59932 36.0237 -0.973846 29.5297 1.01083 20.2995C3.26549 9.85069 13.6778 2.53948 19.7194 1.52525H19.734Z" fill="currentColor" stroke="currentColor" stroke-width="0.4"/>
+<path d="M14.5533 36.1915C10.7736 36.1915 6.26432 34.0098 3.40404 30.7556C1.49962 28.5812 -0.558026 24.9985 0.478094 20.1827C2.77653 9.50779 13.2618 2.06524 19.639 0.992635L24.4329 0.197303L17.1071 3.16703C13.1815 5.02037 6.71671 10.6607 4.72473 17.359C3.16325 22.6344 3.87832 27.3334 6.69482 30.274C8.87651 32.5432 12.1308 33.4115 15.604 32.6454C21.3318 31.3831 28.6649 25.9763 31.0145 19.081C31.9265 16.4031 31.569 11.186 29.7448 8.69787C27.1108 5.10793 21.3318 6.82264 17.0998 8.05576C15.998 8.38411 15.0422 8.66138 14.2322 8.82191L13.9841 8.88028L13.7798 8.71976C13.5755 8.55923 13.4661 8.34033 13.4734 8.07765C13.5099 7.18747 15.2246 5.97623 15.4289 5.83759C20.7189 2.22576 28.8401 2.01416 33.2691 7.89524C36.5672 12.2513 37.129 18.3075 34.6774 22.9701C31.1677 29.6319 22.0031 35.8048 15.064 36.1842C14.8962 36.1842 14.7284 36.1988 14.546 36.1988L14.5606 36.1842L14.5533 36.1915ZM9.28512 7.81498C5.70248 11.0547 2.6306 15.4254 1.5507 20.4016C0.609434 24.7869 2.48467 28.0704 4.22856 30.0624C7.01587 33.2364 11.4741 35.3013 15.0057 35.1116C21.507 34.7541 30.4161 28.7344 33.7215 22.4666C35.9835 18.1689 35.4508 12.5578 32.4081 8.51545C28.3731 3.15973 20.9232 3.38593 16.0637 6.70589C15.7718 6.91019 15.3924 7.22395 15.0713 7.51581C15.5894 7.38447 16.1658 7.20936 16.7787 7.01964C21.3245 5.68436 27.5413 3.84561 30.6277 8.05576C32.6635 10.8358 33.0721 16.4323 32.0433 19.402C29.5697 26.6549 21.8499 32.3462 15.8375 33.6669C11.9703 34.5133 8.34385 33.5356 5.89219 30.9817C2.81301 27.7639 1.98849 22.6782 3.66672 17.0452C4.72473 13.4772 6.88453 10.3177 9.25593 7.80768H9.27782L9.28512 7.81498Z" fill="currentColor" stroke="currentColor" stroke-width="0.4"/>
+</g></symbol>
+<symbol id="logo-word" viewBox="0 0 104.462 15.9704"><g>
+<path d="M0.191872 0.475583H6.01057C8.51358 0.475583 10.464 2.25876 10.464 4.75522C10.464 7.25167 8.5786 9.05917 6.01057 9.05917H1.81721V15.4786H0.2V0.475583H0.191872ZM8.83865 4.76332C8.83865 3.09362 7.58714 1.89402 5.9293 1.89402H1.80908V7.66505H5.9293C7.61965 7.66505 8.83865 6.40871 8.83865 4.77143V4.76332Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M15.2018 0.475583H25.2383V1.88592H16.8272V7.02472H24.7425V8.43505H16.8272V14.0764H25.6202V15.4867H15.21V0.475583H15.2018Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M34.6083 1.88592H29.6429V0.475583H41.1991V1.88592H36.2255V15.4867H34.6083V1.88592Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M45.8638 0.475583H52.0482C54.6731 0.475583 56.5666 2.29119 56.5666 4.69038C56.5666 6.29524 55.7377 7.64883 54.3399 8.31348C55.7946 8.84032 56.3716 9.98318 56.3716 11.4097V13.817C56.3716 14.4492 56.526 14.9761 56.8266 15.4705H55.1038C54.8681 15.0977 54.7625 14.5465 54.7625 13.8332V11.3935C54.7625 10.0156 53.8767 9.01864 52.0075 9.01864H47.4891V15.4705H45.8719V0.475583H45.8638ZM54.9494 4.73901C54.9494 3.10172 53.7304 1.88592 52.0075 1.88592H47.4891V7.62452H52.0075C53.7791 7.62452 54.9494 6.34387 54.9494 4.73901Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M61.4263 7.98926C61.4263 3.40162 63.8562 0.2 68.1715 0.2C72.4867 0.2 74.9247 3.40973 74.9247 7.98926C74.9247 12.5688 72.4949 15.7704 68.1715 15.7704C63.8481 15.7704 61.4263 12.5283 61.4263 7.98926ZM73.2832 7.96494C73.2832 4.38237 71.4384 1.63465 68.1715 1.63465C64.9046 1.63465 63.0679 4.37427 63.0679 7.96494C63.0679 11.5556 64.9371 14.3114 68.1715 14.3114C71.4059 14.3114 73.2832 11.5718 73.2832 7.96494Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M80.0202 0.475583H89.8128V1.88592H81.6374V7.23546H88.732V8.6539H81.6374V15.4867H80.0202V0.475583Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M94.4694 0.475583H104.262V1.88592H96.0866V7.23546H103.181V8.6539H96.0866V15.4867H94.4694V0.475583Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+</g></symbol>
+<symbol id="logo-tag" viewBox="0 0 103.062 7.23249"><g>
+<path d="M0.207905 0.341949C0.508354 0.262472 0.864148 0.222736 1.26738 0.222736C1.83665 0.222736 2.32686 0.341949 2.66684 0.667803C2.93566 0.922127 3.07798 1.30362 3.07798 1.75663C3.07798 2.40834 2.72219 2.92494 2.09757 3.17131V3.18721C2.83288 3.3859 3.27564 3.98198 3.27564 4.80853C3.27564 5.34103 3.10961 5.76225 2.82497 6.07221C2.46918 6.47754 1.87619 6.65239 1.14879 6.65239C0.6823 6.65239 0.397664 6.6206 0.2 6.58881V0.341949H0.207905ZM0.935309 2.94878H1.26738C1.86037 2.94878 2.36639 2.49577 2.36639 1.82816C2.36639 1.24004 2.09757 0.787019 1.32273 0.787019C1.15669 0.787019 1.02228 0.802915 0.935309 0.834706V2.94878ZM0.935309 6.04042C1.02228 6.05631 1.14088 6.08016 1.29901 6.08016C2.05013 6.08016 2.54034 5.63509 2.54034 4.81648C2.54034 3.93429 1.93153 3.52101 1.25157 3.51306H0.935309V6.04836V6.04042Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M7.68756 0.247539V4.51543C7.68756 5.65989 8.06707 6.04933 8.54937 6.04933C9.08701 6.04933 9.42699 5.63605 9.42699 4.51543V0.247539H10.1544V4.40416C10.1544 6.05727 9.47443 6.69309 8.54146 6.69309C7.60849 6.69309 6.96806 6.07317 6.96806 4.49159V0.247539H7.69546H7.68756Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M13.9419 5.77131C14.1554 5.91436 14.5349 6.02563 14.8512 6.02563C15.5074 6.02563 15.9028 5.58851 15.9028 4.9527C15.9028 4.36457 15.5628 4.00693 15.0647 3.63339C14.5666 3.28369 13.8708 2.68762 13.8708 1.86901C13.8708 0.907343 14.5349 0.2 15.547 0.2C15.9423 0.2 16.2902 0.319217 16.4404 0.438432L16.2586 1.06629C16.1004 0.955027 15.8395 0.85171 15.5074 0.85171C14.8828 0.85171 14.5982 1.32062 14.5982 1.75774C14.5982 2.39355 14.9303 2.63993 15.5312 3.0691C16.2902 3.60954 16.6302 4.19767 16.6302 4.90501C16.6302 6.00179 15.8632 6.69323 14.8512 6.69323C14.4163 6.69323 13.9578 6.55018 13.7759 6.42301L13.934 5.8031L13.9419 5.77131Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M21.0182 0.247539V6.61361H20.2908V0.247539H21.0182Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M24.9792 6.61361V0.247539H25.667L26.8293 3.23586C27.0902 3.91936 27.4223 4.76975 27.6358 5.45325H27.6516C27.5962 4.45185 27.5646 3.63324 27.5646 2.52851V0.247539H28.2129V6.61361H27.5251L26.3233 3.55376C26.0703 2.91 25.7935 2.18677 25.5721 1.392H25.5563C25.6117 2.2424 25.6275 3.05306 25.6275 4.41211V6.61361H24.9713H24.9792Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M34.4822 3.59382H32.893V5.98606H34.6957V6.62188H32.1656V0.255806H34.5771V0.891618H32.8851V2.9898H34.4743V3.60177L34.4822 3.59382Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M38.167 5.77131C38.3805 5.91436 38.76 6.02563 39.0763 6.02563C39.7325 6.02563 40.1278 5.58851 40.1278 4.9527C40.1278 4.36457 39.7879 4.00693 39.2898 3.63339C38.7916 3.28369 38.0959 2.68762 38.0959 1.86901C38.0959 0.907343 38.76 0.2 39.772 0.2C40.1674 0.2 40.5153 0.319217 40.6655 0.438432L40.4836 1.06629C40.3255 0.955027 40.0646 0.85171 39.7325 0.85171C39.1079 0.85171 38.8233 1.32062 38.8233 1.75774C38.8233 2.39355 39.1553 2.63993 39.7562 3.0691C40.5153 3.60954 40.8552 4.19767 40.8552 4.90501C40.8552 6.00179 40.0883 6.69323 39.0763 6.69323C38.6414 6.69323 38.1828 6.55018 38.001 6.42301L38.1591 5.8031L38.167 5.77131Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M44.3825 5.77131C44.596 5.91436 44.9755 6.02563 45.2918 6.02563C45.948 6.02563 46.3434 5.58851 46.3434 4.9527C46.3434 4.36457 46.0034 4.00693 45.5053 3.63339C45.0072 3.28369 44.3114 2.68762 44.3114 1.86901C44.3114 0.907343 44.9755 0.2 45.9876 0.2C46.3829 0.2 46.7308 0.319217 46.881 0.438432L46.6992 1.06629C46.541 0.955027 46.2722 0.85171 45.948 0.85171C45.3313 0.85171 45.0388 1.32062 45.0388 1.75774C45.0388 2.39355 45.3709 2.63993 45.9718 3.0691C46.7308 3.60954 47.0708 4.19767 47.0708 4.90501C47.0708 6.00179 46.3038 6.69323 45.2918 6.69323C44.8569 6.69323 44.3984 6.55018 44.2244 6.42301L44.3825 5.8031V5.77131Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M55.024 0.247539H55.7514V6.00164H57.5382V6.61361H55.0319V0.247539H55.024Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M61.8632 4.70617L61.4363 6.61361H60.7405L62.1874 0.247539H62.9859L64.3933 6.61361H63.6817L63.2547 4.70617H61.8553H61.8632ZM63.1678 4.11805L62.8357 2.50467C62.7408 2.05166 62.6539 1.51916 62.5827 1.05025H62.5432C62.4641 1.53506 62.3771 2.08345 62.2902 2.50467L61.9581 4.11805H63.1599H63.1678Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M68.4018 6.61329L67.1763 0.247217H67.9274L68.4651 3.31501C68.5995 4.11773 68.7022 4.82507 68.7734 5.61188H68.8129C68.892 4.80917 69.0422 4.11772 69.1925 3.30706L69.7775 0.247217H70.3942L70.9793 3.24348C71.1216 3.99851 71.264 4.72969 71.343 5.61188H71.3747C71.4774 4.6979 71.5881 3.99851 71.7146 3.27527L72.2444 0.239271H72.9481L71.7146 6.60534H71.011L70.4022 3.50575C70.2836 2.83815 70.1571 2.11492 70.0859 1.41552H70.0701C69.9752 2.13081 69.8724 2.82226 69.7222 3.5296L69.0897 6.59739H68.4097L68.4018 6.61329Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M80.8071 0.247539H83.2186V0.88335H81.5266V3.10869H83.1079V3.72066H81.5266V6.61361H80.7992V0.247539H80.8071Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M87.5914 0.247539V6.61361H86.864V0.247539H87.5914Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M91.5524 0.341949C91.8607 0.254525 92.2403 0.222736 92.5961 0.222736C93.2286 0.222736 93.6951 0.357846 94.0271 0.675752C94.3355 0.993658 94.4699 1.42283 94.4699 1.92353C94.4699 2.73419 94.0904 3.26669 93.4579 3.56075V3.57664C93.9244 3.7197 94.1695 4.17272 94.3118 4.99927C94.4541 5.88146 94.5806 6.41396 94.6676 6.61265H93.9323C93.8374 6.42191 93.7188 5.81788 93.5923 5.03107C93.45 4.16477 93.1811 3.83097 92.5565 3.83097H92.2719V6.61265H91.5445V0.341949H91.5524ZM92.2798 3.27464H92.5802C93.276 3.27464 93.7346 2.76598 93.7346 2.00301C93.7346 1.24003 93.4341 0.810862 92.6514 0.802914C92.5091 0.802914 92.3668 0.810861 92.2798 0.842652V3.28258V3.27464Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+<path d="M102.051 3.87167C102.004 3.02922 101.957 2.09934 101.988 1.37611H101.949C101.806 2.08345 101.64 2.83847 101.443 3.58555L100.66 6.57387H100.201L99.4581 3.71272C99.2526 2.90206 99.0628 2.11524 98.9442 1.37611H98.9126C98.9126 2.12319 98.873 3.01332 98.8414 3.91935L98.7149 6.61361H98.0666L98.4382 0.247539H99.2209L99.9642 3.15638C100.178 3.99883 100.344 4.61875 100.47 5.34993H100.502C100.62 4.61875 100.763 4.01473 100.968 3.15638L101.68 0.247539H102.486L102.85 6.61361H102.17L102.036 3.87167H102.051Z" fill="currentColor" stroke="currentColor" stroke-width="0.4" stroke-miterlimit="10"/>
+</g></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><path d="M4 4h7v7H4z"/><path d="M13 4h7v7h-7z"/><path d="M13 13h7v7h-7z"/><path d="M4 13h7v7H4z"/></symbol>
+<symbol id="i-inbox" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13l3.5 7v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/><path d="M9 13h6"/><path d="M9 17h4"/></symbol>
+<symbol id="i-article" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><path d="M3 4h18v16H3z"/><path d="M3 16l5-5 4 4 3-3 6 6"/><path d="M8.5 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/><path d="M19.4 13.5a1.6 1.6 0 0 0 .3 1.8 2 2 0 1 1-2.8 2.8 1.6 1.6 0 0 0-2.7 1.1 2 2 0 1 1-4 0 1.6 1.6 0 0 0-2.7-1.1 2 2 0 1 1-2.8-2.8 1.6 1.6 0 0 0-1.1-2.7 2 2 0 1 1 0-4 1.6 1.6 0 0 0 1.1-2.7A2 2 0 1 1 7 4.6a1.6 1.6 0 0 0 2.7-1.1 2 2 0 1 1 4 0A1.6 1.6 0 0 0 16.4 4.6a2 2 0 1 1 2.8 2.8 1.6 1.6 0 0 0-.3 1.8 1.6 1.6 0 0 0 1.5 1 2 2 0 1 1 0 4 1.6 1.6 0 0 0-1.5 1z"/></symbol>
+<symbol id="i-redirect" viewBox="0 0 24 24"><path d="M4 17h10a4 4 0 0 0 4-4V6"/><path d="M14 10l4-4 4 4"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16"/><path d="M21 21l-4.3-4.3"/></symbol>
+<symbol id="i-chevDown" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-archive" viewBox="0 0 24 24"><path d="M3 5h18v4H3z"/><path d="M5 9v10h14V9"/><path d="M10 13h4"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M4 21h16"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/><path d="M9 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4"/></symbol>
+</defs></svg>
+
+<div class="app">
+
+  <!-- ============================================================ SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="lockup">
+        <svg class="lg-mark"><use href="#logo-mark"/></svg>
+        <span class="lockup-stack">
+          <svg class="lg-word"><use href="#logo-word"/></svg>
+          <svg class="lg-tag"><use href="#logo-tag"/></svg>
+        </span>
+      </span>
+      <span class="brand-sub">CONTENT MANAGER</span>
+    </div>
+
+    <nav class="nav">
+      <div>
+        <div class="nav-label">OVERVIEW</div>
+        <div class="nav-items">
+          <button class="nav-item is-active" type="button" data-go="dashboard">
+            <svg class="ic"><use href="#i-grid"/></svg><span class="txt">Dashboard</span></button>
+          <button class="nav-item" type="button" data-go="enquiries">
+            <svg class="ic"><use href="#i-inbox"/></svg><span class="txt">Contact Enquiries</span></button>
+        </div>
+      </div>
+
+      <div>
+        <div class="nav-label">CONTENT</div>
+        <div class="nav-items">
+          <!-- Pages expands into its type list, as the live shell does -->
+          <div>
+            <div class="nav-row" data-row="pages">
+              <button class="nav-item" type="button" data-go="pages">
+                <svg class="ic"><use href="#i-doc"/></svg><span class="txt">Pages</span></button>
+              <button class="nav-caret is-open" type="button" data-toggle="pages-sub">
+                <svg class="ic ic-14"><use href="#i-chevDown"/></svg></button>
+            </div>
+            <div class="nav-sub" id="pages-sub">
+              <button type="button" data-go="pages"><span>All pages</span><span class="n">&middot;</span></button>
+              <button type="button" data-go="pages"><span>Expertise pages</span><span class="n">&middot;</span></button>
+              <button type="button" data-go="pages"><span>Service pages</span><span class="n">&middot;</span></button>
+              <button type="button" data-go="pages"><span>Lawyer pages</span><span class="n">&middot;</span></button>
+              <button type="button" data-go="pages"><span>Legal pages</span><span class="n">&middot;</span></button>
+              <button type="button" data-go="pages"><span>Other pages</span><span class="n">&middot;</span></button>
+            </div>
+          </div>
+          <button class="nav-item" type="button" data-go="blog">
+            <svg class="ic"><use href="#i-article"/></svg><span class="txt">Articles</span></button>
+        </div>
+      </div>
+
+      <div>
+        <div class="nav-label">LIBRARY</div>
+        <div class="nav-items">
+          <button class="nav-item" type="button" data-go="media">
+            <svg class="ic"><use href="#i-image"/></svg><span class="txt">Media Library</span></button>
+        </div>
+      </div>
+
+      <div>
+        <div class="nav-label">CONFIGURATION</div>
+        <div class="nav-items">
+          <button class="nav-item" type="button" data-go="settings">
+            <svg class="ic"><use href="#i-gear"/></svg><span class="txt">Global Settings</span></button>
+          <button class="nav-item" type="button" data-go="redirects">
+            <svg class="ic"><use href="#i-redirect"/></svg><span class="txt">Redirects</span></button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-foot">
+      <a href="../" target="_blank" rel="noreferrer">
+        <svg class="ic"><use href="#i-globe"/></svg><span>View live site</span></a>
+      <button type="button">
+        <svg class="ic"><use href="#i-logout"/></svg><span>Sign out</span></button>
+    </div>
+  </aside>
+
+  <!-- =============================================================== MAIN -->
+  <div class="main">
+    <header class="topbar">
+      <div class="page-title" id="pageTitle">Dashboard</div>
+      <button class="user" type="button">
+        <div class="ava">A</div>
+        <div class="who"><b>Admin</b><span>contact@petroff.law</span></div>
+        <span class="caret"><svg class="ic ic-15"><use href="#i-chevDown"/></svg></span>
+      </button>
+    </header>
+
+    <main class="content">
+
+      <!-- ------------------------------------------------------ DASHBOARD -->
+      <section class="panel" data-panel="dashboard">
+        <div class="banner">
+          <div class="eyebrow">DASHBOARD OVERVIEW</div>
+          <h2>Welcome back</h2>
+          <p>You are signed in to the Petroff Avocats content manager.</p>
+        </div>
+
+        <div class="card card-pad">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+            <div class="card-title" style="margin:0;flex:1">Redirects</div>
+            <button class="btn" type="button" data-go="redirects">Open redirects</button>
+          </div>
+          <div class="stat-row">
+            <div class="bigstat"><b>&middot;</b><span>Total redirects</span></div>
+            <div class="bigstat"><b>&middot;</b><span>Renamed</span></div>
+            <div class="bigstat"><b>&middot;</b><span>Deleted</span></div>
+            <div class="bigstat"><b>&middot;</b><span>Merged</span></div>
+            <div class="bigstat"><b>&middot;</b><span>Manual</span></div>
+          </div>
+        </div>
+
+        <div class="card r18 card-pad">
+          <div class="card-title">Quick actions</div>
+          <div class="quick-grid">
+            <button class="quick" type="button" data-go="enquiries">
+              <span class="tile"><svg class="ic ic-20"><use href="#i-inbox"/></svg></span>
+              <span class="txt"><b>Contact Enquiries</b><span>Website form submissions</span></span></button>
+            <button class="quick" type="button" data-go="pages">
+              <span class="tile"><svg class="ic ic-20"><use href="#i-doc"/></svg></span>
+              <span class="txt"><b>Pages</b><span>Edit page content &amp; blocks</span></span></button>
+            <button class="quick" type="button" data-go="blog">
+              <span class="tile"><svg class="ic ic-20"><use href="#i-article"/></svg></span>
+              <span class="txt"><b>Articles</b><span>Guides, fiches &amp; modèles</span></span></button>
+            <button class="quick" type="button" data-go="media">
+              <span class="tile"><svg class="ic ic-20"><use href="#i-image"/></svg></span>
+              <span class="txt"><b>Media Library</b><span>Images &amp; files</span></span></button>
+            <button class="quick" type="button" data-go="settings">
+              <span class="tile"><svg class="ic ic-20"><use href="#i-gear"/></svg></span>
+              <span class="txt"><b>Global Settings</b><span>Site-wide configuration</span></span></button>
+            <button class="quick" type="button" data-go="redirects">
+              <span class="tile"><svg class="ic ic-20"><use href="#i-redirect"/></svg></span>
+              <span class="txt"><b>Redirects</b><span>Moved and retired URLs</span></span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ------------------------------------------------------ ENQUIRIES -->
+      <section class="panel" data-panel="enquiries" hidden>
+        <div class="stat-row">
+          <button class="stat is-on" type="button"><span class="tile"><svg class="ic ic-16"><use href="#i-inbox"/></svg></span>
+            <span class="txt"><b>&middot;</b><span>All</span></span></button>
+          <button class="stat" type="button"><span class="tile"><svg class="ic ic-16"><use href="#i-mail"/></svg></span>
+            <span class="txt"><b>&middot;</b><span>New</span></span></button>
+          <button class="stat" type="button"><span class="tile"><svg class="ic ic-16"><use href="#i-check"/></svg></span>
+            <span class="txt"><b>&middot;</b><span>Replied</span></span></button>
+          <button class="stat" type="button"><span class="tile"><svg class="ic ic-16"><use href="#i-archive"/></svg></span>
+            <span class="txt"><b>&middot;</b><span>Archived</span></span></button>
+          <button class="stat" type="button"><span class="tile"><svg class="ic ic-16"><use href="#i-clock"/></svg></span>
+            <span class="txt"><b>&middot;</b><span>This week</span></span></button>
+        </div>
+
+        <div class="bar">
+          <label class="searchbox"><svg class="ic ic-15"><use href="#i-search"/></svg>
+            <input type="search" placeholder="Search by name, email, phone or message…"></label>
+          <button class="btn btn-icon" type="button" title="Refresh"><svg class="ic ic-15"><use href="#i-refresh"/></svg></button>
+          <button class="btn" type="button"><svg class="ic ic-14"><use href="#i-download"/></svg>Export</button>
+        </div>
+
+        <div class="chips">
+          <button class="chip is-on" type="button">All <span class="n">&middot;</span></button>
+          <button class="chip" type="button">New <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Replied <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Archived <span class="n">&middot;</span></button>
+        </div>
+
+        <div class="empty">
+          <div class="tile"><svg class="ic ic-20"><use href="#i-inbox"/></svg></div>
+          <b>No enquiries yet</b>
+          <p>Submissions from the contact popup and the page forms land here.
+             Nothing has come in for the current filter.</p>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------------------- PAGES -->
+      <section class="panel" data-panel="pages" hidden>
+        <div class="bar">
+          <label class="searchbox"><svg class="ic ic-15"><use href="#i-search"/></svg>
+            <input type="search" placeholder="Search pages by title or slug…"></label>
+          <button class="btn btn-icon" type="button" title="Refresh"><svg class="ic ic-15"><use href="#i-refresh"/></svg></button>
+          <button class="btn btn-primary" type="button"><svg class="ic ic-15"><use href="#i-plus"/></svg>New page</button>
+        </div>
+
+        <div class="chips">
+          <button class="chip is-on" type="button">All pages <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Expertise pages <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Service pages <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Lawyer pages <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Legal pages <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Other pages <span class="n">&middot;</span></button>
+        </div>
+
+        <div class="empty">
+          <div class="tile"><svg class="ic ic-20"><use href="#i-doc"/></svg></div>
+          <b>No pages to show</b>
+          <p>Expertise, service, lawyer and legal pages appear here once they load.
+             Use New page to create one.</p>
+        </div>
+      </section>
+
+      <!-- ------------------------------------------------------ ARTICLES -->
+      <section class="panel" data-panel="blog" hidden>
+        <div class="bar">
+          <label class="searchbox"><svg class="ic ic-15"><use href="#i-search"/></svg>
+            <input type="search" placeholder="Search articles by title or slug…"></label>
+          <select class="field-input"><option>All categories</option></select>
+          <button class="chip is-uncat" type="button">Uncategorised <span class="n">&middot;</span></button>
+          <button class="btn btn-icon" type="button" title="Refresh"><svg class="ic ic-15"><use href="#i-refresh"/></svg></button>
+          <button class="btn btn-primary" type="button"><svg class="ic ic-15"><use href="#i-plus"/></svg>New article</button>
+        </div>
+
+        <div class="chips">
+          <button class="chip is-on" type="button">All <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Published <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Draft <span class="n">&middot;</span></button>
+        </div>
+
+        <div class="empty">
+          <div class="tile"><svg class="ic ic-20"><use href="#i-article"/></svg></div>
+          <b>No articles to show</b>
+          <p>Published and draft articles appear here — guides, fiches &amp; FAQ and
+             modèles. The red Uncategorised filter lists any article not yet filed
+             under a domain.</p>
+        </div>
+      </section>
+
+      <!-- -------------------------------------------------- MEDIA LIBRARY -->
+      <section class="panel" data-panel="media" hidden>
+        <div class="bar">
+          <label class="searchbox"><svg class="ic ic-15"><use href="#i-search"/></svg>
+            <input type="search" placeholder="Search files by name…"></label>
+          <select class="field-input"><option>All folders</option></select>
+          <button class="btn btn-icon" type="button" title="Refresh"><svg class="ic ic-15"><use href="#i-refresh"/></svg></button>
+          <button class="btn" type="button"><svg class="ic ic-15"><use href="#i-folder"/></svg>New folder</button>
+          <button class="btn btn-primary" type="button"><svg class="ic ic-15"><use href="#i-upload"/></svg>Upload</button>
+        </div>
+
+        <div class="chips">
+          <button class="chip is-on" type="button">All <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Images <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Documents <span class="n">&middot;</span></button>
+        </div>
+
+        <div class="empty">
+          <div class="tile"><svg class="ic ic-20"><use href="#i-image"/></svg></div>
+          <b>No media yet</b>
+          <p>Drop files here or use Upload. Images, SVGs and documents added from the
+             editors also collect in this library.</p>
+        </div>
+      </section>
+
+      <!-- ------------------------------------------------- GLOBAL SETTINGS -->
+      <section class="panel" data-panel="settings" hidden>
+        <div class="chips">
+          <button class="chip is-on" type="button">General</button>
+          <button class="chip" type="button">Contact</button>
+          <button class="chip" type="button">Social</button>
+          <button class="chip" type="button">Analytics</button>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-title">Site</div>
+          <div class="form-grid">
+            <div class="fld"><label for="s-name">Site name</label>
+              <input class="field-input" id="s-name" value="Petroff"></div>
+            <div class="fld"><label for="s-tag">Tagline</label>
+              <input class="field-input" id="s-tag" value="Avocats"></div>
+            <div class="fld full"><label for="s-desc">Meta description</label>
+              <textarea class="field-input" id="s-desc">Conseil et contentieux pour les entreprises, en France et à l’international.</textarea>
+              <span class="hint">Aim for 150–160 characters.</span></div>
+            <div class="fld"><label for="s-lang">Default language</label>
+              <select class="field-input" id="s-lang"><option>English</option><option>Français</option></select></div>
+            <div class="fld"><label for="s-tz">Time zone</label>
+              <select class="field-input" id="s-tz"><option>Europe/Paris</option><option>UTC</option></select></div>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-title">Contact details</div>
+          <div class="form-grid">
+            <div class="fld"><label for="s-phone">Phone</label>
+              <input class="field-input" id="s-phone" value="+33 (0) 1 78 90 46 46"></div>
+            <div class="fld"><label for="s-email">Enquiries email</label>
+              <input class="field-input" id="s-email" value="contact@petroff.law"></div>
+            <div class="fld full"><label for="s-addr">Office address</label>
+              <input class="field-input" id="s-addr" value="182 rue de Rivoli, 75001 Paris"></div>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-title">Behaviour</div>
+          <div class="switch-row">
+            <div class="txt"><b>Maintenance mode</b><span>Show a holding page to visitors</span></div>
+            <button class="switch" type="button" aria-pressed="false"></button></div>
+          <div class="switch-row">
+            <div class="txt"><b>Cookie banner</b><span>Ask for consent before analytics load</span></div>
+            <button class="switch is-on" type="button" aria-pressed="true"></button></div>
+          <div class="switch-row">
+            <div class="txt"><b>Enquiry notifications</b><span>Email the team on every form submission</span></div>
+            <button class="switch is-on" type="button" aria-pressed="true"></button></div>
+        </div>
+
+        <div class="save-bar">
+          <span>No changes to save</span>
+          <button class="btn" type="button">Discard</button>
+          <button class="btn btn-primary" type="button">Save changes</button>
+        </div>
+      </section>
+
+      <!-- ------------------------------------------------------ REDIRECTS -->
+      <section class="panel" data-panel="redirects" hidden>
+        <div class="card card-pad">
+          <div class="card-title">Summary</div>
+          <div class="stat-row">
+            <div class="bigstat"><b>&middot;</b><span>Total redirects</span></div>
+            <div class="bigstat"><b>&middot;</b><span>Renamed</span></div>
+            <div class="bigstat"><b>&middot;</b><span>Deleted</span></div>
+            <div class="bigstat"><b>&middot;</b><span>Merged</span></div>
+            <div class="bigstat"><b>&middot;</b><span>Manual</span></div>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-title">Add a redirect</div>
+          <div class="form-grid" style="grid-template-columns:1fr 1fr 170px auto;align-items:end">
+            <div class="fld"><label for="r-from">From</label>
+              <input class="field-input" id="r-from" placeholder="/old-path"></div>
+            <div class="fld"><label for="r-to">To</label>
+              <input class="field-input" id="r-to" placeholder="/new-path"></div>
+            <div class="fld"><label for="r-reason">Reason</label>
+              <select class="field-input" id="r-reason">
+                <option>Renamed</option><option>Deleted</option>
+                <option>Merged</option><option>Manual</option></select></div>
+            <button class="btn btn-primary" type="button"><svg class="ic ic-15"><use href="#i-plus"/></svg>Add</button>
+          </div>
+        </div>
+
+        <div class="bar">
+          <label class="searchbox"><svg class="ic ic-15"><use href="#i-search"/></svg>
+            <input type="search" placeholder="Search by old or new path…"></label>
+          <button class="btn btn-icon" type="button" title="Refresh"><svg class="ic ic-15"><use href="#i-refresh"/></svg></button>
+        </div>
+
+        <div class="chips">
+          <button class="chip is-on" type="button">All <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Renamed <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Deleted <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Merged <span class="n">&middot;</span></button>
+          <button class="chip" type="button">Manual <span class="n">&middot;</span></button>
+        </div>
+
+        <div class="empty">
+          <div class="tile"><svg class="ic ic-20"><use href="#i-redirect"/></svg></div>
+          <b>No redirects yet</b>
+          <p>When a page is renamed or removed its old URL is recorded here so the
+             traffic and the rankings follow it.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+/* Section switching. This is the only script in the file — it reveals markup
+   that is already in the document, it does not build any of it. */
+(function () {
+  var TITLES = {
+    dashboard: "Dashboard",
+    enquiries: "Contact Enquiries",
+    pages: "Pages",
+    blog: "Articles",
+    media: "Media Library",
+    settings: "Global Settings",
+    redirects: "Redirects"
+  };
+  var panels = document.querySelectorAll("[data-panel]");
+  var title = document.getElementById("pageTitle");
+  var content = document.querySelector(".content");
+
+  function show(id) {
+    panels.forEach(function (p) { p.hidden = p.dataset.panel !== id; });
+    title.textContent = TITLES[id] || "Dashboard";
+
+    // Top-level nav highlight, plus the Pages row which wraps its own button.
+    document.querySelectorAll(".nav-items > .nav-item").forEach(function (b) {
+      b.classList.toggle("is-active", b.dataset.go === id);
+    });
+    var row = document.querySelector('[data-row="pages"]');
+    if (row) row.classList.toggle("is-active", id === "pages");
+
+    content.scrollTop = 0;
+  }
+
+  document.addEventListener("click", function (e) {
+    var go = e.target.closest("[data-go]");
+    if (go) { show(go.dataset.go); return; }
+
+    var tog = e.target.closest("[data-toggle]");
+    if (tog) {
+      var sub = document.getElementById(tog.dataset.toggle);
+      if (sub) { sub.hidden = !sub.hidden; tog.classList.toggle("is-open", !sub.hidden); }
+      return;
+    }
+
+    // Chips, stat tiles and switches are presentational — they toggle so both
+    // states can be seen, nothing is filtered.
+    var chip = e.target.closest(".chip");
+    if (chip && !chip.classList.contains("is-uncat")) {
+      var group = chip.parentElement.querySelectorAll(".chip");
+      group.forEach(function (c) { c.classList.remove("is-on"); });
+      chip.classList.add("is-on");
+      return;
+    }
+    var stat = e.target.closest(".stat");
+    if (stat) {
+      stat.parentElement.querySelectorAll(".stat").forEach(function (s) { s.classList.remove("is-on"); });
+      stat.classList.add("is-on");
+      return;
+    }
+    var sw = e.target.closest(".switch");
+    if (sw) {
+      var on = sw.classList.toggle("is-on");
+      sw.setAttribute("aria-pressed", String(on));
+    }
+  });
+})();
+</script>
+</body>
+</html>
