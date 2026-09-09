@@ -32,14 +32,23 @@ import {
  * `useRouter` is `next/navigation`, not `@/i18n/navigation` — the admin sits
  * outside next-intl, so the localised router would rewrite these to `/fr/…`.
  */
-export type AuthStatus = "loading" | "authenticated" | "guest";
+export type AuthStatus =
+  | "loading"
+  | "authenticated"
+  | "guest"
+  /** A token is held but `/me` could not be reached — see the note below. */
+  | "unreachable";
 
 type AuthValue = {
   status: AuthStatus;
   user: AdminUser | null;
+  /** Why the session could not be verified, when `status` is "unreachable". */
+  error: string | null;
   /** Throws `ApiError` so the form can render field errors and 429s itself. */
   signIn: (email: string, password: string, remember: boolean) => Promise<void>;
   signOut: () => Promise<void>;
+  /** Try `/me` again after an unreachable API. */
+  retry: () => void;
 };
 
 const AuthContext = createContext<AuthValue | null>(null);
@@ -55,6 +64,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [status, setStatus] = useState<AuthStatus>("loading");
   const [user, setUser] = useState<AdminUser | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  /* Bumped by `retry`, which is the hydration effect's only other trigger. */
+  const [attempt, setAttempt] = useState(0);
+
+  const retry = useCallback(() => {
+    setStatus("loading");
+    setError(null);
+    setAttempt((a) => a + 1);
+  }, []);
 
   /* The redirect has to see the current path, and re-registering the handler on
      every navigation would tear down a listener mid-request. Writing the ref in
@@ -69,6 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setAuthFailureHandler((_status, message) => {
       setUser(null);
+      setError(null);
       setStatus("guest");
       if (pathRef.current !== ADMIN_LOGIN) {
         setLoginNotice(message);
@@ -93,20 +112,44 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       .then((res) => {
         if (cancelled) return;
         setUser(res.data);
+        setError(null);
         setStatus("authenticated");
       })
-      .catch(() => {
-        /* 401 and 403 already cleared the token through the failure handler;
-           anything else (the API being down) must not strand the reader on a
-           spinner, so the session simply does not open. */
+      .catch((err: unknown) => {
         if (cancelled) return;
         setUser(null);
-        setStatus("guest");
+
+        /*
+          **"Could not verify" is not "not signed in", and conflating them
+          deadlocked the admin.** A 401 or 403 has already cleared the token
+          through the failure handler, so falling through to "guest" sends the
+          reader to the login page and the proxy lets them stay there.
+
+          Anything else — the API down, DNS, a CORS rejection — leaves the
+          token in place. Calling that "guest" made the guard redirect to
+          /admin/login while proxy.ts still saw the cookie and redirected
+          straight back to /admin, so the screen sat on "Redirecting…" for
+          ever. It is its own state now, with a way out that does not depend
+          on the API answering.
+        */
+        const rejected =
+          err instanceof ApiError && (err.status === 401 || err.status === 403);
+        if (rejected) {
+          setError(null);
+          setStatus("guest");
+        } else {
+          setError(
+            err instanceof ApiError
+              ? err.message
+              : "Could not reach the server.",
+          );
+          setStatus("unreachable");
+        }
       });
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [attempt]);
 
   const signIn = useCallback(
     async (email: string, password: string, remember: boolean) => {
@@ -116,6 +159,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
          next page immediately already has it to send. */
       writeToken(token, remember);
       setUser(signedIn);
+      setError(null);
       setStatus("authenticated");
     },
     [],
@@ -134,13 +178,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } finally {
       clearToken();
       setUser(null);
+      setError(null);
       setStatus("guest");
       router.replace(ADMIN_LOGIN);
     }
   }, [router]);
 
   return (
-    <AuthContext.Provider value={{ status, user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ status, user, error, signIn, signOut, retry }}
+    >
       {children}
     </AuthContext.Provider>
   );

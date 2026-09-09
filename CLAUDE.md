@@ -8596,6 +8596,36 @@ Tokens have no expiry on the backend — one dies only when revoked — so the
 cookie's lifetime is the whole session policy. That is what the login form's
 **"Keep me signed in"** sets: on, 30 days; off, a session cookie.
 
+### The two guards can deadlock — "unreachable" is not "signed out"
+
+Reported as the admin never opening, stuck on **"Redirecting…"**. Reproduced
+exactly: hold a token cookie, take the API away, load `/admin`.
+
+The proxy sends anyone **holding a cookie** to `/admin`. The guard sends anyone
+**without a session** to `/admin/login`. A failed `/me` used to set "guest"
+whatever the reason — but only a 401/403 clears the token, so after a *network*
+failure the cookie survived and the two redirected the reader back and forth for
+ever. It shows as a single stuck screen rather than a visible loop, because the
+client router resolves the bounce without a full navigation.
+
+Two changes, and the first is the real fix:
+
+1. **A fourth status, `unreachable`.** A 401 or 403 is "not signed in" and still
+   goes to the login page; the API being down, DNS, or a CORS rejection is
+   "could not verify", which keeps the token and shows a panel with **Try again**
+   and **Sign out**. Sign out works with the API down, since `signOut` clears
+   local state whatever the logout call returns.
+2. `AdminGuard` **clears the token before redirecting**, so even a future
+   guest path cannot hand the proxy a cookie to bounce back on.
+
+**This would have fired in production every time the API blinked**, not just
+locally — the reader would have been locked out of the admin with no way back.
+
+Verified across every state: API down with a token (panel, session kept), Sign
+out from the panel (login, cookie cleared), no token (login), stale token
+against a live API (401 → login, no loop), a real sign-in, a refresh, the API
+failing mid-session, and **Try again recovering in place without re-login**.
+
 ### Two guards, deliberately
 
 The proxy can only see that *a* token exists; `AdminGuard` waits for `/me` to
