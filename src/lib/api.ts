@@ -146,10 +146,18 @@ export async function request<T>(
       cache: "no-store",
     });
   } catch {
+    /*
+      Name the URL that failed. "Could not reach the server" on its own sent a
+      real debugging session looking at the frontend when the API simply was
+      not running — and because a CORS rejection is indistinguishable from a
+      dead socket here, the address is the only clue this layer has to give.
+    */
     throw new ApiError({
       status: 0,
       network: true,
-      message: "Could not reach the server. Check your connection and retry.",
+      message: `Could not reach the API at ${BASE}. Check that it is running and that this origin (${
+        typeof location === "undefined" ? "this app" : location.origin
+      }) is allowed by its CORS config.`,
     });
   }
 

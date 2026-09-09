@@ -8596,6 +8596,25 @@ Tokens have no expiry on the backend — one dies only when revoked — so the
 cookie's lifetime is the whole session policy. That is what the login form's
 **"Keep me signed in"** sets: on, 30 days; off, a session cookie.
 
+### Running the admin with no backend — `npm run mock:api`
+
+The Laravel API is a separate project and may simply not be on the machine.
+`tools/mock-api.mjs` is a **local stub of the contract** — auth, the public
+contact endpoint and the enquiry endpoints, over in-memory data — so the admin
+and the forms can be run and looked at anyway. **It is not the API**; where the
+two disagree the real one is right, and its behaviour must never be cited as
+the API's.
+
+Its credentials come from `MOCK_ADMIN_EMAIL` / `MOCK_ADMIN_PASSWORD` and
+default to obvious placeholders printed on startup — **the real seeded
+credentials are deliberately not in the repo**.
+
+**A failed request names the URL it tried**, and the origin it tried it from.
+"Could not reach the server" on its own sent a debugging session looking at the
+frontend when the backend was simply not running — and since a CORS rejection
+reaches JavaScript as an indistinguishable network failure, the address is the
+only clue this layer has to give.
+
 ### The two guards can deadlock — "unreachable" is not "signed out"
 
 Reported as the admin never opening, stuck on **"Redirecting…"**. Reproduced
