@@ -67,9 +67,7 @@ export function Sidebar({
                         )}
                       >
                         <Icon name={item.icon as IconName} />
-                        <span className="flex-1">
-                          {SECTION_TITLES[item.key]}
-                        </span>
+                        <span className="flex-1">{SECTION_TITLES[item.key]}</span>
                       </button>
                       {item.children ? (
                         <button
@@ -87,10 +85,7 @@ export function Sidebar({
                           <Icon
                             name="chevDown"
                             size={14}
-                            className={cn(
-                              "transition-transform",
-                              open && "rotate-180",
-                            )}
+                            className={cn("transition-transform", open && "rotate-180")}
                           />
                         </button>
                       ) : null}
@@ -129,13 +124,18 @@ export function Sidebar({
           <Icon name="globe" />
           <span>View live site</span>
         </a>
-        <button
-          type="button"
-          className="flex cursor-pointer items-center gap-3 rounded-[10px] px-3 py-2.5 text-left text-[13.5px] text-white/66 transition-colors hover:text-white/92"
+        {/*
+          A plain anchor, not `next/link`: `/admin/login` sits under the admin
+          root layout and outside next-intl, and signing out should be a full
+          document load anyway once there is a session to clear.
+        */}
+        <a
+          href="/admin/login"
+          className="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-[13.5px] text-white/66 transition-colors hover:text-white/92"
         >
           <Icon name="logout" />
           <span>Sign out</span>
-        </button>
+        </a>
       </div>
     </aside>
   );

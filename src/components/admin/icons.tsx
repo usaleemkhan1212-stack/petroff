@@ -42,11 +42,7 @@ const PATHS = {
   archive: ["M3 5h18v4H3z", "M5 9v10h14V9", "M10 13h4"],
   download: ["M12 3v12", "M8 11l4 4 4-4", "M4 21h16"],
   plus: ["M12 5v14", "M5 12h14"],
-  upload: [
-    "M12 15V3",
-    "M8 7l4-4 4 4",
-    "M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2",
-  ],
+  upload: ["M12 15V3", "M8 7l4-4 4 4", "M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"],
   folder: ["M3 7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"],
   mail: ["M4 4h16v16H4z", "M4 7l8 6 8-6"],
   globe: [
@@ -55,6 +51,18 @@ const PATHS = {
     "M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18",
   ],
   logout: ["M16 17l5-5-5-5", "M21 12H9", "M9 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4"],
+  eye: [
+    "M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z",
+    "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6",
+  ],
+  eyeOff: [
+    "M3 3l18 18",
+    "M10.6 10.6a3 3 0 0 0 4.24 4.24",
+    "M9.9 5.2A9.9 9.9 0 0 1 12 5c6.4 0 10 7 10 7a18 18 0 0 1-3.3 4.3",
+    "M6.3 6.3A17.7 17.7 0 0 0 2 12s3.6 7 10 7a9.9 9.9 0 0 0 4.3-.95",
+  ],
+  lock: ["M5 10h14v11H5z", "M8 10V7a4 4 0 0 1 8 0v3", "M12 14.5v2.5"],
+  arrowLeft: ["M19 12H5", "M11 6l-6 6 6 6"],
 } as const;
 
 export type IconName = keyof typeof PATHS;
@@ -89,19 +97,23 @@ export function Icon({
 }
 
 /**
- * The firm's lockup, on the sidebar's encre ground.
+ * The firm’s lockup — on the sidebar’s encre ground, or a light one.
  *
  * All three files fill `currentColor`, so each part takes its brand colour from
  * a token class exactly as `ui/Logo.tsx` does — periwinkle mark, white wordmark
- * for the dark surface, gold tagline. Their intrinsic sizes are left untouched,
+ * for the dark surface (encre on a light one), gold tagline. Their intrinsic
+ * sizes are left untouched,
  * which is what preserves the designed geometry.
  */
-export function AdminLockup() {
+export function AdminLockup({ tone = "onDark" }: { tone?: "onDark" | "onLight" }) {
   return (
     <span className="flex items-center gap-2">
       <LogoMark className="text-periwinkle shrink-0" aria-hidden="true" />
       <span className="flex flex-col gap-1">
-        <LogoWordmark className="text-white" aria-hidden="true" />
+        <LogoWordmark
+          className={tone === "onDark" ? "text-white" : "text-encre"}
+          aria-hidden="true"
+        />
         <LogoTagline className="text-gold" aria-hidden="true" />
       </span>
     </span>
