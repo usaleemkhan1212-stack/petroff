@@ -1,7 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import portrait from "@/assets/images/lawyer-portrait-card.jpg";
-import { ConsultButton } from "@/components/consultation/ConsultButton";
+import {
+  ContactError,
+  ContactThanks,
+  FieldError,
+} from "@/components/contact/ContactStatus";
+import {
+  composeMessage,
+  useContactSubmit,
+} from "@/components/contact/useContactSubmit";
+import { Button } from "@/components/ui/Button";
+import { CONTACT_SOURCES } from "@/lib/contact-api";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +26,21 @@ const fields = [
   ["nom", "email"],
   ["telephone", "societe"],
 ] as const;
+
+type FieldKey = (typeof fields)[number][number];
+
+/**
+ * Which contract field each one maps onto. `societe` has none — the API takes
+ * seven fields and rejects the rest — so it is folded into the message.
+ */
+const API_FIELD: Record<FieldKey, string | null> = {
+  nom: "name",
+  email: "email",
+  telephone: "phone",
+  societe: null,
+};
+
+const EMPTY = { nom: "", email: "", telephone: "", societe: "", situation: "" };
 
 /** Shared by the textarea and the four inputs. */
 const field =
@@ -43,12 +71,40 @@ const field =
  * hover state, and it is one card with no sibling to settle it either way.
  * Asked for.
  *
- * Its inputs are real and labelled but deliberately **not wrapped in a
- * `<form>`** — with no submit handler, Enter would reload the page. The same
- * call Tools and SearchBand make.
+ * **It posts to `POST /api/contact-enquiries`** under the source
+ * `lawcard-section`, through the shared `useContactSubmit`.
+ *
+ * Its CTA used to be a `ConsultButton`, which opened the contact popup over a
+ * form the reader had just filled in and discarded what they had typed. Now
+ * that the fields actually submit, it is this form's own submit — a deliberate
+ * change to what CLAUDE.md records for this button. Every other contact CTA on
+ * the site still opens the popup.
  */
 export function Lawcard({ tone = "lilas" }: { tone?: "lilas" | "lilas-2" }) {
   const t = useTranslations("Lawcard");
+  const tc = useTranslations("ContactForm");
+  const [values, setValues] = useState(EMPTY);
+  const form = useContactSubmit();
+
+  const set = (key: FieldKey | "situation", value: string) =>
+    setValues((v) => ({ ...v, [key]: value }));
+
+  const resetAll = () => {
+    setValues(EMPTY);
+    form.reset();
+  };
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    await form.submit({
+      name: values.nom,
+      email: values.email,
+      phone: values.telephone,
+      subject: t("title"),
+      message: composeMessage({ Société: values.societe }, values.situation),
+      source: CONTACT_SOURCES.lawcard,
+    });
+  }
 
   return (
     <section className={cn(tone === "lilas" ? "bg-lilas" : "bg-lilas-2")}>
@@ -104,61 +160,96 @@ export function Lawcard({ tone = "lilas" }: { tone?: "lilas" | "lilas-2" }) {
               <p className="text-body text-encre/62">{t("lead")}</p>
             </div>
 
-            <div className="flex flex-col gap-9">
-              <div className="flex flex-col gap-7">
-                <div>
-                  <label htmlFor="lawcard-situation" className="sr-only">
-                    {t("fields.situation")}
-                  </label>
-                  <textarea
-                    id="lawcard-situation"
-                    rows={4}
-                    placeholder={t("fields.situation")}
-                    className={`${field} h-38.75 resize-none`}
-                  />
-                </div>
+            <form onSubmit={onSubmit} className="flex flex-col gap-9">
+              {form.done ? (
+                <ContactThanks onReset={resetAll} />
+              ) : (
+                <>
+                  <div className="flex flex-col gap-7">
+                    {form.error ? (
+                      <ContactError text={form.error} cooldown={form.cooldown} />
+                    ) : null}
 
-                {fields.map((row, i) => (
-                  <div key={i} className="flex flex-col gap-6 sm:flex-row">
-                    {row.map((key) => (
-                      <div key={key} className="min-w-0 flex-1">
-                        <label htmlFor={`lawcard-${key}`} className="sr-only">
-                          {t(`fields.${key}`)}
-                        </label>
-                        <input
-                          id={`lawcard-${key}`}
-                          type="text"
-                          placeholder={t(`fields.${key}`)}
-                          className={`${field} text-ellipsis`}
-                        />
+                    <div>
+                      <label htmlFor="lawcard-situation" className="sr-only">
+                        {t("fields.situation")}
+                      </label>
+                      <textarea
+                        id="lawcard-situation"
+                        rows={4}
+                        value={values.situation}
+                        onChange={(e) => set("situation", e.target.value)}
+                        aria-invalid={Boolean(form.fieldErrors.message?.[0])}
+                        placeholder={t("fields.situation")}
+                        className={`${field} h-38.75 resize-none`}
+                      />
+                      <FieldError
+                        id="lawcard-situation-error"
+                        text={form.fieldErrors.message?.[0]}
+                      />
+                    </div>
+
+                    {fields.map((row, i) => (
+                      <div key={i} className="flex flex-col gap-6 sm:flex-row">
+                        {row.map((key) => (
+                          <div key={key} className="min-w-0 flex-1">
+                            <label htmlFor={`lawcard-${key}`} className="sr-only">
+                              {t(`fields.${key}`)}
+                            </label>
+                            <input
+                              id={`lawcard-${key}`}
+                              type={key === "email" ? "email" : "text"}
+                              value={values[key]}
+                              onChange={(e) => set(key, e.target.value)}
+                              aria-invalid={Boolean(
+                                API_FIELD[key] &&
+                                form.fieldErrors[API_FIELD[key]!]?.[0],
+                              )}
+                              placeholder={t(`fields.${key}`)}
+                              className={`${field} text-ellipsis`}
+                            />
+                            <FieldError
+                              id={`lawcard-${key}-error`}
+                              text={
+                                API_FIELD[key]
+                                  ? form.fieldErrors[API_FIELD[key]!]?.[0]
+                                  : undefined
+                              }
+                            />
+                          </div>
+                        ))}
                       </div>
                     ))}
                   </div>
-                ))}
-              </div>
 
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                  <ConsultButton
-                    variant="red"
-                    className="px-9 py-3.5 leading-[22px] whitespace-normal sm:whitespace-nowrap"
-                  >
-                    {t("cta")}
-                  </ConsultButton>
-                  <p className="text-body text-encre/62">
-                    {t.rich("phone", {
-                      s: (chunks) => (
-                        <span className="text-body-strong text-encre">{chunks}</span>
-                      ),
-                      n: (chunks) => (
-                        <span className="text-body-strong text-red">{chunks}</span>
-                      ),
-                    })}
-                  </p>
-                </div>
-                <p className="text-small text-encre/62 leading-6">{t("secret")}</p>
-              </div>
-            </div>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                      <Button
+                        type="submit"
+                        variant="red"
+                        disabled={form.busy || form.cooldown > 0}
+                        className="px-9 py-3.5 leading-[22px] whitespace-normal disabled:opacity-60 sm:whitespace-nowrap"
+                      >
+                        {form.busy ? tc("sending") : t("cta")}
+                      </Button>
+                      <p className="text-body text-encre/62">
+                        {t.rich("phone", {
+                          s: (chunks) => (
+                            <span className="text-body-strong text-encre">
+                              {chunks}
+                            </span>
+                          ),
+                          n: (chunks) => (
+                            <span className="text-body-strong text-red">{chunks}</span>
+                          ),
+                        })}
+                      </p>
+                    </div>
+                    <p className="text-small text-encre/62 leading-6">{t("secret")}</p>
+                  </div>
+                </>
+              )}
+            </form>
           </div>
         </div>
       </Container>

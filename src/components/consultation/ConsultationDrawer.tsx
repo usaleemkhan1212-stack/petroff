@@ -1,18 +1,40 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import lawyerPortrait from "@/assets/images/lawyer-portrait-tall.jpg";
+import {
+  ContactError,
+  ContactThanks,
+  FieldError,
+} from "@/components/contact/ContactStatus";
+import {
+  composeMessage,
+  useContactSubmit,
+} from "@/components/contact/useContactSubmit";
 import { useDialogBehaviour } from "@/components/consultation/useDialogBehaviour";
 import { Button } from "@/components/ui/Button";
+import { CONTACT_SOURCES } from "@/lib/contact-api";
 
+/**
+ * `api` is the field this maps onto in the contact contract, and `societe` has
+ * none — the API takes seven fields and rejects the rest, so the company name
+ * is folded into the message rather than dropped.
+ */
 const fields = [
-  { key: "nom", type: "text" },
-  { key: "email", type: "email" },
-  { key: "tel", type: "tel" },
-  { key: "societe", type: "text" },
-] as const satisfies readonly { key: string; type: string }[];
+  { key: "nom", type: "text", api: "name" },
+  { key: "email", type: "email", api: "email" },
+  { key: "tel", type: "tel", api: "phone" },
+  { key: "societe", type: "text", api: null },
+] as const satisfies readonly {
+  key: string;
+  type: string;
+  api: string | null;
+}[];
+
+type FieldKey = (typeof fields)[number]["key"];
+const EMPTY = { nom: "", email: "", tel: "", societe: "", situation: "" };
 
 const marks = ["reponse", "visio", "prix"] as const;
 
@@ -60,9 +82,11 @@ const control =
  * - the body pads **20** top and bottom where it was 24/30, the marks rule
  *   sits **8** above them where it was 18, and their lines run at 26.
  *
- * Real, labelled inputs but **not wrapped in a `<form>`** — there is no submit
- * handler, and a bare form would reload the page on Enter. Same call as Tools
- * and the OpenData lookup.
+ * **It posts to `POST /api/contact-enquiries`** under the source
+ * `consultation-drawer`, through the shared `useContactSubmit`. It is a real
+ * `<form>` now that there is a submit handler — Enter submits rather than
+ * reloading the page. Its `societe` field has no column in the contract, so it
+ * is folded into the message body rather than being dropped.
  *
  * Kept mounted and translated out of view rather than unmounted, so the
  * transition runs both ways, and carries `aria-hidden` + `inert` while it is
@@ -76,10 +100,33 @@ export function ConsultationDrawer({
   onClose: () => void;
 }) {
   const t = useTranslations("Consultation");
+  const tc = useTranslations("ContactForm");
   const panelRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
+  const [values, setValues] = useState(EMPTY);
+  const form = useContactSubmit();
 
   useDialogBehaviour({ open, onClose, panelRef, firstFieldRef });
+
+  const set = (key: FieldKey | "situation", value: string) =>
+    setValues((v) => ({ ...v, [key]: value }));
+
+  const resetAll = () => {
+    setValues(EMPTY);
+    form.reset();
+  };
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    await form.submit({
+      name: values.nom,
+      email: values.email,
+      phone: values.tel,
+      subject: t("title"),
+      message: composeMessage({ Société: values.societe }, values.situation),
+      source: CONTACT_SOURCES.consultationDrawer,
+    });
+  }
 
   return (
     <>
@@ -158,37 +205,71 @@ export function ConsultationDrawer({
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 px-7.5 py-5">
-          {fields.map(({ key, type }) => (
-            <div key={key} className="flex flex-col gap-1">
-              <label htmlFor={`consult-drawer-${key}`} className="sr-only">
-                {t(`fields.${key}`)}
-              </label>
-              <input
-                id={`consult-drawer-${key}`}
-                ref={key === "nom" ? firstFieldRef : undefined}
-                type={type}
-                placeholder={t(`fields.${key}`)}
-                className={control}
-              />
-            </div>
-          ))}
+        <form className="flex flex-col gap-3 px-7.5 py-5" onSubmit={onSubmit}>
+          {form.done ? (
+            <ContactThanks onReset={resetAll} className="py-4" />
+          ) : (
+            <>
+              {form.error ? (
+                <ContactError text={form.error} cooldown={form.cooldown} />
+              ) : null}
 
-          <div className="flex flex-col gap-1">
-            <label htmlFor="consult-drawer-situation" className="sr-only">
-              {t("situation")}
-            </label>
-            {/* Figma fixes this control at 155, where it used to be four rows. */}
-            <textarea
-              id="consult-drawer-situation"
-              placeholder={t("situationPlaceholder")}
-              className={`${control} h-38.75 resize-y`}
-            />
-          </div>
+              {fields.map(({ key, type, api }) => (
+                <div key={key} className="flex flex-col gap-1">
+                  <label htmlFor={`consult-drawer-${key}`} className="sr-only">
+                    {t(`fields.${key}`)}
+                  </label>
+                  <input
+                    id={`consult-drawer-${key}`}
+                    ref={key === "nom" ? firstFieldRef : undefined}
+                    type={type}
+                    value={values[key]}
+                    onChange={(e) => set(key, e.target.value)}
+                    aria-invalid={Boolean(api && form.fieldErrors[api]?.[0])}
+                    aria-describedby={
+                      api && form.fieldErrors[api]?.[0]
+                        ? `consult-drawer-${key}-error`
+                        : undefined
+                    }
+                    placeholder={t(`fields.${key}`)}
+                    className={control}
+                  />
+                  <FieldError
+                    id={`consult-drawer-${key}-error`}
+                    text={api ? form.fieldErrors[api]?.[0] : undefined}
+                  />
+                </div>
+              ))}
 
-          <Button variant="red" className="w-full px-0 py-3.5">
-            {t("cta")}
-          </Button>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="consult-drawer-situation" className="sr-only">
+                  {t("situation")}
+                </label>
+                {/* Figma fixes this control at 155, where it used to be four rows. */}
+                <textarea
+                  id="consult-drawer-situation"
+                  value={values.situation}
+                  onChange={(e) => set("situation", e.target.value)}
+                  aria-invalid={Boolean(form.fieldErrors.message?.[0])}
+                  placeholder={t("situationPlaceholder")}
+                  className={`${control} h-38.75 resize-y`}
+                />
+                <FieldError
+                  id="consult-drawer-situation-error"
+                  text={form.fieldErrors.message?.[0]}
+                />
+              </div>
+
+              <Button
+                type="submit"
+                variant="red"
+                disabled={form.busy || form.cooldown > 0}
+                className="w-full px-0 py-3.5 disabled:opacity-60"
+              >
+                {form.busy ? tc("sending") : t("cta")}
+              </Button>
+            </>
+          )}
 
           <p className="text-small text-encre/62 leading-6">{t("footnote")}</p>
 
@@ -227,7 +308,7 @@ export function ConsultationDrawer({
               ),
             })}
           </p>
-        </div>
+        </form>
       </div>
     </>
   );

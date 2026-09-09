@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 
+import { AuthProvider } from "@/components/admin/AuthProvider";
+
 import "../globals.css";
 
 /**
@@ -39,11 +41,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable} h-full`}>
       {/*
@@ -51,7 +49,8 @@ export default function AdminLayout({
         the content column scroll independently and the page itself never does.
       */}
       <body className="font-inter text-encre h-full overflow-hidden bg-white text-[14px]">
-        {children}
+        {/* The session is shared by the login page and everything behind it. */}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

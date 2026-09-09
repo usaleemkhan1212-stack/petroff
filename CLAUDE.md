@@ -8550,6 +8550,186 @@ asset URLs, so `curl` those rather than spending a second call on
 - After moving or renaming routes, `rm -rf .next` — stale Turbopack caches
   cause panics and drop newly added Tailwind breakpoint variants.
 
+## Admin authentication — Sanctum bearer tokens
+
+The admin at `/admin` is behind a real login against the **Petroff Laravel API**,
+which is a separate, already-built project. Three endpoints:
+`POST /api/admin/login`, `GET /api/admin/me`, `POST /api/admin/logout`.
+
+**Bearer tokens, not cookie/CSRF Sanctum.** The backend runs CORS with
+`supports_credentials = false`, so there is **no `/sanctum/csrf-cookie` step**,
+every request is `credentials: "omit"`, and authentication is the
+`Authorization: Bearer <token>` header and nothing else. Sending credentials
+would make the browser refuse the response outright.
+
+| file | what it is |
+|---|---|
+| `lib/admin-auth.ts` | the token cookie, `AdminUser`, `ADMIN_ROLES`, the login notice |
+| `lib/admin-api.ts` | `ApiError`, `login` / `fetchMe` / `logout`, the 401/403 hook |
+| `components/admin/AuthProvider.tsx` | the session, mounted in the admin root layout |
+| `components/admin/AdminGuard.tsx` | wraps everything that is not the login page |
+| `proxy.ts` | branches: `/admin*` to the gate, everything else to next-intl |
+
+- **`NEXT_PUBLIC_API_BASE_URL` is inlined at build time**, not read at runtime —
+  it must be set in the deployment's build environment, not just its runtime one.
+  It is in `.env.example`; `.env.local` is gitignored.
+- **The origin has to be whitelisted by the backend.** CORS allows
+  `http://localhost:3000` today, so **run the dev server on 3000, not 3001**, or
+  ask the backend dev to add the port. A CORS rejection reaches JavaScript as an
+  indistinguishable network failure, so a sign-in that fails with "Could not
+  reach the server" against a *running* API is almost always the origin.
+- **`Retry-After` on a 429 is usually unreadable.** CORS hides every non-simple
+  response header from script unless the server lists it in
+  `Access-Control-Expose-Headers`, so the cool-down falls back to 60s (the limit
+  is 5/min). Worth asking the backend to expose it.
+
+### The token is a client-set cookie, and the reason is the proxy
+
+`proxy.ts` reads it on the way in and redirects `/admin` to `/admin/login`
+before any protected markup renders — which localStorage cannot do. The
+tradeoff, stated plainly: the cookie **cannot be `httpOnly`**, because the
+client has to read it to build the header, so against XSS it is exactly as
+exposed as localStorage and no more. What it buys is the redirect, not secrecy.
+`SameSite=Lax` and `Path=/admin` keep it off every other page of the site.
+
+Tokens have no expiry on the backend — one dies only when revoked — so the
+cookie's lifetime is the whole session policy. That is what the login form's
+**"Keep me signed in"** sets: on, 30 days; off, a session cookie.
+
+### Two guards, deliberately
+
+The proxy can only see that *a* token exists; `AdminGuard` waits for `/me` to
+say it is still good. A revoked or deactivated account therefore gets past the
+proxy and is turned around by the guard — one bounce, which is the right trade
+for never painting protected markup for someone with no token at all. 401 or
+403 on **any** protected call clears the session through a handler the client
+calls, so this is not per-call error handling.
+
+- **Logout calls the endpoint first and clears local state regardless of the
+  response**, so a failed logout cannot trap the reader in a session they have
+  asked to end. It revokes only the token it was made with.
+- The explanation for an ended session travels in `sessionStorage`, not a
+  `?reason=` query parameter: a query parameter survives a refresh, so it would
+  still be on screen after it stopped being true, and reading one needs
+  `useSearchParams`, which would force this statically prerendered page into a
+  Suspense boundary.
+- **A 422 for bad credentials repeats one sentence** in both `message` and
+  `errors.email`, so the field's copy is suppressed when it is identical to the
+  banner — the red outline stays either way. A real validation 422, whose field
+  message differs, still shows both.
+- `role` is carried in auth state and shown in the header, but **nothing is
+  gated on it yet**; `admin` and `editor` both see the whole panel. It is typed
+  as a plain string rather than the union so an unknown role from the API cannot
+  be silently read as a known one.
+
+Verified against a contract-faithful mock of the API (response shapes, status
+codes, the 5/min limiter, token revocation) — **26 checks**, covering the
+brief's whole list plus a 403 login, a validation 422 and the 401 a revoked
+token gets afterwards. The real API was not running locally, so **none of this
+has been run against the backend itself**.
+
+## Contact enquiries — the public forms and the admin inbox
+
+Two halves of one feature against the Petroff Laravel API: the site's contact
+forms POST to a public endpoint, and the admin reads, triages and deletes what
+arrives.
+
+`lib/api.ts` is now the shared client — base URL, `ApiError`, `request`, the
+401/403 hook — with `admin-api.ts` (auth + enquiries, all `auth: true`) and
+`contact-api.ts` (the public POST, no token) on top of it. That split exists so
+the public site never imports a module called `admin-api`.
+
+### Part A — the four public forms
+
+Every real contact form on the site posts to `POST /api/contact-enquiries` and
+identifies itself with `source`, which is what the admin filters by:
+
+| form | source | copy |
+|---|---|---|
+| the contact popup (every CTA on the site) | `contact-popup` | French |
+| the consultation drawer (the red side tab) | `consultation-drawer` | French |
+| the Lawcard section | `lawcard-section` | French |
+| the landing page's form | `landing-page` | English |
+
+- **`components/contact/useContactSubmit.ts` is the one behaviour.** Validate
+  locally, POST, then a thank-you or the server's errors — including the 429
+  cool-down. Four copies of that would have produced four subtly different
+  rate-limit states.
+- **A submission takes seconds**, because the API sends a notification email
+  synchronously before answering. So the button is gated for the whole round
+  trip and a second submit while one is in flight is ignored outright — a
+  double-post is two enquiries in the firm's inbox, not a cosmetic fault.
+- **The API takes seven fields and rejects the rest**, so what a form collects
+  and the contract has no column for — a company name, an amount at stake — is
+  folded into the message body under a label by `composeMessage` rather than
+  invented as a key or silently dropped.
+- The three French forms share `ContactStatus.tsx` and a new top-level
+  **`ContactForm`** message namespace. The landing page carries its own English
+  copies: it has its own root layout and no next-intl, so it cannot read the
+  catalogue.
+- **The landing form reads itself with `FormData`, the other three are
+  controlled.** Its dial code lives in a hidden input `CountrySelect` owns, so
+  controlling every field would mean lifting that component's state out for one
+  value. Note that hidden input is named with the form's own **`idPrefix`**, not
+  a bare `dial` — reading `get("dial")` silently returned nothing and posted the
+  phone without its country code.
+- **The Lawcard's CTA now submits instead of opening the popup.** It was a
+  `ConsultButton`, which opened the contact popup over a form the reader had
+  just filled in and discarded what they typed. A deliberate change to what this
+  file records for that button; every other contact CTA still opens the popup.
+- **`Lawcard.tsx` became a client component**, and the `"use client"` directive
+  has to stay the first statement — an import prepended above it silently turns
+  the file back into a server component and every route 500s.
+
+### Part B — the admin inbox
+
+`/admin?section=enquiries`, with the list and the detail as two states of one
+screen.
+
+- **Every filter, the sort, the page and the open enquiry live in the URL**, so
+  a view is shareable and survives a refresh — `?section=enquiries&status=new&page=2`
+  and `&enquiry=12`. That made the shell's section URL-driven too, so the whole
+  admin works the same way, and the back button comes free.
+- **`filtersFromParams` clamps everything it reads.** A hand-edited or stale URL
+  (`per_page=500`, a bogus status) falls back to the default rather than being
+  sent on and 422-ing the list. Only what differs from the default is written
+  back, so the URL stays readable.
+- **`/admin` is behind `Suspense` now**: `useSearchParams` opts a component out
+  of prerendering and this page is static, so the build refuses it without a
+  boundary. The fallback is never really seen — `AdminGuard` is already showing
+  its own loader.
+- **Opening the detail marks the enquiry read server-side, first time only, with
+  no extra call.** That is why the detail fires `onDirty` on mount: the list
+  behind it has to refetch or the row keeps its unread styling. `read_at === null`
+  is the unread flag and unread rows are bold, like an inbox.
+- **`closed_at` is the server's** — set when the status becomes closed, cleared
+  when it is reopened, and spam never sets it — so an update's response replaces
+  local state rather than being patched by hand.
+- `message_preview` is truncated to ~150 characters by the API; the full body
+  exists only on the detail endpoint, so a row can never show it.
+- The visitor's own fields are immutable, so there is no editing UI for them.
+  The email is a `mailto:` link, because replying is the point.
+- The search box is debounced 300ms and keeps its own local value, so the field
+  never lags a keystroke behind the URL.
+
+**The assignee selector can only offer the signed-in user.** There is no users
+endpoint yet, so it is "Assign to me" and "Unassign" — the shape is there for a
+real list to drop into. **Flagged to the backend dev**, along with the standing
+ask to expose `Retry-After`.
+
+Verified against a contract-faithful mock of the API — response shapes, status
+codes, both rate limiters, the paginator, filters, sort, read-on-detail,
+server-managed `closed_at` and soft delete: **20 checks on the four public forms
+and 24 on the admin**, covering the brief's whole list. **The real API was not
+running locally, so none of this has been run against the backend itself.**
+
+- **A bad email on the landing form is caught by the browser, not by us.** Its
+  input is `type="email"`, so native constraint validation blocks the submit
+  before any request — which read as a failing test until the `validationMessage`
+  was checked. The JS validator is the backstop for what the browser does not
+  check, and the only path on the three French forms, whose fields carry no
+  `required`.
+
 ## Known open items
 
 - Intended routes, none of which exist or are linked yet: `/contact`,

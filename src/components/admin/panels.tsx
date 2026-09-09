@@ -7,6 +7,7 @@ import {
   type SectionKey,
 } from "@/lib/admin";
 
+import { useAuth } from "./AuthProvider";
 import { Icon, type IconName } from "./icons";
 import {
   Bar,
@@ -22,7 +23,6 @@ import {
   SearchBox,
   Select,
   StatRow,
-  StatTile,
   SwitchRow,
   fieldInput,
 } from "./ui";
@@ -41,6 +41,9 @@ function Panel({ children }: { children: React.ReactNode }) {
 }
 
 export function Dashboard({ go }: { go: (k: SectionKey) => void }) {
+  const { user } = useAuth();
+  const firstName = user?.name?.trim().split(/\s+/)[0] ?? "";
+
   return (
     <Panel>
       {/*
@@ -53,7 +56,7 @@ export function Dashboard({ go }: { go: (k: SectionKey) => void }) {
           DASHBOARD OVERVIEW
         </div>
         <h2 className="font-poppins mt-2.5 text-[26px] font-semibold tracking-[-0.5px]">
-          Welcome back
+          {firstName ? `Welcome back, ${firstName}` : "Welcome back"}
         </h2>
         <p className="mt-1.5 text-[14px] text-white/62">
           You are signed in to the Petroff Avocats content manager.
@@ -105,38 +108,6 @@ export function Dashboard({ go }: { go: (k: SectionKey) => void }) {
   );
 }
 
-export function Enquiries() {
-  return (
-    <Panel>
-      <StatRow>
-        <StatTile icon="inbox" label="All" active />
-        <StatTile icon="mail" label="New" />
-        <StatTile icon="check" label="Replied" />
-        <StatTile icon="archive" label="Archived" />
-        <StatTile icon="clock" label="This week" />
-      </StatRow>
-
-      <Bar>
-        <SearchBox placeholder="Search by name, email, phone or message…" />
-        <Btn variant="icon" icon="refresh" title="Refresh" />
-        <Btn icon="download">Export</Btn>
-      </Bar>
-
-      <Chips>
-        <Chip active count>All</Chip>
-        <Chip count>New</Chip>
-        <Chip count>Replied</Chip>
-        <Chip count>Archived</Chip>
-      </Chips>
-
-      <EmptyState icon="inbox" title="No enquiries yet">
-        Submissions from the contact popup and the page forms land here. Nothing
-        has come in for the current filter.
-      </EmptyState>
-    </Panel>
-  );
-}
-
 export function Pages() {
   return (
     <Panel>
@@ -149,7 +120,9 @@ export function Pages() {
       </Bar>
 
       <Chips>
-        <Chip active count>All pages</Chip>
+        <Chip active count>
+          All pages
+        </Chip>
         <Chip count>Expertise pages</Chip>
         <Chip count>Service pages</Chip>
         <Chip count>Lawyer pages</Chip>
@@ -158,8 +131,8 @@ export function Pages() {
       </Chips>
 
       <EmptyState icon="doc" title="No pages to show">
-        Expertise, service, lawyer and legal pages appear here once they load.
-        Use New page to create one.
+        Expertise, service, lawyer and legal pages appear here once they load. Use New
+        page to create one.
       </EmptyState>
     </Panel>
   );
@@ -181,15 +154,16 @@ export function Articles() {
       </Bar>
 
       <Chips>
-        <Chip active count>All</Chip>
+        <Chip active count>
+          All
+        </Chip>
         <Chip count>Published</Chip>
         <Chip count>Draft</Chip>
       </Chips>
 
       <EmptyState icon="article" title="No articles to show">
-        Published and draft articles appear here — guides, fiches &amp; FAQ and
-        modèles. The red Uncategorised filter lists any article not yet filed
-        under a domain.
+        Published and draft articles appear here — guides, fiches &amp; FAQ and modèles.
+        The red Uncategorised filter lists any article not yet filed under a domain.
       </EmptyState>
     </Panel>
   );
@@ -209,14 +183,16 @@ export function Media() {
       </Bar>
 
       <Chips>
-        <Chip active count>All</Chip>
+        <Chip active count>
+          All
+        </Chip>
         <Chip count>Images</Chip>
         <Chip count>Documents</Chip>
       </Chips>
 
       <EmptyState icon="image" title="No media yet">
-        Drop files here or use Upload. Images, SVGs and documents added from the
-        editors also collect in this library.
+        Drop files here or use Upload. Images, SVGs and documents added from the editors
+        also collect in this library.
       </EmptyState>
     </Panel>
   );
@@ -302,10 +278,7 @@ export function Settings() {
         <div className="py-3.5">
           <CardTitle>Behaviour</CardTitle>
         </div>
-        <SwitchRow
-          title="Maintenance mode"
-          note="Show a holding page to visitors"
-        />
+        <SwitchRow title="Maintenance mode" note="Show a holding page to visitors" />
         <SwitchRow
           title="Cookie banner"
           note="Ask for consent before analytics load"
@@ -319,9 +292,7 @@ export function Settings() {
       </Card>
 
       <Card className="sticky bottom-0 flex flex-wrap items-center gap-2.5 px-4 py-3.5">
-        <span className="text-encre/62 flex-1 text-[13px]">
-          No changes to save
-        </span>
+        <span className="text-encre/62 flex-1 text-[13px]">No changes to save</span>
         <Btn>Discard</Btn>
         <Btn variant="primary">Save changes</Btn>
       </Card>
@@ -372,7 +343,9 @@ export function Redirects() {
       </Bar>
 
       <Chips>
-        <Chip active count>All</Chip>
+        <Chip active count>
+          All
+        </Chip>
         {REDIRECT_STATS.slice(1).map((r) => (
           <Chip key={r} count>
             {r}
@@ -381,8 +354,8 @@ export function Redirects() {
       </Chips>
 
       <EmptyState icon="redirect" title="No redirects yet">
-        When a page is renamed or removed its old URL is recorded here so the
-        traffic and the rankings follow it.
+        When a page is renamed or removed its old URL is recorded here so the traffic
+        and the rankings follow it.
       </EmptyState>
     </Panel>
   );

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { NAV_GROUPS, PENDING, SECTION_TITLES, type SectionKey } from "@/lib/admin";
 import { cn } from "@/lib/utils";
 
+import { useAuth } from "./AuthProvider";
 import { AdminLockup, Icon, type IconName } from "./icons";
 
 /**
@@ -24,6 +25,8 @@ export function Sidebar({
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
     pages: true,
   });
+  const { signOut } = useAuth();
+  const [leaving, setLeaving] = useState(false);
 
   return (
     <aside className="bg-encre flex h-dvh w-[266px] shrink-0 flex-col border-r border-white/5">
@@ -125,17 +128,23 @@ export function Sidebar({
           <span>View live site</span>
         </a>
         {/*
-          A plain anchor, not `next/link`: `/admin/login` sits under the admin
-          root layout and outside next-intl, and signing out should be a full
-          document load anyway once there is a session to clear.
+          `POST /api/admin/logout` revokes only the token it was made with, so
+          signing out here leaves any other session this account has open
+          alone. The button stays disabled for the round trip, but the session
+          is cleared whatever the call returns — see `AuthProvider.signOut`.
         */}
-        <a
-          href="/admin/login"
-          className="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-[13.5px] text-white/66 transition-colors hover:text-white/92"
+        <button
+          type="button"
+          disabled={leaving}
+          onClick={() => {
+            setLeaving(true);
+            void signOut().finally(() => setLeaving(false));
+          }}
+          className="flex cursor-pointer items-center gap-3 rounded-[10px] px-3 py-2.5 text-left text-[13.5px] text-white/66 transition-colors hover:text-white/92 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Icon name="logout" />
-          <span>Sign out</span>
-        </a>
+          <span>{leaving ? "Signing out…" : "Sign out"}</span>
+        </button>
       </div>
     </aside>
   );

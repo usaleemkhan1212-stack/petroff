@@ -63,6 +63,22 @@ const PATHS = {
   ],
   lock: ["M5 10h14v11H5z", "M8 10V7a4 4 0 0 1 8 0v3", "M12 14.5v2.5"],
   arrowLeft: ["M19 12H5", "M11 6l-6 6 6 6"],
+  trash: [
+    "M4 7h16",
+    "M10 11v6",
+    "M14 11v6",
+    "M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13",
+    "M9 7V4h6v3",
+  ],
+  chevLeft: ["M15 6l-6 6 6 6"],
+  chevRight: ["M9 6l6 6-6 6"],
+  user: ["M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8", "M4 21a8 8 0 0 1 16 0"],
+  filter: ["M3 5h18", "M6 12h12", "M10 19h4"],
+  external: [
+    "M14 4h6v6",
+    "M20 4l-9 9",
+    "M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5",
+  ],
 } as const;
 
 export type IconName = keyof typeof PATHS;

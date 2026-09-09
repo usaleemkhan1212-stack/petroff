@@ -1,11 +1,21 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import portrait from "@/assets/images/lawyer-portrait-modal.jpg";
+import {
+  ContactError,
+  ContactThanks,
+  FieldError,
+} from "@/components/contact/ContactStatus";
+import {
+  composeMessage,
+  useContactSubmit,
+} from "@/components/contact/useContactSubmit";
 import { useDialogBehaviour } from "@/components/consultation/useDialogBehaviour";
 import { Button } from "@/components/ui/Button";
+import { CONTACT_SOURCES } from "@/lib/contact-api";
 
 /** The three reassurance marks, in Figma's order. */
 const marks = ["reponse", "evaluation", "prix"] as const;
@@ -15,6 +25,21 @@ const fields = [
   ["nom", "email"],
   ["telephone", "societe"],
 ] as const;
+
+type FieldKey = (typeof fields)[number][number];
+
+/**
+ * Which contract field each one maps onto. `societe` has none — the API takes
+ * seven fields and rejects the rest — so it is folded into the message.
+ */
+const API_FIELD: Record<FieldKey, string | null> = {
+  nom: "name",
+  email: "email",
+  telephone: "phone",
+  societe: null,
+};
+
+const EMPTY = { nom: "", email: "", telephone: "", societe: "", situation: "" };
 
 /**
  * Shared by the textarea and the four inputs. Two explicit bits, both of which
@@ -51,9 +76,10 @@ const field =
  * through the lead, the fields and the phone line against 18, and a 221x160
  * landscape portrait against its 221x265.
  *
- * Real, labelled inputs but **not wrapped in a `<form>`** — there is no submit
- * handler, and a bare form would reload the page on Enter. The same call Tools,
- * SearchBand and the Lawcard make.
+ * **It posts to `POST /api/contact-enquiries`** under the source
+ * `contact-popup`, through the shared `useContactSubmit`. It is a real
+ * `<form>` now that there is a submit handler, so Enter submits rather than
+ * reloading the page.
  *
  * Kept mounted and faded out rather than unmounted, so the transition runs both
  * ways, and it carries `aria-hidden` + `inert` while closed so nothing
@@ -67,11 +93,34 @@ export function ContactModal({
   onClose: () => void;
 }) {
   const t = useTranslations("Lawcard");
+  const tc = useTranslations("ContactForm");
   const dialog = useTranslations("Consultation");
   const panelRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLTextAreaElement>(null);
+  const [values, setValues] = useState(EMPTY);
+  const form = useContactSubmit();
 
   useDialogBehaviour({ open, onClose, panelRef, firstFieldRef });
+
+  const set = (key: FieldKey | "situation", value: string) =>
+    setValues((v) => ({ ...v, [key]: value }));
+
+  const resetAll = () => {
+    setValues(EMPTY);
+    form.reset();
+  };
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    await form.submit({
+      name: values.nom,
+      email: values.email,
+      phone: values.telephone,
+      subject: t("title"),
+      message: composeMessage({ Société: values.societe }, values.situation),
+      source: CONTACT_SOURCES.contactModal,
+    });
+  }
 
   return (
     <>
@@ -141,69 +190,106 @@ export function ContactModal({
               <p className="text-small text-encre/62">{t("lead")}</p>
             </div>
 
-            <div className="flex flex-col gap-6 lg:col-start-2 lg:row-start-2">
-              <div className="flex flex-col gap-4">
-                <div>
-                  <label htmlFor="contact-modal-situation" className="sr-only">
-                    {t("fields.situation")}
-                  </label>
-                  <textarea
-                    ref={firstFieldRef}
-                    id="contact-modal-situation"
-                    rows={4}
-                    placeholder={t("fields.situationPlaceholder")}
-                    className={`${field} h-38.75 resize-none`}
-                  />
-                </div>
+            <form
+              onSubmit={onSubmit}
+              className="flex flex-col gap-6 lg:col-start-2 lg:row-start-2"
+            >
+              {form.done ? (
+                <ContactThanks onReset={resetAll} />
+              ) : (
+                <>
+                  <div className="flex flex-col gap-4">
+                    {form.error ? (
+                      <ContactError text={form.error} cooldown={form.cooldown} />
+                    ) : null}
 
-                {fields.map((row, i) => (
-                  <div key={i} className="flex flex-col gap-4 sm:flex-row sm:gap-6">
-                    {row.map((key) => (
-                      <div key={key} className="min-w-0 flex-1">
-                        <label htmlFor={`contact-modal-${key}`} className="sr-only">
-                          {t(`fields.${key}`)}
-                        </label>
-                        <input
-                          id={`contact-modal-${key}`}
-                          type="text"
-                          placeholder={t(`fields.${key}`)}
-                          className={`${field} text-ellipsis`}
-                        />
+                    <div>
+                      <label htmlFor="contact-modal-situation" className="sr-only">
+                        {t("fields.situation")}
+                      </label>
+                      <textarea
+                        ref={firstFieldRef}
+                        id="contact-modal-situation"
+                        rows={4}
+                        value={values.situation}
+                        onChange={(e) => set("situation", e.target.value)}
+                        aria-invalid={Boolean(form.fieldErrors.message?.[0])}
+                        placeholder={t("fields.situationPlaceholder")}
+                        className={`${field} h-38.75 resize-none`}
+                      />
+                      <FieldError
+                        id="contact-modal-situation-error"
+                        text={form.fieldErrors.message?.[0]}
+                      />
+                    </div>
+
+                    {fields.map((row, i) => (
+                      <div key={i} className="flex flex-col gap-4 sm:flex-row sm:gap-6">
+                        {row.map((key) => (
+                          <div key={key} className="min-w-0 flex-1">
+                            <label htmlFor={`contact-modal-${key}`} className="sr-only">
+                              {t(`fields.${key}`)}
+                            </label>
+                            <input
+                              id={`contact-modal-${key}`}
+                              type={key === "email" ? "email" : "text"}
+                              value={values[key]}
+                              onChange={(e) => set(key, e.target.value)}
+                              aria-invalid={Boolean(
+                                API_FIELD[key] &&
+                                form.fieldErrors[API_FIELD[key]!]?.[0],
+                              )}
+                              placeholder={t(`fields.${key}`)}
+                              className={`${field} text-ellipsis`}
+                            />
+                            <FieldError
+                              id={`contact-modal-${key}-error`}
+                              text={
+                                API_FIELD[key]
+                                  ? form.fieldErrors[API_FIELD[key]!]?.[0]
+                                  : undefined
+                              }
+                            />
+                          </div>
+                        ))}
                       </div>
                     ))}
                   </div>
-                ))}
-              </div>
 
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                  {/* Figma pads it 36/14, which none of `Button`'s sizes gives.
-                      Inert, like every other form on the site. */}
-                  <Button
-                    variant="red"
-                    className="px-9 py-3.5 leading-[22px] whitespace-normal sm:whitespace-nowrap"
-                  >
-                    {t("cta")}
-                  </Button>
-                  <p className="text-small text-encre/62">
-                    {t.rich("phone", {
-                      s: (chunks) => (
-                        <span className="text-small-strong text-encre">{chunks}</span>
-                      ),
-                      n: (chunks) => (
-                        <span className="text-small-strong text-red">{chunks}</span>
-                      ),
-                    })}
-                  </p>
-                </div>
-                {/* Inter 14/24 — the one value on this card with no token, and
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                      {/* Figma pads it 36/14, which none of `Button`'s sizes gives. */}
+                      <Button
+                        type="submit"
+                        variant="red"
+                        disabled={form.busy || form.cooldown > 0}
+                        className="px-9 py-3.5 leading-[22px] whitespace-normal disabled:opacity-60 sm:whitespace-nowrap"
+                      >
+                        {form.busy ? tc("sending") : t("cta")}
+                      </Button>
+                      <p className="text-small text-encre/62">
+                        {t.rich("phone", {
+                          s: (chunks) => (
+                            <span className="text-small-strong text-encre">
+                              {chunks}
+                            </span>
+                          ),
+                          n: (chunks) => (
+                            <span className="text-small-strong text-red">{chunks}</span>
+                          ),
+                        })}
+                      </p>
+                    </div>
+                    {/* Inter 14/24 — the one value on this card with no token, and
                     the same string the Lawcard section sets at 16. It is the
                     scaled-down card again; flagged to the designer. */}
-                <p className="text-encre/62 font-inter text-[14px] leading-6">
-                  {t("secret")}
-                </p>
-              </div>
-            </div>
+                    <p className="text-encre/62 font-inter text-[14px] leading-6">
+                      {t("secret")}
+                    </p>
+                  </div>
+                </>
+              )}
+            </form>
 
             <div className="flex flex-col gap-4 lg:col-start-1 lg:row-span-2 lg:row-start-1">
               <Image
